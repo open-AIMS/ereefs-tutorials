@@ -7,7 +7,7 @@
 
 This repository holds the source files for the AIMS eReefs tutorials hosted at https://open-aims.github.io/ereefs-tutorials/.
 
-Currently, there are a handful of tutorials available for the languages `R` and `python`. In time we hope to add a wider range of tutorials, including for more advanced concepts. If you wish to see a tutorial on a specific topic you can add a request using the [Discussions](https://github.com/open-AIMS/ereefs-tutorials/discussions) page of this repository. Though please note that the development of subsequent tutorials is dependent on the time availability of the small number of contributing AIMS staff.
+Currently, there are a handful of tutorials available for the languages `R` and `python`. In time we hope to add a wider range of tutorials, including for more advanced concepts. If you wish to see a tutorial on a specific topic you can add a request using the [Discussions](https://github.com/open-AIMS/ereefs-tutorials/discussions) page of this repository. Please note, however, that the development of subsequent tutorials is dependent on the time availability of the small number of contributing AIMS staff.
 
 To follow along with tutorials on your own machine, you can download the source files for specific tutorials by navigating to the :file_folder: `tutorials` folder in this repository, then to :file_folder: `r` or :file_folder: `python`, depending and on your language of choice, and then to the individual tutorial folders herein. Once you have found the folder for the specific tutorial of interest you can download it to your local machine. 
 
