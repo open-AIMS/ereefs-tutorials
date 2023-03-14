@@ -1,0 +1,83 @@
+---
+format:
+  html:
+    toc: false
+---
+
+<br>
+
+## Access eReefs data
+
+<!-- Basic Server Access -->
+::::{.hp-tutorial}
+:::{.hp-thumbnail}
+![](images/tutorial-thumbnails/TN_basic_server_access.png)
+:::
+:::{.hp-text}
+[Basic access to the AIMS eReefs Server]{.hp-title} <br>
+Learn the basics of extracting aggregated eReefs data from the AIMS server using the efficient OPeNDAP data access protocol.
+:::
+:::{.hp-links}
+[{{< fa brands r-project >}} R](tutorials/r/access-ereefs-data-server/basic-server-access/basic_server_access_r.qmd) <br>
+[{{< fa brands python >}} Python](tutorials/python/access-ereefs-data-server/basic-server-access/basic_server_access_python.qmd)
+:::
+::::
+
+
+<!-- Programmatic Server Access -->
+::::{.hp-tutorial}
+:::{.hp-thumbnail}
+![](images/tutorial-thumbnails/TN_programmatic_server_access.png)
+:::
+:::{.hp-text}
+[Programmatic access to the AIMS eReefs Server]{.hp-title} <br>
+Extends the methods introduced in the basic access tutorial to programmatically extract aggregated eReefs data from the AIMS server for multiple dates and points.
+:::
+:::{.hp-links}
+[{{< fa brands r-project >}} R](tutorials/r/access-ereefs-data-server/programmatic-server-access/programmatic_server_access_r.qmd) <br>
+[{{< fa brands python >}} Python](tutorials/python/access-ereefs-data-server/programmatic-server-access/programmatic_server_access_python.qmd)
+:::
+::::
+
+
+
+
+## Plot eReefs data
+
+<!-- Time series plot -->
+::::{.hp-tutorial}
+:::{.hp-thumbnail}
+![](images/tutorial-thumbnails/TN_time_series_plots.png)
+:::
+:::{.hp-text}
+[Time series plots]{.hp-title} <br>
+Learn how to create time series plots of eReefs data. [*Note: the python tutorial has not yet been updated to cover the more advanced topics included in the R tutorial*]
+:::
+:::{.hp-links}
+[{{< fa brands r-project >}} R](tutorials/r/plot-ereefs-data/time-series-plot/time_series_plot_r.qmd) <br>
+[{{< fa brands python >}} Python](tutorials/python/plot-ereefs-data/time-series-plot/time_series_plot_python.qmd)
+:::
+::::
+
+
+
+## Process eReefs data
+
+<!-- Correlation wind and current -->
+::::{.hp-tutorial}
+:::{.hp-thumbnail}
+![](images/tutorial-thumbnails/TN_correlation_wind_current.png)
+:::
+:::{.hp-text}
+[Correlation: wind and current]{.hp-title} <br>
+Learn how to extract and process eReefs data to answer the question: *How strong does the wind need to be to set the direction of the surface ocean currents?*
+:::
+:::{.hp-links}
+[{{< fa brands r-project >}} R](tutorials/r/process-ereefs-data/correlation/correlation_wind_and_current_r.qmd) <br>
+[{{< fa brands python >}} Python](tutorials/python/process-ereefs-data/correlation/correlation_wind_and_current_python.qmd)
+:::
+::::
+
+
+
+  

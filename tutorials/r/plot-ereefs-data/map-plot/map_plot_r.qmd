@@ -1,0 +1,14 @@
+---
+title: "Plotting eReefs data"
+subtitle: "Plotting the data on a map"
+---
+
+MATERIAL FROM BASIC SERVER ACCESS DUMPED BELOW
+IDEAS: 
+
+* link between the two tutorials (e.g. from basic server access provide a link in the footer saying 'learn how to plot the extracted data on a map')
+* explain CRS
+* continue on to more advanced examples (e.g. ggplot, leaflet)
+* follow on tutorial 'producing map animations' (e.g. with gganimate)
+
+

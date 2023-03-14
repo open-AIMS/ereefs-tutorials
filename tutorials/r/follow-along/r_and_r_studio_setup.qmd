@@ -1,0 +1,32 @@
+---
+title: "Series title here"
+subtitle: "Following along with tutorials in {{< fa brands r-project >}}"
+---
+
+:::{.tutorial-description}
+Learn how to setup R and R Studio and follow along with the eReefs tutorials. 
+:::
+
+
+## R and R Studio setup
+
+Download and install `R` (the programming language) and R Studio (the integrated development environment) following the instructions [here](https://posit.co/download/rstudio-desktop/).
+
+
+## Download tutorial files 
+
+The eReefs tutorials for R are located [here](LINK TO GITHUB ereefs-tutorials/tutorials/r FOLDER AFTER PORTING TO AIMS-KS). Each tutorial is placed in its own folder, so to follow along with any particular tutorial just download the respective folder and unzip it in a suitable place on your computer. 
+
+## Open tutorial in R Studio
+
+Open R Studio and create a new project: File > New Project > Existing Directory > Browse > select the unzipped tutorial folder created. Then open the main tutorial (`*.qmd`).
+
+You can now run the code chunks within the tutorial by clicking the `r fontawesome::fa(name="play", fill = "green")` button in the top right corner. Chunks can also be run be pressing ctrl+shift+enter and sections of code (e.g. half a line, a single line, multiple lines) can be run by selecting the section and pressing ctrl+enter (replace ctrl with cmd on Mac). 
+
+## Installing R packages
+
+You may encounter the situation where an R package used in the tutorials have not yet been installed on your machine. Installing packages in R is easy, just run the following from an open R console or R code chunk within an R markdown (`*.rmd`) or Quarto markdown (`*.qmd`) file:
+
+```{r installingPackages, eval=FALSE}
+install.packages("<package name>")  # replace <package name> with the name of the R package you wish to install
+```

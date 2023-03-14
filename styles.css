@@ -1,0 +1,190 @@
+/* css styles */
+.title {
+  margin-top: 1% !important;
+  text-align: left;
+  font-size: 1.6em;
+  font-weight: bold;
+  background-image: url("images/title_csiro.jpg");
+  border-radius: 10px;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 2%;
+  padding-bottom: 3%;
+  margin-left: -2%;
+}
+.subtitle {
+  font-weight: bold;
+  font-size: 1.8em;
+  margin-top: 2% !important;
+  margin-bottom: 3% !important;
+}
+.tutorial-description {
+  margin-top: -4%;
+  margin-bottom: 5%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-style: italic;
+}
+/* Classes for homepage (hp) layout */
+.hp-tutorial {
+  display: flex;
+  margin: 0%
+}
+.hp-thumbnail { /* width 17% */
+  flex: 13%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.hp-text { /* width 63% */
+  flex: 64%;
+  padding-right: 1%;
+  line-height: 1.4em;
+}
+.hp-title {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.hp-links {  /* width 20% */
+  flex: 13%;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 5%;
+  margin-right: 2%;
+  line-height: 2em;
+}
+
+h1 {
+  margin-top: 0px;
+  font-size: 2em;
+  text-align: left;
+}
+h2 {
+  margin-top: 30px;
+  font-size: 1.75em;
+  text-align: left;
+}
+h3 {
+  font-size: 1.5em;
+  text-align: left;
+}
+h4 {
+  font-size: 1.25em;
+  text-align: left;
+}
+h5 {
+  font-size: 1.1em;
+  text-align: left;
+}
+body {
+  text-align: justify
+}
+p.caption {
+  font-style: italic;
+  font-size: 10pt;
+  width: 80%;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 30px;
+}
+.html-widget {
+    margin: auto;
+}
+#TOC {
+  text-align: left;
+  margin-left: 5%;
+  margin-top: 10%;
+}
+.icon {
+  height: 30px;
+  width: 30px;
+}
+.navbar {
+  height: 65px;
+}
+.navbar-logo {
+  max-height: 45px;
+}
+.cell-code {
+  text-align: left
+}
+summary {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+.code {
+  font-family: monospace;
+  font-size: 1em;
+}
+.math {
+  font-size: medium;
+}
+.column h1, h2, h3, h4, h5 {
+  text-align: left;
+}
+.table {
+  text-align: left;
+}
+div.callout-warning.callout {
+  min-height: 300px;
+  border-left-color: rgb(218, 218, 218);
+  border-left-width:1px;
+  background-color: rgb(244, 244, 244);
+  color: black;
+  border-radius: 5px;
+  text-align: left;
+}
+div.callout-warning.callout-style-default>.callout-header {
+  background-color: rgb(5, 24, 45);
+  font-size: 1.3em;
+  color:#d5d6d7;
+  border-radius: 5px;
+  text-align: center;
+  min-height: 75px;
+  padding-bottom: 5%;
+  margin-bottom: 5%;
+  margin-left: -1%;
+  margin-right: -1%;
+  margin-top: -0.5%;
+}
+.sidebar-logo {
+  width: 50%;
+  display: block !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sidebar-title {
+  text-align: center;
+}
+.icon-r {
+  height: 80px;
+  width: 80px;
+  display: inline-block;
+  margin-left: 10%;
+}
+.icon-python {
+  height: 80px;
+  width: 80px;
+  display: inline-block;
+  margin-left: 20%;
+}
+.callout .callout-caption-container {
+  vertical-align: middle;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.scroll_box_x {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+.scroll_box_y {
+  max-height: 350px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+.scroll_box_xy {
+  max-height: 350px;
+  overflow: auto;
+  margin-bottom: 20px;
+}

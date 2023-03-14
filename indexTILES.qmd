@@ -1,0 +1,59 @@
+---
+format:
+  html:
+    toc: false
+---
+
+::::: {.columns}
+:::: {.column width="32%"}
+::: {.callout-warning icon="false"}
+
+# Access eReefs data from the AIMS server
+
+**Basic access with OPeNDAP** <br>
+[{{< fa brands r-project >}} R](tutorials/r/access-ereefs-data-server/basic-server-access/basic_server_access_r.qmd)
+&emsp;
+[{{< fa brands python >}} Python](tutorials/python/access-ereefs-data-server/basic-server-access/basic_server_access_python.qmd)
+
+**Programmatic access for multiple dates and points** <br>
+[{{< fa brands r-project >}} R](tutorials/r/access-ereefs-data-server/programmatic-server-access/programmatic_server_access_r.qmd)
+&emsp;
+[{{< fa brands python >}} Python](tutorials/python/access-ereefs-data-server/programmatic-server-access/programmatic_server_access_python.qmd)
+
+:::
+::::
+:::: {.column width="2%"} 
+::::
+:::: {.column width="32%"}
+::: {.callout-warning icon="false"}
+
+# Plot eReefs data
+
+**Time series plots** <br> 
+[{{< fa brands r-project >}} R](tutorials/r/plot-ereefs-data/time-series-plot/time_series_plot_r.qmd) 
+&emsp; 
+[{{< fa brands python >}} Python](tutorials/python/plot-ereefs-data/time-series-plot/time_series_plot_python.qmd)
+
+:::
+::::
+:::: {.column width="2%"} 
+::::
+:::: {.column width="32%"}
+::: {.callout-warning icon="false"}
+
+# Use eReefs data
+
+**Correlation - wind and current** <br>
+[{{< fa brands r-project >}} R]() 
+&emsp; 
+[{{< fa brands python >}} Python](tutorials/python/use-ereefs-data/correlation/correlation_wind_and_current_python.qmd)
+
+
+:::
+::::
+:::: {.column width="4%"} 
+::::
+:::: {.column width="48%"}
+
+::::
+::::: 
