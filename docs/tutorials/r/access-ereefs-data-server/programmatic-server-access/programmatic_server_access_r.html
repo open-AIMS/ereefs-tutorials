@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.217">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>eReefs tutorials - Access eReefs data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/logo.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="../../../../site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="../../../../site_libs/jquery-1.12.4/jquery.min.js"></script>
+<link href="../../../../site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="../../../../site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="../../../../site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="../../../../site_libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="../../../../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="../../../../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="../../../../site_libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="../../../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-sm navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/ereefs_aims_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">eReefs tutorials</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.r-project.org/" rel="" target="">
+ <span class="menu-text"><i class="fa-brands fa-r-project" aria-label="r-project"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.python.org/" rel="" target="">
+ <span class="menu-text"><i class="fa-brands fa-python" aria-label="python"></i> python</span></a>
+  </li>  
+  <li class="dropdown-header">
+ <span class="menu-text">   </span></li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/bfordAIMS/ereefs-tutorials" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#r-packages" id="toc-r-packages" class="nav-link active" data-scroll-target="#r-packages">R packages</a></li>
+  <li><a href="#motivating-problem" id="toc-motivating-problem" class="nav-link" data-scroll-target="#motivating-problem">Motivating problem</a></li>
+  <li><a href="#example-tracking-data" id="toc-example-tracking-data" class="nav-link" data-scroll-target="#example-tracking-data">Example tracking data</a></li>
+  <li><a href="#extracting-data-from-the-server" id="toc-extracting-data-from-the-server" class="nav-link" data-scroll-target="#extracting-data-from-the-server">Extracting data from the server</a></li>
+  <li><a href="#matching-extracted-data-to-tracking-data" id="toc-matching-extracted-data-to-tracking-data" class="nav-link" data-scroll-target="#matching-extracted-data-to-tracking-data">Matching extracted data to tracking data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Access eReefs data</h1>
+<p class="subtitle lead">Programmatic server access <i class="fa-brands fa-r-project" aria-label="r-project"></i></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="tutorial-description">
+<p>Learn how to extract eReefs data from the AIMS server for multiple dates and points with OPeNDAP in <i class="fa-brands fa-r-project" aria-label="r-project"></i>.</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This tutorial builds on the techniques introduced in <a href="../../../../tutorials/r/access-ereefs-data-server/basic-server-access/basic_server_access_r.html">Access eReefs data: Basic server access <i class="fa-brands fa-r-project" aria-label="r-project"></i></a>.</p>
+</div>
+</div>
+</div>
+<p>In this tutorial we will look at how to get eReefs data from the <a href="http://thredds.ereefs.aims.gov.au/thredds/catalog.html">AIMS server</a> corresponding to the logged locations of tagged marine animals. Keep in mind, however, that the same methodology can be applied in any situation where we wish to extract eReefs data for a range of points with different dates of interest for each point.</p>
+<section id="r-packages" class="level2">
+<h2 class="anchored" data-anchor-id="r-packages">R packages</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RNetCDF) <span class="co"># to access server data files via OPeNDAP</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr) <span class="co"># to efficiently read in data</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) <span class="co"># to create consistent, 'clean' variable names</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data manipulation and plotting with ggplot2</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate) <span class="co"># for working with date and time variables </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet) <span class="co"># to create an interactive map of the tracking locations</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr); <span class="fu">library</span>(kableExtra) <span class="co"># for better table printing</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="motivating-problem" class="level2">
+<h2 class="anchored" data-anchor-id="motivating-problem">Motivating problem</h2>
+<p>The tracking of marine animals is commonly used by researchers to gain insights into the distribution, biology, behaviour and ecology of different species. However, knowing where an animal was at a certain point in time is only one piece of the puzzle. To start to understand <em>why</em> an animal was where it was, we usually require information on things like: What type of habitat is present at the location? What were the environmental conditions like at the time? What other lifeforms were present at the tracked location (e.g.&nbsp;for food or mating)?</p>
+<p>In this tutorial we will pretend that we have tracking data for Loggerhead Sea Turtles and wish to get eReefs data corresponding to the tracked points (in time and space) to understand more about the likely environmental conditions experienced by our turtles.</p>
+<div class="callout callout-style-default callout-note no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Read more: Tracking marine animals
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Marine animals are typically tracked using either acoustic or satellite tags. These tags are attached to the animals and transmit signals back to recievers, logging the animal’s location at different points in time. In some cases other data such as depth, temperature, and animal movement profiles are recorded and the data transmitted to the recievers whenever possible.</p>
+<p>Acoustic tracking requires a network of recievers to be placed in the ocean in order to pick up the tags’ transmitted signals when they come within range (typically around 500 m). Acoustic tracking has the advantage of being able transmit and recieve signals underwater, however is limited by the coverage of the reciever network. In some instances, researchers do without the reciever network and follow the animals around in a boat to receive the data. The suitability of acoustic tracking depends on the study species and research question.</p>
+<p>Satellite tracking, on the other hand, is able to track animals over virtually the entire ocean as the tags transmit signals to a network of satellites orbiting the earth. However, unlike acoustic tags, the signals cannot be transmitted through water and the tagged animals must breach the ocean surface in order to have their location logged and any other recorded data be received. The accuracy of the logged location depends on the quality of the transmitted signal. For high-quality signals, the location uncertainty can be in the hundreds of metres, however for bad quality signals this can blow out to over 10 km.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="example-tracking-data" class="level2">
+<h2 class="anchored" data-anchor-id="example-tracking-data">Example tracking data</h2>
+<p>We will use satellite tracking data for Loggerhead Sea Turtles (<em>Caretta caretta</em>) provided in <a href="https://doi.org/10.15468/k4s6ap">Strydom (2022)</a>. This data contains tracking detections which span the length of the Great Barrier Reef off the east coast of Queensland Australia from December 2021 to April 2022 (shown in <a href="#fig-data-map">Figure&nbsp;1</a>).</p>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This dataset is a summarized representation of the tracking locations per 1-degree cell. This implies a coordinate uncertainty of roughly 110 km. This level of uncertainty renders the data virtually useless for most practical applications, though it will suffice for the purposes of this tutorial. Records which are landbased as a result of the uncertainty have been removed and from here on in we will just pretend that the coordinates are accurate.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>loggerhead_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Loggerhead_Sea_Turtle_satellite_tracking_detections__Strydom_2022_DOI10-15468-k4s6ap.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">|&gt;</span> <span class="co"># clean up variable names</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>( <span class="co"># rename variables for easier use</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">record_id =</span> gbif_id,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">latitude =</span> decimal_latitude, </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">longitude =</span> decimal_longitude, </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_time =</span> event_date</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove land based records (as a result of coordinate uncertainty)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>land_based_records <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4022992331</span>, <span class="dv">4022992326</span>, <span class="dv">4022992312</span>, <span class="dv">4022992315</span>, <span class="dv">4022992322</span>, <span class="dv">4022992306</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>loggerhead_data <span class="ot">&lt;-</span> loggerhead_data <span class="sc">|&gt;</span> </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>(record_id <span class="sc">%in%</span> land_based_records))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the variables relevant to this tutorial</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>loggerhead_data <span class="ot">&lt;-</span> loggerhead_data <span class="sc">|&gt;</span> </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(longitude, latitude, date_time, record_id, species)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># View the tracking locations on an interactive map</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>loggerhead_data <span class="sc">|&gt;</span> </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">leaflet</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="at">label =</span> <span class="sc">~</span>date_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-data-map" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c151fcf90e48daf9065d" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-c151fcf90e48daf9065d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[-20.5,-25.5,-24.5,-18.5,-14.5,-26.5,-19.5,-10.5,-20.5,-22.5,-21.5,-11.5,-19.5,-18.5,-24.5,-15.5,-16.5,-13.5,-21.5,-12.5,-9.5,-23.5,-16.5,-23.5,-17.5],[150.5,153.5,152.5,147.5,145.5,153.5,148.5,143.5,149.5,151.5,150.5,143.5,149.5,146.5,153.5,145.5,145.5,144.5,151.5,143.5,143.5,152.5,146.5,151.5,146.5],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,["2022-01-17 17:06:32","2022-01-02 21:49:55","2021-12-21 17:57:22","2022-01-27 17:00:04","2022-02-12 10:34:12","2022-02-12 08:59:01","2022-01-23 07:02:18","2022-04-14 06:31:48","2022-01-19 17:44:38","2022-01-09 20:25:01","2022-01-14 18:26:17","2022-04-09 22:00:54","2022-01-21 07:22:08","2022-01-30 17:02:42","2022-02-03 21:37:56","2022-02-09 18:33:03","2022-02-07 07:15:30","2022-03-25 07:10:49","2022-01-13 06:28:09","2022-04-01 18:41:42","2022-04-21 10:30:09","2022-01-05 07:33:53","2022-02-06 18:25:38","2022-01-06 05:03:23","2022-02-02 09:14:56"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-26.5,-9.5],"lng":[143.5,153.5]}},"evals":[],"jsHooks":[]}</script>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Loggerhead Sea Turtle satellite tracking records (December 2021 - April 2022)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="extracting-data-from-the-server" class="level2">
+<h2 class="anchored" data-anchor-id="extracting-data-from-the-server">Extracting data from the server</h2>
+<p>We will extend the basic methods introduced in the preceeding tutorial <a href="../../../../tutorials/r/access-ereefs-data-server/basic-server-access/basic_server_access_r.html">Accessing eReefs data from the AIMS server</a> to extract data for a set of points and dates.</p>
+<p>We will extract the eReefs daily mean temperature (<code>temp</code>), salinity (<code>salt</code>), and east- and northward current velocities (<code>u</code> and <code>v</code>) corresponding to the coordinates and dates for the tracking detections shown in <a href="#tbl-detections">Table&nbsp;1</a>.</p>
+<div class="cell">
+<details>
+<summary>Show code to produce table</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print table of tracking detections (Strydom, 2022)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>loggerhead_data <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date_time) <span class="sc">|&gt;</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">format</span>(date_time, <span class="st">"%Y-%m-%d"</span>), <span class="at">time =</span> <span class="fu">format</span>(date_time, <span class="st">"%H:%M"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, time, longitude, latitude) <span class="sc">|&gt;</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">|&gt;</span> <span class="fu">kable_styling</span>() <span class="sc">|&gt;</span> <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">"300px"</span>, <span class="at">fixed_thead =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; ">
+<div id="tbl-detections" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;1: Loggerhead Sea Turtle detections (Strydom, 2022)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">date</th>
+<th style="text-align: left;">time</th>
+<th style="text-align: right;">longitude</th>
+<th style="text-align: right;">latitude</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2021-12-21</td>
+<td style="text-align: left;">17:57</td>
+<td style="text-align: right;">152.5</td>
+<td style="text-align: right;">-24.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-01-02</td>
+<td style="text-align: left;">21:49</td>
+<td style="text-align: right;">153.5</td>
+<td style="text-align: right;">-25.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-01-05</td>
+<td style="text-align: left;">07:33</td>
+<td style="text-align: right;">152.5</td>
+<td style="text-align: right;">-23.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-01-06</td>
+<td style="text-align: left;">05:03</td>
+<td style="text-align: right;">151.5</td>
+<td style="text-align: right;">-23.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-01-09</td>
+<td style="text-align: left;">20:25</td>
+<td style="text-align: right;">151.5</td>
+<td style="text-align: right;">-22.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-01-13</td>
+<td style="text-align: left;">06:28</td>
+<td style="text-align: right;">151.5</td>
+<td style="text-align: right;">-21.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-01-14</td>
+<td style="text-align: left;">18:26</td>
+<td style="text-align: right;">150.5</td>
+<td style="text-align: right;">-21.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-01-17</td>
+<td style="text-align: left;">17:06</td>
+<td style="text-align: right;">150.5</td>
+<td style="text-align: right;">-20.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-01-19</td>
+<td style="text-align: left;">17:44</td>
+<td style="text-align: right;">149.5</td>
+<td style="text-align: right;">-20.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-01-21</td>
+<td style="text-align: left;">07:22</td>
+<td style="text-align: right;">149.5</td>
+<td style="text-align: right;">-19.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-01-23</td>
+<td style="text-align: left;">07:02</td>
+<td style="text-align: right;">148.5</td>
+<td style="text-align: right;">-19.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-01-27</td>
+<td style="text-align: left;">17:00</td>
+<td style="text-align: right;">147.5</td>
+<td style="text-align: right;">-18.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-01-30</td>
+<td style="text-align: left;">17:02</td>
+<td style="text-align: right;">146.5</td>
+<td style="text-align: right;">-18.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-02-02</td>
+<td style="text-align: left;">09:14</td>
+<td style="text-align: right;">146.5</td>
+<td style="text-align: right;">-17.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-02-03</td>
+<td style="text-align: left;">21:37</td>
+<td style="text-align: right;">153.5</td>
+<td style="text-align: right;">-24.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-02-06</td>
+<td style="text-align: left;">18:25</td>
+<td style="text-align: right;">146.5</td>
+<td style="text-align: right;">-16.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-02-07</td>
+<td style="text-align: left;">07:15</td>
+<td style="text-align: right;">145.5</td>
+<td style="text-align: right;">-16.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-02-09</td>
+<td style="text-align: left;">18:33</td>
+<td style="text-align: right;">145.5</td>
+<td style="text-align: right;">-15.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-02-12</td>
+<td style="text-align: left;">08:59</td>
+<td style="text-align: right;">153.5</td>
+<td style="text-align: right;">-26.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-02-12</td>
+<td style="text-align: left;">10:34</td>
+<td style="text-align: right;">145.5</td>
+<td style="text-align: right;">-14.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-03-25</td>
+<td style="text-align: left;">07:10</td>
+<td style="text-align: right;">144.5</td>
+<td style="text-align: right;">-13.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-04-01</td>
+<td style="text-align: left;">18:41</td>
+<td style="text-align: right;">143.5</td>
+<td style="text-align: right;">-12.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-04-09</td>
+<td style="text-align: left;">22:00</td>
+<td style="text-align: right;">143.5</td>
+<td style="text-align: right;">-11.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-04-14</td>
+<td style="text-align: left;">06:31</td>
+<td style="text-align: right;">143.5</td>
+<td style="text-align: right;">-10.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-04-21</td>
+<td style="text-align: left;">10:30</td>
+<td style="text-align: right;">143.5</td>
+<td style="text-align: right;">-9.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+<p><br></p>
+<p>We will take advantage of the consistent file naming on the server to extract the data of interest programatically. We will first need to copy the OPeNDAP data link for one of the files within the correct model and aggregation folders and then replace the date.</p>
+<p>Selecting a random date within the daily aggregated data with one data file per day (<code>daily-daily</code>) for the 1km hydro model (<code>gbr1_2.0</code>), we see the files have the naming format:</p>
+<p><code>https://thredds.ereefs.aims.gov.au/thredds/dodsC/s3://aims-ereefs-public-prod/derived/ncaggregate/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-</code><span style="color: red">YYYY-MM-DD</span><code>.nc</code></p>
+<p>We will now write a script which extracts the data for the dates and coordinates in <a href="#tbl-detections">Table&nbsp;1</a>. For each unique date we will open the corresponding file on the server and extract the daily mean temperature, salinity, northward and southward current velocities for each set of coordinates corresponding to the date.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GET DATA FOR EACH DATE AND COORDINATE (LAT LON) PAIR</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>t_start <span class="ot">=</span> <span class="fu">Sys.time</span>() <span class="co"># to track run time of extraction</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1. Setup variables for data extraction</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Server file name = &lt;file_prefix&gt;&lt;date (yyyy-mm-dd)&gt;&lt;file_suffix&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>file_prefix <span class="ot">&lt;-</span> <span class="st">"https://thredds.ereefs.aims.gov.au/thredds/dodsC/s3://aims-ereefs-public-prod/derived/ncaggregate/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>file_suffix <span class="ot">&lt;-</span> <span class="st">".nc"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Table of dates and coordinates for which to extract data (dates as character string)</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>detections <span class="ot">&lt;-</span> loggerhead_data <span class="sc">|&gt;</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.character</span>(<span class="fu">as_date</span>(date_time))) <span class="sc">|&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, longitude, latitude) <span class="sc">|&gt;</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>extracted_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>() <span class="co"># to save the extracted data</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">unique</span>(detections<span class="sc">$</span>date) <span class="co"># unique dates for which to open server files</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 2. For each date of interest, open a connection to the corresponding data file on the server</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(dates)) {</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  date_i <span class="ot">&lt;-</span> dates[i]</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Open file</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  file_name_i <span class="ot">&lt;-</span> <span class="fu">paste0</span>(file_prefix, date_i, file_suffix)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  server_file_i <span class="ot">&lt;-</span> <span class="fu">open.nc</span>(file_name_i)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Coordinates for which to extract data for the current date</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  coordinates_i <span class="ot">&lt;-</span> detections <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(date <span class="sc">==</span> date_i)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get all coordinates in the open file (each representing the center-point of the corresponding grid cell)</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  server_lons_i <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(server_file_i, <span class="st">"longitude"</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  server_lats_i <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(server_file_i, <span class="st">"latitude"</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 3. For each coordinate (lon, lat) for the current date, get the data for the closest grid cell (1km^2) from the open server file</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(coordinates_i)) {</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Current coordinate of interest</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    lon_j <span class="ot">&lt;-</span> coordinates_i[j,]<span class="sc">$</span>longitude</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    lat_j <span class="ot">&lt;-</span> coordinates_i[j,]<span class="sc">$</span>latitude</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find the index of the grid cell containing our coordinate of interest (i.e. the center-point closest to our point of interest)</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    lon_index <span class="ot">&lt;-</span> <span class="fu">which.min</span>(<span class="fu">abs</span>(server_lons_i <span class="sc">-</span> lon_j))</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    lat_index <span class="ot">&lt;-</span> <span class="fu">which.min</span>(<span class="fu">abs</span>(server_lats_i <span class="sc">-</span> lat_j))</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Setup start vector arguments for RNetCDF::var.get.nc (same for temp, salt, currents u &amp; v)</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="do">###################################</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recall the order of the dimensions (longitude, latitude, k, time) from the previous tutorial. Therefore we want [lon_index, lat_index, k = 16 corresponding to a depth of 0.5m, time = 1 (as we're using the daily files this is the only option)]. If you are still confused go back to the previous tutorial or have a look at the structure of one of the server files by uncommenting the following 5 lines of code:</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># not_yet_run = TRUE  # used so the following lines are only run once</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if (not_yet_run) { </span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   print.nc(server_file_i)</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   not_yet_run = FALSE</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># }</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="do">##################################</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    start_j <span class="ot">&lt;-</span> <span class="fu">c</span>(lon_index, lat_index, <span class="dv">16</span>, <span class="dv">1</span>) <span class="co"># k = 16 corresponds to depth = 0.5m</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    count_j <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="co"># only extracting a single value for each variable</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the data for the grid cell containing our point of interest</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    temp_j <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(server_file_i, <span class="st">"temp"</span>, start_j, count_j)</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>    salt_j <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(server_file_i, <span class="st">"salt"</span>, start_j, count_j)</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>    u_j <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(server_file_i, <span class="st">"u"</span>, start_j, count_j)</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>    v_j <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(server_file_i, <span class="st">"v"</span>, start_j, count_j)</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>    extracted_data_j <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(date_i, lon_j, lat_j, temp_j, salt_j, u_j, v_j)</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>    <span class="do">## 4. Save data in memory and repeat for next date-coordinate pair</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>    extracted_data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(extracted_data, extracted_data_j)</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Close connection to open server file and move to the next date</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">close.nc</span>(server_file_i)</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the run time of the extraction</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>t_stop <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>extract_time <span class="ot">&lt;-</span> t_stop <span class="sc">-</span> t_start</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the extracted data columns</span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(extracted_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"date"</span>, <span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"temp"</span>, <span class="st">"salt"</span>, <span class="st">"u"</span>, <span class="st">"v"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In the code above we match the closest eReefs model grid cell to each point in our list of coordinates (i.e.&nbsp;for each tracking detection). This will therefore match grid cells to all the coordinates, even if they are not within the eReefs model boundary. This behaviour may be useful when we have points right along the coastline as the eReefs models have small gaps at many points along the coast (see image below). However, in other cases this behaviour may not be desirable. For example, if we had points down near Sydney they would be matched to the closest eReefs grid cells (somewhere up near Brisbane) and the extracted data would be erroneous.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/ereefs_model_boundary_and_grid_cells.jpeg"><img src="images/ereefs_model_boundary_and_grid_cells.jpeg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Our extracted data is shown below in <a href="#tbl-extracted-data">Table&nbsp;2</a>. To get this data we openned 24 files on the server (corresponding to unique dates in <a href="#tbl-detections">Table&nbsp;1</a>) and extracted data for 25 unique date-coordinate pairs. On our machine this took 1.8 mins to run.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the extracted data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>extracted_data <span class="sc">|&gt;</span> <span class="fu">kable</span>() <span class="sc">|&gt;</span> <span class="fu">kable_styling</span>() <span class="sc">|&gt;</span> <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">"300px"</span>, <span class="at">fixed_thead =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; ">
+<div id="tbl-extracted-data" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;2: Extracted daily mean temperature, salinity, and east- and northward current velocities (u, v respectively) for Loggerhead Sea Turtle detections (Strydom, 2022)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">date</th>
+<th style="text-align: right;">lon</th>
+<th style="text-align: right;">lat</th>
+<th style="text-align: right;">temp</th>
+<th style="text-align: right;">salt</th>
+<th style="text-align: right;">u</th>
+<th style="text-align: right;">v</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2022-01-17</td>
+<td style="text-align: right;">150.5</td>
+<td style="text-align: right;">-20.5</td>
+<td style="text-align: right;">29.39174</td>
+<td style="text-align: right;">35.33709</td>
+<td style="text-align: right;">-0.0659649</td>
+<td style="text-align: right;">-0.1778789</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-01-02</td>
+<td style="text-align: right;">153.5</td>
+<td style="text-align: right;">-25.5</td>
+<td style="text-align: right;">26.00014</td>
+<td style="text-align: right;">35.29583</td>
+<td style="text-align: right;">-0.0353987</td>
+<td style="text-align: right;">0.0375804</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2021-12-21</td>
+<td style="text-align: right;">152.5</td>
+<td style="text-align: right;">-24.5</td>
+<td style="text-align: right;">28.09089</td>
+<td style="text-align: right;">35.25638</td>
+<td style="text-align: right;">0.0713334</td>
+<td style="text-align: right;">-0.0199901</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-01-27</td>
+<td style="text-align: right;">147.5</td>
+<td style="text-align: right;">-18.5</td>
+<td style="text-align: right;">29.46284</td>
+<td style="text-align: right;">33.98060</td>
+<td style="text-align: right;">0.2652802</td>
+<td style="text-align: right;">0.0044857</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-02-12</td>
+<td style="text-align: right;">145.5</td>
+<td style="text-align: right;">-14.5</td>
+<td style="text-align: right;">29.89639</td>
+<td style="text-align: right;">34.71634</td>
+<td style="text-align: right;">-0.0812021</td>
+<td style="text-align: right;">0.0344770</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-02-12</td>
+<td style="text-align: right;">153.5</td>
+<td style="text-align: right;">-26.5</td>
+<td style="text-align: right;">26.79947</td>
+<td style="text-align: right;">35.38062</td>
+<td style="text-align: right;">-0.1235716</td>
+<td style="text-align: right;">0.0057869</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-01-23</td>
+<td style="text-align: right;">148.5</td>
+<td style="text-align: right;">-19.5</td>
+<td style="text-align: right;">28.98567</td>
+<td style="text-align: right;">35.26142</td>
+<td style="text-align: right;">-0.1370672</td>
+<td style="text-align: right;">-0.0219267</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-04-14</td>
+<td style="text-align: right;">143.5</td>
+<td style="text-align: right;">-10.5</td>
+<td style="text-align: right;">29.47597</td>
+<td style="text-align: right;">34.41768</td>
+<td style="text-align: right;">-0.0409690</td>
+<td style="text-align: right;">0.0776469</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-01-19</td>
+<td style="text-align: right;">149.5</td>
+<td style="text-align: right;">-20.5</td>
+<td style="text-align: right;">29.91821</td>
+<td style="text-align: right;">35.47683</td>
+<td style="text-align: right;">0.0181383</td>
+<td style="text-align: right;">-0.1044010</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-01-09</td>
+<td style="text-align: right;">151.5</td>
+<td style="text-align: right;">-22.5</td>
+<td style="text-align: right;">29.24492</td>
+<td style="text-align: right;">35.33996</td>
+<td style="text-align: right;">0.0007144</td>
+<td style="text-align: right;">-0.1032533</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-01-14</td>
+<td style="text-align: right;">150.5</td>
+<td style="text-align: right;">-21.5</td>
+<td style="text-align: right;">28.98728</td>
+<td style="text-align: right;">35.40287</td>
+<td style="text-align: right;">-0.0638922</td>
+<td style="text-align: right;">-0.0470999</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-04-09</td>
+<td style="text-align: right;">143.5</td>
+<td style="text-align: right;">-11.5</td>
+<td style="text-align: right;">29.93064</td>
+<td style="text-align: right;">34.55591</td>
+<td style="text-align: right;">-0.0967079</td>
+<td style="text-align: right;">0.1442562</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-01-21</td>
+<td style="text-align: right;">149.5</td>
+<td style="text-align: right;">-19.5</td>
+<td style="text-align: right;">29.57756</td>
+<td style="text-align: right;">35.11963</td>
+<td style="text-align: right;">-0.1611882</td>
+<td style="text-align: right;">-0.0347497</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-01-30</td>
+<td style="text-align: right;">146.5</td>
+<td style="text-align: right;">-18.5</td>
+<td style="text-align: right;">30.14936</td>
+<td style="text-align: right;">34.59603</td>
+<td style="text-align: right;">-0.1835063</td>
+<td style="text-align: right;">0.1426468</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-02-03</td>
+<td style="text-align: right;">153.5</td>
+<td style="text-align: right;">-24.5</td>
+<td style="text-align: right;">27.06327</td>
+<td style="text-align: right;">35.32142</td>
+<td style="text-align: right;">0.5498420</td>
+<td style="text-align: right;">-0.7972959</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-02-09</td>
+<td style="text-align: right;">145.5</td>
+<td style="text-align: right;">-15.5</td>
+<td style="text-align: right;">29.54386</td>
+<td style="text-align: right;">34.74210</td>
+<td style="text-align: right;">-0.1198241</td>
+<td style="text-align: right;">0.0636992</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-02-07</td>
+<td style="text-align: right;">145.5</td>
+<td style="text-align: right;">-16.5</td>
+<td style="text-align: right;">30.37080</td>
+<td style="text-align: right;">34.06056</td>
+<td style="text-align: right;">-0.1037723</td>
+<td style="text-align: right;">0.2000399</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-03-25</td>
+<td style="text-align: right;">144.5</td>
+<td style="text-align: right;">-13.5</td>
+<td style="text-align: right;">29.04090</td>
+<td style="text-align: right;">34.75312</td>
+<td style="text-align: right;">-0.4569216</td>
+<td style="text-align: right;">0.3603792</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-01-13</td>
+<td style="text-align: right;">151.5</td>
+<td style="text-align: right;">-21.5</td>
+<td style="text-align: right;">28.41784</td>
+<td style="text-align: right;">35.25340</td>
+<td style="text-align: right;">-0.0951453</td>
+<td style="text-align: right;">0.0155211</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-04-01</td>
+<td style="text-align: right;">143.5</td>
+<td style="text-align: right;">-12.5</td>
+<td style="text-align: right;">30.14290</td>
+<td style="text-align: right;">34.44403</td>
+<td style="text-align: right;">0.0250692</td>
+<td style="text-align: right;">-0.0175750</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-04-21</td>
+<td style="text-align: right;">143.5</td>
+<td style="text-align: right;">-9.5</td>
+<td style="text-align: right;">29.56355</td>
+<td style="text-align: right;">34.19133</td>
+<td style="text-align: right;">0.0587259</td>
+<td style="text-align: right;">0.0340937</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-01-05</td>
+<td style="text-align: right;">152.5</td>
+<td style="text-align: right;">-23.5</td>
+<td style="text-align: right;">25.64322</td>
+<td style="text-align: right;">35.22873</td>
+<td style="text-align: right;">0.0303043</td>
+<td style="text-align: right;">0.0149218</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-02-06</td>
+<td style="text-align: right;">146.5</td>
+<td style="text-align: right;">-16.5</td>
+<td style="text-align: right;">29.13773</td>
+<td style="text-align: right;">34.69858</td>
+<td style="text-align: right;">-0.1224007</td>
+<td style="text-align: right;">-0.1002772</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2022-01-06</td>
+<td style="text-align: right;">151.5</td>
+<td style="text-align: right;">-23.5</td>
+<td style="text-align: right;">28.12745</td>
+<td style="text-align: right;">35.40966</td>
+<td style="text-align: right;">-0.0329330</td>
+<td style="text-align: right;">0.0152895</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-02-02</td>
+<td style="text-align: right;">146.5</td>
+<td style="text-align: right;">-17.5</td>
+<td style="text-align: right;">30.58525</td>
+<td style="text-align: right;">34.71669</td>
+<td style="text-align: right;">0.1280997</td>
+<td style="text-align: right;">-0.0543357</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+<section id="matching-extracted-data-to-tracking-data" class="level2">
+<h2 class="anchored" data-anchor-id="matching-extracted-data-to-tracking-data">Matching extracted data to tracking data</h2>
+<p>We will match up the eReefs data with our tracking detections by combining the two datasets based on common date, longitude and latitude values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure common variables date, lon and lat between the two datasets</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>extracted_data <span class="ot">&lt;-</span> extracted_data <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">longitude =</span> lon, <span class="at">latitude =</span> lat)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>loggerhead_data <span class="ot">&lt;-</span> loggerhead_data <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(date_time))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the two datasets based on common date, lon and lat values</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>combined_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  loggerhead_data, extracted_data, </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"date"</span>, <span class="st">"longitude"</span>, <span class="st">"latitude"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>date)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the combined data</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>combined_data <span class="sc">|&gt;</span> <span class="fu">kable</span>() <span class="sc">|&gt;</span> <span class="fu">kable_styling</span>() <span class="sc">|&gt;</span>  <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">"300px"</span>, <span class="at">fixed_thead =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; ">
+<div id="tbl-combined-data" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;3: Loggerhead Sea Turtle tracking detections (Strydom, 2022) and corresponding eReefs daily mean temperature, salinity, east- and northward current velocities (u, v respectively).</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">longitude</th>
+<th style="text-align: right;">latitude</th>
+<th style="text-align: left;">date_time</th>
+<th style="text-align: right;">record_id</th>
+<th style="text-align: left;">species</th>
+<th style="text-align: right;">temp</th>
+<th style="text-align: right;">salt</th>
+<th style="text-align: right;">u</th>
+<th style="text-align: right;">v</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">152.5</td>
+<td style="text-align: right;">-24.5</td>
+<td style="text-align: left;">2021-12-21 17:57:22</td>
+<td style="text-align: right;">4022992328</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">28.09089</td>
+<td style="text-align: right;">35.25638</td>
+<td style="text-align: right;">0.0713334</td>
+<td style="text-align: right;">-0.0199901</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">153.5</td>
+<td style="text-align: right;">-25.5</td>
+<td style="text-align: left;">2022-01-02 21:49:55</td>
+<td style="text-align: right;">4022992329</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">26.00014</td>
+<td style="text-align: right;">35.29583</td>
+<td style="text-align: right;">-0.0353987</td>
+<td style="text-align: right;">0.0375804</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">152.5</td>
+<td style="text-align: right;">-23.5</td>
+<td style="text-align: left;">2022-01-05 07:33:53</td>
+<td style="text-align: right;">4022992304</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">25.64322</td>
+<td style="text-align: right;">35.22873</td>
+<td style="text-align: right;">0.0303043</td>
+<td style="text-align: right;">0.0149218</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">151.5</td>
+<td style="text-align: right;">-23.5</td>
+<td style="text-align: left;">2022-01-06 05:03:23</td>
+<td style="text-align: right;">4022992302</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">28.12745</td>
+<td style="text-align: right;">35.40966</td>
+<td style="text-align: right;">-0.0329330</td>
+<td style="text-align: right;">0.0152895</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">151.5</td>
+<td style="text-align: right;">-22.5</td>
+<td style="text-align: left;">2022-01-09 20:25:01</td>
+<td style="text-align: right;">4022992319</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">29.24492</td>
+<td style="text-align: right;">35.33996</td>
+<td style="text-align: right;">0.0007144</td>
+<td style="text-align: right;">-0.1032533</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">151.5</td>
+<td style="text-align: right;">-21.5</td>
+<td style="text-align: left;">2022-01-13 06:28:09</td>
+<td style="text-align: right;">4022992308</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">28.41784</td>
+<td style="text-align: right;">35.25340</td>
+<td style="text-align: right;">-0.0951453</td>
+<td style="text-align: right;">0.0155211</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">150.5</td>
+<td style="text-align: right;">-21.5</td>
+<td style="text-align: left;">2022-01-14 18:26:17</td>
+<td style="text-align: right;">4022992318</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">28.98728</td>
+<td style="text-align: right;">35.40287</td>
+<td style="text-align: right;">-0.0638922</td>
+<td style="text-align: right;">-0.0470999</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">150.5</td>
+<td style="text-align: right;">-20.5</td>
+<td style="text-align: left;">2022-01-17 17:06:32</td>
+<td style="text-align: right;">4022992330</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">29.39174</td>
+<td style="text-align: right;">35.33709</td>
+<td style="text-align: right;">-0.0659649</td>
+<td style="text-align: right;">-0.1778789</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">149.5</td>
+<td style="text-align: right;">-20.5</td>
+<td style="text-align: left;">2022-01-19 17:44:38</td>
+<td style="text-align: right;">4022992320</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">29.91821</td>
+<td style="text-align: right;">35.47683</td>
+<td style="text-align: right;">0.0181383</td>
+<td style="text-align: right;">-0.1044010</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">149.5</td>
+<td style="text-align: right;">-19.5</td>
+<td style="text-align: left;">2022-01-21 07:22:08</td>
+<td style="text-align: right;">4022992316</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">29.57756</td>
+<td style="text-align: right;">35.11963</td>
+<td style="text-align: right;">-0.1611882</td>
+<td style="text-align: right;">-0.0347497</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">148.5</td>
+<td style="text-align: right;">-19.5</td>
+<td style="text-align: left;">2022-01-23 07:02:18</td>
+<td style="text-align: right;">4022992323</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">28.98567</td>
+<td style="text-align: right;">35.26142</td>
+<td style="text-align: right;">-0.1370672</td>
+<td style="text-align: right;">-0.0219267</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">147.5</td>
+<td style="text-align: right;">-18.5</td>
+<td style="text-align: left;">2022-01-27 17:00:04</td>
+<td style="text-align: right;">4022992327</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">29.46284</td>
+<td style="text-align: right;">33.98060</td>
+<td style="text-align: right;">0.2652802</td>
+<td style="text-align: right;">0.0044857</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">146.5</td>
+<td style="text-align: right;">-18.5</td>
+<td style="text-align: left;">2022-01-30 17:02:42</td>
+<td style="text-align: right;">4022992314</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">30.14936</td>
+<td style="text-align: right;">34.59603</td>
+<td style="text-align: right;">-0.1835063</td>
+<td style="text-align: right;">0.1426468</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">146.5</td>
+<td style="text-align: right;">-17.5</td>
+<td style="text-align: left;">2022-02-02 09:14:56</td>
+<td style="text-align: right;">4022992301</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">30.58525</td>
+<td style="text-align: right;">34.71669</td>
+<td style="text-align: right;">0.1280997</td>
+<td style="text-align: right;">-0.0543357</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">153.5</td>
+<td style="text-align: right;">-24.5</td>
+<td style="text-align: left;">2022-02-03 21:37:56</td>
+<td style="text-align: right;">4022992313</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">27.06327</td>
+<td style="text-align: right;">35.32142</td>
+<td style="text-align: right;">0.5498420</td>
+<td style="text-align: right;">-0.7972959</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">146.5</td>
+<td style="text-align: right;">-16.5</td>
+<td style="text-align: left;">2022-02-06 18:25:38</td>
+<td style="text-align: right;">4022992303</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">29.13773</td>
+<td style="text-align: right;">34.69858</td>
+<td style="text-align: right;">-0.1224007</td>
+<td style="text-align: right;">-0.1002772</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">145.5</td>
+<td style="text-align: right;">-16.5</td>
+<td style="text-align: left;">2022-02-07 07:15:30</td>
+<td style="text-align: right;">4022992310</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">30.37080</td>
+<td style="text-align: right;">34.06056</td>
+<td style="text-align: right;">-0.1037723</td>
+<td style="text-align: right;">0.2000399</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">145.5</td>
+<td style="text-align: right;">-15.5</td>
+<td style="text-align: left;">2022-02-09 18:33:03</td>
+<td style="text-align: right;">4022992311</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">29.54386</td>
+<td style="text-align: right;">34.74210</td>
+<td style="text-align: right;">-0.1198241</td>
+<td style="text-align: right;">0.0636992</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">145.5</td>
+<td style="text-align: right;">-14.5</td>
+<td style="text-align: left;">2022-02-12 10:34:12</td>
+<td style="text-align: right;">4022992325</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">29.89639</td>
+<td style="text-align: right;">34.71634</td>
+<td style="text-align: right;">-0.0812021</td>
+<td style="text-align: right;">0.0344770</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">153.5</td>
+<td style="text-align: right;">-26.5</td>
+<td style="text-align: left;">2022-02-12 08:59:01</td>
+<td style="text-align: right;">4022992324</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">26.79947</td>
+<td style="text-align: right;">35.38062</td>
+<td style="text-align: right;">-0.1235716</td>
+<td style="text-align: right;">0.0057869</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">144.5</td>
+<td style="text-align: right;">-13.5</td>
+<td style="text-align: left;">2022-03-25 07:10:49</td>
+<td style="text-align: right;">4022992309</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">29.04090</td>
+<td style="text-align: right;">34.75312</td>
+<td style="text-align: right;">-0.4569216</td>
+<td style="text-align: right;">0.3603792</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">143.5</td>
+<td style="text-align: right;">-12.5</td>
+<td style="text-align: left;">2022-04-01 18:41:42</td>
+<td style="text-align: right;">4022992307</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">30.14290</td>
+<td style="text-align: right;">34.44403</td>
+<td style="text-align: right;">0.0250692</td>
+<td style="text-align: right;">-0.0175750</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">143.5</td>
+<td style="text-align: right;">-11.5</td>
+<td style="text-align: left;">2022-04-09 22:00:54</td>
+<td style="text-align: right;">4022992317</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">29.93064</td>
+<td style="text-align: right;">34.55591</td>
+<td style="text-align: right;">-0.0967079</td>
+<td style="text-align: right;">0.1442562</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">143.5</td>
+<td style="text-align: right;">-10.5</td>
+<td style="text-align: left;">2022-04-14 06:31:48</td>
+<td style="text-align: right;">4022992321</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">29.47597</td>
+<td style="text-align: right;">34.41768</td>
+<td style="text-align: right;">-0.0409690</td>
+<td style="text-align: right;">0.0776469</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">143.5</td>
+<td style="text-align: right;">-9.5</td>
+<td style="text-align: left;">2022-04-21 10:30:09</td>
+<td style="text-align: right;">4022992305</td>
+<td style="text-align: left;">Caretta caretta</td>
+<td style="text-align: right;">29.56355</td>
+<td style="text-align: right;">34.19133</td>
+<td style="text-align: right;">0.0587259</td>
+<td style="text-align: right;">0.0340937</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+<p>Hooray! We now have our combined dataset of the Loggerhead Sea Turtle tracking detections and the corresponding eReefs daily aggregated data (<a href="#tbl-combined-data">Table&nbsp;3</a>).</p>
+<p><br><br><br><br><br><br><br><br><br><br><br>Strydom A. 2022. Wreck Rock Turtle Care - satellite tracking. Data downloaded from <a href="http://seamap.env.duke.edu/dataset/2178">OBIS-SEAMAP</a>; originated from <a href="http://www.seaturtle.org/tracking/index.shtml?project_id=1381">Satellite Tracking and Analysis Tool (STAT)</a>. <a href="https://doi.org/10.15468/k4s6ap">DOI: 10.15468/k4s6ap</a> accessed via <a href="https://www.gbif.org/">GBIF.org</a> on 2023-02-17.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

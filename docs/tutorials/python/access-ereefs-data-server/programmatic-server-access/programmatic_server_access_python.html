@@ -1,0 +1,2160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.217">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>eReefs tutorials - Access eReefs data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/logo.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-sm navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/ereefs_aims_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">eReefs tutorials</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.r-project.org/" rel="" target="">
+ <span class="menu-text"><i class="fa-brands fa-r-project" aria-label="r-project"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.python.org/" rel="" target="">
+ <span class="menu-text"><i class="fa-brands fa-python" aria-label="python"></i> python</span></a>
+  </li>  
+  <li class="dropdown-header">
+ <span class="menu-text">   </span></li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/bfordAIMS/ereefs-tutorials" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#python-modules" id="toc-python-modules" class="nav-link active" data-scroll-target="#python-modules">Python modules</a></li>
+  <li><a href="#motivating-problem" id="toc-motivating-problem" class="nav-link" data-scroll-target="#motivating-problem">Motivating problem</a></li>
+  <li><a href="#example-tracking-data" id="toc-example-tracking-data" class="nav-link" data-scroll-target="#example-tracking-data">Example tracking data</a></li>
+  <li><a href="#extract-data-from-server" id="toc-extract-data-from-server" class="nav-link" data-scroll-target="#extract-data-from-server">Extract data from server</a></li>
+  <li><a href="#match-extracted-data-to-tracking-data" id="toc-match-extracted-data-to-tracking-data" class="nav-link" data-scroll-target="#match-extracted-data-to-tracking-data">Match extracted data to tracking data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Access eReefs data</h1>
+<p class="subtitle lead">Programmatic server access <i class="fa-brands fa-python" aria-label="python"></i></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="tutorial-description">
+<p>Learn how to extract eReefs data from the AIMS server for multiple dates and points with OPeNDAP in <i class="fa-brands fa-python" aria-label="python"></i> python.</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This tutorial builds on the techniques introduced in <a href="../../../../tutorials/python/access-ereefs-data-server/basic-server-access/basic_server_access_python.html">Access eReefs data: Basic server access <i class="fa-brands fa-python" aria-label="python"></i></a>.</p>
+</div>
+</div>
+</div>
+<p>In this tutorial we will look at how to get eReefs data from the <a href="http://thredds.ereefs.aims.gov.au/thredds/catalog.html">AIMS server</a> corresponding to the logged locations of tagged marine animals. Keep in mind, however, that the same methodology can be applied in any situation where we wish to extract eReefs data for a range of points with different dates of interest for each point.</p>
+<section id="python-modules" class="level2">
+<h2 class="anchored" data-anchor-id="python-modules">Python modules</h2>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  <span class="co"># for data analysis</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># for quik maths</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> janitor <span class="im">import</span> clean_names  <span class="co"># to create consitent, 'clean' variable names</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium  <span class="co"># a python API to interactive leaflet maps</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime <span class="im">as</span> dt <span class="co"># to time how long the data export takes</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display <span class="co"># to render, i.e. 'display', html tables</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> netCDF4 <span class="im">import</span> Dataset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="motivating-problem" class="level2">
+<h2 class="anchored" data-anchor-id="motivating-problem">Motivating problem</h2>
+<p>The tracking of marine animals is commonly used by researchers to gain insights into the distribution, biology, behaviour and ecology of different species. However, knowing where an animal was at a certain point in time is only one piece of the puzzle. To start to understand <em>why</em> an animal was where it was, we usually require information on things like: What type of habitat is present at the location? What were the environmental conditions like at the time? What other lifeforms were present at the tracked location (e.g.&nbsp;for food or mating)?</p>
+<p>In this tutorial we will pretend that we have tracking data for Loggerhead Sea Turtles and wish to get eReefs data corresponding to the tracked points (in time and space) to understand more about the likely environmental conditions experienced by our turtles.</p>
+<div class="callout callout-style-default callout-note no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Read more: Tracking marine animals
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Marine animals are typically tracked using either acoustic or satellite tags. These tags are attached to the animals and transmit signals back to recievers, logging the animal’s location at different points in time. In some cases other data such as depth, temperature, and animal movement profiles are recorded and the data transmitted to the recievers whenever possible.</p>
+<p>Acoustic tracking requires a network of recievers to be placed in the ocean in order to pick up the tags’ transmitted signals when they come within range (typically around 500 m). Acoustic tracking has the advantage of being able transmit and recieve signals underwater, however is limited by the coverage of the reciever network. In some instances, researchers do without the reciever network and follow the animals around in a boat to receive the data. The suitability of acoustic tracking depends on the study species and research question.</p>
+<p>Satellite tracking, on the other hand, is able to track animals over virtually the entire ocean as the tags transmit signals to a network of satellites orbiting the earth. However, unlike acoustic tags, the signals cannot be transmitted through water and the tagged animals must breach the ocean surface in order to have their location logged and any other recorded data be received. The accuracy of the logged location depends on the quality of the transmitted signal. For high-quality signals, the location uncertainty can be in the hundreds of metres, however for bad quality signals this can blow out to over 10 km.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="example-tracking-data" class="level2">
+<h2 class="anchored" data-anchor-id="example-tracking-data">Example tracking data</h2>
+<p>We will use satellite tracking data for Loggerhead Sea Turtles (<em>Caretta caretta</em>) provided in <a href="https://doi.org/10.15468/k4s6ap">Strydom (2022)</a>. This data contains tracking detections which span the length of the Great Barrier Reef off the east coast of Queensland Australia from December 2021 to April 2022 (shown in <a href="#fig-data-map">Figure&nbsp;1</a>).</p>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This dataset is a summarized representation of the tracking locations per 1-degree cell. This implies a coordinate uncertainty of roughly 110 km. This level of uncertainty renders the data virtually useless for most practical applications, though it will suffice for the purposes of this tutorial. Records which are landbased as a result of the uncertainty have been removed and from here on in we will just pretend that the coordinates are accurate.</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/Loggerhead_Sea_Turtle_satellite_tracking_detections__Strydom_2022_DOI10-15468-k4s6ap.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert columns names from camelCase to snake_case</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.clean_names(case_type <span class="op">=</span> <span class="st">"snake"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename some variables for easier use</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.rename(columns <span class="op">=</span> {</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"gbif_id"</span>: <span class="st">"record_id"</span>, </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"decimal_latitude"</span>: <span class="st">"latitude"</span>, </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"decimal_longitude"</span>: <span class="st">"longitude"</span>, </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"event_date"</span>: <span class="st">"date_time"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure date_time is in the datetime data format</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'date_time'</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">'date_time'</span>])</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Seperate date_time into date and time variables</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.assign(</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  date <span class="op">=</span> data[<span class="st">'date_time'</span>].dt.strftime(<span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st">"</span>), </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  time <span class="op">=</span> data[<span class="st">'date_time'</span>].dt.strftime(<span class="st">"%H:%M"</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove land based records (as a result of coordinate uncertainty)</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>land_based_records <span class="op">=</span> [<span class="dv">4022992331</span>, <span class="dv">4022992326</span>, <span class="dv">4022992312</span>, <span class="dv">4022992315</span>, <span class="dv">4022992322</span>, <span class="dv">4022992306</span>]</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.query(<span class="st">"record_id not in @land_based_records"</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the variables relevant to this tutorial</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>select_vars <span class="op">=</span> [<span class="st">"longitude"</span>, <span class="st">"latitude"</span>, <span class="st">"date"</span>, <span class="st">"time"</span>, <span class="st">"date_time"</span>,<span class="st">"record_id"</span>, <span class="st">"species"</span>]</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[select_vars]</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># View the tracking locations on an interactive map:</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Create map centred on the mean coordinates of the tracking locations</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>centre_point <span class="op">=</span> [data[<span class="st">'latitude'</span>].mean(), data[<span class="st">'longitude'</span>].mean()]</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>track_map <span class="op">=</span> folium.Map(location <span class="op">=</span> centre_point, zoom_start <span class="op">=</span> <span class="dv">4</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Add markers to map at each tracking location</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> data.itertuples():</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  coords_i <span class="op">=</span> [row.latitude, row.longitude]</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  marker_i <span class="op">=</span> folium.Marker(</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    location <span class="op">=</span> coords_i, </span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    popup <span class="op">=</span> row.date_time</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  ).add_to(track_map)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>track_map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-data-map" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-1.12.4.min.js&quot;></script>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_d90f44494cb0a8b0772c53742d16bb6e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_d90f44494cb0a8b0772c53742d16bb6e&quot; ></div>
+        
+</body>
+<script>
+    
+    
+            var map_d90f44494cb0a8b0772c53742d16bb6e = L.map(
+                &quot;map_d90f44494cb0a8b0772c53742d16bb6e&quot;,
+                {
+                    center: [-18.74, 148.42],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 4,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_bcfa1287bfe624ffa04a0c2e0b558ae4 = L.tileLayer(
+                &quot;https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;Data by \u0026copy; \u003ca target=\&quot;_blank\&quot; href=\&quot;http://openstreetmap.org\&quot;\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\&quot;_blank\&quot; href=\&quot;http://www.openstreetmap.org/copyright\&quot;\u003eODbL\u003c/a\u003e.&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 18, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+            var marker_8e134863236150bf2fd92e94d3f61c14 = L.marker(
+                [-20.5, 150.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_73e43cee298f8fc6867b42f682299035 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_de13de2810aec086a46527405840f774 = $(`<div id=&quot;html_de13de2810aec086a46527405840f774&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-17 17:06:32+00:00</div>`)[0];
+                popup_73e43cee298f8fc6867b42f682299035.setContent(html_de13de2810aec086a46527405840f774);
+            
+        
+
+        marker_8e134863236150bf2fd92e94d3f61c14.bindPopup(popup_73e43cee298f8fc6867b42f682299035)
+        ;
+
+        
+    
+    
+            var marker_92d050ad75b507e401a3b9e4efb3fb02 = L.marker(
+                [-25.5, 153.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_6f9d9a269cf43a4e00e7851c9c7fdfc1 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_2953ba7438df4a8c739c8fb79a9cfa96 = $(`<div id=&quot;html_2953ba7438df4a8c739c8fb79a9cfa96&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-02 21:49:55+00:00</div>`)[0];
+                popup_6f9d9a269cf43a4e00e7851c9c7fdfc1.setContent(html_2953ba7438df4a8c739c8fb79a9cfa96);
+            
+        
+
+        marker_92d050ad75b507e401a3b9e4efb3fb02.bindPopup(popup_6f9d9a269cf43a4e00e7851c9c7fdfc1)
+        ;
+
+        
+    
+    
+            var marker_a8e81845d67f659bf31fa71a94e2c05b = L.marker(
+                [-24.5, 152.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_f2db65cacadfee3127dc4c648477bc22 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_f789dcd744be77371e47d68dc6955c65 = $(`<div id=&quot;html_f789dcd744be77371e47d68dc6955c65&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2021-12-21 17:57:22+00:00</div>`)[0];
+                popup_f2db65cacadfee3127dc4c648477bc22.setContent(html_f789dcd744be77371e47d68dc6955c65);
+            
+        
+
+        marker_a8e81845d67f659bf31fa71a94e2c05b.bindPopup(popup_f2db65cacadfee3127dc4c648477bc22)
+        ;
+
+        
+    
+    
+            var marker_29ee07a989be3b5a29e14e58f67d8a6a = L.marker(
+                [-18.5, 147.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_a4e721f0460789134c5b9af408c16c97 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_fa3d6e774e9fa86444ea72a3d72d638c = $(`<div id=&quot;html_fa3d6e774e9fa86444ea72a3d72d638c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-27 17:00:04+00:00</div>`)[0];
+                popup_a4e721f0460789134c5b9af408c16c97.setContent(html_fa3d6e774e9fa86444ea72a3d72d638c);
+            
+        
+
+        marker_29ee07a989be3b5a29e14e58f67d8a6a.bindPopup(popup_a4e721f0460789134c5b9af408c16c97)
+        ;
+
+        
+    
+    
+            var marker_bb960dd54d7277d6d5c1da6238f8babe = L.marker(
+                [-14.5, 145.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_58c95db61679ca5b24d7bcdb1cf2b49a = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_d49d1b904e95322234a28297a8b86974 = $(`<div id=&quot;html_d49d1b904e95322234a28297a8b86974&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-12 10:34:12+00:00</div>`)[0];
+                popup_58c95db61679ca5b24d7bcdb1cf2b49a.setContent(html_d49d1b904e95322234a28297a8b86974);
+            
+        
+
+        marker_bb960dd54d7277d6d5c1da6238f8babe.bindPopup(popup_58c95db61679ca5b24d7bcdb1cf2b49a)
+        ;
+
+        
+    
+    
+            var marker_6478315bd4166d087bf269ef158e0c70 = L.marker(
+                [-26.5, 153.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_277123cae7f30844402bd615c4a57bb4 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_279f5b283fd26c4d02cb1a7a6e7f6c3c = $(`<div id=&quot;html_279f5b283fd26c4d02cb1a7a6e7f6c3c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-12 08:59:01+00:00</div>`)[0];
+                popup_277123cae7f30844402bd615c4a57bb4.setContent(html_279f5b283fd26c4d02cb1a7a6e7f6c3c);
+            
+        
+
+        marker_6478315bd4166d087bf269ef158e0c70.bindPopup(popup_277123cae7f30844402bd615c4a57bb4)
+        ;
+
+        
+    
+    
+            var marker_e3debb3a836838e2e74b854b58ad2c5b = L.marker(
+                [-19.5, 148.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_ca82c26dbdbd680d33cda88e6169281d = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_ee6dbacc7cb8364dac601fdfbf3ebac0 = $(`<div id=&quot;html_ee6dbacc7cb8364dac601fdfbf3ebac0&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-23 07:02:18+00:00</div>`)[0];
+                popup_ca82c26dbdbd680d33cda88e6169281d.setContent(html_ee6dbacc7cb8364dac601fdfbf3ebac0);
+            
+        
+
+        marker_e3debb3a836838e2e74b854b58ad2c5b.bindPopup(popup_ca82c26dbdbd680d33cda88e6169281d)
+        ;
+
+        
+    
+    
+            var marker_9557d05c274c938d731f021f5c8f2ee8 = L.marker(
+                [-10.5, 143.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_3d34a795098e39fc0efe671441102820 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_1a501e8135d2e0d3f1c2a8baf3f58fbc = $(`<div id=&quot;html_1a501e8135d2e0d3f1c2a8baf3f58fbc&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-14 06:31:48+00:00</div>`)[0];
+                popup_3d34a795098e39fc0efe671441102820.setContent(html_1a501e8135d2e0d3f1c2a8baf3f58fbc);
+            
+        
+
+        marker_9557d05c274c938d731f021f5c8f2ee8.bindPopup(popup_3d34a795098e39fc0efe671441102820)
+        ;
+
+        
+    
+    
+            var marker_0bedffbab31fb5510e647acef657b6af = L.marker(
+                [-20.5, 149.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_8965920a3a41fda631b64aaa0f113f4a = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_848497d3c2a9eb520247e0f635b55ba5 = $(`<div id=&quot;html_848497d3c2a9eb520247e0f635b55ba5&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-19 17:44:38+00:00</div>`)[0];
+                popup_8965920a3a41fda631b64aaa0f113f4a.setContent(html_848497d3c2a9eb520247e0f635b55ba5);
+            
+        
+
+        marker_0bedffbab31fb5510e647acef657b6af.bindPopup(popup_8965920a3a41fda631b64aaa0f113f4a)
+        ;
+
+        
+    
+    
+            var marker_e536ff3f988ccfa40f7c24dc230c2e7f = L.marker(
+                [-22.5, 151.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_70cbf3023e3c135ccd174b925079ac2e = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_8ca8b6caeedc03f43b0d5ed108307b45 = $(`<div id=&quot;html_8ca8b6caeedc03f43b0d5ed108307b45&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-09 20:25:01+00:00</div>`)[0];
+                popup_70cbf3023e3c135ccd174b925079ac2e.setContent(html_8ca8b6caeedc03f43b0d5ed108307b45);
+            
+        
+
+        marker_e536ff3f988ccfa40f7c24dc230c2e7f.bindPopup(popup_70cbf3023e3c135ccd174b925079ac2e)
+        ;
+
+        
+    
+    
+            var marker_59d9d4a0f4bb89498601d503e1c1cfb1 = L.marker(
+                [-21.5, 150.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_592a008f47869ba3dec6d29138661508 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_f044785faef44a57a6f75a58a5645e4f = $(`<div id=&quot;html_f044785faef44a57a6f75a58a5645e4f&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-14 18:26:17+00:00</div>`)[0];
+                popup_592a008f47869ba3dec6d29138661508.setContent(html_f044785faef44a57a6f75a58a5645e4f);
+            
+        
+
+        marker_59d9d4a0f4bb89498601d503e1c1cfb1.bindPopup(popup_592a008f47869ba3dec6d29138661508)
+        ;
+
+        
+    
+    
+            var marker_2a163f6a57e191946afb3488be403483 = L.marker(
+                [-11.5, 143.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_9c271857a036e519acba78b243604b6b = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_1809d3afebe686dbd0fd5c8a98d16297 = $(`<div id=&quot;html_1809d3afebe686dbd0fd5c8a98d16297&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-09 22:00:54+00:00</div>`)[0];
+                popup_9c271857a036e519acba78b243604b6b.setContent(html_1809d3afebe686dbd0fd5c8a98d16297);
+            
+        
+
+        marker_2a163f6a57e191946afb3488be403483.bindPopup(popup_9c271857a036e519acba78b243604b6b)
+        ;
+
+        
+    
+    
+            var marker_60cf1142a19381dcafb2ceb4d1483bdc = L.marker(
+                [-19.5, 149.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_6ff581090cb6d107a927882404e27da3 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_d27856feb6995a0578ad50ce8a455992 = $(`<div id=&quot;html_d27856feb6995a0578ad50ce8a455992&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-21 07:22:08+00:00</div>`)[0];
+                popup_6ff581090cb6d107a927882404e27da3.setContent(html_d27856feb6995a0578ad50ce8a455992);
+            
+        
+
+        marker_60cf1142a19381dcafb2ceb4d1483bdc.bindPopup(popup_6ff581090cb6d107a927882404e27da3)
+        ;
+
+        
+    
+    
+            var marker_11477a0c8666b2385c3b78d3a4b77e11 = L.marker(
+                [-18.5, 146.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_aac6b8216808d501e8b63f13f193219f = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_ebf258ff527b5466ae2eedd1ffc1a086 = $(`<div id=&quot;html_ebf258ff527b5466ae2eedd1ffc1a086&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-30 17:02:42+00:00</div>`)[0];
+                popup_aac6b8216808d501e8b63f13f193219f.setContent(html_ebf258ff527b5466ae2eedd1ffc1a086);
+            
+        
+
+        marker_11477a0c8666b2385c3b78d3a4b77e11.bindPopup(popup_aac6b8216808d501e8b63f13f193219f)
+        ;
+
+        
+    
+    
+            var marker_d84832cf3b884e794eb0005c04d603ec = L.marker(
+                [-24.5, 153.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_75ff692efba4df4de349bcf09fa40831 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_3060c8e016c350c7e375c45ec8819bbc = $(`<div id=&quot;html_3060c8e016c350c7e375c45ec8819bbc&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-03 21:37:56+00:00</div>`)[0];
+                popup_75ff692efba4df4de349bcf09fa40831.setContent(html_3060c8e016c350c7e375c45ec8819bbc);
+            
+        
+
+        marker_d84832cf3b884e794eb0005c04d603ec.bindPopup(popup_75ff692efba4df4de349bcf09fa40831)
+        ;
+
+        
+    
+    
+            var marker_eec7f5e1d702e2eef4874e68fad6715a = L.marker(
+                [-15.5, 145.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_c68103621897354d7336263fe2c848a6 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_a5115f7bde5550e6adf26d56c9598154 = $(`<div id=&quot;html_a5115f7bde5550e6adf26d56c9598154&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-09 18:33:03+00:00</div>`)[0];
+                popup_c68103621897354d7336263fe2c848a6.setContent(html_a5115f7bde5550e6adf26d56c9598154);
+            
+        
+
+        marker_eec7f5e1d702e2eef4874e68fad6715a.bindPopup(popup_c68103621897354d7336263fe2c848a6)
+        ;
+
+        
+    
+    
+            var marker_70ce67f6b03ff490c59256e116c9f02a = L.marker(
+                [-16.5, 145.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_4f95703ae5f231216e5148afe074e6d8 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_1f4a8fdc8a0840cf5385f48ba610b32e = $(`<div id=&quot;html_1f4a8fdc8a0840cf5385f48ba610b32e&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-07 07:15:30+00:00</div>`)[0];
+                popup_4f95703ae5f231216e5148afe074e6d8.setContent(html_1f4a8fdc8a0840cf5385f48ba610b32e);
+            
+        
+
+        marker_70ce67f6b03ff490c59256e116c9f02a.bindPopup(popup_4f95703ae5f231216e5148afe074e6d8)
+        ;
+
+        
+    
+    
+            var marker_0567df1825aca8e97d889eb13e5240c1 = L.marker(
+                [-13.5, 144.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_163609fc07f81476dc7e703abbae038b = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_50d3ac620f8c300f5e3d080d8ec92a08 = $(`<div id=&quot;html_50d3ac620f8c300f5e3d080d8ec92a08&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-03-25 07:10:49+00:00</div>`)[0];
+                popup_163609fc07f81476dc7e703abbae038b.setContent(html_50d3ac620f8c300f5e3d080d8ec92a08);
+            
+        
+
+        marker_0567df1825aca8e97d889eb13e5240c1.bindPopup(popup_163609fc07f81476dc7e703abbae038b)
+        ;
+
+        
+    
+    
+            var marker_b0ee9bd016b6533b74678ca71e477c6b = L.marker(
+                [-21.5, 151.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_d5e1aeb20c7b37de33de40b614ba8e18 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_cdea9c4bbb44d9248b06e1b64f5ddcfb = $(`<div id=&quot;html_cdea9c4bbb44d9248b06e1b64f5ddcfb&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-13 06:28:09+00:00</div>`)[0];
+                popup_d5e1aeb20c7b37de33de40b614ba8e18.setContent(html_cdea9c4bbb44d9248b06e1b64f5ddcfb);
+            
+        
+
+        marker_b0ee9bd016b6533b74678ca71e477c6b.bindPopup(popup_d5e1aeb20c7b37de33de40b614ba8e18)
+        ;
+
+        
+    
+    
+            var marker_d07e26451b71629b3614227bff1c9b64 = L.marker(
+                [-12.5, 143.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_a44198fa86f91d03cbadc8b7ef5ea45c = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_82e31e0a2d9b6e0f4753184f9c4816b7 = $(`<div id=&quot;html_82e31e0a2d9b6e0f4753184f9c4816b7&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-01 18:41:42+00:00</div>`)[0];
+                popup_a44198fa86f91d03cbadc8b7ef5ea45c.setContent(html_82e31e0a2d9b6e0f4753184f9c4816b7);
+            
+        
+
+        marker_d07e26451b71629b3614227bff1c9b64.bindPopup(popup_a44198fa86f91d03cbadc8b7ef5ea45c)
+        ;
+
+        
+    
+    
+            var marker_40218a343c7ff183e8f74ec895a8c562 = L.marker(
+                [-9.5, 143.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_ba265d9b89aecc9e679f42f27f61e55c = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_580e9266ef2885cfdd750df7639702b9 = $(`<div id=&quot;html_580e9266ef2885cfdd750df7639702b9&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-21 10:30:09+00:00</div>`)[0];
+                popup_ba265d9b89aecc9e679f42f27f61e55c.setContent(html_580e9266ef2885cfdd750df7639702b9);
+            
+        
+
+        marker_40218a343c7ff183e8f74ec895a8c562.bindPopup(popup_ba265d9b89aecc9e679f42f27f61e55c)
+        ;
+
+        
+    
+    
+            var marker_30b82a2db3336c01dc4477ae4f8ac8ef = L.marker(
+                [-23.5, 152.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_083b0565e2967e2917594302dce116ae = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_4f54a83f26b8904a61f64196deb66782 = $(`<div id=&quot;html_4f54a83f26b8904a61f64196deb66782&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-05 07:33:53+00:00</div>`)[0];
+                popup_083b0565e2967e2917594302dce116ae.setContent(html_4f54a83f26b8904a61f64196deb66782);
+            
+        
+
+        marker_30b82a2db3336c01dc4477ae4f8ac8ef.bindPopup(popup_083b0565e2967e2917594302dce116ae)
+        ;
+
+        
+    
+    
+            var marker_76b12b74ed82bd43aa850262b71d18c3 = L.marker(
+                [-16.5, 146.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_13619a8c3945794e8ae095fffbb60d10 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_7d64cfe1a4513732add9a6d6cb771c95 = $(`<div id=&quot;html_7d64cfe1a4513732add9a6d6cb771c95&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-06 18:25:38+00:00</div>`)[0];
+                popup_13619a8c3945794e8ae095fffbb60d10.setContent(html_7d64cfe1a4513732add9a6d6cb771c95);
+            
+        
+
+        marker_76b12b74ed82bd43aa850262b71d18c3.bindPopup(popup_13619a8c3945794e8ae095fffbb60d10)
+        ;
+
+        
+    
+    
+            var marker_55fea406d1d93cc175188a3e1dba1db5 = L.marker(
+                [-23.5, 151.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_cb2a6ba1f84cbbf3d642ad7d51e78720 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_3668e9a312f0f52af7b2b67b817d1c43 = $(`<div id=&quot;html_3668e9a312f0f52af7b2b67b817d1c43&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-06 05:03:23+00:00</div>`)[0];
+                popup_cb2a6ba1f84cbbf3d642ad7d51e78720.setContent(html_3668e9a312f0f52af7b2b67b817d1c43);
+            
+        
+
+        marker_55fea406d1d93cc175188a3e1dba1db5.bindPopup(popup_cb2a6ba1f84cbbf3d642ad7d51e78720)
+        ;
+
+        
+    
+    
+            var marker_01d34e216f8318ad2db1af8f2d568699 = L.marker(
+                [-17.5, 146.5],
+                {}
+            ).addTo(map_d90f44494cb0a8b0772c53742d16bb6e);
+        
+    
+        var popup_dabecebb4d20ae41d07f6e7dbb9e6fef = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_f9f93bceaece111552175256020e9d64 = $(`<div id=&quot;html_f9f93bceaece111552175256020e9d64&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-02 09:14:56+00:00</div>`)[0];
+                popup_dabecebb4d20ae41d07f6e7dbb9e6fef.setContent(html_f9f93bceaece111552175256020e9d64);
+            
+        
+
+        marker_01d34e216f8318ad2db1af8f2d568699.bindPopup(popup_dabecebb4d20ae41d07f6e7dbb9e6fef)
+        ;
+
+        
+    
+</script>
+</html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Loggerhead Sea Turtle satellite tracking records (December 2021 - April 2022)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="extract-data-from-server" class="level2">
+<h2 class="anchored" data-anchor-id="extract-data-from-server">Extract data from server</h2>
+<p>We will extend the basic methods introduced in the preceeding tutorial <a href="../../../../tutorials/python/access-ereefs-data-server/basic-server-access/basic_server_access_python.html">Accessing eReefs data from the AIMS server</a> to extract data for a set of points and dates.</p>
+<p>We will extract the eReefs 1km hydrodynamic model daily mean temperature (<code>temp</code>), salinity (<code>salt</code>), and east- and northward current velocities (<code>u</code> and <code>v</code>) corresponding to the coordinates and dates for the tracking detections shown in <a href="#tbl-detections">Table&nbsp;1</a>.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create table of tracking detections (sort by date-time; select relevant variables)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tbl_detections <span class="op">=</span> data.<span class="op">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  sort_values(<span class="st">'date_time'</span>)<span class="op">\</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  [[<span class="st">'date'</span>, <span class="st">'time'</span>, <span class="st">'longitude'</span>, <span class="st">'latitude'</span>]]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output table in html format (hide row indices; format coordinates to their precision of 1 decimal place)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>tbl_detections <span class="op">=</span> tbl_detections.style.<span class="op">\</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  hide(axis <span class="op">=</span> <span class="st">'index'</span>).<span class="op">\</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="bu">format</span>(precision<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>display(tbl_detections)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell scroll_box_y" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<style type="text/css">
+</style>
+
+<div id="tbl-detections" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;1: Loggerhead Sea Turtle detections (Strydom, 2022)</caption>
+<thead>
+<tr class="header">
+<th>date</th>
+<th>time</th>
+<th>longitude</th>
+<th>latitude</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2021-12-21</td>
+<td>17:57</td>
+<td>152.5</td>
+<td>-24.5</td>
+</tr>
+<tr class="even">
+<td>2022-01-02</td>
+<td>21:49</td>
+<td>153.5</td>
+<td>-25.5</td>
+</tr>
+<tr class="odd">
+<td>2022-01-05</td>
+<td>07:33</td>
+<td>152.5</td>
+<td>-23.5</td>
+</tr>
+<tr class="even">
+<td>2022-01-06</td>
+<td>05:03</td>
+<td>151.5</td>
+<td>-23.5</td>
+</tr>
+<tr class="odd">
+<td>2022-01-09</td>
+<td>20:25</td>
+<td>151.5</td>
+<td>-22.5</td>
+</tr>
+<tr class="even">
+<td>2022-01-13</td>
+<td>06:28</td>
+<td>151.5</td>
+<td>-21.5</td>
+</tr>
+<tr class="odd">
+<td>2022-01-14</td>
+<td>18:26</td>
+<td>150.5</td>
+<td>-21.5</td>
+</tr>
+<tr class="even">
+<td>2022-01-17</td>
+<td>17:06</td>
+<td>150.5</td>
+<td>-20.5</td>
+</tr>
+<tr class="odd">
+<td>2022-01-19</td>
+<td>17:44</td>
+<td>149.5</td>
+<td>-20.5</td>
+</tr>
+<tr class="even">
+<td>2022-01-21</td>
+<td>07:22</td>
+<td>149.5</td>
+<td>-19.5</td>
+</tr>
+<tr class="odd">
+<td>2022-01-23</td>
+<td>07:02</td>
+<td>148.5</td>
+<td>-19.5</td>
+</tr>
+<tr class="even">
+<td>2022-01-27</td>
+<td>17:00</td>
+<td>147.5</td>
+<td>-18.5</td>
+</tr>
+<tr class="odd">
+<td>2022-01-30</td>
+<td>17:02</td>
+<td>146.5</td>
+<td>-18.5</td>
+</tr>
+<tr class="even">
+<td>2022-02-02</td>
+<td>09:14</td>
+<td>146.5</td>
+<td>-17.5</td>
+</tr>
+<tr class="odd">
+<td>2022-02-03</td>
+<td>21:37</td>
+<td>153.5</td>
+<td>-24.5</td>
+</tr>
+<tr class="even">
+<td>2022-02-06</td>
+<td>18:25</td>
+<td>146.5</td>
+<td>-16.5</td>
+</tr>
+<tr class="odd">
+<td>2022-02-07</td>
+<td>07:15</td>
+<td>145.5</td>
+<td>-16.5</td>
+</tr>
+<tr class="even">
+<td>2022-02-09</td>
+<td>18:33</td>
+<td>145.5</td>
+<td>-15.5</td>
+</tr>
+<tr class="odd">
+<td>2022-02-12</td>
+<td>08:59</td>
+<td>153.5</td>
+<td>-26.5</td>
+</tr>
+<tr class="even">
+<td>2022-02-12</td>
+<td>10:34</td>
+<td>145.5</td>
+<td>-14.5</td>
+</tr>
+<tr class="odd">
+<td>2022-03-25</td>
+<td>07:10</td>
+<td>144.5</td>
+<td>-13.5</td>
+</tr>
+<tr class="even">
+<td>2022-04-01</td>
+<td>18:41</td>
+<td>143.5</td>
+<td>-12.5</td>
+</tr>
+<tr class="odd">
+<td>2022-04-09</td>
+<td>22:00</td>
+<td>143.5</td>
+<td>-11.5</td>
+</tr>
+<tr class="even">
+<td>2022-04-14</td>
+<td>06:31</td>
+<td>143.5</td>
+<td>-10.5</td>
+</tr>
+<tr class="odd">
+<td>2022-04-21</td>
+<td>10:30</td>
+<td>143.5</td>
+<td>-9.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>We will take advantage of the consistent file naming on the server to extract the data of interest programatically. We will first need to copy the OPeNDAP data link for one of the files within the correct model and aggregation folders and then replace the date.</p>
+<p>Selecting a random date within the daily aggregated data (<code>daily-daily</code>; one data file per day) for the 1km hydro model (<code>gbr1_2.0</code>), we see the files have the naming format:</p>
+<p><code>https://thredds.ereefs.aims.gov.au/thredds/dodsC/s3://aims-ereefs-public-prod/derived/ncaggregate/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-</code><span style="color: red">YYYY-MM-DD</span><code>.nc</code></p>
+<p>We will now write a script which extracts the data for the dates and coordinates in <a href="#tbl-detections">Table&nbsp;1</a>. For each unique date we will open the corresponding file on the server and extract the daily mean temperature, salinity, northward and southward current velocities for each set of coordinates corresponding to the date.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GET DATA FOR EACH DATE AND COORDINATE (LAT LON) PAIR</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>t_start <span class="op">=</span> dt.datetime.now() <span class="co"># to track run time of extraction</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">## 1. Setup variables for data extraction</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Server file name = &lt;file_prefix&gt;&lt;date (yyyy-mm-dd)&gt;&lt;file_suffix&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>file_prefix <span class="op">=</span> <span class="st">"https://thredds.ereefs.aims.gov.au/thredds/dodsC/s3://aims-ereefs-public-prod/derived/ncaggregate/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>file_suffix <span class="op">=</span> <span class="st">".nc"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Table of dates and coordinates for which to extract data (dates as character string)</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>detections <span class="op">=</span> data[[<span class="st">'date'</span>, <span class="st">'longitude'</span>, <span class="st">'latitude'</span>]].drop_duplicates()</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>extracted_data <span class="op">=</span> pd.DataFrame() <span class="co"># to save the extracted data</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> detections[<span class="st">'date'</span>].unique() <span class="co"># unique dates for which to open server files</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">## 2. For each date of interest, open a connection to the corresponding data file on the server</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dates)):</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  date_i <span class="op">=</span> dates[i]</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Open file</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  file_name_i <span class="op">=</span> file_prefix <span class="op">+</span> dates[i] <span class="op">+</span> file_suffix</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  server_file_i <span class="op">=</span> Dataset(file_name_i)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Coordinates for which to extract data for the current date</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  coordinates_i <span class="op">=</span> detections.query(<span class="st">"date == @date_i"</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get all coordinates in the open file (each representing the center-point of the corresponding grid cell)</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  server_lons_i <span class="op">=</span> server_file_i.variables[<span class="st">'longitude'</span>][:]</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  server_lats_i <span class="op">=</span> server_file_i.variables[<span class="st">'latitude'</span>][:]</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">## 3. For each coordinate (lon, lat) for the current date, get the data for the closest grid cell (1km^2) from the open server file</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> row_j <span class="kw">in</span> coordinates_i.itertuples():</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Current coordinate of interest</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    lon_j <span class="op">=</span> row_j.longitude</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    lat_j <span class="op">=</span> row_j.latitude</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find the index of the grid cell containing our coordinate of interest (i.e. the center-point closest to our point of interest)</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    lon_index_j <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(server_lons_i <span class="op">-</span> lon_j))</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    lat_index_j <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(server_lats_i <span class="op">-</span> lat_j))</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Note: This will return the closest grid cell, even for coordinates outside of the eReefs model boundary</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Setup the dimension indices for which to extract data (needs to be a tuple; recall that python starts counting at 0)</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    dim_ind <span class="op">=</span> <span class="bu">tuple</span>([<span class="dv">0</span>, <span class="dv">15</span>, lat_index_j, lon_index_j])</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">######################################## </span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recall the order of the dimensions (time, k, latitude, longitude) from the previous tutorial. Therefore we want [time = 1 (as we're using the daily files this is the only option), k = 15 corresponding to a depth of 0.5m, lat_index_j, lon_index_j]. If you are still confused, go back to the previous tutorial or have a look at the structure of one of the server files by uncommenting the following 5 lines of code:</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># not_yet_run = True  # used so the following lines are only run once</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if not_yet_run: </span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   print(server_file_i.dimensions)</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   print(server_file_i.variables)</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   not_yet_run = False</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="co">########################################</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the data for the grid cell containing our point of interest</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    temp_j <span class="op">=</span> server_file_i.variables[<span class="st">'temp'</span>][dim_ind]</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    salt_j <span class="op">=</span> server_file_i.variables[<span class="st">'salt'</span>][dim_ind]</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    u_j <span class="op">=</span> server_file_i.variables[<span class="st">'u'</span>][dim_ind]</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    v_j <span class="op">=</span> server_file_i.variables[<span class="st">'v'</span>][dim_ind]</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>    extracted_data_j <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>      <span class="st">'date'</span>: [date_i],</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>      <span class="st">'lon'</span>: [lon_j],</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>      <span class="st">'lat'</span>: [lat_j],</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>      <span class="st">'temp'</span>: [temp_j],</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>      <span class="st">'salt'</span>: [salt_j],</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>      <span class="st">'u'</span>: [u_j],</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>      <span class="st">'v'</span>: [v_j]</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4. Save data in memory and repeat for next date-coordinate pair</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    extracted_data <span class="op">=</span> pd.concat([extracted_data, extracted_data_j], ignore_index <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Close connection to open server file and move to the next date</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>  server_file_i.close()</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the run time of the extraction</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>t_stop <span class="op">=</span> dt.datetime.now()</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>extract_time <span class="op">=</span> t_stop <span class="op">-</span> t_start</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>extract_mins <span class="op">=</span> <span class="bu">int</span>(extract_time.total_seconds()<span class="op">/</span><span class="dv">60</span>)</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>extract_secs <span class="op">=</span> <span class="bu">int</span>(extract_time.total_seconds() <span class="op">%</span> <span class="dv">60</span>)</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Data extracted for"</span>, <span class="bu">len</span>(detections), <span class="st">"points from"</span>, <span class="bu">len</span>(dates), <span class="st">"files. </span><span class="ch">\n</span><span class="st">Extraction time:"</span>, extract_mins, <span class="st">"min"</span>, extract_secs, <span class="st">"sec."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Data extracted for 25 points from 24 files. 
+Extraction time: 1 min 56 sec.</code></pre>
+</div>
+</div>
+<p>Our extracted data is shown below in <a href="#tbl-extracted-data">Table&nbsp;2</a>.</p>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In the code above we match the closest eReefs model grid cell to each point in our list of coordinates (i.e.&nbsp;for each tracking detection). This will therefore match grid cells to all the coordinates, even if they are not within the eReefs model boundary. This behaviour may be useful when we have points right along the coastline as the eReefs models have small gaps at many points along the coast (see image below). However, in other cases this behaviour may not be desirable. For example, if we had points down near Sydney they would be matched to the closest eReefs grid cells (somewhere up near Brisbane) and the extracted data would be erroneous.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/ereefs_model_boundary_and_grid_cells.jpeg"><img src="images/ereefs_model_boundary_and_grid_cells.jpeg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Output table in html format (sort by date; hide row indices; format coordinates to their precision of 1 decimal place, temp &amp; salt to 2 dp, u &amp; v to 3 dp)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tbl_extracted <span class="op">=</span> extracted_data.sort_values(<span class="st">'date'</span>).style.<span class="op">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  hide(axis <span class="op">=</span> <span class="st">'index'</span>).<span class="op">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">format</span>({</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'lon'</span>, <span class="st">'lat'</span>], <span class="st">'</span><span class="sc">{:.1f}</span><span class="st">'</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'temp'</span>, <span class="st">'salt'</span>], <span class="st">'</span><span class="sc">{:.2f}</span><span class="st">'</span>), </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'u'</span>, <span class="st">'v'</span>], <span class="st">'</span><span class="sc">{:.3f}</span><span class="st">'</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>display(tbl_extracted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell scroll_box_xy" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="7">
+<style type="text/css">
+</style>
+
+<div id="tbl-extracted-data" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;2: Extracted daily mean temperature, salinity, and east- and northward current velocities (u, v respectively) for Loggerhead Sea Turtle detections (Strydom, 2022)</caption>
+<thead>
+<tr class="header">
+<th>date</th>
+<th>lon</th>
+<th>lat</th>
+<th>temp</th>
+<th>salt</th>
+<th>u</th>
+<th>v</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2021-12-21</td>
+<td>152.5</td>
+<td>-24.5</td>
+<td>28.09</td>
+<td>35.26</td>
+<td>0.071</td>
+<td>-0.020</td>
+</tr>
+<tr class="even">
+<td>2022-01-02</td>
+<td>153.5</td>
+<td>-25.5</td>
+<td>26.00</td>
+<td>35.30</td>
+<td>-0.035</td>
+<td>0.038</td>
+</tr>
+<tr class="odd">
+<td>2022-01-05</td>
+<td>152.5</td>
+<td>-23.5</td>
+<td>25.64</td>
+<td>35.23</td>
+<td>0.030</td>
+<td>0.015</td>
+</tr>
+<tr class="even">
+<td>2022-01-06</td>
+<td>151.5</td>
+<td>-23.5</td>
+<td>28.13</td>
+<td>35.41</td>
+<td>-0.033</td>
+<td>0.015</td>
+</tr>
+<tr class="odd">
+<td>2022-01-09</td>
+<td>151.5</td>
+<td>-22.5</td>
+<td>29.24</td>
+<td>35.34</td>
+<td>0.001</td>
+<td>-0.103</td>
+</tr>
+<tr class="even">
+<td>2022-01-13</td>
+<td>151.5</td>
+<td>-21.5</td>
+<td>28.42</td>
+<td>35.25</td>
+<td>-0.095</td>
+<td>0.016</td>
+</tr>
+<tr class="odd">
+<td>2022-01-14</td>
+<td>150.5</td>
+<td>-21.5</td>
+<td>28.99</td>
+<td>35.40</td>
+<td>-0.064</td>
+<td>-0.047</td>
+</tr>
+<tr class="even">
+<td>2022-01-17</td>
+<td>150.5</td>
+<td>-20.5</td>
+<td>29.39</td>
+<td>35.34</td>
+<td>-0.066</td>
+<td>-0.178</td>
+</tr>
+<tr class="odd">
+<td>2022-01-19</td>
+<td>149.5</td>
+<td>-20.5</td>
+<td>29.92</td>
+<td>35.48</td>
+<td>0.018</td>
+<td>-0.104</td>
+</tr>
+<tr class="even">
+<td>2022-01-21</td>
+<td>149.5</td>
+<td>-19.5</td>
+<td>29.58</td>
+<td>35.12</td>
+<td>-0.161</td>
+<td>-0.035</td>
+</tr>
+<tr class="odd">
+<td>2022-01-23</td>
+<td>148.5</td>
+<td>-19.5</td>
+<td>28.99</td>
+<td>35.26</td>
+<td>-0.137</td>
+<td>-0.022</td>
+</tr>
+<tr class="even">
+<td>2022-01-27</td>
+<td>147.5</td>
+<td>-18.5</td>
+<td>29.46</td>
+<td>33.98</td>
+<td>0.265</td>
+<td>0.004</td>
+</tr>
+<tr class="odd">
+<td>2022-01-30</td>
+<td>146.5</td>
+<td>-18.5</td>
+<td>30.15</td>
+<td>34.60</td>
+<td>-0.184</td>
+<td>0.143</td>
+</tr>
+<tr class="even">
+<td>2022-02-02</td>
+<td>146.5</td>
+<td>-17.5</td>
+<td>30.59</td>
+<td>34.72</td>
+<td>0.128</td>
+<td>-0.054</td>
+</tr>
+<tr class="odd">
+<td>2022-02-03</td>
+<td>153.5</td>
+<td>-24.5</td>
+<td>27.06</td>
+<td>35.32</td>
+<td>0.550</td>
+<td>-0.797</td>
+</tr>
+<tr class="even">
+<td>2022-02-06</td>
+<td>146.5</td>
+<td>-16.5</td>
+<td>29.14</td>
+<td>34.70</td>
+<td>-0.122</td>
+<td>-0.100</td>
+</tr>
+<tr class="odd">
+<td>2022-02-07</td>
+<td>145.5</td>
+<td>-16.5</td>
+<td>30.37</td>
+<td>34.06</td>
+<td>-0.104</td>
+<td>0.200</td>
+</tr>
+<tr class="even">
+<td>2022-02-09</td>
+<td>145.5</td>
+<td>-15.5</td>
+<td>29.54</td>
+<td>34.74</td>
+<td>-0.120</td>
+<td>0.064</td>
+</tr>
+<tr class="odd">
+<td>2022-02-12</td>
+<td>153.5</td>
+<td>-26.5</td>
+<td>26.80</td>
+<td>35.38</td>
+<td>-0.124</td>
+<td>0.006</td>
+</tr>
+<tr class="even">
+<td>2022-02-12</td>
+<td>145.5</td>
+<td>-14.5</td>
+<td>29.90</td>
+<td>34.72</td>
+<td>-0.081</td>
+<td>0.034</td>
+</tr>
+<tr class="odd">
+<td>2022-03-25</td>
+<td>144.5</td>
+<td>-13.5</td>
+<td>29.04</td>
+<td>34.75</td>
+<td>-0.457</td>
+<td>0.360</td>
+</tr>
+<tr class="even">
+<td>2022-04-01</td>
+<td>143.5</td>
+<td>-12.5</td>
+<td>30.14</td>
+<td>34.44</td>
+<td>0.025</td>
+<td>-0.018</td>
+</tr>
+<tr class="odd">
+<td>2022-04-09</td>
+<td>143.5</td>
+<td>-11.5</td>
+<td>29.93</td>
+<td>34.56</td>
+<td>-0.097</td>
+<td>0.144</td>
+</tr>
+<tr class="even">
+<td>2022-04-14</td>
+<td>143.5</td>
+<td>-10.5</td>
+<td>29.48</td>
+<td>34.42</td>
+<td>-0.041</td>
+<td>0.078</td>
+</tr>
+<tr class="odd">
+<td>2022-04-21</td>
+<td>143.5</td>
+<td>-9.5</td>
+<td>29.56</td>
+<td>34.19</td>
+<td>0.059</td>
+<td>0.034</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="match-extracted-data-to-tracking-data" class="level2">
+<h2 class="anchored" data-anchor-id="match-extracted-data-to-tracking-data">Match extracted data to tracking data</h2>
+<p>We will match up the eReefs data with our tracking detections by combining the two datasets based on common date, longitude and latitude values.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename lon and lat columns of extracted_data to longitude, latitude (to match those of data)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>extracted_data <span class="op">=</span> extracted_data.rename(columns <span class="op">=</span> {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'lon'</span>: <span class="st">'longitude'</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'lat'</span>: <span class="st">'latitude'</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the two datasets based on common date, lon and lat values</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>combined_data <span class="op">=</span> pd.merge(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  data, extracted_data, </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  on <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'longitude'</span>, <span class="st">'latitude'</span>]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the combined data (reorder columns; sort by date and time; format numeric columns' decimal places)</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>tbl_combined <span class="op">=</span> combined_data.<span class="op">\</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  reindex(columns <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'time'</span>, <span class="st">'longitude'</span>, <span class="st">'latitude'</span>, <span class="st">'record_id'</span>, <span class="st">'temp'</span>, <span class="st">'salt'</span>, <span class="st">'u'</span>, <span class="st">'v'</span>]).<span class="op">\</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  sort_values(by <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'time'</span>]).<span class="op">\</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  style.<span class="op">\</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  hide(axis <span class="op">=</span> <span class="st">'index'</span>).<span class="op">\</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="bu">format</span>({</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'longitude'</span>, <span class="st">'latitude'</span>], <span class="st">'</span><span class="sc">{:.1f}</span><span class="st">'</span>),</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'temp'</span>, <span class="st">'salt'</span>], <span class="st">'</span><span class="sc">{:.2f}</span><span class="st">'</span>), </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'u'</span>, <span class="st">'v'</span>], <span class="st">'</span><span class="sc">{:.3f}</span><span class="st">'</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>display(tbl_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell scroll_box_xy" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="9">
+<style type="text/css">
+</style>
+
+<div id="tbl-combined-data" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;3: Loggerhead Sea Turtle (<em>Caretta caretta</em>) tracking detections (Strydom, 2022) and corresponding eReefs daily mean temperature, salinity, east- and northward current velocities (u, v respectively).</caption>
+<thead>
+<tr class="header">
+<th>date</th>
+<th>time</th>
+<th>longitude</th>
+<th>latitude</th>
+<th>record_id</th>
+<th>temp</th>
+<th>salt</th>
+<th>u</th>
+<th>v</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2021-12-21</td>
+<td>17:57</td>
+<td>152.5</td>
+<td>-24.5</td>
+<td>4022992328</td>
+<td>28.09</td>
+<td>35.26</td>
+<td>0.071</td>
+<td>-0.020</td>
+</tr>
+<tr class="even">
+<td>2022-01-02</td>
+<td>21:49</td>
+<td>153.5</td>
+<td>-25.5</td>
+<td>4022992329</td>
+<td>26.00</td>
+<td>35.30</td>
+<td>-0.035</td>
+<td>0.038</td>
+</tr>
+<tr class="odd">
+<td>2022-01-05</td>
+<td>07:33</td>
+<td>152.5</td>
+<td>-23.5</td>
+<td>4022992304</td>
+<td>25.64</td>
+<td>35.23</td>
+<td>0.030</td>
+<td>0.015</td>
+</tr>
+<tr class="even">
+<td>2022-01-06</td>
+<td>05:03</td>
+<td>151.5</td>
+<td>-23.5</td>
+<td>4022992302</td>
+<td>28.13</td>
+<td>35.41</td>
+<td>-0.033</td>
+<td>0.015</td>
+</tr>
+<tr class="odd">
+<td>2022-01-09</td>
+<td>20:25</td>
+<td>151.5</td>
+<td>-22.5</td>
+<td>4022992319</td>
+<td>29.24</td>
+<td>35.34</td>
+<td>0.001</td>
+<td>-0.103</td>
+</tr>
+<tr class="even">
+<td>2022-01-13</td>
+<td>06:28</td>
+<td>151.5</td>
+<td>-21.5</td>
+<td>4022992308</td>
+<td>28.42</td>
+<td>35.25</td>
+<td>-0.095</td>
+<td>0.016</td>
+</tr>
+<tr class="odd">
+<td>2022-01-14</td>
+<td>18:26</td>
+<td>150.5</td>
+<td>-21.5</td>
+<td>4022992318</td>
+<td>28.99</td>
+<td>35.40</td>
+<td>-0.064</td>
+<td>-0.047</td>
+</tr>
+<tr class="even">
+<td>2022-01-17</td>
+<td>17:06</td>
+<td>150.5</td>
+<td>-20.5</td>
+<td>4022992330</td>
+<td>29.39</td>
+<td>35.34</td>
+<td>-0.066</td>
+<td>-0.178</td>
+</tr>
+<tr class="odd">
+<td>2022-01-19</td>
+<td>17:44</td>
+<td>149.5</td>
+<td>-20.5</td>
+<td>4022992320</td>
+<td>29.92</td>
+<td>35.48</td>
+<td>0.018</td>
+<td>-0.104</td>
+</tr>
+<tr class="even">
+<td>2022-01-21</td>
+<td>07:22</td>
+<td>149.5</td>
+<td>-19.5</td>
+<td>4022992316</td>
+<td>29.58</td>
+<td>35.12</td>
+<td>-0.161</td>
+<td>-0.035</td>
+</tr>
+<tr class="odd">
+<td>2022-01-23</td>
+<td>07:02</td>
+<td>148.5</td>
+<td>-19.5</td>
+<td>4022992323</td>
+<td>28.99</td>
+<td>35.26</td>
+<td>-0.137</td>
+<td>-0.022</td>
+</tr>
+<tr class="even">
+<td>2022-01-27</td>
+<td>17:00</td>
+<td>147.5</td>
+<td>-18.5</td>
+<td>4022992327</td>
+<td>29.46</td>
+<td>33.98</td>
+<td>0.265</td>
+<td>0.004</td>
+</tr>
+<tr class="odd">
+<td>2022-01-30</td>
+<td>17:02</td>
+<td>146.5</td>
+<td>-18.5</td>
+<td>4022992314</td>
+<td>30.15</td>
+<td>34.60</td>
+<td>-0.184</td>
+<td>0.143</td>
+</tr>
+<tr class="even">
+<td>2022-02-02</td>
+<td>09:14</td>
+<td>146.5</td>
+<td>-17.5</td>
+<td>4022992301</td>
+<td>30.59</td>
+<td>34.72</td>
+<td>0.128</td>
+<td>-0.054</td>
+</tr>
+<tr class="odd">
+<td>2022-02-03</td>
+<td>21:37</td>
+<td>153.5</td>
+<td>-24.5</td>
+<td>4022992313</td>
+<td>27.06</td>
+<td>35.32</td>
+<td>0.550</td>
+<td>-0.797</td>
+</tr>
+<tr class="even">
+<td>2022-02-06</td>
+<td>18:25</td>
+<td>146.5</td>
+<td>-16.5</td>
+<td>4022992303</td>
+<td>29.14</td>
+<td>34.70</td>
+<td>-0.122</td>
+<td>-0.100</td>
+</tr>
+<tr class="odd">
+<td>2022-02-07</td>
+<td>07:15</td>
+<td>145.5</td>
+<td>-16.5</td>
+<td>4022992310</td>
+<td>30.37</td>
+<td>34.06</td>
+<td>-0.104</td>
+<td>0.200</td>
+</tr>
+<tr class="even">
+<td>2022-02-09</td>
+<td>18:33</td>
+<td>145.5</td>
+<td>-15.5</td>
+<td>4022992311</td>
+<td>29.54</td>
+<td>34.74</td>
+<td>-0.120</td>
+<td>0.064</td>
+</tr>
+<tr class="odd">
+<td>2022-02-12</td>
+<td>08:59</td>
+<td>153.5</td>
+<td>-26.5</td>
+<td>4022992324</td>
+<td>26.80</td>
+<td>35.38</td>
+<td>-0.124</td>
+<td>0.006</td>
+</tr>
+<tr class="even">
+<td>2022-02-12</td>
+<td>10:34</td>
+<td>145.5</td>
+<td>-14.5</td>
+<td>4022992325</td>
+<td>29.90</td>
+<td>34.72</td>
+<td>-0.081</td>
+<td>0.034</td>
+</tr>
+<tr class="odd">
+<td>2022-03-25</td>
+<td>07:10</td>
+<td>144.5</td>
+<td>-13.5</td>
+<td>4022992309</td>
+<td>29.04</td>
+<td>34.75</td>
+<td>-0.457</td>
+<td>0.360</td>
+</tr>
+<tr class="even">
+<td>2022-04-01</td>
+<td>18:41</td>
+<td>143.5</td>
+<td>-12.5</td>
+<td>4022992307</td>
+<td>30.14</td>
+<td>34.44</td>
+<td>0.025</td>
+<td>-0.018</td>
+</tr>
+<tr class="odd">
+<td>2022-04-09</td>
+<td>22:00</td>
+<td>143.5</td>
+<td>-11.5</td>
+<td>4022992317</td>
+<td>29.93</td>
+<td>34.56</td>
+<td>-0.097</td>
+<td>0.144</td>
+</tr>
+<tr class="even">
+<td>2022-04-14</td>
+<td>06:31</td>
+<td>143.5</td>
+<td>-10.5</td>
+<td>4022992321</td>
+<td>29.48</td>
+<td>34.42</td>
+<td>-0.041</td>
+<td>0.078</td>
+</tr>
+<tr class="odd">
+<td>2022-04-21</td>
+<td>10:30</td>
+<td>143.5</td>
+<td>-9.5</td>
+<td>4022992305</td>
+<td>29.56</td>
+<td>34.19</td>
+<td>0.059</td>
+<td>0.034</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Hooray! We now have our combined dataset of the Loggerhead Sea Turtle tracking detections and the corresponding eReefs daily aggregated data (<a href="#tbl-combined-data">Table&nbsp;3</a>).</p>
+<p><br><br><br><br><br><br><br><br><br><br><br>Strydom A. 2022. Wreck Rock Turtle Care - satellite tracking. Data downloaded from <a href="http://seamap.env.duke.edu/dataset/2178">OBIS-SEAMAP</a>; originated from <a href="http://www.seaturtle.org/tracking/index.shtml?project_id=1381">Satellite Tracking and Analysis Tool (STAT)</a>. <a href="https://doi.org/10.15468/k4s6ap">DOI: 10.15468/k4s6ap</a> accessed via <a href="https://www.gbif.org/">GBIF.org</a> on 2023-02-17.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

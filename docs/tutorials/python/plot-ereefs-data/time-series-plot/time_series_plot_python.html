@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.217">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>eReefs tutorials - Plotting eReefs data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/logo.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-sm navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/ereefs_aims_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">eReefs tutorials</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.r-project.org/" rel="" target="">
+ <span class="menu-text"><i class="fa-brands fa-r-project" aria-label="r-project"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.python.org/" rel="" target="">
+ <span class="menu-text"><i class="fa-brands fa-python" aria-label="python"></i> python</span></a>
+  </li>  
+  <li class="dropdown-header">
+ <span class="menu-text">   </span></li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/bfordAIMS/ereefs-tutorials" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#load-the-required-python-libraries" id="toc-load-the-required-python-libraries" class="nav-link active" data-scroll-target="#load-the-required-python-libraries">Load the required Python libraries</a></li>
+  <li><a href="#choose-opendap-end-point" id="toc-choose-opendap-end-point" class="nav-link" data-scroll-target="#choose-opendap-end-point">Choose OPeNDAP end point</a></li>
+  <li><a href="#select-the-point-location" id="toc-select-the-point-location" class="nav-link" data-scroll-target="#select-the-point-location">Select the point location</a></li>
+  <li><a href="#extract-values" id="toc-extract-values" class="nav-link" data-scroll-target="#extract-values">Extract values</a></li>
+  <li><a href="#plot-the-time-series" id="toc-plot-the-time-series" class="nav-link" data-scroll-target="#plot-the-time-series">Plot the time series</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Plotting eReefs data</h1>
+<p class="subtitle lead">Times series plots <i class="fa-brands fa-python" aria-label="python"></i></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="tutorial-description">
+<p>Learn how to create time series plots of eReefs data in <i class="fa-brands fa-python" aria-label="python"></i> python.</p>
+</div>
+<p>In this notebook we use OpeNDAP to extract time series data at a single location of interest, then plot this data. This extraction process can also be done with the <a href="https://extraction.ereefs.aims.gov.au/">AIMS eReefs data extraction tool</a>. If you which to perform bigger extractions then we recommend using this tool instead of this process outlined in this example.</p>
+<blockquote class="blockquote">
+<p><em>Note</em>: This script has no error checking and so changing the date ranges or locations might result in out of bounds errors.</p>
+</blockquote>
+<section id="load-the-required-python-libraries" class="level1">
+<h1>Load the required Python libraries</h1>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> netCDF4 <span class="im">import</span> Dataset, num2date</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy.crs <span class="im">as</span> ccrs</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>cartopy.config[<span class="st">'data_dir'</span>] <span class="op">=</span> os.getenv(<span class="st">'CARTOPY_DIR'</span>, cartopy.config.get(<span class="st">'data_dir'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="choose-opendap-end-point" class="level1">
+<h1>Choose OPeNDAP end point</h1>
+<p>The first part of the process is to choose the OPeNDAP end point on the AIMS eReefs THREDD server. You can view the products <a href="http://thredds.ereefs.aims.gov.au/thredds/s3catalogue/aims-ereefs-public-prod/derived/ncaggregate/ereefs/gbr4_v2/catalog.html">here</a>. At this stage there is no grouped OPeNDAP service for the entire time series and so this script only works for looking at a single month of data. Hopefully this can be improved in the future.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the OpeNDAP endpoint for the specified month.  </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>month <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>year <span class="op">=</span> <span class="dv">2020</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>netCDF_datestr <span class="op">=</span> <span class="bu">str</span>(year)<span class="op">+</span><span class="st">'-'</span><span class="op">+</span><span class="bu">format</span>(month, <span class="st">'02'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>netCDF_datestr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>'2020-03'</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OPeNDAP URL to file "EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-YYYY-MM.nc". Hydrodynamic 4km model, daily data for the month specified</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>inputFile <span class="op">=</span> <span class="st">"http://thredds.ereefs.aims.gov.au/thredds/dodsC/s3://aims-ereefs-public-prod/derived/ncaggregate/ereefs/gbr4_v2/daily-monthly/EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-"</span><span class="op">+</span>netCDF_datestr<span class="op">+</span><span class="st">".nc"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>nc_data <span class="op">=</span> Dataset(inputFile, <span class="st">'r'</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nc_data.title)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># To find a list of the variables uncomment the next line: </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>nc_data.variables</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>eReefs AIMS-CSIRO GBR4 Hydrodynamic v2 daily aggregation</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>{'mean_cur': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+ float32 mean_cur(time, k, latitude, longitude)
+     coordinates: time zc latitude longitude
+     substanceOrTaxon_id: http://environment.data.gov.au/def/feature/ocean_current
+     units: ms-1
+     puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/LCEWMP01/
+     medium_id: http://environment.data.gov.au/def/feature/ocean
+     unit_id: http://qudt.org/vocab/unit#MeterPerSecond
+     short_name: mean_cur
+     aggregation: mean_speed
+     standard_name: mean_current_speed
+     long_name: mean_current_speed
+     _ChunkSizes: [  1   1 133 491]
+ unlimited dimensions: time
+ current shape = (31, 17, 723, 491)
+ filling off,
+ 'salt': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+ float32 salt(time, k, latitude, longitude)
+     qudt__unit: http://qudt.org/vocab/unit/PSU
+     puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/PSLTMP01/
+     coordinates: time zc latitude longitude
+     substanceOrTaxon_id: http://sweet.jpl.nasa.gov/2.2/matrWater.owl#SaltWater
+     scaledQuantityKind_id: http://environment.data.gov.au/def/property/practical_salinity
+     short_name: salt
+     aggregation: Daily
+     units: PSU
+     medium_id: http://environment.data.gov.au/def/feature/ocean
+     unit_id: http://environment.data.gov.au/water/quality/def/unit/PSU
+     long_name: Salinity
+     _ChunkSizes: [  1   1 133 491]
+ unlimited dimensions: time
+ current shape = (31, 17, 723, 491)
+ filling off,
+ 'temp': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+ float32 temp(time, k, latitude, longitude)
+     puv__parameter: https://vocab.nerc.ac.uk/collection/P01/current/TEMPMP01/
+     coordinates: time zc latitude longitude
+     substanceOrTaxon_id: http://sweet.jpl.nasa.gov/2.2/matrWater.owl#SaltWater
+     scaledQuantityKind_id: http://environment.data.gov.au/def/property/sea_water_temperature
+     short_name: temp
+     aggregation: Daily
+     units: degrees C
+     medium_id: http://environment.data.gov.au/def/feature/ocean
+     unit_id: http://qudt.org/vocab/unit#DegreeCelsius
+     long_name: Temperature
+     _ChunkSizes: [  1   1 133 491]
+ unlimited dimensions: time
+ current shape = (31, 17, 723, 491)
+ filling off,
+ 'u': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+ float32 u(time, k, latitude, longitude)
+     vector_components: u v
+     coordinates: time zc latitude longitude
+     substanceOrTaxon_id: http://environment.data.gov.au/def/feature/ocean_current
+     vector_name: Currents
+     aggregation: Daily
+     units: ms-1
+     long_name: Eastward current
+     puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/LCEWMP01/
+     scaledQuantityKind_id: http://environment.data.gov.au/def/property/sea_water_velocity_eastward
+     short_name: u
+     standard_name: eastward_sea_water_velocity
+     medium_id: http://environment.data.gov.au/def/feature/ocean
+     unit_id: http://qudt.org/vocab/unit#MeterPerSecond
+     _ChunkSizes: [  1   1 133 491]
+ unlimited dimensions: time
+ current shape = (31, 17, 723, 491)
+ filling off,
+ 'v': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+ float32 v(time, k, latitude, longitude)
+     vector_components: u v
+     coordinates: time zc latitude longitude
+     substanceOrTaxon_id: http://environment.data.gov.au/def/feature/ocean_current
+     vector_name: Currents
+     aggregation: Daily
+     units: ms-1
+     long_name: Northward current
+     puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/LCNSMP01/
+     scaledQuantityKind_id: http://environment.data.gov.au/def/property/sea_water_velocity_northward
+     short_name: v
+     standard_name: northward_sea_water_velocity
+     medium_id: http://environment.data.gov.au/def/feature/ocean
+     unit_id: http://qudt.org/vocab/unit#MeterPerSecond
+     _ChunkSizes: [  1   1 133 491]
+ unlimited dimensions: time
+ current shape = (31, 17, 723, 491)
+ filling off,
+ 'zc': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+ float64 zc(k)
+     positive: up
+     coordinate_type: Z
+     units: m
+     long_name: Z coordinate
+     axis: Z
+     _CoordinateAxisType: Height
+     _CoordinateZisPositive: up
+ unlimited dimensions: 
+ current shape = (17,)
+ filling off,
+ 'time': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+ float64 time(time)
+     units: days since 1990-01-01 00:00:00 +10
+     long_name: Time
+     standard_name: time
+     coordinate_type: time
+     puv__uom: http://vocab.nerc.ac.uk/collection/P06/current/UTAA/
+     calendar: gregorian
+     _CoordinateAxisType: Time
+     _ChunkSizes: 1024
+ unlimited dimensions: time
+ current shape = (31,)
+ filling off,
+ 'latitude': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+ float64 latitude(latitude)
+     long_name: Latitude
+     standard_name: latitude
+     units: degrees_north
+     coordinate_type: latitude
+     projection: geographic
+     puv__ofProperty: http://vocab.nerc.ac.uk/collection/S06/current/S0600045/
+     puv__uom: http://vocab.nerc.ac.uk/collection/P06/current/DEGN/
+     _CoordinateAxisType: Lat
+ unlimited dimensions: 
+ current shape = (723,)
+ filling off,
+ 'longitude': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+ float64 longitude(longitude)
+     standard_name: longitude
+     long_name: Longitude
+     units: degrees_east
+     puv__uom: http://vocab.nerc.ac.uk/collection/P06/current/DEGE/
+     coordinate_type: longitude
+     projection: geographic
+     _CoordinateAxisType: Lon
+ unlimited dimensions: 
+ current shape = (491,)
+ filling off,
+ 'mean_wspeed': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+ float32 mean_wspeed(time, latitude, longitude)
+     puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/ESEWMPXX/
+     coordinates: time latitude longitude
+     units: ms-1
+     short_name: mean_wspeed
+     aggregation: mean_speed
+     standard_name: mean_wind_speed
+     long_name: mean_wind_speed
+     _ChunkSizes: [  1 133 491]
+ unlimited dimensions: time
+ current shape = (31, 723, 491)
+ filling off,
+ 'eta': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+ float32 eta(time, latitude, longitude)
+     puv__parameter: https://vocab.nerc.ac.uk/collection/P01/current/ASLVMP01/
+     coordinates: time latitude longitude
+     substanceOrTaxon_id: http://environment.data.gov.au/def/feature/ocean_near_surface
+     scaledQuantityKind_id: http://environment.data.gov.au/def/property/sea_surface_elevation
+     short_name: eta
+     standard_name: sea_surface_height_above_sea_level
+     aggregation: Daily
+     units: metre
+     positive: up
+     medium_id: http://environment.data.gov.au/def/feature/ocean
+     unit_id: http://qudt.org/vocab/unit#Meter
+     long_name: Surface elevation
+     _ChunkSizes: [  1 133 491]
+ unlimited dimensions: time
+ current shape = (31, 723, 491)
+ filling off,
+ 'wspeed_u': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+ float32 wspeed_u(time, latitude, longitude)
+     puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/ESEWMPXX/
+     coordinates: time latitude longitude
+     short_name: wspeed_u
+     aggregation: Daily
+     units: ms-1
+     long_name: eastward_wind
+     _ChunkSizes: [  1 133 491]
+ unlimited dimensions: time
+ current shape = (31, 723, 491)
+ filling off,
+ 'wspeed_v': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+ float32 wspeed_v(time, latitude, longitude)
+     puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/ESNSMPXX/
+     coordinates: time latitude longitude
+     short_name: wspeed_v
+     aggregation: Daily
+     units: ms-1
+     long_name: northward_wind
+     _ChunkSizes: [  1 133 491]
+ unlimited dimensions: time
+ current shape = (31, 723, 491)
+ filling off}</code></pre>
+</div>
+</div>
+</section>
+<section id="select-the-point-location" class="level1">
+<h1>Select the point location</h1>
+<p>Work out the bounds of the gridded data. We can then use this to find out which grid cell best matches our location of interest.</p>
+<blockquote class="blockquote">
+<p><em>Note</em>: This only works because the AIMS eReefs aggregate datasets are regridded onto a regularly spaced grid. The original raw model data is on a curvilinear grid and this approach would not work for that data.</p>
+</blockquote>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lons <span class="op">=</span> nc_data.variables[<span class="st">'longitude'</span>][:]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>max_lon <span class="op">=</span> <span class="bu">max</span>(lons)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>min_lon <span class="op">=</span> <span class="bu">min</span>(lons) </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>lats <span class="op">=</span> nc_data.variables[<span class="st">'latitude'</span>][:]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>max_lat <span class="op">=</span> <span class="bu">max</span>(lats)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>min_lat <span class="op">=</span> <span class="bu">min</span>(lats)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>grid_lon <span class="op">=</span> lons.size</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>grid_lat <span class="op">=</span> lats.size</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Grid bounds, Lon: "</span><span class="op">+</span><span class="bu">str</span>(min_lon)<span class="op">+</span><span class="st">" - "</span><span class="op">+</span><span class="bu">str</span>(max_lon)<span class="op">+</span><span class="st">" Lat:"</span><span class="op">+</span><span class="bu">str</span>(min_lat)<span class="op">+</span><span class="st">" - "</span><span class="op">+</span><span class="bu">str</span>(max_lat))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Grid size is: "</span><span class="op">+</span><span class="bu">str</span>(grid_lon)<span class="op">+</span><span class="st">" x "</span><span class="op">+</span><span class="bu">str</span>(grid_lat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Grid bounds, Lon: 142.168788 - 156.868788 Lat:-28.696022 - -7.036022
+Grid size is: 491 x 723</code></pre>
+</div>
+</div>
+<p>Find the closest index to the location of interest.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Davies reef</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>lat <span class="op">=</span> <span class="op">-</span><span class="fl">18.82</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>lon <span class="op">=</span> <span class="fl">147.64</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>selectedLatIndex <span class="op">=</span> <span class="bu">round</span>((lat<span class="op">-</span>min_lat)<span class="op">/</span>(max_lat<span class="op">-</span>min_lat)<span class="op">*</span>grid_lat)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>selectedLonIndex <span class="op">=</span> <span class="bu">round</span>((lon<span class="op">-</span>min_lon)<span class="op">/</span>(max_lon<span class="op">-</span>min_lon)<span class="op">*</span>grid_lon)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Grid position of location: "</span><span class="op">+</span><span class="bu">str</span>(selectedLatIndex)<span class="op">+</span><span class="st">", "</span><span class="op">+</span><span class="bu">str</span>(selectedLonIndex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Grid position of location: 330, 183</code></pre>
+</div>
+</div>
+</section>
+<section id="extract-values" class="level1">
+<h1>Extract values</h1>
+<p>Extract the values over time at this location. Note that because we are access the underlying data here this results in an OpeNDAP call to get the data from the remote server. As a result this call can take a while (~10 sec).</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>selectedDepthIndex <span class="op">=</span> <span class="dv">15</span> <span class="co"># -1.5m</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>selectedDepthIndex2 <span class="op">=</span> <span class="dv">10</span> <span class="co"># -17.75m</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Time, Depth, Lat, Lon</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>dailyTemp1 <span class="op">=</span> nc_data.variables[<span class="st">'temp'</span>][:,[selectedDepthIndex,selectedDepthIndex2], selectedLatIndex, selectedLonIndex]</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dailyTemp1[<span class="dv">0</span>:<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[29.586527 27.764503]
+ [29.513176 27.867159]
+ [29.505758 28.179167]
+ [29.782936 28.216429]
+ [30.008278 28.062304]]</code></pre>
+</div>
+</div>
+<p>Let’s get the wind for the same location. The wind variable doesn’t have any depth dimension and so our indexing into the data is different. The wind is a vector measurement, with an x and y component.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>wspeed_v <span class="op">=</span> nc_data.variables[<span class="st">'wspeed_v'</span>][:, selectedLatIndex, selectedLonIndex]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>wspeed_u <span class="op">=</span> nc_data.variables[<span class="st">'wspeed_v'</span>][:, selectedLatIndex, selectedLonIndex]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To get the wind speed we need to calculate the magnitude of this vector.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>wspeed <span class="op">=</span> np.sqrt(wspeed_v<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> wspeed_u<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Get the time series. Note that the time values are stored as the number of days since 1990-01-01 00:00:00 +10.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> nc_data.variables[<span class="st">'time'</span>][:]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(times[<span class="dv">0</span>:<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[11017. 11018. 11019. 11020. 11021.]</code></pre>
+</div>
+</div>
+</section>
+<section id="plot-the-time-series" class="level1">
+<h1>Plot the time series</h1>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the days since the 1990 origin into Pandas dates for plotting</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> pd.to_datetime(times,unit<span class="op">=</span><span class="st">'D'</span>,origin<span class="op">=</span>pd.Timestamp(<span class="st">'1990-01-01'</span>))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots()</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">8</span>, <span class="dv">7</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Temperature (deg C)'</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>ax1.plot(t, dailyTemp1[:,<span class="dv">0</span>], color<span class="op">=</span><span class="st">'tab:red'</span>, label<span class="op">=</span><span class="st">'Temp (-1.5 m)'</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>ax1.plot(t, dailyTemp1[:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">'tab:orange'</span>, label<span class="op">=</span><span class="st">'Temp (-17.75 m)'</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#ax1.tick_params(axis='y', labelcolor=color)</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()  <span class="co"># instantiate a second axes that shares the same x-axis</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>color <span class="op">=</span> <span class="st">'tab:blue'</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'Wind speed (m/s)'</span>, color<span class="op">=</span>color)  <span class="co"># we already handled the x-label with ax1</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>ax2.plot(t, wspeed, color<span class="op">=</span>color, label<span class="op">=</span><span class="st">'Wind'</span>)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span>color)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>fig.legend()</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the axes formating to show the dates on an angle on the current figure (gcf)</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>plt.gcf().autofmt_xdate()</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">#fig.tight_layout()  # otherwise the right y-label is slightly clipped</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="time_series_plot_python_files/figure-html/cell-11-output-1.png" width="749" height="628"></p>
+</div>
+</div>
+<p>From this graph we can see that the surface water at Davies Reef was very warm during March 2020. There was a strong stratification of the temperature profile with cool water at -18 m. Around the 10th March the wind picked up for a few days, mixing the water, cooling the surface down rapidly.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
