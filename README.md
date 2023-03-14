@@ -1,13 +1,15 @@
 # eReefs Tutorials
 
-*WORK IN PROGRESS*
+*A WORK IN PROGRESS*
 
 
 # User Overview
 
-This repository holds the source files for the AIMS Knowledge Systems eReefs tutorials hosted at https://bfordaims.github.io/ereefs-tutorials/. 
+This repository holds the source files for the AIMS eReefs tutorials hosted at https://open-aims.github.io/ereefs-tutorials/.
 
-Currently, a few basic tutorials are available for the languages `R` and `python`. In time we hope to add a wider range of tutorials, including for more advanced concepts. If you wish to see a tutorial on a specific topic you can add a request using the Github Issues feature, though please note that the development of subsequent tutorials is dependent on the time availability of the small number of contributing AIMS staff.
+Currently, there are a handful of tutorials available for the languages `R` and `python`. In time we hope to add a wider range of tutorials, including for more advanced concepts. If you wish to see a tutorial on a specific topic you can add a request using the [Discussions](https://github.com/open-AIMS/ereefs-tutorials/discussions) page of this repository. Though please note that the development of subsequent tutorials is dependent on the time availability of the small number of contributing AIMS staff.
+
+To follow along with tutorials on your own machine, you can download the source files for specific tutorials by navigating to the :file_folder: `tutorials` folder in this repository, then to :file_folder: `r` or :file_folder: `python`, depending and on your language of choice, and then to the individual tutorial folders herein. Once you have found the folder for the specific tutorial of interest you can download it to your local machine. 
 
 
 # Developer Overview
@@ -29,7 +31,7 @@ To successfully render the website you will need the following:
 * [Quarto](https://quarto.org/docs/get-started)
 * [R](https://www.r-project.org/)
 * [Python](https://wiki.python.org/moin/BeginnersGuide/Download)
-* A [Github account](https://github.com/join) with permissions to push to the ereefs-tutorials repository
+* A [Github account](https://github.com/join) with permissions to push to the [open-AIMS eReefs-Tutorials repository](https://github.com/open-AIMS/eReefs-Tutorials)
 * The R packages and Python modules used within the scripts you are trying to render
 
   * R packages are installed from an R console with the command <br>`install.packages("<package_name>")` for packages hosted on CRAN; or <br>`remotes::install_github("<Github username>/<repo name>")` to install packages hosted in a Github repository.
