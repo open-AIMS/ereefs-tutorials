@@ -1,0 +1,148 @@
+---
+title: "<Series title here>"
+subtitle: "<Tutorial title here> <language icon here {{< fa brands r-project >}} or {{< fa brands python >}} >"
+execute: # Set code cell execution options
+  message: false
+  warning: false
+  code-overflow: wrap
+  eval: false   # this is so the chunks in the template are not run as they contain pseudocode explaining what goes where - get rid of this when you start working on a specific tutorial
+---
+
+:::{.tutorial-description}
+< **Tutorial blurb here** - can be the same as the blurb on the ereefs tutorials homepage >
+> E.g. Learn how to ... in {{< fa brands r-project >}}/{{< fa brands r-project >}} python.
+:::
+
+:::{.callout-note appearance="simple"}
+< **Optional link to previous tutorial in the series** > 
+This tutorial builds on the techniques introduced in [< series title >:< tutorial title >< language icon {{< fa brands r-project >}} or {{< fa brands python >}} >](< relative link to .qmd file of previous tutorial >).
+:::
+
+< **Breif description of tutorial concepts and outcomes** >
+> E.g. In this tutorial we will look at how to get eReefs data from the [AIMS server](http://thredds.ereefs.aims.gov.au/thredds/catalog.html) corresponding to the logged locations of tagged marine animals. Keep in mind, however, that the same methodology can be applied in any situation where we wish to extract eReefs data for a range of points with different dates of interest for each point. 
+
+## R packages / Python modules
+```{r RPackages}
+library(<R package name>) # comment describing what specifically the package is used for in this tutorial
+# E.g. 
+library(readr) # to efficiently read in data
+library(janitor) # to create consistent, 'clean' variable names
+library(tidyverse) # for data manipulation and plotting with ggplot2
+library(lubridate) # for working with date and time variables 
+library(leaflet) # to create an interactive map of the tracking locations
+library(knitr); library(kableExtra) # for better table printing
+```
+
+## Motivating problem
+
+< **Brief introduction to the mock problem being solved within this tutorial** - including a little bit on the background/context of the problem generally, and a little bit on the specific instance of the problem in this tutorial >
+
+> E.g. The tracking of marine animals is commonly used by researchers to gain insights into the distribution, biology, behaviour and ecology of different species. However, knowing where an animal was at a certain point in time is only one piece of the puzzle. To start to understand *why* an animal was where it was, we usually require information on things like: What type of habitat is present at the location? What were the environmental conditions like at the time? What other lifeforms were present at the tracked location (e.g. for food or mating)? <br> In this tutorial we will pretend that we have tracking data for Loggerhead Sea Turtles and wish to get eReefs data corresponding to the tracked points (in time and space) to understand more about the likely environmental conditions experienced by our turtles. 
+
+:::{.callout-note collapse="true" icon="false"}
+
+# Read more: < about what >
+
+< **Extra information/background about the problem** - hidden from view initially to not clutter the tutorial with text which is not pertinent to the tutorial, but which may be valuable to users who like to learn about tools in the context of real-world (or at least mock real-world) problems, or which may give greater motivation to some users in general >
+
+:::
+
+## < Data section - e.g. 'The data' or more specific 'Example tracking data' 'Loggerhead turtle tracking data' etc >
+
+< **Description of the dataset** - including citations where appropriate >
+
+```{r dataImport}
+# Read in <data name>
+< data name > <- read_csv(...) |> clean_names()
+```
+
+
+## ...
+
+
+:::{.refs}
+
+< references here >
+
+:::
+
+
+< END OF TUTORIAL - GENERAL NOTES BELOW >
+
+**Using 'callouts' in your tutorial**
+
+* Callouts are very useful in drawing attention to text, or including text which doesn't quite fit in with the body text of the tutorial. **However**, using too many callouts makes things look cluttered and can detract from the flow of the tutorial - **use sparingly**.
+
+* Types of callouts:
+
+:::{.callout-note appearance="simple"}
+Use the 'note' callout blocks for general notable information.
+:::
+
+:::{.callout-tip appearance="simple"}
+Use the 'tip' callout when giving a tip (duh).
+:::
+
+:::{.callout-caution appearance="simple"}
+Use the 'caution' callout when giving information which deals with potential oversights, things which could go wrong, things which the user must be mindful of, etc.
+:::
+
+:::{.callout-important appearance="simple"}
+Use the 'important' callout to display information which mustn't be missed by the reader.
+:::
+
+:::{.callout-warning appearance="simple"}
+This serves much the same purpose as the caution callout, I think best to avoid using this callout for that reason.
+:::
+
+* Customising callouts: `appearance="simple"` removes the heading from the callout, you can include a heading with
+
+:::{.callout-info}
+# Callout heading
+Callout text here...
+:::
+
+* Customising callouts: create dropdown boxes with `collapse="true"` and `icon="false`.
+
+:::{.callout-note collapse="true" icon="false"}
+# Dropdown heading
+Text here is hidden until dropdown is clicked.
+:::
+
+**Collapsable code output**
+
+One particularly useful thing is to hide large code outputs (or anything else you might want to hide) in expandable sections with the <details><summary>title</summary></details> html tags. Its a bit of a hacky solution, but is often worth the trouble. For example, say we want to show some large output, instead of 
+
+```{r}
+large_output <- rep("a", 10000)
+print(large_output) # This shouldn't print here as eval: false is set in the yaml header of this document
+```
+
+We can do
+
+```{r eval=TRUE}
+large_output <- rep("a", 10000) # shows the code to produce the output but does not print
+```
+
+<details><summary>`print(large_output)`</summary>
+
+```{r eval=TRUE, echo=FALSE}
+print(large_output) # this code block is not shown, only the output (echo=FALSE), though note that the same code is shown in the expandable header (between the summary tags) denoting what code is being run to the user
+```
+
+</details>
+
+**Math equations**
+
+Math equations are written in latex. Inline equations are latex code in between single dollar signs, e.g. $x=1$, and block/whole-line equations are between double dollar signs, e.g. 
+
+$$
+\begin{align}
+\text{When } x &\in [0, \infty), \; y_d = \sqrt{x} \\
+\therefore \; y_d^2 &= 
+  \begin{cases}
+    & x \hspace{1cm}   & x \in [0, \infty) \\
+    & \text{undefined} & x < 0
+  \end{cases}
+\end{align}
+$$
