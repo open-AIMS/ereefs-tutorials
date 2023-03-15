@@ -10,4 +10,6 @@
 
 * Map plot tutorial (R & Python) in plotting series. Looks at plotting points and rasters on maps (static and interactive with leaflet).
 
-* Create python version of the processing tutorial. 
+* Programmatic access tutorial: "probably should talk about the data extraction tool. i.e. help the reader understand when they would want to go to the trouble of writing a script, verses using the extraction tool. This would highlight the strengths and weaknesses of the two approaches."
+
+* Time series plot - fix link: "This data can be downloaded here. !Replace link after upload (so github tutorial link can be added to data page)!"
