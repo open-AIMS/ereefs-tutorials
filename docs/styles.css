@@ -1,4 +1,6 @@
 /* css styles */
+
+/* Style title (series title), subtitle (tutorial title), and tutorial description */
 .title {
   margin-top: 1% !important;
   text-align: left;
@@ -24,6 +26,7 @@
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-style: italic;
 }
+
 /* Classes for homepage (hp) layout */
 .hp-tutorial {
   display: flex;
@@ -54,6 +57,7 @@
   line-height: 2em;
 }
 
+/* Style text: headings, body,  */
 h1 {
   margin-top: 0px;
   font-size: 2em;
@@ -87,34 +91,12 @@ p.caption {
   margin: auto;
   margin-bottom: 30px;
 }
-.html-widget {
-    margin: auto;
-}
-#TOC {
-  text-align: left;
-  margin-left: 5%;
-  margin-top: 10%;
-}
-.icon {
-  height: 30px;
-  width: 30px;
-}
-.navbar {
-  height: 65px;
-}
-.navbar-logo {
-  max-height: 45px;
-}
 .cell-code {
   text-align: left
 }
 summary {
   font-size: 0.9em;
   font-weight: bold;
-}
-.code {
-  font-family: monospace;
-  font-size: 1em;
 }
 .math {
   font-size: medium;
@@ -125,27 +107,22 @@ summary {
 .table {
   text-align: left;
 }
-div.callout-warning.callout {
-  min-height: 300px;
-  border-left-color: rgb(218, 218, 218);
-  border-left-width:1px;
-  background-color: rgb(244, 244, 244);
-  color: black;
-  border-radius: 5px;
+
+/* Style webpage features */
+#TOC { /* Table of contents */
   text-align: left;
+  margin-left: 5%;
+  margin-top: 10%;
 }
-div.callout-warning.callout-style-default>.callout-header {
-  background-color: rgb(5, 24, 45);
-  font-size: 1.3em;
-  color:#d5d6d7;
-  border-radius: 5px;
-  text-align: center;
-  min-height: 75px;
-  padding-bottom: 5%;
-  margin-bottom: 5%;
-  margin-left: -1%;
-  margin-right: -1%;
-  margin-top: -0.5%;
+.navbar {
+  height: 65px;
+}
+.navbar-logo {
+  max-height: 45px;
+}
+.icon {
+  height: 30px;
+  width: 30px;
 }
 .sidebar-logo {
   width: 50%;
@@ -156,24 +133,9 @@ div.callout-warning.callout-style-default>.callout-header {
 .sidebar-title {
   text-align: center;
 }
-.icon-r {
-  height: 80px;
-  width: 80px;
-  display: inline-block;
-  margin-left: 10%;
-}
-.icon-python {
-  height: 80px;
-  width: 80px;
-  display: inline-block;
-  margin-left: 20%;
-}
-.callout .callout-caption-container {
-  vertical-align: middle;
-  display: block;
-  margin-top: auto;
-  margin-bottom: auto;
-}
+
+
+/* Other custom classes */
 .scroll_box_x {
   overflow-x: auto;
   margin-bottom: 20px;
@@ -187,4 +149,15 @@ div.callout-warning.callout-style-default>.callout-header {
   max-height: 350px;
   overflow: auto;
   margin-bottom: 20px;
+}
+.code {
+  font-family: monospace;
+  font-size: 1em;
+}
+.references {
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 300px; 
+  font-size: 0.8em;
+  color: rgb(54, 54, 54);
 }

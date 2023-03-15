@@ -243,4 +243,8 @@ Hooray! We now have our combined dataset of the Loggerhead Sea Turtle tracking d
 
 
 
-<br><br><br><br><br><br><br><br><br><br><br>Strydom A. 2022. Wreck Rock Turtle Care - satellite tracking. Data downloaded from [OBIS-SEAMAP](http://seamap.env.duke.edu/dataset/2178); originated from [Satellite Tracking and Analysis Tool (STAT)](http://www.seaturtle.org/tracking/index.shtml?project_id=1381). [DOI: 10.15468/k4s6ap](https://doi.org/10.15468/k4s6ap) accessed via [GBIF.org](https://www.gbif.org/) on 2023-02-17.
+:::{.references}
+
+Strydom A. 2022. Wreck Rock Turtle Care - satellite tracking. Data downloaded from [OBIS-SEAMAP](http://seamap.env.duke.edu/dataset/2178); originated from [Satellite Tracking and Analysis Tool (STAT)](http://www.seaturtle.org/tracking/index.shtml?project_id=1381). [DOI: 10.15468/k4s6ap](https://doi.org/10.15468/k4s6ap) accessed via [GBIF.org](https://www.gbif.org/) on 2023-02-17.
+
+:::

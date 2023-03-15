@@ -60,7 +60,7 @@ library(knitr); library(kableExtra) # for better table printing
 ## ...
 
 
-:::{.refs}
+:::{.references}
 
 < references here >
 
