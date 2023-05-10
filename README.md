@@ -1,15 +1,13 @@
 # eReefs Tutorials
 
-*A WORK IN PROGRESS*
+*WORK IN PROGRESS*
 
 
 # User Overview
 
-This repository holds the source files for the AIMS eReefs tutorials hosted at https://open-aims.github.io/ereefs-tutorials/.
+This repository holds the source files for the AIMS Knowledge Systems eReefs tutorials hosted at https://bfordaims.github.io/ereefs-tutorials/. 
 
-Currently, there are a handful of tutorials available for the languages `R` and `python`. In time we hope to add a wider range of tutorials, including for more advanced concepts. If you wish to see a tutorial on a specific topic you can add a request using the [Discussions](https://github.com/open-AIMS/ereefs-tutorials/discussions) page of this repository. Please note, however, that the development of subsequent tutorials is dependent on the time availability of the small number of contributing AIMS staff.
-
-To **follow along with tutorials** on your own machine, you can download the source files for specific tutorials by navigating to [:file_folder: `tutorials`](https://github.com/open-AIMS/ereefs-tutorials/tree/main/tutorials) in this repository, then to [:file_folder: `r`](https://github.com/open-AIMS/ereefs-tutorials/tree/main/tutorials/r) or [:file_folder: `python`](https://github.com/open-AIMS/ereefs-tutorials/tree/main/tutorials/python), depending and on your language of choice, and then to the individual tutorial folders herein. Once you have found the folder for the specific tutorial of interest you can download it to your local machine. You will also need to ensure that you have the required software installed to run the tutorial files on your machine. Tutorials are contained in Quarto markdown files, so you will need to install [Quarto](https://quarto.org/). You will also need to ensure you have either [R](https://www.r-project.org/) or [python](https://wiki.python.org/moin/BeginnersGuide/Download). If you are unsure where to start, we recommend installing [R Studio](https://posit.co/download/rstudio-desktop/) as it has out-of-the-box support for Quarto, R and Python (providing these languages are installed on your machine) and a user interface which is friendly to beginners. 
+Currently, a few basic tutorials are available for the languages `R` and `python`. In time we hope to add a wider range of tutorials, including for more advanced concepts. If you wish to see a tutorial on a specific topic you can add a request using the Github Issues feature, though please note that the development of subsequent tutorials is dependent on the time availability of the small number of contributing AIMS staff.
 
 
 # Developer Overview
@@ -31,7 +29,7 @@ To successfully render the website you will need the following:
 * [Quarto](https://quarto.org/docs/get-started)
 * [R](https://www.r-project.org/)
 * [Python](https://wiki.python.org/moin/BeginnersGuide/Download)
-* A [Github account](https://github.com/join) with permissions to push to the [open-AIMS eReefs-Tutorials repository](https://github.com/open-AIMS/eReefs-Tutorials)
+* A [Github account](https://github.com/join) with permissions to push to the ereefs-tutorials repository
 * The R packages and Python modules used within the scripts you are trying to render
 
   * R packages are installed from an R console with the command <br>`install.packages("<package_name>")` for packages hosted on CRAN; or <br>`remotes::install_github("<Github username>/<repo name>")` to install packages hosted in a Github repository.

@@ -1,0 +1,16 @@
+{
+  "hash": "848576a36ce432700e98c9fe1dd2e70f",
+  "result": {
+    "markdown": "---\ntitle: \"*eReefs* overview\"\nsubtitle: Hydrodynamic Model\n---\n\n:::{.tutorial-description}\n**WORK IN PROGRESS**\nAn introduction to the *eReefs* Hydrodynamic Model and its output data. \n:::\n\n:::{.callout-note appearance=\"simple\"}\nA general introduction to *eReefs* was given in [eReefs overview: Introduction to eReefs](intro_to_ereefs.qmd), including an introduction to the Hydrodynamic model and its place within the larger *eReefs* platform. \n:::\n\nThe *eReefs* Hydrodynamic, Sediment Transport, and Biogeochemical Regional Models are the core of the *eReefs* platform; with the datasets output from the Hydrodynamic and Biogeochemical models comprising the core *eReefs* data products. In this tutorial we dive a bit deeper into the Hydrodynamic model and its outputs. \n\n\n::: {.cell}\n\n:::\n\n\n\n\nThe eReefs hydrodynamic model predicts the movement of water and key environmental conditions (temperature, salinity, currents, tides). This model allows us to better understand how cyclones mix the water, the location of potentially damaging heat waves, the ocean currents that disperse larvae of corals and Crown-of-Thorns starfish, and fresh water plumes from flooded rivers that can damage inshore reefs.",
+    "supporting": [
+      "hydrodynamic_model_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

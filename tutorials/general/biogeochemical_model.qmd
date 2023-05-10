@@ -1,0 +1,31 @@
+---
+title: "*eReefs* overview"
+subtitle: Biogeochemical Model
+---
+:::{.tutorial-description}
+**WORK IN PROGRESS**
+An introduction to the *eReefs* Biogeochemical Model and its output data. 
+:::
+
+:::{.callout-note appearance="simple"}
+A general introduction to *eReefs* was given in [eReefs overview: Introduction to eReefs](intro_to_ereefs.qmd), including an introduction to the Biogeochemical model and its place within the larger *eReefs* platform. 
+:::
+
+The *eReefs* Hydrodynamic, Sediment Transport, and Biogeochemical Regional Models are the core of the *eReefs* platform, with the datasets output from the Hydrodynamic and Biogeochemical models comprising the core *eReefs* data products. In this tutorial we dive a bit deeper into the Biogeochemical model and its outputs. 
+
+```{r chunkOptions, echo=FALSE}
+# Set global code chunk options
+knitr::opts_chunk$set(
+  out.width="95%", 
+  fig.align="center", 
+  message=FALSE, 
+  warning=FALSE
+)
+```
+
+
+* The GBR4 BioGeoChemical (GBR) model builds on the GBR4 hydrodynamic model by modelling the water quality (nutrients and suspended sediment) and key ecological processes (coral, seagrass, plankton) that drive the water chemistry. This model allows us to better understand how water quality is affected by land runoff. Detailed information about the model can be found in the paper: [CSIRO Environmental Modelling Suite (EMS): Scientific description of the optical and biogeochemical models (vB3p0)](https://doi.org/10.5194/gmd-2019-115).
+
+* Version 3.1 of the BGC was developed to compare the effects of land practice improvements on water quality changes in the Great Barrier Reef. It was run with three scenarios of river sediment and nutrient loads to simulate the differences between baseline conditions (based on current land use practices in 2019), pre-industrial catchment conditions, and target catchment conditions (anthropogenic loads reduced according to the percentage reductions of DIN, PN, PP and TSS specified in the [Reef 2050 Water Quality Improvement Plan 2017-2022](https://www.reefplan.qld.gov.au/__data/assets/pdf_file/0017/46115/reef-2050-water-quality-improvement-plan-2017-22.pdf)).
+
+* A [technical assessment of the skill level of the BGC version 3.1 model](https://research.csiro.au/ereefs/wp-content/uploads/sites/34/2020/08/Reanalysis_v1_August2020.pdf) shows that the absolute accuracy of the BGC model varies significantly with variable and location. A older analysis on the BGC version 2.0 ([Skerratt et al., 2018](https://doi.org/10.1016/j.jmarsys.2018.12.006)) provides additional background on the skill of the BGC model. As a result care should be taken to ensure the model is fit-for-purpose and in general BGC results should used in combination with second sources of information for making recommendations.

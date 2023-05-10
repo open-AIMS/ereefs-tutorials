@@ -4,9 +4,25 @@ format:
     toc: false
 ---
 
-<br>
 
-## Access eReefs data
+
+## Overview of *eReefs*
+
+<!-- Introduction to eReefs -->
+::::{.hp-tutorial}
+:::{.hp-thumbnail}
+![](images/tutorial-thumbnails/intro_icon.gif)
+:::
+:::{.hp-text}
+[An introduction to eReefs]{.hp-title} <br>
+An introduction to the *eReefs* information platform, the core models, their outputs, how to access these outputs, and their potential applications and limitations.
+:::
+:::{.hp-links}
+[{{< fa solid book >}} Start](tutorials/general/intro_to_ereefs.qmd)
+:::
+::::
+
+## Access *eReefs* data
 
 <!-- Basic Server Access -->
 ::::{.hp-tutorial}
@@ -42,7 +58,7 @@ Extends the methods introduced in the basic access tutorial to programmatically 
 
 
 
-## Plot eReefs data
+## Plot *eReefs* data
 
 <!-- Time series plot -->
 ::::{.hp-tutorial}
@@ -51,7 +67,7 @@ Extends the methods introduced in the basic access tutorial to programmatically 
 :::
 :::{.hp-text}
 [Time series plots]{.hp-title} <br>
-Learn how to create time series plots of eReefs data. [*Note: the python tutorial has not yet been updated to cover the more advanced topics included in the R tutorial*]
+Learn how to create time series plots of eReefs data. <br>[*Note: the python tutorial has not yet been updated to cover the more advanced topics included in the R tutorial*]
 :::
 :::{.hp-links}
 [{{< fa brands r-project >}} R](tutorials/r/plot-ereefs-data/time-series-plot/time_series_plot_r.qmd) <br>
@@ -61,7 +77,7 @@ Learn how to create time series plots of eReefs data. [*Note: the python tutoria
 
 
 
-## Process eReefs data
+## Process *eReefs* data
 
 <!-- Correlation wind and current -->
 ::::{.hp-tutorial}

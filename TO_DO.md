@@ -10,6 +10,16 @@
 
 * Map plot tutorial (R & Python) in plotting series. Looks at plotting points and rasters on maps (static and interactive with leaflet).
 
-* Programmatic access tutorial: "probably should talk about the data extraction tool. i.e. help the reader understand when they would want to go to the trouble of writing a script, verses using the extraction tool. This would highlight the strengths and weaknesses of the two approaches."
-
-* Time series plot - fix link: "This data can be downloaded here. !Replace link after upload (so github tutorial link can be added to data page)!"
+* General introduction to eReefs
+  - What is eReefs?
+    - General description
+    - Limitations: model vs reality (model accuracy?)
+    - Model range (display model grid shapefile)
+  - What models are available?
+    - Hydro vs BioGeoChem: general description and their variables/structure
+    - 1km vs 4km
+      - when to use one over the other
+  - Raw vs aggregated model data
+  - Linear vs curvilinear model grids
+  - online tool vs programmatic data access vs eReefs R package
+  

@@ -6,8 +6,8 @@ website:
   favicon: images/logo.png
   title: "eReefs tutorials"
   navbar: 
-    background: "#ffffff"
-    logo: images/ereefs_aims_logo.png
+    background: "#335b84"
+    logo: images/navbar_logo.png
     right:
       - href: https://www.r-project.org/
         text: "{{< fa brands r-project >}}"

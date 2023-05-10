@@ -60,11 +60,11 @@ source("ggTS_byYear.R")
 
 Data was extracted from the [eReefs GBR Hydrological Model (4km) v2.0](https://ereefs.aims.gov.au/ereefs-aims/gbr4/temp-wind-salt-current) using the online [data extraction tool](https://extraction.ereefs.aims.gov.au/extract-data) for a single point approximately 60 km south of Lizard Island (shown in @fig-site). For this point we extracted the daily aggregated data for the northward current at a depth of 0.5 m (as coral larvae generally travel in the top of the water column) and the northward windspeed (to see if the wind may be a key driver of current speed and direction). Both of these variables have the units of meters per second (m/s), where a positive value indicates the speed of the current/wind to the north, and a negative value, to the south. We extracted all data between 1 September 2010 - 1 September 2022. 
 
-This data can be downloaded [here](https://extraction.ereefs.aims.gov.au/data/2211.f8f2a18). **!Replace link after upload (so github tutorial link can be added to data page)!**
+This data can be downloaded [here](https://extraction.ereefs.aims.gov.au/data/2303.b87e9d6).
 
 ```{r loadData}
 # Import data with 'clean' variable names and then take a 'glimpse'
-ereefs_data <- read_csv("data/eReefsData.csv") |> clean_names() |> glimpse()
+ereefs_data <- read_csv("data/extracted_ereefs_data__time_series_plot.csv") |> clean_names() |> glimpse()
 ```
 
 Here we can see that we have data for the `wspeed_v` (northward wind velocity) and `v` (northward current velocity) for our single site `site_a` with the coordinates (145.46, -15.25). As we have downloaded the daily aggregated data, we get the mean, median, p5 (5th percentile), p95 (95th percentile), lowest and highest values for each day between 1 September 2010 through 31 August 2022.
