@@ -2,28 +2,28 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "*eReefs* tutorials",
+    "title": "eReefs tutorials",
     "section": "",
     "text": "An introduction to eReefs  An introduction to the eReefs information platform, the core models, their outputs, how to access these outputs, and their potential applications and limitations.\n\n\n Start"
   },
   {
     "objectID": "index.html#access-ereefs-data",
     "href": "index.html#access-ereefs-data",
-    "title": "*eReefs* tutorials",
+    "title": "eReefs tutorials",
     "section": "Access eReefs data",
     "text": "Access eReefs data\n\n\n\n\n\n\nBasic access to the AIMS eReefs Server  Learn the basics of extracting aggregated eReefs data from the AIMS server using the efficient OPeNDAP data access protocol.\n\n\n R   Python\n\n\n\n\n\n\n\n\nProgrammatic access to the AIMS eReefs Server  Extends the methods introduced in the basic access tutorial to programmatically extract aggregated eReefs data from the AIMS server for multiple dates and points.\n\n\n R   Python"
   },
   {
     "objectID": "index.html#plot-ereefs-data",
     "href": "index.html#plot-ereefs-data",
-    "title": "*eReefs* tutorials",
+    "title": "eReefs tutorials",
     "section": "Plot eReefs data",
     "text": "Plot eReefs data\n\n\n\n\n\n\nTime series plots  Learn how to create time series plots of eReefs data. [Note: the python tutorial has not yet been updated to cover the more advanced topics included in the R tutorial]\n\n\n R   Python"
   },
   {
     "objectID": "index.html#process-ereefs-data",
     "href": "index.html#process-ereefs-data",
-    "title": "*eReefs* tutorials",
+    "title": "eReefs tutorials",
     "section": "Process eReefs data",
     "text": "Process eReefs data\n\n\n\n\n\n\nCorrelation: wind and current  Learn how to extract and process eReefs data to answer the question: How strong does the wind need to be to set the direction of the surface ocean currents?\n\n\n R   Python"
   },
@@ -32,7 +32,7 @@
     "href": "TO_DO.html",
     "title": "List of ideas to possible implement",
     "section": "",
-    "text": "List of ideas to possible implement\n\nResources section. Linked from the homepage. A collection of things like:\n\ntable mapping index k to depths for the models (recall python k = R k - 1 since python starts counting at 0 🤦)\nereefs shapefiles (boundary, grid)\neatlas reef boundaries shapefile\netc.\n\nEfficient server access (R & Python). The third tutorial in the server access series. Considers ways to maximise efficiency of accessing data from the server (e.g. for 50,000 points). Provide a time comparison of R vs python. (Minimize the number of files opened, Check if points are in the eReefs model scope, Check if multiple points in single model grid cell).\nMap plot tutorial (R & Python) in plotting series. Looks at plotting points and rasters on maps (static and interactive with leaflet).\nGeneral introduction to eReefs\n\nWhat is eReefs?\n\nGeneral description\nLimitations: model vs reality (model accuracy?)\nModel range (display model grid shapefile)\n\nWhat models are available?\n\nHydro vs BioGeoChem: general description and their variables/structure\n1km vs 4km\n\nwhen to use one over the other\n\n\nRaw vs aggregated model data\nLinear vs curvilinear model grids\nonline tool vs programmatic data access vs eReefs R package"
+    "text": "List of ideas to possible implement\n\nResources section. Linked from the homepage. A collection of things like:\n\ntable mapping index k to depths for the models (recall python k = R k - 1 since python starts counting at 0 🤦)\neReefs shapefiles (boundary, grid)\neAtlas reef boundaries shapefile\netc.\n\nEfficient server access (R & Python). The third tutorial in the server access series. Considers ways to maximize efficiency of accessing data from the server (e.g. for 50,000 points). Provide a time comparison of R vs python. (Minimize the number of files opened, Check if points are in the eReefs model scope, Check if multiple points in single model grid cell).\nMap plot tutorial (R & Python) in plotting series. Looks at plotting points and rasters on maps (static and interactive with leaflet).\nIntro tut. — work to do:\n\nSource images (incl. icons in fig 1)\nAdd in more about model validation?\nAdd in more about model accuracy! Incl. a mini-review of studies assessing this.\nCurvilinear vs linear grids\nContinue working on model variable lists\n\nGeneral to do:\n\nChange tutorial series banner\nBetter description of BGC scenarios"
   },
   {
     "objectID": "tutorials/general/biogeochemical_model.html",
