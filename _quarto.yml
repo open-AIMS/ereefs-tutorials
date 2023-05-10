@@ -4,7 +4,7 @@ project:
 
 website:
   favicon: images/logo.png
-  title: "eReefs tutorials"
+  title: "*eReefs* tutorials"
   navbar: 
     background: "#335b84"
     logo: images/navbar_logo.png
