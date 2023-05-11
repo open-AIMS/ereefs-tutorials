@@ -5,7 +5,7 @@
 
 # User Overview
 
-This repository holds the source files for the AIMS Knowledge Systems eReefs tutorials hosted at https://bfordaims.github.io/ereefs-tutorials/. 
+This repository holds the source files for the AIMS Knowledge Systems eReefs tutorials hosted at https://open-aims.github.io/ereefs-tutorials/. 
 
 Currently, a few basic tutorials are available for the languages `R` and `python`. In time we hope to add a wider range of tutorials, including for more advanced concepts. If you wish to see a tutorial on a specific topic you can add a request using the Github Issues feature, though please note that the development of subsequent tutorials is dependent on the time availability of the small number of contributing AIMS staff.
 
