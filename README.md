@@ -77,6 +77,27 @@ quarto preview <path to file> --no-browser --no-watch-inputs
 
 or by using the respective IDE controls (`ctrl+shft+p > Quarto: Render` in VS Code).
 
+### Rendering process with Docker
+
+When using the rendering with Docker, you do not need to install Quarto, R, or Python locally.  
+First, clone the repository and make changes as described in the previous section ("Rendering process", step 1 and 2).
+
+#### 1. Build image
+
+```shell
+docker build -t ereefs-tutorials:latest .
+```
+
+#### 1. Run Docker image
+
+```shell
+docker run --rm --user $(id -u):$(id -g) -v $PWD:/usr/local/src/ereefs-tutorials ereefs-tutorials:latest
+```
+
+This will mount the working directory to the docker image and run the
+command `quarto render /usr/local/src/ereefs-tutorials`
+in the container.
+
 
 ## File structure
 
