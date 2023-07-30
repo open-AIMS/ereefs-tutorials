@@ -27,7 +27,7 @@ cartopy.config['data_dir'] = os.getenv('CARTOPY_DIR', cartopy.config.get('data_d
 
 # Choose OPeNDAP end point
 
-The first part of the process is to choose the OPeNDAP end point on the AIMS eReefs THREDD server. You can view the products [here](http://thredds.ereefs.aims.gov.au/thredds/s3catalogue/aims-ereefs-public-prod/derived/ncaggregate/ereefs/gbr4_v2/catalog.html). At this stage there is no grouped OPeNDAP service for the entire time series and so this script only works for looking at a single month of data. Hopefully this can be improved in the future.
+The first part of the process is to choose the OPeNDAP end point on the AIMS eReefs THREDDS server. You can view the products [here](https://thredds.ereefs.aims.gov.au/thredds/catalog/ereefs/gbr4_v2/catalog.html). At this stage there is no grouped OPeNDAP service for the entire time series and so this script only works for looking at a single month of data. Hopefully this can be improved in the future.
 
 ```{python}
 # Connect to the OpeNDAP endpoint for the specified month.  
@@ -39,7 +39,7 @@ netCDF_datestr
 
 ```{python}
 # OPeNDAP URL to file "EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-YYYY-MM.nc". Hydrodynamic 4km model, daily data for the month specified
-inputFile = "http://thredds.ereefs.aims.gov.au/thredds/dodsC/s3://aims-ereefs-public-prod/derived/ncaggregate/ereefs/gbr4_v2/daily-monthly/EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-"+netCDF_datestr+".nc"
+inputFile = "https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr4_v2/daily-monthly/EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-"+netCDF_datestr+".nc"
 
 nc_data = Dataset(inputFile, 'r')
 print(nc_data.title)
