@@ -124,6 +124,7 @@ Read the resulting CSV file into a data frame.
 
 ```{r readData}
 library(janitor)
+library(tidyverse)
 # Read in data with 'clean' variable names
 data <- read.csv(extractionfile) |> clean_names() |> glimpse()
 ```
