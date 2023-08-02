@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.217">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -123,11 +94,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
-<script src="../../../../site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="../../../../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <script src="../../../../site_libs/jquery-1.12.4/jquery.min.js"></script>
 <link href="../../../../site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
 <script src="../../../../site_libs/leaflet-1.3.1/leaflet.js"></script>
@@ -135,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../../../site_libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="../../../../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="../../../../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
-<script src="../../../../site_libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="../../../../site_libs/leaflet-binding-2.1.2/leaflet.js"></script>
 <script src="../../../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="../../../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
@@ -237,7 +209,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>In this tutorial we will look at how to get eReefs data from the <a href="http://thredds.ereefs.aims.gov.au/thredds/catalog.html">AIMS server</a> corresponding to the logged locations of tagged marine animals. Keep in mind, however, that the same methodology can be applied in any situation where we wish to extract eReefs data for a range of points with different dates of interest for each point.</p>
+<p>In this tutorial we will look at how to get eReefs data from the <a href="https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html">AIMS server</a> corresponding to the logged locations of tagged marine animals. Keep in mind, however, that the same methodology can be applied in any situation where we wish to extract eReefs data for a range of points with different dates of interest for each point.</p>
 <section id="r-packages" class="level2">
 <h2 class="anchored" data-anchor-id="r-packages">R packages</h2>
 <div class="cell">
@@ -254,12 +226,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="motivating-problem">Motivating problem</h2>
 <p>The tracking of marine animals is commonly used by researchers to gain insights into the distribution, biology, behaviour and ecology of different species. However, knowing where an animal was at a certain point in time is only one piece of the puzzle. To start to understand <em>why</em> an animal was where it was, we usually require information on things like: What type of habitat is present at the location? What were the environmental conditions like at the time? What other lifeforms were present at the tracked location (e.g.&nbsp;for food or mating)?</p>
 <p>In this tutorial we will pretend that we have tracking data for Loggerhead Sea Turtles and wish to get eReefs data corresponding to the tracked points (in time and space) to understand more about the likely environmental conditions experienced by our turtles.</p>
-<div class="callout callout-style-default callout-note no-icon callout-captioned">
+<div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Read more: Tracking marine animals
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -313,9 +285,9 @@ Read more: Tracking marine animals
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="at">label =</span> <span class="sc">~</span>date_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="fig-data-map" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c151fcf90e48daf9065d" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-c151fcf90e48daf9065d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[-20.5,-25.5,-24.5,-18.5,-14.5,-26.5,-19.5,-10.5,-20.5,-22.5,-21.5,-11.5,-19.5,-18.5,-24.5,-15.5,-16.5,-13.5,-21.5,-12.5,-9.5,-23.5,-16.5,-23.5,-17.5],[150.5,153.5,152.5,147.5,145.5,153.5,148.5,143.5,149.5,151.5,150.5,143.5,149.5,146.5,153.5,145.5,145.5,144.5,151.5,143.5,143.5,152.5,146.5,151.5,146.5],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,["2022-01-17 17:06:32","2022-01-02 21:49:55","2021-12-21 17:57:22","2022-01-27 17:00:04","2022-02-12 10:34:12","2022-02-12 08:59:01","2022-01-23 07:02:18","2022-04-14 06:31:48","2022-01-19 17:44:38","2022-01-09 20:25:01","2022-01-14 18:26:17","2022-04-09 22:00:54","2022-01-21 07:22:08","2022-01-30 17:02:42","2022-02-03 21:37:56","2022-02-09 18:33:03","2022-02-07 07:15:30","2022-03-25 07:10:49","2022-01-13 06:28:09","2022-04-01 18:41:42","2022-04-21 10:30:09","2022-01-05 07:33:53","2022-02-06 18:25:38","2022-01-06 05:03:23","2022-02-02 09:14:56"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-26.5,-9.5],"lng":[143.5,153.5]}},"evals":[],"jsHooks":[]}</script>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: Loggerhead Sea Turtle satellite tracking records (December 2021 - April 2022)</figcaption><p></p>
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-fb397703432d2b35b1c9" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-fb397703432d2b35b1c9">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[-20.5,-25.5,-24.5,-18.5,-14.5,-26.5,-19.5,-10.5,-20.5,-22.5,-21.5,-11.5,-19.5,-18.5,-24.5,-15.5,-16.5,-13.5,-21.5,-12.5,-9.5,-23.5,-16.5,-23.5,-17.5],[150.5,153.5,152.5,147.5,145.5,153.5,148.5,143.5,149.5,151.5,150.5,143.5,149.5,146.5,153.5,145.5,145.5,144.5,151.5,143.5,143.5,152.5,146.5,151.5,146.5],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,["2022-01-17 17:06:32","2022-01-02 21:49:55","2021-12-21 17:57:22","2022-01-27 17:00:04","2022-02-12 10:34:12","2022-02-12 08:59:01","2022-01-23 07:02:18","2022-04-14 06:31:48","2022-01-19 17:44:38","2022-01-09 20:25:01","2022-01-14 18:26:17","2022-04-09 22:00:54","2022-01-21 07:22:08","2022-01-30 17:02:42","2022-02-03 21:37:56","2022-02-09 18:33:03","2022-02-07 07:15:30","2022-03-25 07:10:49","2022-01-13 06:28:09","2022-04-01 18:41:42","2022-04-21 10:30:09","2022-01-05 07:33:53","2022-02-06 18:25:38","2022-01-06 05:03:23","2022-02-02 09:14:56"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-26.5,-9.5],"lng":[143.5,153.5]}},"evals":[],"jsHooks":[]}</script>
+<figcaption class="figure-caption">Figure&nbsp;1: Loggerhead Sea Turtle satellite tracking records (December 2021 - April 2022)</figcaption>
 </figure>
 </div>
 </div>
@@ -337,14 +309,14 @@ Read more: Tracking marine animals
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; ">
 <div id="tbl-detections" class="anchored">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Table&nbsp;1: Loggerhead Sea Turtle detections (Strydom, 2022)</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">date</th>
-<th style="text-align: left;">time</th>
-<th style="text-align: right;">longitude</th>
-<th style="text-align: right;">latitude</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">date</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">time</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">longitude</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">latitude</th>
 </tr>
 </thead>
 <tbody>
@@ -508,7 +480,7 @@ Read more: Tracking marine animals
 <p><br></p>
 <p>We will take advantage of the consistent file naming on the server to extract the data of interest programatically. We will first need to copy the OPeNDAP data link for one of the files within the correct model and aggregation folders and then replace the date.</p>
 <p>Selecting a random date within the daily aggregated data with one data file per day (<code>daily-daily</code>) for the 1km hydro model (<code>gbr1_2.0</code>), we see the files have the naming format:</p>
-<p><code>https://thredds.ereefs.aims.gov.au/thredds/dodsC/s3://aims-ereefs-public-prod/derived/ncaggregate/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-</code><span style="color: red">YYYY-MM-DD</span><code>.nc</code></p>
+<p><code>https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-</code><span style="color: red">YYYY-MM-DD</span><code>.nc</code></p>
 <p>We will now write a script which extracts the data for the dates and coordinates in <a href="#tbl-detections">Table&nbsp;1</a>. For each unique date we will open the corresponding file on the server and extract the daily mean temperature, salinity, northward and southward current velocities for each set of coordinates corresponding to the date.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GET DATA FOR EACH DATE AND COORDINATE (LAT LON) PAIR</span></span>
@@ -516,7 +488,7 @@ Read more: Tracking marine animals
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1. Setup variables for data extraction</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Server file name = &lt;file_prefix&gt;&lt;date (yyyy-mm-dd)&gt;&lt;file_suffix&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>file_prefix <span class="ot">&lt;-</span> <span class="st">"https://thredds.ereefs.aims.gov.au/thredds/dodsC/s3://aims-ereefs-public-prod/derived/ncaggregate/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>file_prefix <span class="ot">&lt;-</span> <span class="st">"https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-"</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>file_suffix <span class="ot">&lt;-</span> <span class="st">".nc"</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Table of dates and coordinates for which to extract data (dates as character string)</span></span>
@@ -602,24 +574,24 @@ Read more: Tracking marine animals
 </div>
 </div>
 </div>
-<p>Our extracted data is shown below in <a href="#tbl-extracted-data">Table&nbsp;2</a>. To get this data we openned 24 files on the server (corresponding to unique dates in <a href="#tbl-detections">Table&nbsp;1</a>) and extracted data for 25 unique date-coordinate pairs. On our machine this took 1.8 mins to run.</p>
+<p>Our extracted data is shown below in <a href="#tbl-extracted-data">Table&nbsp;2</a>. To get this data we openned 24 files on the server (corresponding to unique dates in <a href="#tbl-detections">Table&nbsp;1</a>) and extracted data for 25 unique date-coordinate pairs. On our machine this took 37.1 secs to run.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the extracted data</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>extracted_data <span class="sc">|&gt;</span> <span class="fu">kable</span>() <span class="sc">|&gt;</span> <span class="fu">kable_styling</span>() <span class="sc">|&gt;</span> <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">"300px"</span>, <span class="at">fixed_thead =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; ">
 <div id="tbl-extracted-data" class="anchored">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Table&nbsp;2: Extracted daily mean temperature, salinity, and east- and northward current velocities (u, v respectively) for Loggerhead Sea Turtle detections (Strydom, 2022)</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">date</th>
-<th style="text-align: right;">lon</th>
-<th style="text-align: right;">lat</th>
-<th style="text-align: right;">temp</th>
-<th style="text-align: right;">salt</th>
-<th style="text-align: right;">u</th>
-<th style="text-align: right;">v</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">date</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">lon</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">lat</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">temp</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">salt</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">u</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">v</th>
 </tr>
 </thead>
 <tbody>
@@ -877,19 +849,19 @@ Read more: Tracking marine animals
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; ">
 <div id="tbl-combined-data" class="anchored">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Table&nbsp;3: Loggerhead Sea Turtle tracking detections (Strydom, 2022) and corresponding eReefs daily mean temperature, salinity, east- and northward current velocities (u, v respectively).</caption>
 <thead>
 <tr class="header">
-<th style="text-align: right;">longitude</th>
-<th style="text-align: right;">latitude</th>
-<th style="text-align: left;">date_time</th>
-<th style="text-align: right;">record_id</th>
-<th style="text-align: left;">species</th>
-<th style="text-align: right;">temp</th>
-<th style="text-align: right;">salt</th>
-<th style="text-align: right;">u</th>
-<th style="text-align: right;">v</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">longitude</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">latitude</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">date_time</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">record_id</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">species</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">temp</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">salt</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">u</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">v</th>
 </tr>
 </thead>
 <tbody>
@@ -1324,9 +1296,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
