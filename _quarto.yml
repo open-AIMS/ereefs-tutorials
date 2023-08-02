@@ -15,7 +15,7 @@ website:
       - href: https://www.python.org/
         text: "{{< fa brands python >}} python"
       - text: "   "
-      - href: "https://github.com/bfordAIMS/ereefs-tutorials"
+      - href: "https://github.com/open-AIMS/ereefs-tutorials"
         icon: "github"
     collapse-below: sm
 
