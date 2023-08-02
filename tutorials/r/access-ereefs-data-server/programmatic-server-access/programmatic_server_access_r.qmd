@@ -16,7 +16,7 @@ knitr::opts_chunk$set(message=FALSE, warning=FALSE)
 This tutorial builds on the techniques introduced in [Access eReefs data: Basic server access {{< fa brands r-project >}}](../basic-server-access/basic_server_access_r.qmd).
 :::
 
-In this tutorial we will look at how to get eReefs data from the [AIMS server](http://thredds.ereefs.aims.gov.au/thredds/catalog.html) corresponding to the logged locations of tagged marine animals. Keep in mind, however, that the same methodology can be applied in any situation where we wish to extract eReefs data for a range of points with different dates of interest for each point. 
+In this tutorial we will look at how to get eReefs data from the [AIMS server](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html) corresponding to the logged locations of tagged marine animals. Keep in mind, however, that the same methodology can be applied in any situation where we wish to extract eReefs data for a range of points with different dates of interest for each point. 
 
 ## R packages
 ```{r RPackages}
@@ -112,7 +112,7 @@ We will take advantage of the consistent file naming on the server to extract th
 
 Selecting a random date within the daily aggregated data with one data file per day (`daily-daily`) for the 1km hydro model (`gbr1_2.0`), we see the files have the naming format:
 
-`https://thredds.ereefs.aims.gov.au/thredds/dodsC/s3://aims-ereefs-public-prod/derived/ncaggregate/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-`[YYYY-MM-DD]{style="color: red"}`.nc`
+`https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-`[YYYY-MM-DD]{style="color: red"}`.nc`
 
 We will now write a script which extracts the data for the dates and coordinates in @tbl-detections. For each unique date we will open the corresponding file on the server and extract the daily mean temperature, salinity, northward and southward current velocities for each set of coordinates corresponding to the date.
 
@@ -125,7 +125,7 @@ t_start = Sys.time() # to track run time of extraction
 
 ## 1. Setup variables for data extraction
 # Server file name = <file_prefix><date (yyyy-mm-dd)><file_suffix>
-file_prefix <- "https://thredds.ereefs.aims.gov.au/thredds/dodsC/s3://aims-ereefs-public-prod/derived/ncaggregate/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-"
+file_prefix <- "https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-"
 file_suffix <- ".nc"
 
 # Table of dates and coordinates for which to extract data (dates as character string)

@@ -7,7 +7,7 @@ subtitle: "Basic access with OPeNDAP {{< fa brands r-project >}}"
 Learn the basics of extracting eReefs data from the AIMS server with OPeNDAP in {{< fa brands r-project >}}.
 :::
 
-In this tutorial we will look at how to access eReefs data directly from the [AIMS THREDDS server](http://thredds.ereefs.aims.gov.au/thredds/catalog.html) in R. 
+In this tutorial we will look at how to access eReefs data directly from the [AIMS THREDDS server](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html) in R. 
 
 This server hosts aggregated eReefs model data in netCDF file format and offers access to the data files via OPeNDAP, HTTP Server, and Web Map Service (WMS). While we could download the data files manually via the HTTPServer link, this approach is cumbersome when downloading multiple files, given their large size. Thankfully, OPeNDAP provides a way to access the data files over the internet and extract only the data we want. 
 
@@ -39,13 +39,13 @@ While the `ncdf4` package is commonly used to work with NetCDF files in R, it do
 
 ## Connect to a file on the server
 
-First we need to find the right NetCDF file on the server. The available eReefs data NetCDF files are listed in the [AIMS THREDDS Server catalogue](http://thredds.ereefs.aims.gov.au/thredds/catalog.html). We will navigate to the eReefs 4 km Hydrodynamic Model daily aggregated data for the month of December 2022 and copy the OPeNDAP data URL.
+First we need to find the right NetCDF file on the server. The available eReefs data NetCDF files are listed in the [AIMS THREDDS Server catalogue](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html). We will navigate to the eReefs 4 km Hydrodynamic Model daily aggregated data for the month of December 2022 and copy the OPeNDAP data URL.
 
 ![](images/server_navigation.gif)
 
 ```{r serverFileLink}
 #| code-overflow: wrap
-input_file <- "https://thredds.ereefs.aims.gov.au/thredds/dodsC/s3://aims-ereefs-public-prod/derived/ncaggregate/ereefs/gbr4_v2/daily-monthly/EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-2022-12.nc"
+input_file <- "https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr4_v2/daily-monthly/EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-2022-12.nc"
 ```
 
 We can then open a connection to this file using the `RNetCDF::open.nc` function.

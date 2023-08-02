@@ -192,7 +192,7 @@ The output datasets can be accessed in a range of different ways --- these are l
 :::
 :::{.column width="40%"}
 
-[![](images/access-thumbnails/aims_server_tn.PNG)](https://thredds.ereefs.aims.gov.au/thredds/catalog.html)
+[![](images/access-thumbnails/aims_server_tn.PNG)](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html)
 
 **AIMS THREDDS Server**
 
