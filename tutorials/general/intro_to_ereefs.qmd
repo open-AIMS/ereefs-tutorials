@@ -116,7 +116,7 @@ In addition to the 4 km and 1 km resolution models, the eReefs platform also con
 
 ## The *eReefs* Outputs
 
-The core outputs from the *eReefs* platform are the datasets produced by the Hydrodynamic and Biogeochemical Regional Models. These datasets contain the predicted values across a range of variables for different points in time and three-dimensional space (latitude, longitude and depth in the water column and benthic layers). The datasets are produced routinely in near-real-time, and hindcast into the past. The outputs are available in both 4 km and 1 km resolution. An overview of the different raw model outputs available on the [National Computer Infrastructure (NCI) *eReefs* server](https://dapds00.nci.org.au/thredds/catalogs/fx3/catalog.html) is shown in @tbl-outputsOverview, the different variables contained in each model is presented in [Model output variables](intro_to_ereefs.qmd#sec-modelVariables). 
+The core outputs from the *eReefs* platform are the datasets produced by the Hydrodynamic and Biogeochemical Regional Models. These datasets contain the predicted values across a range of variables for different points in time and three-dimensional space (latitude, longitude and depth in the water column and benthic layers). The datasets are produced routinely in near-real-time, and hindcast into the past. The outputs are available in both 4 km and 1 km resolution. An overview of the different raw model outputs available on the [National Computer Infrastructure (NCI) *eReefs* server](https://thredds.nci.org.au/thredds/catalog/catalogs/fx3/catalog.html) is shown in @tbl-outputsOverview, the different variables contained in each model is presented in [Model output variables](intro_to_ereefs.qmd#sec-modelVariables). 
 
 ### Available outputs
 
@@ -179,7 +179,7 @@ The output datasets can be accessed in a range of different ways --- these are l
 :::
 :::{.column width="40%"}
 
-[![](images/access-thumbnails/nci_server_tn.PNG)](https://dapds00.nci.org.au/thredds/catalogs/fx3/catalog.html)
+[![](images/access-thumbnails/nci_server_tn.PNG)](https://thredds.nci.org.au/thredds/catalog/catalogs/fx3/catalog.html)
 
 **NCI Server**
 
