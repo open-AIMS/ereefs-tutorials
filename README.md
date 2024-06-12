@@ -24,8 +24,6 @@ Webpages can be edited and added via the Github repository. To do this we must c
 
 To successfully render the website you will need the following:
 
-#### Required:
-
 * [Quarto](https://quarto.org/docs/get-started)
 * [R](https://www.r-project.org/)
 * [Python](https://wiki.python.org/moin/BeginnersGuide/Download)
@@ -35,13 +33,15 @@ To successfully render the website you will need the following:
   * R packages are installed from an R console with the command <br>`install.packages("<package_name>")` for packages hosted on CRAN; or <br>`remotes::install_github("<Github username>/<repo name>")` to install packages hosted in a Github repository.
   * Python modules are installed from a python console with the command <br> `pip/conda/mamba install <module name>` (depending on the python package manager installed on your machine)
 
-#### Recommended:
+The following are not required but recommended:
 
 * [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * An IDE such as [R Studio](https://posit.co/downloads/) or [Visual Studio Code](https://code.visualstudio.com/download) (with the R, Python, and Quarto extensions)
 
 
 ### Rendering process
+
+A github action has been set up to render the website on push to the main remote branch. This section details the manual rendering process.
 
 #### 1. Clone the git repository to your machine
 
@@ -51,13 +51,13 @@ From the command line:
 git clone <repo url>
 ```
 
-#### 2. Make changes:
+#### 2. Make changes
 
 **Edit existing tutorials** by editing the corresponding `tutorials/<language>/<tutorial-name>/<tutorial_name>.qmd` file. 
   
 **Create a new tutorial** by creating a new folder in the corresponding `tutorials/<language>` folder; name it with the tutorial name; and create a `<tutorial_name>.qmd` file within the folder
 
-#### 3. Render:
+#### 3. Render
 
 ##### 3.1. Entire website
 Edits to the YAML or CSS files require you to render the entire website to implement the changes. You can do this with from the command line with
