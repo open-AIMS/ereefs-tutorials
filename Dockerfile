@@ -37,6 +37,8 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 
 RUN install2.r reticulate
 RUN R
+RUN conda install -n base conda-libmamba-solver
+RUN conda config --set solver libmamba
 RUN conda install jupyter 
 RUN conda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.20.2 pip=24.0
 RUN python -m pip install --force-reinstall matplotlib=3.7.5
