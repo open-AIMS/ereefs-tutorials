@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -84,7 +84,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -93,13 +99,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -110,9 +117,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-sm navbar-dark ">
+    <nav class="navbar navbar-expand-sm " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../../../images/navbar_logo.png" alt="" class="navbar-logo">
     </a>
@@ -127,25 +134,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://www.r-project.org/" rel="" target="">
- <span class="menu-text"><i class="fa-brands fa-r-project" aria-label="r-project"></i></span></a>
+    <a class="nav-link" href="https://www.r-project.org/"> 
+<span class="menu-text"><i class="fa-brands fa-r-project" aria-label="r-project"></i></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://www.python.org/" rel="" target="">
- <span class="menu-text"><i class="fa-brands fa-python" aria-label="python"></i> python</span></a>
+    <a class="nav-link" href="https://www.python.org/"> 
+<span class="menu-text"><i class="fa-brands fa-python" aria-label="python"></i> python</span></a>
   </li>  
   <li class="dropdown-header">
  <span class="menu-text">   </span></li>
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/open-AIMS/ereefs-tutorials" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/open-AIMS/ereefs-tutorials"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -185,7 +192,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <div class="tutorial-description">
 <p>Learn how to extract eReefs data from the AIMS server for multiple dates and points with OPeNDAP in <i class="fa-brands fa-python" aria-label="python"></i> python.</p>
@@ -203,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In this tutorial we will look at how to get eReefs data from the <a href="https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html">AIMS server</a> corresponding to the logged locations of tagged marine animals. Keep in mind, however, that the same methodology can be applied in any situation where we wish to extract eReefs data for a range of points with different dates of interest for each point.</p>
 <section id="python-modules" class="level2">
 <h2 class="anchored" data-anchor-id="python-modules">Python modules</h2>
-<div class="cell" data-execution_count="1">
+<div id="908f5eab" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  <span class="co"># for data analysis</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># for quik maths</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> janitor <span class="im">import</span> clean_names  <span class="co"># to create consitent, 'clean' variable names</span></span>
@@ -238,7 +247,7 @@ Read more: Tracking marine animals
 </section>
 <section id="example-tracking-data" class="level2">
 <h2 class="anchored" data-anchor-id="example-tracking-data">Example tracking data</h2>
-<p>We will use satellite tracking data for Loggerhead Sea Turtles (<em>Caretta caretta</em>) provided in <a href="https://doi.org/10.15468/k4s6ap">Strydom (2022)</a>. This data contains tracking detections which span the length of the Great Barrier Reef off the east coast of Queensland Australia from December 2021 to April 2022 (shown in <a href="#fig-data-map">Figure&nbsp;1</a>).</p>
+<p>We will use satellite tracking data for Loggerhead Sea Turtles (<em>Caretta caretta</em>) provided in <a href="https://doi.org/10.15468/k4s6ap">Strydom (2022)</a>. This data contains tracking detections which span the length of the Great Barrier Reef off the east coast of Queensland Australia from December 2021 to April 2022 (shown in <a href="#fig-data-map" class="quarto-xref">Figure&nbsp;1</a>).</p>
 <div class="callout callout-style-simple callout-caution">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -249,7 +258,7 @@ Read more: Tracking marine animals
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="2">
+<div id="cell-fig-data-map" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/Loggerhead_Sea_Turtle_satellite_tracking_detections__Strydom_2022_DOI10-15468-k4s6ap.csv"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -295,8 +304,9 @@ Read more: Tracking marine animals
 <span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  ).add_to(track_map)</span>
 <span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>track_map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="fig-data-map" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div id="fig-data-map" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored" data-execution_count="2">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-data-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
 <html>
 <head>
@@ -311,7 +321,7 @@ Read more: Tracking marine animals
     <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
     <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
     <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
-    <script src=&quot;https://code.jquery.com/jquery-1.12.4.min.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;></script>
     <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
     <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
     <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
@@ -324,7 +334,7 @@ Read more: Tracking marine animals
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_04ea1d177c2ad23ae37519e473732cd2 {
+                #map_2f08fb5f95e7b429ccbfd9f319571f06 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -338,14 +348,14 @@ Read more: Tracking marine animals
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_04ea1d177c2ad23ae37519e473732cd2&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_2f08fb5f95e7b429ccbfd9f319571f06&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_04ea1d177c2ad23ae37519e473732cd2 = L.map(
-                &quot;map_04ea1d177c2ad23ae37519e473732cd2&quot;,
+            var map_2f08fb5f95e7b429ccbfd9f319571f06 = L.map(
+                &quot;map_2f08fb5f95e7b429ccbfd9f319571f06&quot;,
                 {
                     center: [-18.74, 148.42],
                     crs: L.CRS.EPSG3857,
@@ -359,539 +369,545 @@ Read more: Tracking marine animals
 
         
     
-            var tile_layer_490567c5b8fbb3469769946c69362d01 = L.tileLayer(
-                &quot;https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
-                {&quot;attribution&quot;: &quot;Data by \u0026copy; \u003ca target=\&quot;_blank\&quot; href=\&quot;http://openstreetmap.org\&quot;\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\&quot;_blank\&quot; href=\&quot;http://www.openstreetmap.org/copyright\&quot;\u003eODbL\u003c/a\u003e.&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 18, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            var tile_layer_b891ec24878c9e2d584939d5b209bd2a = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
         
     
-            var marker_e3d99bbf4a0820e66750717f0a7179d4 = L.marker(
+            tile_layer_b891ec24878c9e2d584939d5b209bd2a.addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
+        
+    
+            var marker_de1083e9bbc78ba9c9730ad002aa1675 = L.marker(
                 [-20.5, 150.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_8e677241411e803d013ed66a627db662 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_247c217bf56957b6aff61520b20f2170 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_9de6b4929e57fac59846925c52e80838 = $(`<div id=&quot;html_9de6b4929e57fac59846925c52e80838&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-17 17:06:32+00:00</div>`)[0];
-                popup_8e677241411e803d013ed66a627db662.setContent(html_9de6b4929e57fac59846925c52e80838);
+                var html_10eb49cf5f4ef04a3a64ffd9f85b8f85 = $(`<div id=&quot;html_10eb49cf5f4ef04a3a64ffd9f85b8f85&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-17 17:06:32+00:00</div>`)[0];
+                popup_247c217bf56957b6aff61520b20f2170.setContent(html_10eb49cf5f4ef04a3a64ffd9f85b8f85);
             
         
 
-        marker_e3d99bbf4a0820e66750717f0a7179d4.bindPopup(popup_8e677241411e803d013ed66a627db662)
+        marker_de1083e9bbc78ba9c9730ad002aa1675.bindPopup(popup_247c217bf56957b6aff61520b20f2170)
         ;
 
         
     
     
-            var marker_54b4e98ad786cf5a3a0f0544cdd3c428 = L.marker(
+            var marker_fc9a5a48e38cd631e7542019d86329a9 = L.marker(
                 [-25.5, 153.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_e81d6dec2cc5d2b4bfc32207ccdf65a8 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_fad4a96e8c744b44b53c3081aea1425c = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_2060d8f85abf6eafdefbd38779fef92e = $(`<div id=&quot;html_2060d8f85abf6eafdefbd38779fef92e&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-02 21:49:55+00:00</div>`)[0];
-                popup_e81d6dec2cc5d2b4bfc32207ccdf65a8.setContent(html_2060d8f85abf6eafdefbd38779fef92e);
+                var html_b553f418b0399cee02dd5afe53fa51e3 = $(`<div id=&quot;html_b553f418b0399cee02dd5afe53fa51e3&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-02 21:49:55+00:00</div>`)[0];
+                popup_fad4a96e8c744b44b53c3081aea1425c.setContent(html_b553f418b0399cee02dd5afe53fa51e3);
             
         
 
-        marker_54b4e98ad786cf5a3a0f0544cdd3c428.bindPopup(popup_e81d6dec2cc5d2b4bfc32207ccdf65a8)
+        marker_fc9a5a48e38cd631e7542019d86329a9.bindPopup(popup_fad4a96e8c744b44b53c3081aea1425c)
         ;
 
         
     
     
-            var marker_325e28eefd0fce0ab4035934e48a1c38 = L.marker(
+            var marker_1ae2e951407404a8cb200b1bb4959457 = L.marker(
                 [-24.5, 152.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_3732feff96eef78f0f12c8a6d9d3b651 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_6e46de4997093e83258fb8a1b406df88 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_cf35d0e7d56354873552596b8a2f0154 = $(`<div id=&quot;html_cf35d0e7d56354873552596b8a2f0154&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2021-12-21 17:57:22+00:00</div>`)[0];
-                popup_3732feff96eef78f0f12c8a6d9d3b651.setContent(html_cf35d0e7d56354873552596b8a2f0154);
+                var html_65ca8b8760417b4edb23855d075a2451 = $(`<div id=&quot;html_65ca8b8760417b4edb23855d075a2451&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2021-12-21 17:57:22+00:00</div>`)[0];
+                popup_6e46de4997093e83258fb8a1b406df88.setContent(html_65ca8b8760417b4edb23855d075a2451);
             
         
 
-        marker_325e28eefd0fce0ab4035934e48a1c38.bindPopup(popup_3732feff96eef78f0f12c8a6d9d3b651)
+        marker_1ae2e951407404a8cb200b1bb4959457.bindPopup(popup_6e46de4997093e83258fb8a1b406df88)
         ;
 
         
     
     
-            var marker_5b5c73998bd2420b872b45e7356ab5d2 = L.marker(
+            var marker_7c5672281815d03fb0f29a72b3f41307 = L.marker(
                 [-18.5, 147.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_593e563ff01c50555c63a0ad880278bf = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_39e998af7d22c0668a6c21343ad2bb6f = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_8c6cc4756cac4045c2f79bbdf7bfe06e = $(`<div id=&quot;html_8c6cc4756cac4045c2f79bbdf7bfe06e&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-27 17:00:04+00:00</div>`)[0];
-                popup_593e563ff01c50555c63a0ad880278bf.setContent(html_8c6cc4756cac4045c2f79bbdf7bfe06e);
+                var html_58abec2c5000cc3ec4397a2506a68571 = $(`<div id=&quot;html_58abec2c5000cc3ec4397a2506a68571&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-27 17:00:04+00:00</div>`)[0];
+                popup_39e998af7d22c0668a6c21343ad2bb6f.setContent(html_58abec2c5000cc3ec4397a2506a68571);
             
         
 
-        marker_5b5c73998bd2420b872b45e7356ab5d2.bindPopup(popup_593e563ff01c50555c63a0ad880278bf)
+        marker_7c5672281815d03fb0f29a72b3f41307.bindPopup(popup_39e998af7d22c0668a6c21343ad2bb6f)
         ;
 
         
     
     
-            var marker_e37b166e849f9da7742a62c7f7b50f3d = L.marker(
+            var marker_de2ea75faff03f9fabcaa0900d9f139e = L.marker(
                 [-14.5, 145.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_967c909e825bf30137c7e357c78ce80d = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_bb741650720f96aefbd107b00243b70e = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_050e3dbe788f6debbed48a62945100ec = $(`<div id=&quot;html_050e3dbe788f6debbed48a62945100ec&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-12 10:34:12+00:00</div>`)[0];
-                popup_967c909e825bf30137c7e357c78ce80d.setContent(html_050e3dbe788f6debbed48a62945100ec);
+                var html_210a52defd0912beddbb3849af064ed3 = $(`<div id=&quot;html_210a52defd0912beddbb3849af064ed3&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-12 10:34:12+00:00</div>`)[0];
+                popup_bb741650720f96aefbd107b00243b70e.setContent(html_210a52defd0912beddbb3849af064ed3);
             
         
 
-        marker_e37b166e849f9da7742a62c7f7b50f3d.bindPopup(popup_967c909e825bf30137c7e357c78ce80d)
+        marker_de2ea75faff03f9fabcaa0900d9f139e.bindPopup(popup_bb741650720f96aefbd107b00243b70e)
         ;
 
         
     
     
-            var marker_1cc3b6f9c19d560f7c45e8b8a1ee6308 = L.marker(
+            var marker_67e3b3f86235595969443dfc48f41aec = L.marker(
                 [-26.5, 153.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_3e18057db967fd259586c732f8c7edb5 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_fa7c49e6cf2f93f27c8ac1ed3b8a7a4f = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_81a258fc14a3d13787d11ab3461ede41 = $(`<div id=&quot;html_81a258fc14a3d13787d11ab3461ede41&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-12 08:59:01+00:00</div>`)[0];
-                popup_3e18057db967fd259586c732f8c7edb5.setContent(html_81a258fc14a3d13787d11ab3461ede41);
+                var html_881540db846385a93b3d63441ce760d0 = $(`<div id=&quot;html_881540db846385a93b3d63441ce760d0&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-12 08:59:01+00:00</div>`)[0];
+                popup_fa7c49e6cf2f93f27c8ac1ed3b8a7a4f.setContent(html_881540db846385a93b3d63441ce760d0);
             
         
 
-        marker_1cc3b6f9c19d560f7c45e8b8a1ee6308.bindPopup(popup_3e18057db967fd259586c732f8c7edb5)
+        marker_67e3b3f86235595969443dfc48f41aec.bindPopup(popup_fa7c49e6cf2f93f27c8ac1ed3b8a7a4f)
         ;
 
         
     
     
-            var marker_1a48cef3ffda337f35c4cf2035108906 = L.marker(
+            var marker_94284e63c3211f6f858b6c36dbfd810b = L.marker(
                 [-19.5, 148.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_6fed92adb33f34043b8571aa98e72528 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_4ff83132aee6513ba6d3b2ee288b9586 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_c2456a921da245460c3aa1b213b83fb3 = $(`<div id=&quot;html_c2456a921da245460c3aa1b213b83fb3&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-23 07:02:18+00:00</div>`)[0];
-                popup_6fed92adb33f34043b8571aa98e72528.setContent(html_c2456a921da245460c3aa1b213b83fb3);
+                var html_65910443c97b69a71d9c7913be6fab64 = $(`<div id=&quot;html_65910443c97b69a71d9c7913be6fab64&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-23 07:02:18+00:00</div>`)[0];
+                popup_4ff83132aee6513ba6d3b2ee288b9586.setContent(html_65910443c97b69a71d9c7913be6fab64);
             
         
 
-        marker_1a48cef3ffda337f35c4cf2035108906.bindPopup(popup_6fed92adb33f34043b8571aa98e72528)
+        marker_94284e63c3211f6f858b6c36dbfd810b.bindPopup(popup_4ff83132aee6513ba6d3b2ee288b9586)
         ;
 
         
     
     
-            var marker_aaf2b09df5bb2f43117e81d21ea6ecac = L.marker(
+            var marker_5e7150c62b2ce9a314349251393cac36 = L.marker(
                 [-10.5, 143.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_5ea9dcb6ee1e339a7a88a4be528f0f99 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_dcc851edf7cc0e5d3209515fd9b167dd = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_7fa5c4a29e843ee06385fe5667d4fb02 = $(`<div id=&quot;html_7fa5c4a29e843ee06385fe5667d4fb02&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-14 06:31:48+00:00</div>`)[0];
-                popup_5ea9dcb6ee1e339a7a88a4be528f0f99.setContent(html_7fa5c4a29e843ee06385fe5667d4fb02);
+                var html_04bdbca12cced9a920e4346586cb1a2b = $(`<div id=&quot;html_04bdbca12cced9a920e4346586cb1a2b&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-14 06:31:48+00:00</div>`)[0];
+                popup_dcc851edf7cc0e5d3209515fd9b167dd.setContent(html_04bdbca12cced9a920e4346586cb1a2b);
             
         
 
-        marker_aaf2b09df5bb2f43117e81d21ea6ecac.bindPopup(popup_5ea9dcb6ee1e339a7a88a4be528f0f99)
+        marker_5e7150c62b2ce9a314349251393cac36.bindPopup(popup_dcc851edf7cc0e5d3209515fd9b167dd)
         ;
 
         
     
     
-            var marker_9809670a9246388a2107f9e4572c9ba7 = L.marker(
+            var marker_aea1adea12711fbc8ec066d3a1018f29 = L.marker(
                 [-20.5, 149.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_061bf788a0420c675cd55b77bf3d5c6a = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_66dce6d4ee4510c9a32ea687197300cc = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_f1e16376312045dd786e1c3a92537777 = $(`<div id=&quot;html_f1e16376312045dd786e1c3a92537777&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-19 17:44:38+00:00</div>`)[0];
-                popup_061bf788a0420c675cd55b77bf3d5c6a.setContent(html_f1e16376312045dd786e1c3a92537777);
+                var html_c0e7b17befcbc47cc3966ebec31e741e = $(`<div id=&quot;html_c0e7b17befcbc47cc3966ebec31e741e&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-19 17:44:38+00:00</div>`)[0];
+                popup_66dce6d4ee4510c9a32ea687197300cc.setContent(html_c0e7b17befcbc47cc3966ebec31e741e);
             
         
 
-        marker_9809670a9246388a2107f9e4572c9ba7.bindPopup(popup_061bf788a0420c675cd55b77bf3d5c6a)
+        marker_aea1adea12711fbc8ec066d3a1018f29.bindPopup(popup_66dce6d4ee4510c9a32ea687197300cc)
         ;
 
         
     
     
-            var marker_67638ce9a36d1237f61b5003e1d53d42 = L.marker(
+            var marker_38ea879ac28ab16b74206ab263c39963 = L.marker(
                 [-22.5, 151.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_69543bd5ced181cb24be33cbedee5c6d = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_32be1a3146f19ad74be95e58499d295d = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_890f32372c8cb011b48c77d4c81288fe = $(`<div id=&quot;html_890f32372c8cb011b48c77d4c81288fe&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-09 20:25:01+00:00</div>`)[0];
-                popup_69543bd5ced181cb24be33cbedee5c6d.setContent(html_890f32372c8cb011b48c77d4c81288fe);
+                var html_ad9dd5c71e935febf80bb886ac05219e = $(`<div id=&quot;html_ad9dd5c71e935febf80bb886ac05219e&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-09 20:25:01+00:00</div>`)[0];
+                popup_32be1a3146f19ad74be95e58499d295d.setContent(html_ad9dd5c71e935febf80bb886ac05219e);
             
         
 
-        marker_67638ce9a36d1237f61b5003e1d53d42.bindPopup(popup_69543bd5ced181cb24be33cbedee5c6d)
+        marker_38ea879ac28ab16b74206ab263c39963.bindPopup(popup_32be1a3146f19ad74be95e58499d295d)
         ;
 
         
     
     
-            var marker_424c0b16cba22b40fd26c965ac0b0225 = L.marker(
+            var marker_3d9a02f604c1209ebb3a9878ed24f907 = L.marker(
                 [-21.5, 150.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_6a5c815107e13430fee7aedb6101b0ee = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_7fe5a49ecf30f102d107060857b1522b = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_a8f47b8cab4949c3f9d525cc6eef8190 = $(`<div id=&quot;html_a8f47b8cab4949c3f9d525cc6eef8190&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-14 18:26:17+00:00</div>`)[0];
-                popup_6a5c815107e13430fee7aedb6101b0ee.setContent(html_a8f47b8cab4949c3f9d525cc6eef8190);
+                var html_dc48b51a24fd0d83506c6e727eb59d5b = $(`<div id=&quot;html_dc48b51a24fd0d83506c6e727eb59d5b&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-14 18:26:17+00:00</div>`)[0];
+                popup_7fe5a49ecf30f102d107060857b1522b.setContent(html_dc48b51a24fd0d83506c6e727eb59d5b);
             
         
 
-        marker_424c0b16cba22b40fd26c965ac0b0225.bindPopup(popup_6a5c815107e13430fee7aedb6101b0ee)
+        marker_3d9a02f604c1209ebb3a9878ed24f907.bindPopup(popup_7fe5a49ecf30f102d107060857b1522b)
         ;
 
         
     
     
-            var marker_ad3eee38259416ab3e2b6da55782386a = L.marker(
+            var marker_ddcdaf7924f92b698b79e1d96837c110 = L.marker(
                 [-11.5, 143.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_5c73661a56a9ebb9a693c8cb7528e871 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_f2cb03aade7b11fddeb6fb456c4623f5 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_8373ec54ccde15e9a4296ae76bb86c9c = $(`<div id=&quot;html_8373ec54ccde15e9a4296ae76bb86c9c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-09 22:00:54+00:00</div>`)[0];
-                popup_5c73661a56a9ebb9a693c8cb7528e871.setContent(html_8373ec54ccde15e9a4296ae76bb86c9c);
+                var html_2eda343175a46faf5bff62231b785f26 = $(`<div id=&quot;html_2eda343175a46faf5bff62231b785f26&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-09 22:00:54+00:00</div>`)[0];
+                popup_f2cb03aade7b11fddeb6fb456c4623f5.setContent(html_2eda343175a46faf5bff62231b785f26);
             
         
 
-        marker_ad3eee38259416ab3e2b6da55782386a.bindPopup(popup_5c73661a56a9ebb9a693c8cb7528e871)
+        marker_ddcdaf7924f92b698b79e1d96837c110.bindPopup(popup_f2cb03aade7b11fddeb6fb456c4623f5)
         ;
 
         
     
     
-            var marker_27c693f6a425e0ded8b7acd29009388a = L.marker(
+            var marker_1564d06e4acd74f9fd2db2f1fb937656 = L.marker(
                 [-19.5, 149.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_1311848232fbbc17d9abf4703ad59cc2 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_2d6b85df7c1112ab4628c0b2701e9c23 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_b02275196eaad552149fca9746b408cf = $(`<div id=&quot;html_b02275196eaad552149fca9746b408cf&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-21 07:22:08+00:00</div>`)[0];
-                popup_1311848232fbbc17d9abf4703ad59cc2.setContent(html_b02275196eaad552149fca9746b408cf);
+                var html_9f74c38eb6eac85bf6c16c413553a9e6 = $(`<div id=&quot;html_9f74c38eb6eac85bf6c16c413553a9e6&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-21 07:22:08+00:00</div>`)[0];
+                popup_2d6b85df7c1112ab4628c0b2701e9c23.setContent(html_9f74c38eb6eac85bf6c16c413553a9e6);
             
         
 
-        marker_27c693f6a425e0ded8b7acd29009388a.bindPopup(popup_1311848232fbbc17d9abf4703ad59cc2)
+        marker_1564d06e4acd74f9fd2db2f1fb937656.bindPopup(popup_2d6b85df7c1112ab4628c0b2701e9c23)
         ;
 
         
     
     
-            var marker_04d2a3c655eb7af0cec9117e77725978 = L.marker(
+            var marker_71ad1b6486580c492f2fe9b6041919d0 = L.marker(
                 [-18.5, 146.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_70376d8d8a501386fd6eb7aa7f4d2f59 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_ee57a51d7f1267ba809f1b6144045a66 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_74ab6d6f9a8b2860784a613ed75e688a = $(`<div id=&quot;html_74ab6d6f9a8b2860784a613ed75e688a&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-30 17:02:42+00:00</div>`)[0];
-                popup_70376d8d8a501386fd6eb7aa7f4d2f59.setContent(html_74ab6d6f9a8b2860784a613ed75e688a);
+                var html_e5b3e28da59bbec64ef39642f5e84eac = $(`<div id=&quot;html_e5b3e28da59bbec64ef39642f5e84eac&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-30 17:02:42+00:00</div>`)[0];
+                popup_ee57a51d7f1267ba809f1b6144045a66.setContent(html_e5b3e28da59bbec64ef39642f5e84eac);
             
         
 
-        marker_04d2a3c655eb7af0cec9117e77725978.bindPopup(popup_70376d8d8a501386fd6eb7aa7f4d2f59)
+        marker_71ad1b6486580c492f2fe9b6041919d0.bindPopup(popup_ee57a51d7f1267ba809f1b6144045a66)
         ;
 
         
     
     
-            var marker_64c4527a307f029a36a8726daa7d3b6a = L.marker(
+            var marker_59c6c283e0d35b8bf6a4bdc26e482c54 = L.marker(
                 [-24.5, 153.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_023b0dd64b99f2704fbf0e9e7fdc8e12 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_2dceafb1a699fca3cce1899036ab526c = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_c4b62eb019e9d2e8c5c4a829c384f643 = $(`<div id=&quot;html_c4b62eb019e9d2e8c5c4a829c384f643&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-03 21:37:56+00:00</div>`)[0];
-                popup_023b0dd64b99f2704fbf0e9e7fdc8e12.setContent(html_c4b62eb019e9d2e8c5c4a829c384f643);
+                var html_019c917180879d10417f84c874b85a26 = $(`<div id=&quot;html_019c917180879d10417f84c874b85a26&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-03 21:37:56+00:00</div>`)[0];
+                popup_2dceafb1a699fca3cce1899036ab526c.setContent(html_019c917180879d10417f84c874b85a26);
             
         
 
-        marker_64c4527a307f029a36a8726daa7d3b6a.bindPopup(popup_023b0dd64b99f2704fbf0e9e7fdc8e12)
+        marker_59c6c283e0d35b8bf6a4bdc26e482c54.bindPopup(popup_2dceafb1a699fca3cce1899036ab526c)
         ;
 
         
     
     
-            var marker_4b227bae00ed6d6c82fafbf7eb09c307 = L.marker(
+            var marker_834d14122f633588dbb080a2a6253d78 = L.marker(
                 [-15.5, 145.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_fd83a2700945e01373d4e798e96f0ae1 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_dc6a04647e1693d26f80c6459f36d147 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_31c03ad379a0cca93c75dce82ce614f5 = $(`<div id=&quot;html_31c03ad379a0cca93c75dce82ce614f5&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-09 18:33:03+00:00</div>`)[0];
-                popup_fd83a2700945e01373d4e798e96f0ae1.setContent(html_31c03ad379a0cca93c75dce82ce614f5);
+                var html_bbae865314960cf1455d6944ca6f70e2 = $(`<div id=&quot;html_bbae865314960cf1455d6944ca6f70e2&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-09 18:33:03+00:00</div>`)[0];
+                popup_dc6a04647e1693d26f80c6459f36d147.setContent(html_bbae865314960cf1455d6944ca6f70e2);
             
         
 
-        marker_4b227bae00ed6d6c82fafbf7eb09c307.bindPopup(popup_fd83a2700945e01373d4e798e96f0ae1)
+        marker_834d14122f633588dbb080a2a6253d78.bindPopup(popup_dc6a04647e1693d26f80c6459f36d147)
         ;
 
         
     
     
-            var marker_fe1503c455391d153b7a60bd9e5ea6dd = L.marker(
+            var marker_e5b74e3d93dbf6627ef95d5dc903f0b0 = L.marker(
                 [-16.5, 145.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_88fda6b2265a82c4a4af2908d38f4f08 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_8211a7bd72f26a0fdaab27296bce2447 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_19ca80c39aec6f43839db9fadacb4b3c = $(`<div id=&quot;html_19ca80c39aec6f43839db9fadacb4b3c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-07 07:15:30+00:00</div>`)[0];
-                popup_88fda6b2265a82c4a4af2908d38f4f08.setContent(html_19ca80c39aec6f43839db9fadacb4b3c);
+                var html_1f27c1f4dec6e23b510205e353e59d78 = $(`<div id=&quot;html_1f27c1f4dec6e23b510205e353e59d78&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-07 07:15:30+00:00</div>`)[0];
+                popup_8211a7bd72f26a0fdaab27296bce2447.setContent(html_1f27c1f4dec6e23b510205e353e59d78);
             
         
 
-        marker_fe1503c455391d153b7a60bd9e5ea6dd.bindPopup(popup_88fda6b2265a82c4a4af2908d38f4f08)
+        marker_e5b74e3d93dbf6627ef95d5dc903f0b0.bindPopup(popup_8211a7bd72f26a0fdaab27296bce2447)
         ;
 
         
     
     
-            var marker_ead497dfbc0fd9482966dd2486be56c1 = L.marker(
+            var marker_92853aa57767c4bdedb28b0993f12992 = L.marker(
                 [-13.5, 144.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_ed718bc644b4adbe961dbcfdb8dc83a0 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_ea3b5d98107ea62e4e9e92bcc6261270 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_5838744e7c3c36e9d1d013d5d8558a50 = $(`<div id=&quot;html_5838744e7c3c36e9d1d013d5d8558a50&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-03-25 07:10:49+00:00</div>`)[0];
-                popup_ed718bc644b4adbe961dbcfdb8dc83a0.setContent(html_5838744e7c3c36e9d1d013d5d8558a50);
+                var html_dccaccbe1ec3bb070ab1aaf561d1f7a2 = $(`<div id=&quot;html_dccaccbe1ec3bb070ab1aaf561d1f7a2&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-03-25 07:10:49+00:00</div>`)[0];
+                popup_ea3b5d98107ea62e4e9e92bcc6261270.setContent(html_dccaccbe1ec3bb070ab1aaf561d1f7a2);
             
         
 
-        marker_ead497dfbc0fd9482966dd2486be56c1.bindPopup(popup_ed718bc644b4adbe961dbcfdb8dc83a0)
+        marker_92853aa57767c4bdedb28b0993f12992.bindPopup(popup_ea3b5d98107ea62e4e9e92bcc6261270)
         ;
 
         
     
     
-            var marker_eca7fa5cdf937fa9e0228d97ef264d16 = L.marker(
+            var marker_9589e3d45c3061c8b9c5c00c0b0e89e2 = L.marker(
                 [-21.5, 151.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_c6b39ac0a104456d1f4d51550706152e = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_bbad68b730e8a4c2183b388f827fb16b = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_1b3fe2039744001ed3f8b1e1ea42d9ea = $(`<div id=&quot;html_1b3fe2039744001ed3f8b1e1ea42d9ea&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-13 06:28:09+00:00</div>`)[0];
-                popup_c6b39ac0a104456d1f4d51550706152e.setContent(html_1b3fe2039744001ed3f8b1e1ea42d9ea);
+                var html_49e181a5053f545b52a43d02eeeee95b = $(`<div id=&quot;html_49e181a5053f545b52a43d02eeeee95b&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-13 06:28:09+00:00</div>`)[0];
+                popup_bbad68b730e8a4c2183b388f827fb16b.setContent(html_49e181a5053f545b52a43d02eeeee95b);
             
         
 
-        marker_eca7fa5cdf937fa9e0228d97ef264d16.bindPopup(popup_c6b39ac0a104456d1f4d51550706152e)
+        marker_9589e3d45c3061c8b9c5c00c0b0e89e2.bindPopup(popup_bbad68b730e8a4c2183b388f827fb16b)
         ;
 
         
     
     
-            var marker_02713188af8f74415131fdf42f6c645c = L.marker(
+            var marker_75032081741979ac5b64105c4d847abd = L.marker(
                 [-12.5, 143.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_1de893b281216cd61c11d11a044d202e = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_cd6004ee9d4a407fdc2e9b35b67f3e35 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_9ef20fd50397c37140472cb6da440785 = $(`<div id=&quot;html_9ef20fd50397c37140472cb6da440785&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-01 18:41:42+00:00</div>`)[0];
-                popup_1de893b281216cd61c11d11a044d202e.setContent(html_9ef20fd50397c37140472cb6da440785);
+                var html_f14b8d5840484f800dc0b7dbdd40c521 = $(`<div id=&quot;html_f14b8d5840484f800dc0b7dbdd40c521&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-01 18:41:42+00:00</div>`)[0];
+                popup_cd6004ee9d4a407fdc2e9b35b67f3e35.setContent(html_f14b8d5840484f800dc0b7dbdd40c521);
             
         
 
-        marker_02713188af8f74415131fdf42f6c645c.bindPopup(popup_1de893b281216cd61c11d11a044d202e)
+        marker_75032081741979ac5b64105c4d847abd.bindPopup(popup_cd6004ee9d4a407fdc2e9b35b67f3e35)
         ;
 
         
     
     
-            var marker_332382b6d322028a92aac2ce42490cec = L.marker(
+            var marker_64349d9acf76b404824e80c98f0d9b26 = L.marker(
                 [-9.5, 143.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_629a52841b9270fadd435eeb74b9bb7a = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_804ef0160885babfa75ee886455a1d83 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_b613b0286c9ab72a6046c1a7aaea4ff8 = $(`<div id=&quot;html_b613b0286c9ab72a6046c1a7aaea4ff8&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-21 10:30:09+00:00</div>`)[0];
-                popup_629a52841b9270fadd435eeb74b9bb7a.setContent(html_b613b0286c9ab72a6046c1a7aaea4ff8);
+                var html_a37d5a068cb9a429910e70b8a08f5c7c = $(`<div id=&quot;html_a37d5a068cb9a429910e70b8a08f5c7c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-21 10:30:09+00:00</div>`)[0];
+                popup_804ef0160885babfa75ee886455a1d83.setContent(html_a37d5a068cb9a429910e70b8a08f5c7c);
             
         
 
-        marker_332382b6d322028a92aac2ce42490cec.bindPopup(popup_629a52841b9270fadd435eeb74b9bb7a)
+        marker_64349d9acf76b404824e80c98f0d9b26.bindPopup(popup_804ef0160885babfa75ee886455a1d83)
         ;
 
         
     
     
-            var marker_a6d155062d07cc6a743be0eda1ed30cc = L.marker(
+            var marker_14003b5b679bd5f79c798e370dbe2a5b = L.marker(
                 [-23.5, 152.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_9ac815ae75286461030cba4759db9567 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_5d80c1375a66d54d92678947cdaff4d6 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_5ebd9746d5efc0b23b8b082cdf63cd74 = $(`<div id=&quot;html_5ebd9746d5efc0b23b8b082cdf63cd74&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-05 07:33:53+00:00</div>`)[0];
-                popup_9ac815ae75286461030cba4759db9567.setContent(html_5ebd9746d5efc0b23b8b082cdf63cd74);
+                var html_3104eeb2f0ed756bdd4a915d085c1150 = $(`<div id=&quot;html_3104eeb2f0ed756bdd4a915d085c1150&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-05 07:33:53+00:00</div>`)[0];
+                popup_5d80c1375a66d54d92678947cdaff4d6.setContent(html_3104eeb2f0ed756bdd4a915d085c1150);
             
         
 
-        marker_a6d155062d07cc6a743be0eda1ed30cc.bindPopup(popup_9ac815ae75286461030cba4759db9567)
+        marker_14003b5b679bd5f79c798e370dbe2a5b.bindPopup(popup_5d80c1375a66d54d92678947cdaff4d6)
         ;
 
         
     
     
-            var marker_c62713f341bda91aaebabf342ab5d2b8 = L.marker(
+            var marker_a4509671022c579e1c0ff1e6d3e99066 = L.marker(
                 [-16.5, 146.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_435a78618fbf8bac67f4ea5f1a45b025 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_18e569710f4574bfbab0fb0e4299cdf5 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_90c3a2c45246812c15ac85980741c5d3 = $(`<div id=&quot;html_90c3a2c45246812c15ac85980741c5d3&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-06 18:25:38+00:00</div>`)[0];
-                popup_435a78618fbf8bac67f4ea5f1a45b025.setContent(html_90c3a2c45246812c15ac85980741c5d3);
+                var html_0f25abad45d6f2df0d68b0a4775211e4 = $(`<div id=&quot;html_0f25abad45d6f2df0d68b0a4775211e4&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-06 18:25:38+00:00</div>`)[0];
+                popup_18e569710f4574bfbab0fb0e4299cdf5.setContent(html_0f25abad45d6f2df0d68b0a4775211e4);
             
         
 
-        marker_c62713f341bda91aaebabf342ab5d2b8.bindPopup(popup_435a78618fbf8bac67f4ea5f1a45b025)
+        marker_a4509671022c579e1c0ff1e6d3e99066.bindPopup(popup_18e569710f4574bfbab0fb0e4299cdf5)
         ;
 
         
     
     
-            var marker_e62c94d469e18670766e46e011ba8059 = L.marker(
+            var marker_ea94612c05a203c6903b9300e0e7913c = L.marker(
                 [-23.5, 151.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_80374f257cd28e7e176fb6253eddbb13 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_6f8603d7b673ce5723180acd1cb71f29 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_1e6ea04db0fa4fd8de07feac5ff685f8 = $(`<div id=&quot;html_1e6ea04db0fa4fd8de07feac5ff685f8&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-06 05:03:23+00:00</div>`)[0];
-                popup_80374f257cd28e7e176fb6253eddbb13.setContent(html_1e6ea04db0fa4fd8de07feac5ff685f8);
+                var html_77bfc55cf6c30a6dc1e7186a03c3d4a6 = $(`<div id=&quot;html_77bfc55cf6c30a6dc1e7186a03c3d4a6&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-06 05:03:23+00:00</div>`)[0];
+                popup_6f8603d7b673ce5723180acd1cb71f29.setContent(html_77bfc55cf6c30a6dc1e7186a03c3d4a6);
             
         
 
-        marker_e62c94d469e18670766e46e011ba8059.bindPopup(popup_80374f257cd28e7e176fb6253eddbb13)
+        marker_ea94612c05a203c6903b9300e0e7913c.bindPopup(popup_6f8603d7b673ce5723180acd1cb71f29)
         ;
 
         
     
     
-            var marker_2ba6875ca2f6601881023f458e76385d = L.marker(
+            var marker_25394d757a3eb8346b19fde4a9bdfaf9 = L.marker(
                 [-17.5, 146.5],
                 {}
-            ).addTo(map_04ea1d177c2ad23ae37519e473732cd2);
+            ).addTo(map_2f08fb5f95e7b429ccbfd9f319571f06);
         
     
-        var popup_7ccee22b91df2e521fc47645133a66a9 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_bafc60a1d8923c4f49fb5948d2425ba4 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_8e160f834cc12e84de07a38b504af1ca = $(`<div id=&quot;html_8e160f834cc12e84de07a38b504af1ca&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-02 09:14:56+00:00</div>`)[0];
-                popup_7ccee22b91df2e521fc47645133a66a9.setContent(html_8e160f834cc12e84de07a38b504af1ca);
+                var html_ad40793183e50fc2f8945bc84e0311c6 = $(`<div id=&quot;html_ad40793183e50fc2f8945bc84e0311c6&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-02 09:14:56+00:00</div>`)[0];
+                popup_bafc60a1d8923c4f49fb5948d2425ba4.setContent(html_ad40793183e50fc2f8945bc84e0311c6);
             
         
 
-        marker_2ba6875ca2f6601881023f458e76385d.bindPopup(popup_7ccee22b91df2e521fc47645133a66a9)
+        marker_25394d757a3eb8346b19fde4a9bdfaf9.bindPopup(popup_bafc60a1d8923c4f49fb5948d2425ba4)
         ;
 
         
     
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
-<figcaption class="figure-caption">Figure&nbsp;1: Loggerhead Sea Turtle satellite tracking records (December 2021 - April 2022)</figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Loggerhead Sea Turtle satellite tracking records (December 2021 - April 2022)
+</figcaption>
 </figure>
 </div>
 </div>
@@ -899,8 +915,8 @@ Read more: Tracking marine animals
 <section id="extract-data-from-server" class="level2">
 <h2 class="anchored" data-anchor-id="extract-data-from-server">Extract data from server</h2>
 <p>We will extend the basic methods introduced in the preceeding tutorial <a href="../../../../tutorials/python/access-ereefs-data-server/basic-server-access/basic_server_access_python.html">Accessing eReefs data from the AIMS server</a> to extract data for a set of points and dates.</p>
-<p>We will extract the eReefs 1km hydrodynamic model daily mean temperature (<code>temp</code>), salinity (<code>salt</code>), and east- and northward current velocities (<code>u</code> and <code>v</code>) corresponding to the coordinates and dates for the tracking detections shown in <a href="#tbl-detections">Table&nbsp;1</a>.</p>
-<div class="cell" data-execution_count="3">
+<p>We will extract the eReefs 1km hydrodynamic model daily mean temperature (<code>temp</code>), salinity (<code>salt</code>), and east- and northward current velocities (<code>u</code> and <code>v</code>) corresponding to the coordinates and dates for the tracking detections shown in <a href="#tbl-detections" class="quarto-xref">Table&nbsp;1</a>.</p>
+<div id="b6d031ee" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create table of tracking detections (sort by date-time; select relevant variables)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tbl_detections <span class="op">=</span> data.<span class="op">\</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  sort_values(<span class="st">'date_time'</span>)<span class="op">\</span></span>
@@ -913,183 +929,189 @@ Read more: Tracking marine animals
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>display(tbl_detections)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell scroll_box_y" data-execution_count="4">
+<div id="tbl-detections" class="cell scroll_box_y quarto-float anchored" data-execution_count="4">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-detections-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Loggerhead Sea Turtle detections (Strydom, 2022)
+</figcaption>
+<div aria-describedby="tbl-detections-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display" data-execution_count="4">
 <style type="text/css">
 </style>
 
-<div id="tbl-detections" class="anchored">
-<table id="T_af041" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<caption>Table&nbsp;1: Loggerhead Sea Turtle detections (Strydom, 2022)</caption>
+<table id="T_76ca7" class="do-not-create-environment cell scroll_box_y caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_af041_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">date</th>
-<th id="T_af041_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">time</th>
-<th id="T_af041_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">longitude</th>
-<th id="T_af041_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">latitude</th>
+<th id="T_76ca7_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">date</th>
+<th id="T_76ca7_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">time</th>
+<th id="T_76ca7_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">longitude</th>
+<th id="T_76ca7_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">latitude</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_af041_row0_col0" class="data row0 col0">2021-12-21</td>
-<td id="T_af041_row0_col1" class="data row0 col1">17:57</td>
-<td id="T_af041_row0_col2" class="data row0 col2">152.5</td>
-<td id="T_af041_row0_col3" class="data row0 col3">-24.5</td>
+<td id="T_76ca7_row0_col0" class="data row0 col0">2021-12-21</td>
+<td id="T_76ca7_row0_col1" class="data row0 col1">17:57</td>
+<td id="T_76ca7_row0_col2" class="data row0 col2">152.5</td>
+<td id="T_76ca7_row0_col3" class="data row0 col3">-24.5</td>
 </tr>
 <tr class="even">
-<td id="T_af041_row1_col0" class="data row1 col0">2022-01-02</td>
-<td id="T_af041_row1_col1" class="data row1 col1">21:49</td>
-<td id="T_af041_row1_col2" class="data row1 col2">153.5</td>
-<td id="T_af041_row1_col3" class="data row1 col3">-25.5</td>
+<td id="T_76ca7_row1_col0" class="data row1 col0">2022-01-02</td>
+<td id="T_76ca7_row1_col1" class="data row1 col1">21:49</td>
+<td id="T_76ca7_row1_col2" class="data row1 col2">153.5</td>
+<td id="T_76ca7_row1_col3" class="data row1 col3">-25.5</td>
 </tr>
 <tr class="odd">
-<td id="T_af041_row2_col0" class="data row2 col0">2022-01-05</td>
-<td id="T_af041_row2_col1" class="data row2 col1">07:33</td>
-<td id="T_af041_row2_col2" class="data row2 col2">152.5</td>
-<td id="T_af041_row2_col3" class="data row2 col3">-23.5</td>
+<td id="T_76ca7_row2_col0" class="data row2 col0">2022-01-05</td>
+<td id="T_76ca7_row2_col1" class="data row2 col1">07:33</td>
+<td id="T_76ca7_row2_col2" class="data row2 col2">152.5</td>
+<td id="T_76ca7_row2_col3" class="data row2 col3">-23.5</td>
 </tr>
 <tr class="even">
-<td id="T_af041_row3_col0" class="data row3 col0">2022-01-06</td>
-<td id="T_af041_row3_col1" class="data row3 col1">05:03</td>
-<td id="T_af041_row3_col2" class="data row3 col2">151.5</td>
-<td id="T_af041_row3_col3" class="data row3 col3">-23.5</td>
+<td id="T_76ca7_row3_col0" class="data row3 col0">2022-01-06</td>
+<td id="T_76ca7_row3_col1" class="data row3 col1">05:03</td>
+<td id="T_76ca7_row3_col2" class="data row3 col2">151.5</td>
+<td id="T_76ca7_row3_col3" class="data row3 col3">-23.5</td>
 </tr>
 <tr class="odd">
-<td id="T_af041_row4_col0" class="data row4 col0">2022-01-09</td>
-<td id="T_af041_row4_col1" class="data row4 col1">20:25</td>
-<td id="T_af041_row4_col2" class="data row4 col2">151.5</td>
-<td id="T_af041_row4_col3" class="data row4 col3">-22.5</td>
+<td id="T_76ca7_row4_col0" class="data row4 col0">2022-01-09</td>
+<td id="T_76ca7_row4_col1" class="data row4 col1">20:25</td>
+<td id="T_76ca7_row4_col2" class="data row4 col2">151.5</td>
+<td id="T_76ca7_row4_col3" class="data row4 col3">-22.5</td>
 </tr>
 <tr class="even">
-<td id="T_af041_row5_col0" class="data row5 col0">2022-01-13</td>
-<td id="T_af041_row5_col1" class="data row5 col1">06:28</td>
-<td id="T_af041_row5_col2" class="data row5 col2">151.5</td>
-<td id="T_af041_row5_col3" class="data row5 col3">-21.5</td>
+<td id="T_76ca7_row5_col0" class="data row5 col0">2022-01-13</td>
+<td id="T_76ca7_row5_col1" class="data row5 col1">06:28</td>
+<td id="T_76ca7_row5_col2" class="data row5 col2">151.5</td>
+<td id="T_76ca7_row5_col3" class="data row5 col3">-21.5</td>
 </tr>
 <tr class="odd">
-<td id="T_af041_row6_col0" class="data row6 col0">2022-01-14</td>
-<td id="T_af041_row6_col1" class="data row6 col1">18:26</td>
-<td id="T_af041_row6_col2" class="data row6 col2">150.5</td>
-<td id="T_af041_row6_col3" class="data row6 col3">-21.5</td>
+<td id="T_76ca7_row6_col0" class="data row6 col0">2022-01-14</td>
+<td id="T_76ca7_row6_col1" class="data row6 col1">18:26</td>
+<td id="T_76ca7_row6_col2" class="data row6 col2">150.5</td>
+<td id="T_76ca7_row6_col3" class="data row6 col3">-21.5</td>
 </tr>
 <tr class="even">
-<td id="T_af041_row7_col0" class="data row7 col0">2022-01-17</td>
-<td id="T_af041_row7_col1" class="data row7 col1">17:06</td>
-<td id="T_af041_row7_col2" class="data row7 col2">150.5</td>
-<td id="T_af041_row7_col3" class="data row7 col3">-20.5</td>
+<td id="T_76ca7_row7_col0" class="data row7 col0">2022-01-17</td>
+<td id="T_76ca7_row7_col1" class="data row7 col1">17:06</td>
+<td id="T_76ca7_row7_col2" class="data row7 col2">150.5</td>
+<td id="T_76ca7_row7_col3" class="data row7 col3">-20.5</td>
 </tr>
 <tr class="odd">
-<td id="T_af041_row8_col0" class="data row8 col0">2022-01-19</td>
-<td id="T_af041_row8_col1" class="data row8 col1">17:44</td>
-<td id="T_af041_row8_col2" class="data row8 col2">149.5</td>
-<td id="T_af041_row8_col3" class="data row8 col3">-20.5</td>
+<td id="T_76ca7_row8_col0" class="data row8 col0">2022-01-19</td>
+<td id="T_76ca7_row8_col1" class="data row8 col1">17:44</td>
+<td id="T_76ca7_row8_col2" class="data row8 col2">149.5</td>
+<td id="T_76ca7_row8_col3" class="data row8 col3">-20.5</td>
 </tr>
 <tr class="even">
-<td id="T_af041_row9_col0" class="data row9 col0">2022-01-21</td>
-<td id="T_af041_row9_col1" class="data row9 col1">07:22</td>
-<td id="T_af041_row9_col2" class="data row9 col2">149.5</td>
-<td id="T_af041_row9_col3" class="data row9 col3">-19.5</td>
+<td id="T_76ca7_row9_col0" class="data row9 col0">2022-01-21</td>
+<td id="T_76ca7_row9_col1" class="data row9 col1">07:22</td>
+<td id="T_76ca7_row9_col2" class="data row9 col2">149.5</td>
+<td id="T_76ca7_row9_col3" class="data row9 col3">-19.5</td>
 </tr>
 <tr class="odd">
-<td id="T_af041_row10_col0" class="data row10 col0">2022-01-23</td>
-<td id="T_af041_row10_col1" class="data row10 col1">07:02</td>
-<td id="T_af041_row10_col2" class="data row10 col2">148.5</td>
-<td id="T_af041_row10_col3" class="data row10 col3">-19.5</td>
+<td id="T_76ca7_row10_col0" class="data row10 col0">2022-01-23</td>
+<td id="T_76ca7_row10_col1" class="data row10 col1">07:02</td>
+<td id="T_76ca7_row10_col2" class="data row10 col2">148.5</td>
+<td id="T_76ca7_row10_col3" class="data row10 col3">-19.5</td>
 </tr>
 <tr class="even">
-<td id="T_af041_row11_col0" class="data row11 col0">2022-01-27</td>
-<td id="T_af041_row11_col1" class="data row11 col1">17:00</td>
-<td id="T_af041_row11_col2" class="data row11 col2">147.5</td>
-<td id="T_af041_row11_col3" class="data row11 col3">-18.5</td>
+<td id="T_76ca7_row11_col0" class="data row11 col0">2022-01-27</td>
+<td id="T_76ca7_row11_col1" class="data row11 col1">17:00</td>
+<td id="T_76ca7_row11_col2" class="data row11 col2">147.5</td>
+<td id="T_76ca7_row11_col3" class="data row11 col3">-18.5</td>
 </tr>
 <tr class="odd">
-<td id="T_af041_row12_col0" class="data row12 col0">2022-01-30</td>
-<td id="T_af041_row12_col1" class="data row12 col1">17:02</td>
-<td id="T_af041_row12_col2" class="data row12 col2">146.5</td>
-<td id="T_af041_row12_col3" class="data row12 col3">-18.5</td>
+<td id="T_76ca7_row12_col0" class="data row12 col0">2022-01-30</td>
+<td id="T_76ca7_row12_col1" class="data row12 col1">17:02</td>
+<td id="T_76ca7_row12_col2" class="data row12 col2">146.5</td>
+<td id="T_76ca7_row12_col3" class="data row12 col3">-18.5</td>
 </tr>
 <tr class="even">
-<td id="T_af041_row13_col0" class="data row13 col0">2022-02-02</td>
-<td id="T_af041_row13_col1" class="data row13 col1">09:14</td>
-<td id="T_af041_row13_col2" class="data row13 col2">146.5</td>
-<td id="T_af041_row13_col3" class="data row13 col3">-17.5</td>
+<td id="T_76ca7_row13_col0" class="data row13 col0">2022-02-02</td>
+<td id="T_76ca7_row13_col1" class="data row13 col1">09:14</td>
+<td id="T_76ca7_row13_col2" class="data row13 col2">146.5</td>
+<td id="T_76ca7_row13_col3" class="data row13 col3">-17.5</td>
 </tr>
 <tr class="odd">
-<td id="T_af041_row14_col0" class="data row14 col0">2022-02-03</td>
-<td id="T_af041_row14_col1" class="data row14 col1">21:37</td>
-<td id="T_af041_row14_col2" class="data row14 col2">153.5</td>
-<td id="T_af041_row14_col3" class="data row14 col3">-24.5</td>
+<td id="T_76ca7_row14_col0" class="data row14 col0">2022-02-03</td>
+<td id="T_76ca7_row14_col1" class="data row14 col1">21:37</td>
+<td id="T_76ca7_row14_col2" class="data row14 col2">153.5</td>
+<td id="T_76ca7_row14_col3" class="data row14 col3">-24.5</td>
 </tr>
 <tr class="even">
-<td id="T_af041_row15_col0" class="data row15 col0">2022-02-06</td>
-<td id="T_af041_row15_col1" class="data row15 col1">18:25</td>
-<td id="T_af041_row15_col2" class="data row15 col2">146.5</td>
-<td id="T_af041_row15_col3" class="data row15 col3">-16.5</td>
+<td id="T_76ca7_row15_col0" class="data row15 col0">2022-02-06</td>
+<td id="T_76ca7_row15_col1" class="data row15 col1">18:25</td>
+<td id="T_76ca7_row15_col2" class="data row15 col2">146.5</td>
+<td id="T_76ca7_row15_col3" class="data row15 col3">-16.5</td>
 </tr>
 <tr class="odd">
-<td id="T_af041_row16_col0" class="data row16 col0">2022-02-07</td>
-<td id="T_af041_row16_col1" class="data row16 col1">07:15</td>
-<td id="T_af041_row16_col2" class="data row16 col2">145.5</td>
-<td id="T_af041_row16_col3" class="data row16 col3">-16.5</td>
+<td id="T_76ca7_row16_col0" class="data row16 col0">2022-02-07</td>
+<td id="T_76ca7_row16_col1" class="data row16 col1">07:15</td>
+<td id="T_76ca7_row16_col2" class="data row16 col2">145.5</td>
+<td id="T_76ca7_row16_col3" class="data row16 col3">-16.5</td>
 </tr>
 <tr class="even">
-<td id="T_af041_row17_col0" class="data row17 col0">2022-02-09</td>
-<td id="T_af041_row17_col1" class="data row17 col1">18:33</td>
-<td id="T_af041_row17_col2" class="data row17 col2">145.5</td>
-<td id="T_af041_row17_col3" class="data row17 col3">-15.5</td>
+<td id="T_76ca7_row17_col0" class="data row17 col0">2022-02-09</td>
+<td id="T_76ca7_row17_col1" class="data row17 col1">18:33</td>
+<td id="T_76ca7_row17_col2" class="data row17 col2">145.5</td>
+<td id="T_76ca7_row17_col3" class="data row17 col3">-15.5</td>
 </tr>
 <tr class="odd">
-<td id="T_af041_row18_col0" class="data row18 col0">2022-02-12</td>
-<td id="T_af041_row18_col1" class="data row18 col1">08:59</td>
-<td id="T_af041_row18_col2" class="data row18 col2">153.5</td>
-<td id="T_af041_row18_col3" class="data row18 col3">-26.5</td>
+<td id="T_76ca7_row18_col0" class="data row18 col0">2022-02-12</td>
+<td id="T_76ca7_row18_col1" class="data row18 col1">08:59</td>
+<td id="T_76ca7_row18_col2" class="data row18 col2">153.5</td>
+<td id="T_76ca7_row18_col3" class="data row18 col3">-26.5</td>
 </tr>
 <tr class="even">
-<td id="T_af041_row19_col0" class="data row19 col0">2022-02-12</td>
-<td id="T_af041_row19_col1" class="data row19 col1">10:34</td>
-<td id="T_af041_row19_col2" class="data row19 col2">145.5</td>
-<td id="T_af041_row19_col3" class="data row19 col3">-14.5</td>
+<td id="T_76ca7_row19_col0" class="data row19 col0">2022-02-12</td>
+<td id="T_76ca7_row19_col1" class="data row19 col1">10:34</td>
+<td id="T_76ca7_row19_col2" class="data row19 col2">145.5</td>
+<td id="T_76ca7_row19_col3" class="data row19 col3">-14.5</td>
 </tr>
 <tr class="odd">
-<td id="T_af041_row20_col0" class="data row20 col0">2022-03-25</td>
-<td id="T_af041_row20_col1" class="data row20 col1">07:10</td>
-<td id="T_af041_row20_col2" class="data row20 col2">144.5</td>
-<td id="T_af041_row20_col3" class="data row20 col3">-13.5</td>
+<td id="T_76ca7_row20_col0" class="data row20 col0">2022-03-25</td>
+<td id="T_76ca7_row20_col1" class="data row20 col1">07:10</td>
+<td id="T_76ca7_row20_col2" class="data row20 col2">144.5</td>
+<td id="T_76ca7_row20_col3" class="data row20 col3">-13.5</td>
 </tr>
 <tr class="even">
-<td id="T_af041_row21_col0" class="data row21 col0">2022-04-01</td>
-<td id="T_af041_row21_col1" class="data row21 col1">18:41</td>
-<td id="T_af041_row21_col2" class="data row21 col2">143.5</td>
-<td id="T_af041_row21_col3" class="data row21 col3">-12.5</td>
+<td id="T_76ca7_row21_col0" class="data row21 col0">2022-04-01</td>
+<td id="T_76ca7_row21_col1" class="data row21 col1">18:41</td>
+<td id="T_76ca7_row21_col2" class="data row21 col2">143.5</td>
+<td id="T_76ca7_row21_col3" class="data row21 col3">-12.5</td>
 </tr>
 <tr class="odd">
-<td id="T_af041_row22_col0" class="data row22 col0">2022-04-09</td>
-<td id="T_af041_row22_col1" class="data row22 col1">22:00</td>
-<td id="T_af041_row22_col2" class="data row22 col2">143.5</td>
-<td id="T_af041_row22_col3" class="data row22 col3">-11.5</td>
+<td id="T_76ca7_row22_col0" class="data row22 col0">2022-04-09</td>
+<td id="T_76ca7_row22_col1" class="data row22 col1">22:00</td>
+<td id="T_76ca7_row22_col2" class="data row22 col2">143.5</td>
+<td id="T_76ca7_row22_col3" class="data row22 col3">-11.5</td>
 </tr>
 <tr class="even">
-<td id="T_af041_row23_col0" class="data row23 col0">2022-04-14</td>
-<td id="T_af041_row23_col1" class="data row23 col1">06:31</td>
-<td id="T_af041_row23_col2" class="data row23 col2">143.5</td>
-<td id="T_af041_row23_col3" class="data row23 col3">-10.5</td>
+<td id="T_76ca7_row23_col0" class="data row23 col0">2022-04-14</td>
+<td id="T_76ca7_row23_col1" class="data row23 col1">06:31</td>
+<td id="T_76ca7_row23_col2" class="data row23 col2">143.5</td>
+<td id="T_76ca7_row23_col3" class="data row23 col3">-10.5</td>
 </tr>
 <tr class="odd">
-<td id="T_af041_row24_col0" class="data row24 col0">2022-04-21</td>
-<td id="T_af041_row24_col1" class="data row24 col1">10:30</td>
-<td id="T_af041_row24_col2" class="data row24 col2">143.5</td>
-<td id="T_af041_row24_col3" class="data row24 col3">-9.5</td>
+<td id="T_76ca7_row24_col0" class="data row24 col0">2022-04-21</td>
+<td id="T_76ca7_row24_col1" class="data row24 col1">10:30</td>
+<td id="T_76ca7_row24_col2" class="data row24 col2">143.5</td>
+<td id="T_76ca7_row24_col3" class="data row24 col3">-9.5</td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
+</figure>
 </div>
 </div>
 <p><br></p>
 <p>We will take advantage of the consistent file naming on the server to extract the data of interest programatically. We will first need to copy the OPeNDAP data link for one of the files within the correct model and aggregation folders and then replace the date.</p>
 <p>Selecting a random date within the daily aggregated data (<code>daily-daily</code>; one data file per day) for the 1km hydro model (<code>gbr1_2.0</code>), we see the files have the naming format:</p>
 <p><code>https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-</code><span style="color: red">YYYY-MM-DD</span><code>.nc</code></p>
-<p>We will now write a script which extracts the data for the dates and coordinates in <a href="#tbl-detections">Table&nbsp;1</a>. For each unique date we will open the corresponding file on the server and extract the daily mean temperature, salinity, northward and southward current velocities for each set of coordinates corresponding to the date.</p>
-<div class="cell" data-execution_count="5">
+<p>We will now write a script which extracts the data for the dates and coordinates in <a href="#tbl-detections" class="quarto-xref">Table&nbsp;1</a>. For each unique date we will open the corresponding file on the server and extract the daily mean temperature, salinity, northward and southward current velocities for each set of coordinates corresponding to the date.</p>
+<div id="8689a7de" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GET DATA FOR EACH DATE AND COORDINATE (LAT LON) PAIR</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>t_start <span class="op">=</span> dt.datetime.now() <span class="co"># to track run time of extraction</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1172,10 +1194,10 @@ Read more: Tracking marine animals
 <span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Data extracted for"</span>, <span class="bu">len</span>(detections), <span class="st">"points from"</span>, <span class="bu">len</span>(dates), <span class="st">"files. </span><span class="ch">\n</span><span class="st">Extraction time:"</span>, extract_mins, <span class="st">"min"</span>, extract_secs, <span class="st">"sec."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Data extracted for 25 points from 24 files. 
-Extraction time: 0 min 46 sec.</code></pre>
+Extraction time: 1 min 10 sec.</code></pre>
 </div>
 </div>
-<p>Our extracted data is shown below in <a href="#tbl-extracted-data">Table&nbsp;2</a>.</p>
+<p>Our extracted data is shown below in <a href="#tbl-extracted-data" class="quarto-xref">Table&nbsp;2</a>.</p>
 <div class="callout callout-style-simple callout-caution">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1183,15 +1205,11 @@ Extraction time: 0 min 46 sec.</code></pre>
 </div>
 <div class="callout-body-container">
 <p>In the code above we match the closest eReefs model grid cell to each point in our list of coordinates (i.e.&nbsp;for each tracking detection). This will therefore match grid cells to all the coordinates, even if they are not within the eReefs model boundary. This behaviour may be useful when we have points right along the coastline as the eReefs models have small gaps at many points along the coast (see image below). However, in other cases this behaviour may not be desirable. For example, if we had points down near Sydney they would be matched to the closest eReefs grid cells (somewhere up near Brisbane) and the extracted data would be erroneous.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/ereefs_model_boundary_and_grid_cells.jpeg"><img src="images/ereefs_model_boundary_and_grid_cells.jpeg" class="img-fluid figure-img"></a></p>
-</figure>
+<p><a href="images/ereefs_model_boundary_and_grid_cells.jpeg"><img src="images/ereefs_model_boundary_and_grid_cells.jpeg" class="img-fluid"></a></p>
 </div>
 </div>
 </div>
-</div>
-<div class="cell" data-execution_count="6">
+<div id="da21b235" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Output table in html format (sort by date; hide row indices; format coordinates to their precision of 1 decimal place, temp &amp; salt to 2 dp, u &amp; v to 3 dp)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tbl_extracted <span class="op">=</span> extracted_data.sort_values(<span class="st">'date'</span>).style.<span class="op">\</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  hide(axis <span class="op">=</span> <span class="st">'index'</span>).<span class="op">\</span></span>
@@ -1203,260 +1221,266 @@ Extraction time: 0 min 46 sec.</code></pre>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>display(tbl_extracted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell scroll_box_xy" data-execution_count="7">
+<div id="tbl-extracted-data" class="cell scroll_box_xy quarto-float anchored" data-execution_count="7">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-extracted-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Extracted daily mean temperature, salinity, and east- and northward current velocities (u, v respectively) for Loggerhead Sea Turtle detections (Strydom, 2022)
+</figcaption>
+<div aria-describedby="tbl-extracted-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display" data-execution_count="7">
 <style type="text/css">
 </style>
 
-<div id="tbl-extracted-data" class="anchored">
-<table id="T_14045" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<caption>Table&nbsp;2: Extracted daily mean temperature, salinity, and east- and northward current velocities (u, v respectively) for Loggerhead Sea Turtle detections (Strydom, 2022)</caption>
+<table id="T_aafeb" class="do-not-create-environment cell scroll_box_xy caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_14045_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">date</th>
-<th id="T_14045_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">lon</th>
-<th id="T_14045_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">lat</th>
-<th id="T_14045_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">temp</th>
-<th id="T_14045_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">salt</th>
-<th id="T_14045_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">u</th>
-<th id="T_14045_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">v</th>
+<th id="T_aafeb_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">date</th>
+<th id="T_aafeb_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">lon</th>
+<th id="T_aafeb_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">lat</th>
+<th id="T_aafeb_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">temp</th>
+<th id="T_aafeb_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">salt</th>
+<th id="T_aafeb_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">u</th>
+<th id="T_aafeb_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">v</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_14045_row0_col0" class="data row0 col0">2021-12-21</td>
-<td id="T_14045_row0_col1" class="data row0 col1">152.5</td>
-<td id="T_14045_row0_col2" class="data row0 col2">-24.5</td>
-<td id="T_14045_row0_col3" class="data row0 col3">28.09</td>
-<td id="T_14045_row0_col4" class="data row0 col4">35.26</td>
-<td id="T_14045_row0_col5" class="data row0 col5">0.071</td>
-<td id="T_14045_row0_col6" class="data row0 col6">-0.020</td>
+<td id="T_aafeb_row0_col0" class="data row0 col0">2021-12-21</td>
+<td id="T_aafeb_row0_col1" class="data row0 col1">152.5</td>
+<td id="T_aafeb_row0_col2" class="data row0 col2">-24.5</td>
+<td id="T_aafeb_row0_col3" class="data row0 col3">28.09</td>
+<td id="T_aafeb_row0_col4" class="data row0 col4">35.26</td>
+<td id="T_aafeb_row0_col5" class="data row0 col5">0.071</td>
+<td id="T_aafeb_row0_col6" class="data row0 col6">-0.020</td>
 </tr>
 <tr class="even">
-<td id="T_14045_row1_col0" class="data row1 col0">2022-01-02</td>
-<td id="T_14045_row1_col1" class="data row1 col1">153.5</td>
-<td id="T_14045_row1_col2" class="data row1 col2">-25.5</td>
-<td id="T_14045_row1_col3" class="data row1 col3">26.00</td>
-<td id="T_14045_row1_col4" class="data row1 col4">35.30</td>
-<td id="T_14045_row1_col5" class="data row1 col5">-0.035</td>
-<td id="T_14045_row1_col6" class="data row1 col6">0.038</td>
+<td id="T_aafeb_row1_col0" class="data row1 col0">2022-01-02</td>
+<td id="T_aafeb_row1_col1" class="data row1 col1">153.5</td>
+<td id="T_aafeb_row1_col2" class="data row1 col2">-25.5</td>
+<td id="T_aafeb_row1_col3" class="data row1 col3">26.00</td>
+<td id="T_aafeb_row1_col4" class="data row1 col4">35.30</td>
+<td id="T_aafeb_row1_col5" class="data row1 col5">-0.035</td>
+<td id="T_aafeb_row1_col6" class="data row1 col6">0.038</td>
 </tr>
 <tr class="odd">
-<td id="T_14045_row2_col0" class="data row2 col0">2022-01-05</td>
-<td id="T_14045_row2_col1" class="data row2 col1">152.5</td>
-<td id="T_14045_row2_col2" class="data row2 col2">-23.5</td>
-<td id="T_14045_row2_col3" class="data row2 col3">25.64</td>
-<td id="T_14045_row2_col4" class="data row2 col4">35.23</td>
-<td id="T_14045_row2_col5" class="data row2 col5">0.030</td>
-<td id="T_14045_row2_col6" class="data row2 col6">0.015</td>
+<td id="T_aafeb_row2_col0" class="data row2 col0">2022-01-05</td>
+<td id="T_aafeb_row2_col1" class="data row2 col1">152.5</td>
+<td id="T_aafeb_row2_col2" class="data row2 col2">-23.5</td>
+<td id="T_aafeb_row2_col3" class="data row2 col3">25.64</td>
+<td id="T_aafeb_row2_col4" class="data row2 col4">35.23</td>
+<td id="T_aafeb_row2_col5" class="data row2 col5">0.030</td>
+<td id="T_aafeb_row2_col6" class="data row2 col6">0.015</td>
 </tr>
 <tr class="even">
-<td id="T_14045_row3_col0" class="data row3 col0">2022-01-06</td>
-<td id="T_14045_row3_col1" class="data row3 col1">151.5</td>
-<td id="T_14045_row3_col2" class="data row3 col2">-23.5</td>
-<td id="T_14045_row3_col3" class="data row3 col3">28.13</td>
-<td id="T_14045_row3_col4" class="data row3 col4">35.41</td>
-<td id="T_14045_row3_col5" class="data row3 col5">-0.033</td>
-<td id="T_14045_row3_col6" class="data row3 col6">0.015</td>
+<td id="T_aafeb_row3_col0" class="data row3 col0">2022-01-06</td>
+<td id="T_aafeb_row3_col1" class="data row3 col1">151.5</td>
+<td id="T_aafeb_row3_col2" class="data row3 col2">-23.5</td>
+<td id="T_aafeb_row3_col3" class="data row3 col3">28.13</td>
+<td id="T_aafeb_row3_col4" class="data row3 col4">35.41</td>
+<td id="T_aafeb_row3_col5" class="data row3 col5">-0.033</td>
+<td id="T_aafeb_row3_col6" class="data row3 col6">0.015</td>
 </tr>
 <tr class="odd">
-<td id="T_14045_row4_col0" class="data row4 col0">2022-01-09</td>
-<td id="T_14045_row4_col1" class="data row4 col1">151.5</td>
-<td id="T_14045_row4_col2" class="data row4 col2">-22.5</td>
-<td id="T_14045_row4_col3" class="data row4 col3">29.24</td>
-<td id="T_14045_row4_col4" class="data row4 col4">35.34</td>
-<td id="T_14045_row4_col5" class="data row4 col5">0.001</td>
-<td id="T_14045_row4_col6" class="data row4 col6">-0.103</td>
+<td id="T_aafeb_row4_col0" class="data row4 col0">2022-01-09</td>
+<td id="T_aafeb_row4_col1" class="data row4 col1">151.5</td>
+<td id="T_aafeb_row4_col2" class="data row4 col2">-22.5</td>
+<td id="T_aafeb_row4_col3" class="data row4 col3">29.24</td>
+<td id="T_aafeb_row4_col4" class="data row4 col4">35.34</td>
+<td id="T_aafeb_row4_col5" class="data row4 col5">0.001</td>
+<td id="T_aafeb_row4_col6" class="data row4 col6">-0.103</td>
 </tr>
 <tr class="even">
-<td id="T_14045_row5_col0" class="data row5 col0">2022-01-13</td>
-<td id="T_14045_row5_col1" class="data row5 col1">151.5</td>
-<td id="T_14045_row5_col2" class="data row5 col2">-21.5</td>
-<td id="T_14045_row5_col3" class="data row5 col3">28.42</td>
-<td id="T_14045_row5_col4" class="data row5 col4">35.25</td>
-<td id="T_14045_row5_col5" class="data row5 col5">-0.095</td>
-<td id="T_14045_row5_col6" class="data row5 col6">0.016</td>
+<td id="T_aafeb_row5_col0" class="data row5 col0">2022-01-13</td>
+<td id="T_aafeb_row5_col1" class="data row5 col1">151.5</td>
+<td id="T_aafeb_row5_col2" class="data row5 col2">-21.5</td>
+<td id="T_aafeb_row5_col3" class="data row5 col3">28.42</td>
+<td id="T_aafeb_row5_col4" class="data row5 col4">35.25</td>
+<td id="T_aafeb_row5_col5" class="data row5 col5">-0.095</td>
+<td id="T_aafeb_row5_col6" class="data row5 col6">0.016</td>
 </tr>
 <tr class="odd">
-<td id="T_14045_row6_col0" class="data row6 col0">2022-01-14</td>
-<td id="T_14045_row6_col1" class="data row6 col1">150.5</td>
-<td id="T_14045_row6_col2" class="data row6 col2">-21.5</td>
-<td id="T_14045_row6_col3" class="data row6 col3">28.99</td>
-<td id="T_14045_row6_col4" class="data row6 col4">35.40</td>
-<td id="T_14045_row6_col5" class="data row6 col5">-0.064</td>
-<td id="T_14045_row6_col6" class="data row6 col6">-0.047</td>
+<td id="T_aafeb_row6_col0" class="data row6 col0">2022-01-14</td>
+<td id="T_aafeb_row6_col1" class="data row6 col1">150.5</td>
+<td id="T_aafeb_row6_col2" class="data row6 col2">-21.5</td>
+<td id="T_aafeb_row6_col3" class="data row6 col3">28.99</td>
+<td id="T_aafeb_row6_col4" class="data row6 col4">35.40</td>
+<td id="T_aafeb_row6_col5" class="data row6 col5">-0.064</td>
+<td id="T_aafeb_row6_col6" class="data row6 col6">-0.047</td>
 </tr>
 <tr class="even">
-<td id="T_14045_row7_col0" class="data row7 col0">2022-01-17</td>
-<td id="T_14045_row7_col1" class="data row7 col1">150.5</td>
-<td id="T_14045_row7_col2" class="data row7 col2">-20.5</td>
-<td id="T_14045_row7_col3" class="data row7 col3">29.39</td>
-<td id="T_14045_row7_col4" class="data row7 col4">35.34</td>
-<td id="T_14045_row7_col5" class="data row7 col5">-0.066</td>
-<td id="T_14045_row7_col6" class="data row7 col6">-0.178</td>
+<td id="T_aafeb_row7_col0" class="data row7 col0">2022-01-17</td>
+<td id="T_aafeb_row7_col1" class="data row7 col1">150.5</td>
+<td id="T_aafeb_row7_col2" class="data row7 col2">-20.5</td>
+<td id="T_aafeb_row7_col3" class="data row7 col3">29.39</td>
+<td id="T_aafeb_row7_col4" class="data row7 col4">35.34</td>
+<td id="T_aafeb_row7_col5" class="data row7 col5">-0.066</td>
+<td id="T_aafeb_row7_col6" class="data row7 col6">-0.178</td>
 </tr>
 <tr class="odd">
-<td id="T_14045_row8_col0" class="data row8 col0">2022-01-19</td>
-<td id="T_14045_row8_col1" class="data row8 col1">149.5</td>
-<td id="T_14045_row8_col2" class="data row8 col2">-20.5</td>
-<td id="T_14045_row8_col3" class="data row8 col3">29.92</td>
-<td id="T_14045_row8_col4" class="data row8 col4">35.48</td>
-<td id="T_14045_row8_col5" class="data row8 col5">0.018</td>
-<td id="T_14045_row8_col6" class="data row8 col6">-0.104</td>
+<td id="T_aafeb_row8_col0" class="data row8 col0">2022-01-19</td>
+<td id="T_aafeb_row8_col1" class="data row8 col1">149.5</td>
+<td id="T_aafeb_row8_col2" class="data row8 col2">-20.5</td>
+<td id="T_aafeb_row8_col3" class="data row8 col3">29.92</td>
+<td id="T_aafeb_row8_col4" class="data row8 col4">35.48</td>
+<td id="T_aafeb_row8_col5" class="data row8 col5">0.018</td>
+<td id="T_aafeb_row8_col6" class="data row8 col6">-0.104</td>
 </tr>
 <tr class="even">
-<td id="T_14045_row9_col0" class="data row9 col0">2022-01-21</td>
-<td id="T_14045_row9_col1" class="data row9 col1">149.5</td>
-<td id="T_14045_row9_col2" class="data row9 col2">-19.5</td>
-<td id="T_14045_row9_col3" class="data row9 col3">29.58</td>
-<td id="T_14045_row9_col4" class="data row9 col4">35.12</td>
-<td id="T_14045_row9_col5" class="data row9 col5">-0.161</td>
-<td id="T_14045_row9_col6" class="data row9 col6">-0.035</td>
+<td id="T_aafeb_row9_col0" class="data row9 col0">2022-01-21</td>
+<td id="T_aafeb_row9_col1" class="data row9 col1">149.5</td>
+<td id="T_aafeb_row9_col2" class="data row9 col2">-19.5</td>
+<td id="T_aafeb_row9_col3" class="data row9 col3">29.58</td>
+<td id="T_aafeb_row9_col4" class="data row9 col4">35.12</td>
+<td id="T_aafeb_row9_col5" class="data row9 col5">-0.161</td>
+<td id="T_aafeb_row9_col6" class="data row9 col6">-0.035</td>
 </tr>
 <tr class="odd">
-<td id="T_14045_row10_col0" class="data row10 col0">2022-01-23</td>
-<td id="T_14045_row10_col1" class="data row10 col1">148.5</td>
-<td id="T_14045_row10_col2" class="data row10 col2">-19.5</td>
-<td id="T_14045_row10_col3" class="data row10 col3">28.99</td>
-<td id="T_14045_row10_col4" class="data row10 col4">35.26</td>
-<td id="T_14045_row10_col5" class="data row10 col5">-0.137</td>
-<td id="T_14045_row10_col6" class="data row10 col6">-0.022</td>
+<td id="T_aafeb_row10_col0" class="data row10 col0">2022-01-23</td>
+<td id="T_aafeb_row10_col1" class="data row10 col1">148.5</td>
+<td id="T_aafeb_row10_col2" class="data row10 col2">-19.5</td>
+<td id="T_aafeb_row10_col3" class="data row10 col3">28.99</td>
+<td id="T_aafeb_row10_col4" class="data row10 col4">35.26</td>
+<td id="T_aafeb_row10_col5" class="data row10 col5">-0.137</td>
+<td id="T_aafeb_row10_col6" class="data row10 col6">-0.022</td>
 </tr>
 <tr class="even">
-<td id="T_14045_row11_col0" class="data row11 col0">2022-01-27</td>
-<td id="T_14045_row11_col1" class="data row11 col1">147.5</td>
-<td id="T_14045_row11_col2" class="data row11 col2">-18.5</td>
-<td id="T_14045_row11_col3" class="data row11 col3">29.46</td>
-<td id="T_14045_row11_col4" class="data row11 col4">33.98</td>
-<td id="T_14045_row11_col5" class="data row11 col5">0.265</td>
-<td id="T_14045_row11_col6" class="data row11 col6">0.004</td>
+<td id="T_aafeb_row11_col0" class="data row11 col0">2022-01-27</td>
+<td id="T_aafeb_row11_col1" class="data row11 col1">147.5</td>
+<td id="T_aafeb_row11_col2" class="data row11 col2">-18.5</td>
+<td id="T_aafeb_row11_col3" class="data row11 col3">29.46</td>
+<td id="T_aafeb_row11_col4" class="data row11 col4">33.98</td>
+<td id="T_aafeb_row11_col5" class="data row11 col5">0.265</td>
+<td id="T_aafeb_row11_col6" class="data row11 col6">0.004</td>
 </tr>
 <tr class="odd">
-<td id="T_14045_row12_col0" class="data row12 col0">2022-01-30</td>
-<td id="T_14045_row12_col1" class="data row12 col1">146.5</td>
-<td id="T_14045_row12_col2" class="data row12 col2">-18.5</td>
-<td id="T_14045_row12_col3" class="data row12 col3">30.15</td>
-<td id="T_14045_row12_col4" class="data row12 col4">34.60</td>
-<td id="T_14045_row12_col5" class="data row12 col5">-0.184</td>
-<td id="T_14045_row12_col6" class="data row12 col6">0.143</td>
+<td id="T_aafeb_row12_col0" class="data row12 col0">2022-01-30</td>
+<td id="T_aafeb_row12_col1" class="data row12 col1">146.5</td>
+<td id="T_aafeb_row12_col2" class="data row12 col2">-18.5</td>
+<td id="T_aafeb_row12_col3" class="data row12 col3">30.15</td>
+<td id="T_aafeb_row12_col4" class="data row12 col4">34.60</td>
+<td id="T_aafeb_row12_col5" class="data row12 col5">-0.184</td>
+<td id="T_aafeb_row12_col6" class="data row12 col6">0.143</td>
 </tr>
 <tr class="even">
-<td id="T_14045_row13_col0" class="data row13 col0">2022-02-02</td>
-<td id="T_14045_row13_col1" class="data row13 col1">146.5</td>
-<td id="T_14045_row13_col2" class="data row13 col2">-17.5</td>
-<td id="T_14045_row13_col3" class="data row13 col3">30.59</td>
-<td id="T_14045_row13_col4" class="data row13 col4">34.72</td>
-<td id="T_14045_row13_col5" class="data row13 col5">0.128</td>
-<td id="T_14045_row13_col6" class="data row13 col6">-0.054</td>
+<td id="T_aafeb_row13_col0" class="data row13 col0">2022-02-02</td>
+<td id="T_aafeb_row13_col1" class="data row13 col1">146.5</td>
+<td id="T_aafeb_row13_col2" class="data row13 col2">-17.5</td>
+<td id="T_aafeb_row13_col3" class="data row13 col3">30.59</td>
+<td id="T_aafeb_row13_col4" class="data row13 col4">34.72</td>
+<td id="T_aafeb_row13_col5" class="data row13 col5">0.128</td>
+<td id="T_aafeb_row13_col6" class="data row13 col6">-0.054</td>
 </tr>
 <tr class="odd">
-<td id="T_14045_row14_col0" class="data row14 col0">2022-02-03</td>
-<td id="T_14045_row14_col1" class="data row14 col1">153.5</td>
-<td id="T_14045_row14_col2" class="data row14 col2">-24.5</td>
-<td id="T_14045_row14_col3" class="data row14 col3">27.06</td>
-<td id="T_14045_row14_col4" class="data row14 col4">35.32</td>
-<td id="T_14045_row14_col5" class="data row14 col5">0.550</td>
-<td id="T_14045_row14_col6" class="data row14 col6">-0.797</td>
+<td id="T_aafeb_row14_col0" class="data row14 col0">2022-02-03</td>
+<td id="T_aafeb_row14_col1" class="data row14 col1">153.5</td>
+<td id="T_aafeb_row14_col2" class="data row14 col2">-24.5</td>
+<td id="T_aafeb_row14_col3" class="data row14 col3">27.06</td>
+<td id="T_aafeb_row14_col4" class="data row14 col4">35.32</td>
+<td id="T_aafeb_row14_col5" class="data row14 col5">0.550</td>
+<td id="T_aafeb_row14_col6" class="data row14 col6">-0.797</td>
 </tr>
 <tr class="even">
-<td id="T_14045_row15_col0" class="data row15 col0">2022-02-06</td>
-<td id="T_14045_row15_col1" class="data row15 col1">146.5</td>
-<td id="T_14045_row15_col2" class="data row15 col2">-16.5</td>
-<td id="T_14045_row15_col3" class="data row15 col3">29.14</td>
-<td id="T_14045_row15_col4" class="data row15 col4">34.70</td>
-<td id="T_14045_row15_col5" class="data row15 col5">-0.122</td>
-<td id="T_14045_row15_col6" class="data row15 col6">-0.100</td>
+<td id="T_aafeb_row15_col0" class="data row15 col0">2022-02-06</td>
+<td id="T_aafeb_row15_col1" class="data row15 col1">146.5</td>
+<td id="T_aafeb_row15_col2" class="data row15 col2">-16.5</td>
+<td id="T_aafeb_row15_col3" class="data row15 col3">29.14</td>
+<td id="T_aafeb_row15_col4" class="data row15 col4">34.70</td>
+<td id="T_aafeb_row15_col5" class="data row15 col5">-0.122</td>
+<td id="T_aafeb_row15_col6" class="data row15 col6">-0.100</td>
 </tr>
 <tr class="odd">
-<td id="T_14045_row16_col0" class="data row16 col0">2022-02-07</td>
-<td id="T_14045_row16_col1" class="data row16 col1">145.5</td>
-<td id="T_14045_row16_col2" class="data row16 col2">-16.5</td>
-<td id="T_14045_row16_col3" class="data row16 col3">30.37</td>
-<td id="T_14045_row16_col4" class="data row16 col4">34.06</td>
-<td id="T_14045_row16_col5" class="data row16 col5">-0.104</td>
-<td id="T_14045_row16_col6" class="data row16 col6">0.200</td>
+<td id="T_aafeb_row16_col0" class="data row16 col0">2022-02-07</td>
+<td id="T_aafeb_row16_col1" class="data row16 col1">145.5</td>
+<td id="T_aafeb_row16_col2" class="data row16 col2">-16.5</td>
+<td id="T_aafeb_row16_col3" class="data row16 col3">30.37</td>
+<td id="T_aafeb_row16_col4" class="data row16 col4">34.06</td>
+<td id="T_aafeb_row16_col5" class="data row16 col5">-0.104</td>
+<td id="T_aafeb_row16_col6" class="data row16 col6">0.200</td>
 </tr>
 <tr class="even">
-<td id="T_14045_row17_col0" class="data row17 col0">2022-02-09</td>
-<td id="T_14045_row17_col1" class="data row17 col1">145.5</td>
-<td id="T_14045_row17_col2" class="data row17 col2">-15.5</td>
-<td id="T_14045_row17_col3" class="data row17 col3">29.54</td>
-<td id="T_14045_row17_col4" class="data row17 col4">34.74</td>
-<td id="T_14045_row17_col5" class="data row17 col5">-0.120</td>
-<td id="T_14045_row17_col6" class="data row17 col6">0.064</td>
+<td id="T_aafeb_row17_col0" class="data row17 col0">2022-02-09</td>
+<td id="T_aafeb_row17_col1" class="data row17 col1">145.5</td>
+<td id="T_aafeb_row17_col2" class="data row17 col2">-15.5</td>
+<td id="T_aafeb_row17_col3" class="data row17 col3">29.54</td>
+<td id="T_aafeb_row17_col4" class="data row17 col4">34.74</td>
+<td id="T_aafeb_row17_col5" class="data row17 col5">-0.120</td>
+<td id="T_aafeb_row17_col6" class="data row17 col6">0.064</td>
 </tr>
 <tr class="odd">
-<td id="T_14045_row18_col0" class="data row18 col0">2022-02-12</td>
-<td id="T_14045_row18_col1" class="data row18 col1">153.5</td>
-<td id="T_14045_row18_col2" class="data row18 col2">-26.5</td>
-<td id="T_14045_row18_col3" class="data row18 col3">26.80</td>
-<td id="T_14045_row18_col4" class="data row18 col4">35.38</td>
-<td id="T_14045_row18_col5" class="data row18 col5">-0.124</td>
-<td id="T_14045_row18_col6" class="data row18 col6">0.006</td>
+<td id="T_aafeb_row18_col0" class="data row18 col0">2022-02-12</td>
+<td id="T_aafeb_row18_col1" class="data row18 col1">153.5</td>
+<td id="T_aafeb_row18_col2" class="data row18 col2">-26.5</td>
+<td id="T_aafeb_row18_col3" class="data row18 col3">26.80</td>
+<td id="T_aafeb_row18_col4" class="data row18 col4">35.38</td>
+<td id="T_aafeb_row18_col5" class="data row18 col5">-0.124</td>
+<td id="T_aafeb_row18_col6" class="data row18 col6">0.006</td>
 </tr>
 <tr class="even">
-<td id="T_14045_row19_col0" class="data row19 col0">2022-02-12</td>
-<td id="T_14045_row19_col1" class="data row19 col1">145.5</td>
-<td id="T_14045_row19_col2" class="data row19 col2">-14.5</td>
-<td id="T_14045_row19_col3" class="data row19 col3">29.90</td>
-<td id="T_14045_row19_col4" class="data row19 col4">34.72</td>
-<td id="T_14045_row19_col5" class="data row19 col5">-0.081</td>
-<td id="T_14045_row19_col6" class="data row19 col6">0.034</td>
+<td id="T_aafeb_row19_col0" class="data row19 col0">2022-02-12</td>
+<td id="T_aafeb_row19_col1" class="data row19 col1">145.5</td>
+<td id="T_aafeb_row19_col2" class="data row19 col2">-14.5</td>
+<td id="T_aafeb_row19_col3" class="data row19 col3">29.90</td>
+<td id="T_aafeb_row19_col4" class="data row19 col4">34.72</td>
+<td id="T_aafeb_row19_col5" class="data row19 col5">-0.081</td>
+<td id="T_aafeb_row19_col6" class="data row19 col6">0.034</td>
 </tr>
 <tr class="odd">
-<td id="T_14045_row20_col0" class="data row20 col0">2022-03-25</td>
-<td id="T_14045_row20_col1" class="data row20 col1">144.5</td>
-<td id="T_14045_row20_col2" class="data row20 col2">-13.5</td>
-<td id="T_14045_row20_col3" class="data row20 col3">29.04</td>
-<td id="T_14045_row20_col4" class="data row20 col4">34.75</td>
-<td id="T_14045_row20_col5" class="data row20 col5">-0.457</td>
-<td id="T_14045_row20_col6" class="data row20 col6">0.360</td>
+<td id="T_aafeb_row20_col0" class="data row20 col0">2022-03-25</td>
+<td id="T_aafeb_row20_col1" class="data row20 col1">144.5</td>
+<td id="T_aafeb_row20_col2" class="data row20 col2">-13.5</td>
+<td id="T_aafeb_row20_col3" class="data row20 col3">29.04</td>
+<td id="T_aafeb_row20_col4" class="data row20 col4">34.75</td>
+<td id="T_aafeb_row20_col5" class="data row20 col5">-0.457</td>
+<td id="T_aafeb_row20_col6" class="data row20 col6">0.360</td>
 </tr>
 <tr class="even">
-<td id="T_14045_row21_col0" class="data row21 col0">2022-04-01</td>
-<td id="T_14045_row21_col1" class="data row21 col1">143.5</td>
-<td id="T_14045_row21_col2" class="data row21 col2">-12.5</td>
-<td id="T_14045_row21_col3" class="data row21 col3">30.14</td>
-<td id="T_14045_row21_col4" class="data row21 col4">34.44</td>
-<td id="T_14045_row21_col5" class="data row21 col5">0.025</td>
-<td id="T_14045_row21_col6" class="data row21 col6">-0.018</td>
+<td id="T_aafeb_row21_col0" class="data row21 col0">2022-04-01</td>
+<td id="T_aafeb_row21_col1" class="data row21 col1">143.5</td>
+<td id="T_aafeb_row21_col2" class="data row21 col2">-12.5</td>
+<td id="T_aafeb_row21_col3" class="data row21 col3">30.14</td>
+<td id="T_aafeb_row21_col4" class="data row21 col4">34.44</td>
+<td id="T_aafeb_row21_col5" class="data row21 col5">0.025</td>
+<td id="T_aafeb_row21_col6" class="data row21 col6">-0.018</td>
 </tr>
 <tr class="odd">
-<td id="T_14045_row22_col0" class="data row22 col0">2022-04-09</td>
-<td id="T_14045_row22_col1" class="data row22 col1">143.5</td>
-<td id="T_14045_row22_col2" class="data row22 col2">-11.5</td>
-<td id="T_14045_row22_col3" class="data row22 col3">29.93</td>
-<td id="T_14045_row22_col4" class="data row22 col4">34.56</td>
-<td id="T_14045_row22_col5" class="data row22 col5">-0.097</td>
-<td id="T_14045_row22_col6" class="data row22 col6">0.144</td>
+<td id="T_aafeb_row22_col0" class="data row22 col0">2022-04-09</td>
+<td id="T_aafeb_row22_col1" class="data row22 col1">143.5</td>
+<td id="T_aafeb_row22_col2" class="data row22 col2">-11.5</td>
+<td id="T_aafeb_row22_col3" class="data row22 col3">29.93</td>
+<td id="T_aafeb_row22_col4" class="data row22 col4">34.56</td>
+<td id="T_aafeb_row22_col5" class="data row22 col5">-0.097</td>
+<td id="T_aafeb_row22_col6" class="data row22 col6">0.144</td>
 </tr>
 <tr class="even">
-<td id="T_14045_row23_col0" class="data row23 col0">2022-04-14</td>
-<td id="T_14045_row23_col1" class="data row23 col1">143.5</td>
-<td id="T_14045_row23_col2" class="data row23 col2">-10.5</td>
-<td id="T_14045_row23_col3" class="data row23 col3">29.48</td>
-<td id="T_14045_row23_col4" class="data row23 col4">34.42</td>
-<td id="T_14045_row23_col5" class="data row23 col5">-0.041</td>
-<td id="T_14045_row23_col6" class="data row23 col6">0.078</td>
+<td id="T_aafeb_row23_col0" class="data row23 col0">2022-04-14</td>
+<td id="T_aafeb_row23_col1" class="data row23 col1">143.5</td>
+<td id="T_aafeb_row23_col2" class="data row23 col2">-10.5</td>
+<td id="T_aafeb_row23_col3" class="data row23 col3">29.48</td>
+<td id="T_aafeb_row23_col4" class="data row23 col4">34.42</td>
+<td id="T_aafeb_row23_col5" class="data row23 col5">-0.041</td>
+<td id="T_aafeb_row23_col6" class="data row23 col6">0.078</td>
 </tr>
 <tr class="odd">
-<td id="T_14045_row24_col0" class="data row24 col0">2022-04-21</td>
-<td id="T_14045_row24_col1" class="data row24 col1">143.5</td>
-<td id="T_14045_row24_col2" class="data row24 col2">-9.5</td>
-<td id="T_14045_row24_col3" class="data row24 col3">29.56</td>
-<td id="T_14045_row24_col4" class="data row24 col4">34.19</td>
-<td id="T_14045_row24_col5" class="data row24 col5">0.059</td>
-<td id="T_14045_row24_col6" class="data row24 col6">0.034</td>
+<td id="T_aafeb_row24_col0" class="data row24 col0">2022-04-21</td>
+<td id="T_aafeb_row24_col1" class="data row24 col1">143.5</td>
+<td id="T_aafeb_row24_col2" class="data row24 col2">-9.5</td>
+<td id="T_aafeb_row24_col3" class="data row24 col3">29.56</td>
+<td id="T_aafeb_row24_col4" class="data row24 col4">34.19</td>
+<td id="T_aafeb_row24_col5" class="data row24 col5">0.059</td>
+<td id="T_aafeb_row24_col6" class="data row24 col6">0.034</td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
+</figure>
 </div>
 </div>
 </section>
 <section id="match-extracted-data-to-tracking-data" class="level2">
 <h2 class="anchored" data-anchor-id="match-extracted-data-to-tracking-data">Match extracted data to tracking data</h2>
 <p>We will match up the eReefs data with our tracking detections by combining the two datasets based on common date, longitude and latitude values.</p>
-<div class="cell" data-execution_count="8">
+<div id="aa736e9a" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename lon and lat columns of extracted_data to longitude, latitude (to match those of data)</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>extracted_data <span class="op">=</span> extracted_data.rename(columns <span class="op">=</span> {</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'lon'</span>: <span class="st">'longitude'</span>, </span>
@@ -1483,308 +1507,314 @@ Extraction time: 0 min 46 sec.</code></pre>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>display(tbl_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell scroll_box_xy" data-execution_count="9">
+<div id="tbl-combined-data" class="cell scroll_box_xy quarto-float anchored" data-execution_count="9">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-combined-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Loggerhead Sea Turtle (<em>Caretta caretta</em>) tracking detections (Strydom, 2022) and corresponding eReefs daily mean temperature, salinity, east- and northward current velocities (u, v respectively).
+</figcaption>
+<div aria-describedby="tbl-combined-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display" data-execution_count="9">
 <style type="text/css">
 </style>
 
-<div id="tbl-combined-data" class="anchored">
-<table id="T_c67c8" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<caption>Table&nbsp;3: Loggerhead Sea Turtle (<em>Caretta caretta</em>) tracking detections (Strydom, 2022) and corresponding eReefs daily mean temperature, salinity, east- and northward current velocities (u, v respectively).</caption>
+<table id="T_88f64" class="do-not-create-environment cell scroll_box_xy caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_c67c8_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">date</th>
-<th id="T_c67c8_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">time</th>
-<th id="T_c67c8_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">longitude</th>
-<th id="T_c67c8_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">latitude</th>
-<th id="T_c67c8_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">record_id</th>
-<th id="T_c67c8_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">temp</th>
-<th id="T_c67c8_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">salt</th>
-<th id="T_c67c8_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th">u</th>
-<th id="T_c67c8_level0_col8" class="col_heading level0 col8" data-quarto-table-cell-role="th">v</th>
+<th id="T_88f64_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">date</th>
+<th id="T_88f64_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">time</th>
+<th id="T_88f64_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">longitude</th>
+<th id="T_88f64_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">latitude</th>
+<th id="T_88f64_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">record_id</th>
+<th id="T_88f64_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">temp</th>
+<th id="T_88f64_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">salt</th>
+<th id="T_88f64_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th">u</th>
+<th id="T_88f64_level0_col8" class="col_heading level0 col8" data-quarto-table-cell-role="th">v</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_c67c8_row0_col0" class="data row0 col0">2021-12-21</td>
-<td id="T_c67c8_row0_col1" class="data row0 col1">17:57</td>
-<td id="T_c67c8_row0_col2" class="data row0 col2">152.5</td>
-<td id="T_c67c8_row0_col3" class="data row0 col3">-24.5</td>
-<td id="T_c67c8_row0_col4" class="data row0 col4">4022992328</td>
-<td id="T_c67c8_row0_col5" class="data row0 col5">28.09</td>
-<td id="T_c67c8_row0_col6" class="data row0 col6">35.26</td>
-<td id="T_c67c8_row0_col7" class="data row0 col7">0.071</td>
-<td id="T_c67c8_row0_col8" class="data row0 col8">-0.020</td>
+<td id="T_88f64_row0_col0" class="data row0 col0">2021-12-21</td>
+<td id="T_88f64_row0_col1" class="data row0 col1">17:57</td>
+<td id="T_88f64_row0_col2" class="data row0 col2">152.5</td>
+<td id="T_88f64_row0_col3" class="data row0 col3">-24.5</td>
+<td id="T_88f64_row0_col4" class="data row0 col4">4022992328</td>
+<td id="T_88f64_row0_col5" class="data row0 col5">28.09</td>
+<td id="T_88f64_row0_col6" class="data row0 col6">35.26</td>
+<td id="T_88f64_row0_col7" class="data row0 col7">0.071</td>
+<td id="T_88f64_row0_col8" class="data row0 col8">-0.020</td>
 </tr>
 <tr class="even">
-<td id="T_c67c8_row1_col0" class="data row1 col0">2022-01-02</td>
-<td id="T_c67c8_row1_col1" class="data row1 col1">21:49</td>
-<td id="T_c67c8_row1_col2" class="data row1 col2">153.5</td>
-<td id="T_c67c8_row1_col3" class="data row1 col3">-25.5</td>
-<td id="T_c67c8_row1_col4" class="data row1 col4">4022992329</td>
-<td id="T_c67c8_row1_col5" class="data row1 col5">26.00</td>
-<td id="T_c67c8_row1_col6" class="data row1 col6">35.30</td>
-<td id="T_c67c8_row1_col7" class="data row1 col7">-0.035</td>
-<td id="T_c67c8_row1_col8" class="data row1 col8">0.038</td>
+<td id="T_88f64_row1_col0" class="data row1 col0">2022-01-02</td>
+<td id="T_88f64_row1_col1" class="data row1 col1">21:49</td>
+<td id="T_88f64_row1_col2" class="data row1 col2">153.5</td>
+<td id="T_88f64_row1_col3" class="data row1 col3">-25.5</td>
+<td id="T_88f64_row1_col4" class="data row1 col4">4022992329</td>
+<td id="T_88f64_row1_col5" class="data row1 col5">26.00</td>
+<td id="T_88f64_row1_col6" class="data row1 col6">35.30</td>
+<td id="T_88f64_row1_col7" class="data row1 col7">-0.035</td>
+<td id="T_88f64_row1_col8" class="data row1 col8">0.038</td>
 </tr>
 <tr class="odd">
-<td id="T_c67c8_row2_col0" class="data row2 col0">2022-01-05</td>
-<td id="T_c67c8_row2_col1" class="data row2 col1">07:33</td>
-<td id="T_c67c8_row2_col2" class="data row2 col2">152.5</td>
-<td id="T_c67c8_row2_col3" class="data row2 col3">-23.5</td>
-<td id="T_c67c8_row2_col4" class="data row2 col4">4022992304</td>
-<td id="T_c67c8_row2_col5" class="data row2 col5">25.64</td>
-<td id="T_c67c8_row2_col6" class="data row2 col6">35.23</td>
-<td id="T_c67c8_row2_col7" class="data row2 col7">0.030</td>
-<td id="T_c67c8_row2_col8" class="data row2 col8">0.015</td>
+<td id="T_88f64_row2_col0" class="data row2 col0">2022-01-05</td>
+<td id="T_88f64_row2_col1" class="data row2 col1">07:33</td>
+<td id="T_88f64_row2_col2" class="data row2 col2">152.5</td>
+<td id="T_88f64_row2_col3" class="data row2 col3">-23.5</td>
+<td id="T_88f64_row2_col4" class="data row2 col4">4022992304</td>
+<td id="T_88f64_row2_col5" class="data row2 col5">25.64</td>
+<td id="T_88f64_row2_col6" class="data row2 col6">35.23</td>
+<td id="T_88f64_row2_col7" class="data row2 col7">0.030</td>
+<td id="T_88f64_row2_col8" class="data row2 col8">0.015</td>
 </tr>
 <tr class="even">
-<td id="T_c67c8_row3_col0" class="data row3 col0">2022-01-06</td>
-<td id="T_c67c8_row3_col1" class="data row3 col1">05:03</td>
-<td id="T_c67c8_row3_col2" class="data row3 col2">151.5</td>
-<td id="T_c67c8_row3_col3" class="data row3 col3">-23.5</td>
-<td id="T_c67c8_row3_col4" class="data row3 col4">4022992302</td>
-<td id="T_c67c8_row3_col5" class="data row3 col5">28.13</td>
-<td id="T_c67c8_row3_col6" class="data row3 col6">35.41</td>
-<td id="T_c67c8_row3_col7" class="data row3 col7">-0.033</td>
-<td id="T_c67c8_row3_col8" class="data row3 col8">0.015</td>
+<td id="T_88f64_row3_col0" class="data row3 col0">2022-01-06</td>
+<td id="T_88f64_row3_col1" class="data row3 col1">05:03</td>
+<td id="T_88f64_row3_col2" class="data row3 col2">151.5</td>
+<td id="T_88f64_row3_col3" class="data row3 col3">-23.5</td>
+<td id="T_88f64_row3_col4" class="data row3 col4">4022992302</td>
+<td id="T_88f64_row3_col5" class="data row3 col5">28.13</td>
+<td id="T_88f64_row3_col6" class="data row3 col6">35.41</td>
+<td id="T_88f64_row3_col7" class="data row3 col7">-0.033</td>
+<td id="T_88f64_row3_col8" class="data row3 col8">0.015</td>
 </tr>
 <tr class="odd">
-<td id="T_c67c8_row4_col0" class="data row4 col0">2022-01-09</td>
-<td id="T_c67c8_row4_col1" class="data row4 col1">20:25</td>
-<td id="T_c67c8_row4_col2" class="data row4 col2">151.5</td>
-<td id="T_c67c8_row4_col3" class="data row4 col3">-22.5</td>
-<td id="T_c67c8_row4_col4" class="data row4 col4">4022992319</td>
-<td id="T_c67c8_row4_col5" class="data row4 col5">29.24</td>
-<td id="T_c67c8_row4_col6" class="data row4 col6">35.34</td>
-<td id="T_c67c8_row4_col7" class="data row4 col7">0.001</td>
-<td id="T_c67c8_row4_col8" class="data row4 col8">-0.103</td>
+<td id="T_88f64_row4_col0" class="data row4 col0">2022-01-09</td>
+<td id="T_88f64_row4_col1" class="data row4 col1">20:25</td>
+<td id="T_88f64_row4_col2" class="data row4 col2">151.5</td>
+<td id="T_88f64_row4_col3" class="data row4 col3">-22.5</td>
+<td id="T_88f64_row4_col4" class="data row4 col4">4022992319</td>
+<td id="T_88f64_row4_col5" class="data row4 col5">29.24</td>
+<td id="T_88f64_row4_col6" class="data row4 col6">35.34</td>
+<td id="T_88f64_row4_col7" class="data row4 col7">0.001</td>
+<td id="T_88f64_row4_col8" class="data row4 col8">-0.103</td>
 </tr>
 <tr class="even">
-<td id="T_c67c8_row5_col0" class="data row5 col0">2022-01-13</td>
-<td id="T_c67c8_row5_col1" class="data row5 col1">06:28</td>
-<td id="T_c67c8_row5_col2" class="data row5 col2">151.5</td>
-<td id="T_c67c8_row5_col3" class="data row5 col3">-21.5</td>
-<td id="T_c67c8_row5_col4" class="data row5 col4">4022992308</td>
-<td id="T_c67c8_row5_col5" class="data row5 col5">28.42</td>
-<td id="T_c67c8_row5_col6" class="data row5 col6">35.25</td>
-<td id="T_c67c8_row5_col7" class="data row5 col7">-0.095</td>
-<td id="T_c67c8_row5_col8" class="data row5 col8">0.016</td>
+<td id="T_88f64_row5_col0" class="data row5 col0">2022-01-13</td>
+<td id="T_88f64_row5_col1" class="data row5 col1">06:28</td>
+<td id="T_88f64_row5_col2" class="data row5 col2">151.5</td>
+<td id="T_88f64_row5_col3" class="data row5 col3">-21.5</td>
+<td id="T_88f64_row5_col4" class="data row5 col4">4022992308</td>
+<td id="T_88f64_row5_col5" class="data row5 col5">28.42</td>
+<td id="T_88f64_row5_col6" class="data row5 col6">35.25</td>
+<td id="T_88f64_row5_col7" class="data row5 col7">-0.095</td>
+<td id="T_88f64_row5_col8" class="data row5 col8">0.016</td>
 </tr>
 <tr class="odd">
-<td id="T_c67c8_row6_col0" class="data row6 col0">2022-01-14</td>
-<td id="T_c67c8_row6_col1" class="data row6 col1">18:26</td>
-<td id="T_c67c8_row6_col2" class="data row6 col2">150.5</td>
-<td id="T_c67c8_row6_col3" class="data row6 col3">-21.5</td>
-<td id="T_c67c8_row6_col4" class="data row6 col4">4022992318</td>
-<td id="T_c67c8_row6_col5" class="data row6 col5">28.99</td>
-<td id="T_c67c8_row6_col6" class="data row6 col6">35.40</td>
-<td id="T_c67c8_row6_col7" class="data row6 col7">-0.064</td>
-<td id="T_c67c8_row6_col8" class="data row6 col8">-0.047</td>
+<td id="T_88f64_row6_col0" class="data row6 col0">2022-01-14</td>
+<td id="T_88f64_row6_col1" class="data row6 col1">18:26</td>
+<td id="T_88f64_row6_col2" class="data row6 col2">150.5</td>
+<td id="T_88f64_row6_col3" class="data row6 col3">-21.5</td>
+<td id="T_88f64_row6_col4" class="data row6 col4">4022992318</td>
+<td id="T_88f64_row6_col5" class="data row6 col5">28.99</td>
+<td id="T_88f64_row6_col6" class="data row6 col6">35.40</td>
+<td id="T_88f64_row6_col7" class="data row6 col7">-0.064</td>
+<td id="T_88f64_row6_col8" class="data row6 col8">-0.047</td>
 </tr>
 <tr class="even">
-<td id="T_c67c8_row7_col0" class="data row7 col0">2022-01-17</td>
-<td id="T_c67c8_row7_col1" class="data row7 col1">17:06</td>
-<td id="T_c67c8_row7_col2" class="data row7 col2">150.5</td>
-<td id="T_c67c8_row7_col3" class="data row7 col3">-20.5</td>
-<td id="T_c67c8_row7_col4" class="data row7 col4">4022992330</td>
-<td id="T_c67c8_row7_col5" class="data row7 col5">29.39</td>
-<td id="T_c67c8_row7_col6" class="data row7 col6">35.34</td>
-<td id="T_c67c8_row7_col7" class="data row7 col7">-0.066</td>
-<td id="T_c67c8_row7_col8" class="data row7 col8">-0.178</td>
+<td id="T_88f64_row7_col0" class="data row7 col0">2022-01-17</td>
+<td id="T_88f64_row7_col1" class="data row7 col1">17:06</td>
+<td id="T_88f64_row7_col2" class="data row7 col2">150.5</td>
+<td id="T_88f64_row7_col3" class="data row7 col3">-20.5</td>
+<td id="T_88f64_row7_col4" class="data row7 col4">4022992330</td>
+<td id="T_88f64_row7_col5" class="data row7 col5">29.39</td>
+<td id="T_88f64_row7_col6" class="data row7 col6">35.34</td>
+<td id="T_88f64_row7_col7" class="data row7 col7">-0.066</td>
+<td id="T_88f64_row7_col8" class="data row7 col8">-0.178</td>
 </tr>
 <tr class="odd">
-<td id="T_c67c8_row8_col0" class="data row8 col0">2022-01-19</td>
-<td id="T_c67c8_row8_col1" class="data row8 col1">17:44</td>
-<td id="T_c67c8_row8_col2" class="data row8 col2">149.5</td>
-<td id="T_c67c8_row8_col3" class="data row8 col3">-20.5</td>
-<td id="T_c67c8_row8_col4" class="data row8 col4">4022992320</td>
-<td id="T_c67c8_row8_col5" class="data row8 col5">29.92</td>
-<td id="T_c67c8_row8_col6" class="data row8 col6">35.48</td>
-<td id="T_c67c8_row8_col7" class="data row8 col7">0.018</td>
-<td id="T_c67c8_row8_col8" class="data row8 col8">-0.104</td>
+<td id="T_88f64_row8_col0" class="data row8 col0">2022-01-19</td>
+<td id="T_88f64_row8_col1" class="data row8 col1">17:44</td>
+<td id="T_88f64_row8_col2" class="data row8 col2">149.5</td>
+<td id="T_88f64_row8_col3" class="data row8 col3">-20.5</td>
+<td id="T_88f64_row8_col4" class="data row8 col4">4022992320</td>
+<td id="T_88f64_row8_col5" class="data row8 col5">29.92</td>
+<td id="T_88f64_row8_col6" class="data row8 col6">35.48</td>
+<td id="T_88f64_row8_col7" class="data row8 col7">0.018</td>
+<td id="T_88f64_row8_col8" class="data row8 col8">-0.104</td>
 </tr>
 <tr class="even">
-<td id="T_c67c8_row9_col0" class="data row9 col0">2022-01-21</td>
-<td id="T_c67c8_row9_col1" class="data row9 col1">07:22</td>
-<td id="T_c67c8_row9_col2" class="data row9 col2">149.5</td>
-<td id="T_c67c8_row9_col3" class="data row9 col3">-19.5</td>
-<td id="T_c67c8_row9_col4" class="data row9 col4">4022992316</td>
-<td id="T_c67c8_row9_col5" class="data row9 col5">29.58</td>
-<td id="T_c67c8_row9_col6" class="data row9 col6">35.12</td>
-<td id="T_c67c8_row9_col7" class="data row9 col7">-0.161</td>
-<td id="T_c67c8_row9_col8" class="data row9 col8">-0.035</td>
+<td id="T_88f64_row9_col0" class="data row9 col0">2022-01-21</td>
+<td id="T_88f64_row9_col1" class="data row9 col1">07:22</td>
+<td id="T_88f64_row9_col2" class="data row9 col2">149.5</td>
+<td id="T_88f64_row9_col3" class="data row9 col3">-19.5</td>
+<td id="T_88f64_row9_col4" class="data row9 col4">4022992316</td>
+<td id="T_88f64_row9_col5" class="data row9 col5">29.58</td>
+<td id="T_88f64_row9_col6" class="data row9 col6">35.12</td>
+<td id="T_88f64_row9_col7" class="data row9 col7">-0.161</td>
+<td id="T_88f64_row9_col8" class="data row9 col8">-0.035</td>
 </tr>
 <tr class="odd">
-<td id="T_c67c8_row10_col0" class="data row10 col0">2022-01-23</td>
-<td id="T_c67c8_row10_col1" class="data row10 col1">07:02</td>
-<td id="T_c67c8_row10_col2" class="data row10 col2">148.5</td>
-<td id="T_c67c8_row10_col3" class="data row10 col3">-19.5</td>
-<td id="T_c67c8_row10_col4" class="data row10 col4">4022992323</td>
-<td id="T_c67c8_row10_col5" class="data row10 col5">28.99</td>
-<td id="T_c67c8_row10_col6" class="data row10 col6">35.26</td>
-<td id="T_c67c8_row10_col7" class="data row10 col7">-0.137</td>
-<td id="T_c67c8_row10_col8" class="data row10 col8">-0.022</td>
+<td id="T_88f64_row10_col0" class="data row10 col0">2022-01-23</td>
+<td id="T_88f64_row10_col1" class="data row10 col1">07:02</td>
+<td id="T_88f64_row10_col2" class="data row10 col2">148.5</td>
+<td id="T_88f64_row10_col3" class="data row10 col3">-19.5</td>
+<td id="T_88f64_row10_col4" class="data row10 col4">4022992323</td>
+<td id="T_88f64_row10_col5" class="data row10 col5">28.99</td>
+<td id="T_88f64_row10_col6" class="data row10 col6">35.26</td>
+<td id="T_88f64_row10_col7" class="data row10 col7">-0.137</td>
+<td id="T_88f64_row10_col8" class="data row10 col8">-0.022</td>
 </tr>
 <tr class="even">
-<td id="T_c67c8_row11_col0" class="data row11 col0">2022-01-27</td>
-<td id="T_c67c8_row11_col1" class="data row11 col1">17:00</td>
-<td id="T_c67c8_row11_col2" class="data row11 col2">147.5</td>
-<td id="T_c67c8_row11_col3" class="data row11 col3">-18.5</td>
-<td id="T_c67c8_row11_col4" class="data row11 col4">4022992327</td>
-<td id="T_c67c8_row11_col5" class="data row11 col5">29.46</td>
-<td id="T_c67c8_row11_col6" class="data row11 col6">33.98</td>
-<td id="T_c67c8_row11_col7" class="data row11 col7">0.265</td>
-<td id="T_c67c8_row11_col8" class="data row11 col8">0.004</td>
+<td id="T_88f64_row11_col0" class="data row11 col0">2022-01-27</td>
+<td id="T_88f64_row11_col1" class="data row11 col1">17:00</td>
+<td id="T_88f64_row11_col2" class="data row11 col2">147.5</td>
+<td id="T_88f64_row11_col3" class="data row11 col3">-18.5</td>
+<td id="T_88f64_row11_col4" class="data row11 col4">4022992327</td>
+<td id="T_88f64_row11_col5" class="data row11 col5">29.46</td>
+<td id="T_88f64_row11_col6" class="data row11 col6">33.98</td>
+<td id="T_88f64_row11_col7" class="data row11 col7">0.265</td>
+<td id="T_88f64_row11_col8" class="data row11 col8">0.004</td>
 </tr>
 <tr class="odd">
-<td id="T_c67c8_row12_col0" class="data row12 col0">2022-01-30</td>
-<td id="T_c67c8_row12_col1" class="data row12 col1">17:02</td>
-<td id="T_c67c8_row12_col2" class="data row12 col2">146.5</td>
-<td id="T_c67c8_row12_col3" class="data row12 col3">-18.5</td>
-<td id="T_c67c8_row12_col4" class="data row12 col4">4022992314</td>
-<td id="T_c67c8_row12_col5" class="data row12 col5">30.15</td>
-<td id="T_c67c8_row12_col6" class="data row12 col6">34.60</td>
-<td id="T_c67c8_row12_col7" class="data row12 col7">-0.184</td>
-<td id="T_c67c8_row12_col8" class="data row12 col8">0.143</td>
+<td id="T_88f64_row12_col0" class="data row12 col0">2022-01-30</td>
+<td id="T_88f64_row12_col1" class="data row12 col1">17:02</td>
+<td id="T_88f64_row12_col2" class="data row12 col2">146.5</td>
+<td id="T_88f64_row12_col3" class="data row12 col3">-18.5</td>
+<td id="T_88f64_row12_col4" class="data row12 col4">4022992314</td>
+<td id="T_88f64_row12_col5" class="data row12 col5">30.15</td>
+<td id="T_88f64_row12_col6" class="data row12 col6">34.60</td>
+<td id="T_88f64_row12_col7" class="data row12 col7">-0.184</td>
+<td id="T_88f64_row12_col8" class="data row12 col8">0.143</td>
 </tr>
 <tr class="even">
-<td id="T_c67c8_row13_col0" class="data row13 col0">2022-02-02</td>
-<td id="T_c67c8_row13_col1" class="data row13 col1">09:14</td>
-<td id="T_c67c8_row13_col2" class="data row13 col2">146.5</td>
-<td id="T_c67c8_row13_col3" class="data row13 col3">-17.5</td>
-<td id="T_c67c8_row13_col4" class="data row13 col4">4022992301</td>
-<td id="T_c67c8_row13_col5" class="data row13 col5">30.59</td>
-<td id="T_c67c8_row13_col6" class="data row13 col6">34.72</td>
-<td id="T_c67c8_row13_col7" class="data row13 col7">0.128</td>
-<td id="T_c67c8_row13_col8" class="data row13 col8">-0.054</td>
+<td id="T_88f64_row13_col0" class="data row13 col0">2022-02-02</td>
+<td id="T_88f64_row13_col1" class="data row13 col1">09:14</td>
+<td id="T_88f64_row13_col2" class="data row13 col2">146.5</td>
+<td id="T_88f64_row13_col3" class="data row13 col3">-17.5</td>
+<td id="T_88f64_row13_col4" class="data row13 col4">4022992301</td>
+<td id="T_88f64_row13_col5" class="data row13 col5">30.59</td>
+<td id="T_88f64_row13_col6" class="data row13 col6">34.72</td>
+<td id="T_88f64_row13_col7" class="data row13 col7">0.128</td>
+<td id="T_88f64_row13_col8" class="data row13 col8">-0.054</td>
 </tr>
 <tr class="odd">
-<td id="T_c67c8_row14_col0" class="data row14 col0">2022-02-03</td>
-<td id="T_c67c8_row14_col1" class="data row14 col1">21:37</td>
-<td id="T_c67c8_row14_col2" class="data row14 col2">153.5</td>
-<td id="T_c67c8_row14_col3" class="data row14 col3">-24.5</td>
-<td id="T_c67c8_row14_col4" class="data row14 col4">4022992313</td>
-<td id="T_c67c8_row14_col5" class="data row14 col5">27.06</td>
-<td id="T_c67c8_row14_col6" class="data row14 col6">35.32</td>
-<td id="T_c67c8_row14_col7" class="data row14 col7">0.550</td>
-<td id="T_c67c8_row14_col8" class="data row14 col8">-0.797</td>
+<td id="T_88f64_row14_col0" class="data row14 col0">2022-02-03</td>
+<td id="T_88f64_row14_col1" class="data row14 col1">21:37</td>
+<td id="T_88f64_row14_col2" class="data row14 col2">153.5</td>
+<td id="T_88f64_row14_col3" class="data row14 col3">-24.5</td>
+<td id="T_88f64_row14_col4" class="data row14 col4">4022992313</td>
+<td id="T_88f64_row14_col5" class="data row14 col5">27.06</td>
+<td id="T_88f64_row14_col6" class="data row14 col6">35.32</td>
+<td id="T_88f64_row14_col7" class="data row14 col7">0.550</td>
+<td id="T_88f64_row14_col8" class="data row14 col8">-0.797</td>
 </tr>
 <tr class="even">
-<td id="T_c67c8_row15_col0" class="data row15 col0">2022-02-06</td>
-<td id="T_c67c8_row15_col1" class="data row15 col1">18:25</td>
-<td id="T_c67c8_row15_col2" class="data row15 col2">146.5</td>
-<td id="T_c67c8_row15_col3" class="data row15 col3">-16.5</td>
-<td id="T_c67c8_row15_col4" class="data row15 col4">4022992303</td>
-<td id="T_c67c8_row15_col5" class="data row15 col5">29.14</td>
-<td id="T_c67c8_row15_col6" class="data row15 col6">34.70</td>
-<td id="T_c67c8_row15_col7" class="data row15 col7">-0.122</td>
-<td id="T_c67c8_row15_col8" class="data row15 col8">-0.100</td>
+<td id="T_88f64_row15_col0" class="data row15 col0">2022-02-06</td>
+<td id="T_88f64_row15_col1" class="data row15 col1">18:25</td>
+<td id="T_88f64_row15_col2" class="data row15 col2">146.5</td>
+<td id="T_88f64_row15_col3" class="data row15 col3">-16.5</td>
+<td id="T_88f64_row15_col4" class="data row15 col4">4022992303</td>
+<td id="T_88f64_row15_col5" class="data row15 col5">29.14</td>
+<td id="T_88f64_row15_col6" class="data row15 col6">34.70</td>
+<td id="T_88f64_row15_col7" class="data row15 col7">-0.122</td>
+<td id="T_88f64_row15_col8" class="data row15 col8">-0.100</td>
 </tr>
 <tr class="odd">
-<td id="T_c67c8_row16_col0" class="data row16 col0">2022-02-07</td>
-<td id="T_c67c8_row16_col1" class="data row16 col1">07:15</td>
-<td id="T_c67c8_row16_col2" class="data row16 col2">145.5</td>
-<td id="T_c67c8_row16_col3" class="data row16 col3">-16.5</td>
-<td id="T_c67c8_row16_col4" class="data row16 col4">4022992310</td>
-<td id="T_c67c8_row16_col5" class="data row16 col5">30.37</td>
-<td id="T_c67c8_row16_col6" class="data row16 col6">34.06</td>
-<td id="T_c67c8_row16_col7" class="data row16 col7">-0.104</td>
-<td id="T_c67c8_row16_col8" class="data row16 col8">0.200</td>
+<td id="T_88f64_row16_col0" class="data row16 col0">2022-02-07</td>
+<td id="T_88f64_row16_col1" class="data row16 col1">07:15</td>
+<td id="T_88f64_row16_col2" class="data row16 col2">145.5</td>
+<td id="T_88f64_row16_col3" class="data row16 col3">-16.5</td>
+<td id="T_88f64_row16_col4" class="data row16 col4">4022992310</td>
+<td id="T_88f64_row16_col5" class="data row16 col5">30.37</td>
+<td id="T_88f64_row16_col6" class="data row16 col6">34.06</td>
+<td id="T_88f64_row16_col7" class="data row16 col7">-0.104</td>
+<td id="T_88f64_row16_col8" class="data row16 col8">0.200</td>
 </tr>
 <tr class="even">
-<td id="T_c67c8_row17_col0" class="data row17 col0">2022-02-09</td>
-<td id="T_c67c8_row17_col1" class="data row17 col1">18:33</td>
-<td id="T_c67c8_row17_col2" class="data row17 col2">145.5</td>
-<td id="T_c67c8_row17_col3" class="data row17 col3">-15.5</td>
-<td id="T_c67c8_row17_col4" class="data row17 col4">4022992311</td>
-<td id="T_c67c8_row17_col5" class="data row17 col5">29.54</td>
-<td id="T_c67c8_row17_col6" class="data row17 col6">34.74</td>
-<td id="T_c67c8_row17_col7" class="data row17 col7">-0.120</td>
-<td id="T_c67c8_row17_col8" class="data row17 col8">0.064</td>
+<td id="T_88f64_row17_col0" class="data row17 col0">2022-02-09</td>
+<td id="T_88f64_row17_col1" class="data row17 col1">18:33</td>
+<td id="T_88f64_row17_col2" class="data row17 col2">145.5</td>
+<td id="T_88f64_row17_col3" class="data row17 col3">-15.5</td>
+<td id="T_88f64_row17_col4" class="data row17 col4">4022992311</td>
+<td id="T_88f64_row17_col5" class="data row17 col5">29.54</td>
+<td id="T_88f64_row17_col6" class="data row17 col6">34.74</td>
+<td id="T_88f64_row17_col7" class="data row17 col7">-0.120</td>
+<td id="T_88f64_row17_col8" class="data row17 col8">0.064</td>
 </tr>
 <tr class="odd">
-<td id="T_c67c8_row18_col0" class="data row18 col0">2022-02-12</td>
-<td id="T_c67c8_row18_col1" class="data row18 col1">08:59</td>
-<td id="T_c67c8_row18_col2" class="data row18 col2">153.5</td>
-<td id="T_c67c8_row18_col3" class="data row18 col3">-26.5</td>
-<td id="T_c67c8_row18_col4" class="data row18 col4">4022992324</td>
-<td id="T_c67c8_row18_col5" class="data row18 col5">26.80</td>
-<td id="T_c67c8_row18_col6" class="data row18 col6">35.38</td>
-<td id="T_c67c8_row18_col7" class="data row18 col7">-0.124</td>
-<td id="T_c67c8_row18_col8" class="data row18 col8">0.006</td>
+<td id="T_88f64_row18_col0" class="data row18 col0">2022-02-12</td>
+<td id="T_88f64_row18_col1" class="data row18 col1">08:59</td>
+<td id="T_88f64_row18_col2" class="data row18 col2">153.5</td>
+<td id="T_88f64_row18_col3" class="data row18 col3">-26.5</td>
+<td id="T_88f64_row18_col4" class="data row18 col4">4022992324</td>
+<td id="T_88f64_row18_col5" class="data row18 col5">26.80</td>
+<td id="T_88f64_row18_col6" class="data row18 col6">35.38</td>
+<td id="T_88f64_row18_col7" class="data row18 col7">-0.124</td>
+<td id="T_88f64_row18_col8" class="data row18 col8">0.006</td>
 </tr>
 <tr class="even">
-<td id="T_c67c8_row19_col0" class="data row19 col0">2022-02-12</td>
-<td id="T_c67c8_row19_col1" class="data row19 col1">10:34</td>
-<td id="T_c67c8_row19_col2" class="data row19 col2">145.5</td>
-<td id="T_c67c8_row19_col3" class="data row19 col3">-14.5</td>
-<td id="T_c67c8_row19_col4" class="data row19 col4">4022992325</td>
-<td id="T_c67c8_row19_col5" class="data row19 col5">29.90</td>
-<td id="T_c67c8_row19_col6" class="data row19 col6">34.72</td>
-<td id="T_c67c8_row19_col7" class="data row19 col7">-0.081</td>
-<td id="T_c67c8_row19_col8" class="data row19 col8">0.034</td>
+<td id="T_88f64_row19_col0" class="data row19 col0">2022-02-12</td>
+<td id="T_88f64_row19_col1" class="data row19 col1">10:34</td>
+<td id="T_88f64_row19_col2" class="data row19 col2">145.5</td>
+<td id="T_88f64_row19_col3" class="data row19 col3">-14.5</td>
+<td id="T_88f64_row19_col4" class="data row19 col4">4022992325</td>
+<td id="T_88f64_row19_col5" class="data row19 col5">29.90</td>
+<td id="T_88f64_row19_col6" class="data row19 col6">34.72</td>
+<td id="T_88f64_row19_col7" class="data row19 col7">-0.081</td>
+<td id="T_88f64_row19_col8" class="data row19 col8">0.034</td>
 </tr>
 <tr class="odd">
-<td id="T_c67c8_row20_col0" class="data row20 col0">2022-03-25</td>
-<td id="T_c67c8_row20_col1" class="data row20 col1">07:10</td>
-<td id="T_c67c8_row20_col2" class="data row20 col2">144.5</td>
-<td id="T_c67c8_row20_col3" class="data row20 col3">-13.5</td>
-<td id="T_c67c8_row20_col4" class="data row20 col4">4022992309</td>
-<td id="T_c67c8_row20_col5" class="data row20 col5">29.04</td>
-<td id="T_c67c8_row20_col6" class="data row20 col6">34.75</td>
-<td id="T_c67c8_row20_col7" class="data row20 col7">-0.457</td>
-<td id="T_c67c8_row20_col8" class="data row20 col8">0.360</td>
+<td id="T_88f64_row20_col0" class="data row20 col0">2022-03-25</td>
+<td id="T_88f64_row20_col1" class="data row20 col1">07:10</td>
+<td id="T_88f64_row20_col2" class="data row20 col2">144.5</td>
+<td id="T_88f64_row20_col3" class="data row20 col3">-13.5</td>
+<td id="T_88f64_row20_col4" class="data row20 col4">4022992309</td>
+<td id="T_88f64_row20_col5" class="data row20 col5">29.04</td>
+<td id="T_88f64_row20_col6" class="data row20 col6">34.75</td>
+<td id="T_88f64_row20_col7" class="data row20 col7">-0.457</td>
+<td id="T_88f64_row20_col8" class="data row20 col8">0.360</td>
 </tr>
 <tr class="even">
-<td id="T_c67c8_row21_col0" class="data row21 col0">2022-04-01</td>
-<td id="T_c67c8_row21_col1" class="data row21 col1">18:41</td>
-<td id="T_c67c8_row21_col2" class="data row21 col2">143.5</td>
-<td id="T_c67c8_row21_col3" class="data row21 col3">-12.5</td>
-<td id="T_c67c8_row21_col4" class="data row21 col4">4022992307</td>
-<td id="T_c67c8_row21_col5" class="data row21 col5">30.14</td>
-<td id="T_c67c8_row21_col6" class="data row21 col6">34.44</td>
-<td id="T_c67c8_row21_col7" class="data row21 col7">0.025</td>
-<td id="T_c67c8_row21_col8" class="data row21 col8">-0.018</td>
+<td id="T_88f64_row21_col0" class="data row21 col0">2022-04-01</td>
+<td id="T_88f64_row21_col1" class="data row21 col1">18:41</td>
+<td id="T_88f64_row21_col2" class="data row21 col2">143.5</td>
+<td id="T_88f64_row21_col3" class="data row21 col3">-12.5</td>
+<td id="T_88f64_row21_col4" class="data row21 col4">4022992307</td>
+<td id="T_88f64_row21_col5" class="data row21 col5">30.14</td>
+<td id="T_88f64_row21_col6" class="data row21 col6">34.44</td>
+<td id="T_88f64_row21_col7" class="data row21 col7">0.025</td>
+<td id="T_88f64_row21_col8" class="data row21 col8">-0.018</td>
 </tr>
 <tr class="odd">
-<td id="T_c67c8_row22_col0" class="data row22 col0">2022-04-09</td>
-<td id="T_c67c8_row22_col1" class="data row22 col1">22:00</td>
-<td id="T_c67c8_row22_col2" class="data row22 col2">143.5</td>
-<td id="T_c67c8_row22_col3" class="data row22 col3">-11.5</td>
-<td id="T_c67c8_row22_col4" class="data row22 col4">4022992317</td>
-<td id="T_c67c8_row22_col5" class="data row22 col5">29.93</td>
-<td id="T_c67c8_row22_col6" class="data row22 col6">34.56</td>
-<td id="T_c67c8_row22_col7" class="data row22 col7">-0.097</td>
-<td id="T_c67c8_row22_col8" class="data row22 col8">0.144</td>
+<td id="T_88f64_row22_col0" class="data row22 col0">2022-04-09</td>
+<td id="T_88f64_row22_col1" class="data row22 col1">22:00</td>
+<td id="T_88f64_row22_col2" class="data row22 col2">143.5</td>
+<td id="T_88f64_row22_col3" class="data row22 col3">-11.5</td>
+<td id="T_88f64_row22_col4" class="data row22 col4">4022992317</td>
+<td id="T_88f64_row22_col5" class="data row22 col5">29.93</td>
+<td id="T_88f64_row22_col6" class="data row22 col6">34.56</td>
+<td id="T_88f64_row22_col7" class="data row22 col7">-0.097</td>
+<td id="T_88f64_row22_col8" class="data row22 col8">0.144</td>
 </tr>
 <tr class="even">
-<td id="T_c67c8_row23_col0" class="data row23 col0">2022-04-14</td>
-<td id="T_c67c8_row23_col1" class="data row23 col1">06:31</td>
-<td id="T_c67c8_row23_col2" class="data row23 col2">143.5</td>
-<td id="T_c67c8_row23_col3" class="data row23 col3">-10.5</td>
-<td id="T_c67c8_row23_col4" class="data row23 col4">4022992321</td>
-<td id="T_c67c8_row23_col5" class="data row23 col5">29.48</td>
-<td id="T_c67c8_row23_col6" class="data row23 col6">34.42</td>
-<td id="T_c67c8_row23_col7" class="data row23 col7">-0.041</td>
-<td id="T_c67c8_row23_col8" class="data row23 col8">0.078</td>
+<td id="T_88f64_row23_col0" class="data row23 col0">2022-04-14</td>
+<td id="T_88f64_row23_col1" class="data row23 col1">06:31</td>
+<td id="T_88f64_row23_col2" class="data row23 col2">143.5</td>
+<td id="T_88f64_row23_col3" class="data row23 col3">-10.5</td>
+<td id="T_88f64_row23_col4" class="data row23 col4">4022992321</td>
+<td id="T_88f64_row23_col5" class="data row23 col5">29.48</td>
+<td id="T_88f64_row23_col6" class="data row23 col6">34.42</td>
+<td id="T_88f64_row23_col7" class="data row23 col7">-0.041</td>
+<td id="T_88f64_row23_col8" class="data row23 col8">0.078</td>
 </tr>
 <tr class="odd">
-<td id="T_c67c8_row24_col0" class="data row24 col0">2022-04-21</td>
-<td id="T_c67c8_row24_col1" class="data row24 col1">10:30</td>
-<td id="T_c67c8_row24_col2" class="data row24 col2">143.5</td>
-<td id="T_c67c8_row24_col3" class="data row24 col3">-9.5</td>
-<td id="T_c67c8_row24_col4" class="data row24 col4">4022992305</td>
-<td id="T_c67c8_row24_col5" class="data row24 col5">29.56</td>
-<td id="T_c67c8_row24_col6" class="data row24 col6">34.19</td>
-<td id="T_c67c8_row24_col7" class="data row24 col7">0.059</td>
-<td id="T_c67c8_row24_col8" class="data row24 col8">0.034</td>
+<td id="T_88f64_row24_col0" class="data row24 col0">2022-04-21</td>
+<td id="T_88f64_row24_col1" class="data row24 col1">10:30</td>
+<td id="T_88f64_row24_col2" class="data row24 col2">143.5</td>
+<td id="T_88f64_row24_col3" class="data row24 col3">-9.5</td>
+<td id="T_88f64_row24_col4" class="data row24 col4">4022992305</td>
+<td id="T_88f64_row24_col5" class="data row24 col5">29.56</td>
+<td id="T_88f64_row24_col6" class="data row24 col6">34.19</td>
+<td id="T_88f64_row24_col7" class="data row24 col7">0.059</td>
+<td id="T_88f64_row24_col8" class="data row24 col8">0.034</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>Hooray! We now have our combined dataset of the Loggerhead Sea Turtle tracking detections and the corresponding eReefs daily aggregated data (<a href="#tbl-combined-data">Table&nbsp;3</a>).</p>
+</div>
+<p>Hooray! We now have our combined dataset of the Loggerhead Sea Turtle tracking detections and the corresponding eReefs daily aggregated data (<a href="#tbl-combined-data" class="quarto-xref">Table&nbsp;3</a>).</p>
 <p><br><br><br><br><br><br><br><br><br><br><br>Strydom A. 2022. Wreck Rock Turtle Care - satellite tracking. Data downloaded from <a href="http://seamap.env.duke.edu/dataset/2178">OBIS-SEAMAP</a>; originated from <a href="http://www.seaturtle.org/tracking/index.shtml?project_id=1381">Satellite Tracking and Analysis Tool (STAT)</a>. <a href="https://doi.org/10.15468/k4s6ap">DOI: 10.15468/k4s6ap</a> accessed via <a href="https://www.gbif.org/">GBIF.org</a> on 2023-02-17.</p>
 
 
@@ -1832,6 +1862,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -1900,13 +1957,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1985,10 +2044,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1998,8 +2074,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2011,7 +2096,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -2055,6 +2263,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -2080,6 +2289,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2140,6 +2375,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

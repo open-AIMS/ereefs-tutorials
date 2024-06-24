@@ -2,3 +2,5 @@
 
 /.luarc.json
 .idea
+
+/conda-env

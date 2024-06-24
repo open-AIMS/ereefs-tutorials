@@ -41,7 +41,9 @@ The following are not required but recommended:
 
 ### Rendering process
 
-A github action has been set up to render the website on push to the main remote branch. This section details the manual rendering process.
+TODO: expand this section. It appears that a github action has been set up to render the website on push to the main remote branch, however this file is written as if that is not supported. At the very least, local rendering is required before the github action can update the website as the code is in the `_freeze` directory.
+
+This section details the manual rendering process.
 
 #### 1. Clone the git repository to your machine
 
