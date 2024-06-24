@@ -38,7 +38,11 @@ cartopy.config['data_dir'] = os.getenv('CARTOPY_DIR', cartopy.config.get('data_d
 
 ## Connect to a file on the server
 
-First we need to find the right NetCDF file on the server. The available eReefs data NetCDF files are listed in the [AIMS THREDDS Server catalogue](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html). We will navigate to the eReefs 4 km Hydrodynamic Model daily aggregated data for the month of December 2022 and copy the OPeNDAP data URL.
+First we need to find the right NetCDF file on the server. The available eReefs
+data NetCDF files are listed in the [AIMS THREDDS Server
+catalogue](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html). We
+will navigate to the eReefs 4 km Hydrodynamic Model daily aggregated data for
+the month of December 2022 and copy the OPeNDAP data URL.
 
 ![](images/server_navigation.gif)
 

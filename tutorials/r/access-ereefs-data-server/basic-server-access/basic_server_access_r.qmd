@@ -29,7 +29,6 @@ We will extract the daily mean water temperature for the 10th of December 2022 a
 ```{r RPackages, message=FALSE, warning=FALSE}
 library(RNetCDF) # working with netcdf files (incl. via OPeNDAP)
 library(raster) # creating and manipuling rasters
-# library(rgdal) # package for geospatial analysis
 ```
 
 :::{.callout-note appearance="simple"}
