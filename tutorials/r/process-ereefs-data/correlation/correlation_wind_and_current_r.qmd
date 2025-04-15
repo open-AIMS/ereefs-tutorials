@@ -4,7 +4,8 @@ subtitle: "The effect of wind on surface current"
 ---
 
 :::{.tutorial-description}
-Learn how to use eReefs data to answer the question '**How strong does the wind need to be to set the direction of the surface ocean currents?**' in {{< fa brands r-project >}}.
+Learn how to use eReefs data to answer the question '**How strong does the wind need to be to set the
+direction of the surface ocean currents?**' in {{< fa brands r-project >}}.
 :::
 
 ```{r echo=FALSE}
@@ -13,20 +14,26 @@ knitr::opts_chunk$set(message=FALSE, warning=FALSE)
 
 ## Motivating problem
 
-The East Australian Current (EAC) usually is a strong southward current near Myrmidon and Davies Reefs. During winter months the wind moves in a north eastern direction in the near opposite direction to the EAC. When the wind is low the surface currents are dominated by the EAC. As the wind picks up, at some speed the wind overpowers the EAC and the surface current moves in the direction of the wind.
+The East Australian Current (EAC) usually is a strong southward current near Myrmidon and Davies Reefs.
+During winter months the wind moves in a north eastern direction in the near opposite direction to the EAC.
+When the wind is low the surface currents are dominated by the EAC. As the wind picks up, at some speed the
+wind overpowers the EAC and the surface current moves in the direction of the wind.
 
-We will use the [AIMS eReefs extraction tool](https://extraction.ereefs.aims.gov.au/) to extract data for two locations of interest:
+We will use the [AIMS eReefs extraction tool](https://extraction.ereefs.aims.gov.au/) to extract data for two
+locations of interest:
 
-* Myrmidon Reef which is on the far outer edge of the GBR and is almost right in the middle of the southern Eastern Australian Current; and
+* Myrmidon Reef which is on the far outer edge of the GBR and is almost right in the middle of the southern
+Eastern Australian Current; and
 
 * Davies Reef which is further in the reef matrix, but in a similar sector of the GBR.
 
 The locations of these two reefs are shown in @fig-site-locations.
 
-We then process the data and investigate the relationship between the strength of the wind and the direction of the surface currents for the two locations.
+We then process the data and investigate the relationship between the strength of the wind and the direction
+of the surface currents for the two locations.
 
 ```{r mapSites}
-#| fig-cap: Myrmidon Reef and Davies Reef locations. 
+#| fig-cap: Myrmidon Reef and Davies Reef locations.
 #| label: fig-site-locations
 #| code-fold: true
 #| code-summary: Show code to create map
@@ -34,75 +41,90 @@ We then process the data and investigate the relationship between the strength o
 # Plot site coordinates on an interactive map with reef boundaries
 library(leaflet)
 site_coords <- read.csv("resources/site_coordinates.csv")
-site_map <- site_coords |>  
+site_map <- site_coords |>
     leaflet( # create a blank leaflet map
       options = leafletOptions(attributionControl=FALSE) # remove the 'leaflet' watermark
-    ) |>  
+    ) |>
     addTiles() |> # add a basemap (OpenStreetMap by default)
     addMarkers() |> # add a marker at the given coordinates
     addScaleBar()
 
 # Add the GBR reef features (WMS layer) to the map
-site_map <- site_map |>  
+site_map <- site_map |>
     addWMSTiles(
       baseUrl = "https://maps.eatlas.org.au/maps/wms?", # Link to WMS server
       layers = c("ea:GBR_GBRMPA_GBR-features"), # Names of layers (located in the WMS server) to display
       options = WMSTileOptions(format = "image/png", transparent = TRUE)
-    ) 
-                
+    )
+
 # Display the map centred at our site
-site_map |>  
+site_map |>
     setView(lng = mean(site_coords$lon), lat = mean(site_coords$lat), zoom = 8)
 ```
 
 ## Analysis method
 
-To determine the relation between the wind and the surface currents we will use the AIMS eReefs extraction tool to pull out hourly time series wind and current data for our two locations of interest. We will then look at the correlation between the wind and current vectors, where a correlation of 1 indicates they are pointing in the same direction, and -1 indicated they are in opposite directions.
+To determine the relation between the wind and the surface currents we will use the AIMS eReefs extraction
+tool to pull out hourly time series wind and current data for our two locations of interest. We will then
+look at the correlation between the wind and current vectors, where a correlation of 1 indicates they are
+pointing in the same direction, and -1 indicated they are in opposite directions.
 
 
 ## Setting up to get the data
 
-To extract the time series data using the extraction tool we need to create a CSV file containing the sites of interest. This file needs to contain the coordinates and names of the sites. To create this I first added my points manually in Google Earth Pro. This was done to simply get the location of Myrmidon and Davies Reefs. Using Google Earth to create your CSV file for the extraction tool is only useful if you don't already know the coordinates of your sites.
+To extract the time series data using the extraction tool we need to create a CSV file containing the sites
+of interest. This file needs to contain the coordinates and names of the sites. To create this I first added
+my points manually in Google Earth Pro. This was done to simply get the location of Myrmidon and Davies Reefs.
+Using Google Earth to create your CSV file for the extraction tool is only useful if you don't already know
+the coordinates of your sites.
 
 
 [Screenshot of Google Earth Pro with Myromidon and Davies reef sites](images/google-earth-reef-locatons.jpg)
 
-The points can be added using the `Add placemark` tool (looks like a pin). The locations can be seen by displaying the placemark properties. The resulting KML file can be found [here](resources/extraction-tool-locations.kml).
+The points can be added using the `Add placemark` tool (looks like a pin). The locations can be seen by
+displaying the placemark properties. The resulting KML file can be found [here](resources/extraction-tool-locations.kml).
 
 The location of the two sites were copied to create the [CSV file for the data extraction tool](resources/site_coordinates.csv).
 
 
 ## Extracting the data
 
-The CSV file was uploaded to the [AIMS extraction tool](https://extraction.ereefs.aims.gov.au/) and the extraction was performed with the following settings: 
+The CSV file was uploaded to the [AIMS extraction tool](https://extraction.ereefs.aims.gov.au/) and the
+extraction was performed with the following settings:
 
-* *Data collection*: GBR1 Hydro (Version 2) 
+* *Data collection*: GBR1 Hydro (Version 2)
 
-* *Variables*: 
+* *Variables*:
     - Eastward wind speed (`wspeed_u`)
     - Northward wind speed (`wspeed_v`)
     - Northward current (`v`)
-    - Eastward current (`u`) 
+    - Eastward current (`u`)
 
-* *Date range*: 1 January 2019 - 31 December 2019 
+* *Date range*: 1 January 2019 - 31 December 2019
 
-* *Time step*: hourly 
+* *Time step*: hourly
 
 * *Depths*: -2.35 m
 
-Once the extraction request was submitted the dataset was created after an one hour of processing the data was available for download from [Extraction request: Example dataset: Wind-vs-Current at Davies and Myrmidon Reefs (2019)](https://extraction.ereefs.aims.gov.au/data/2009.c451dc3).
+Once the extraction request was submitted, the dataset was created after an hour of data processing. Then,
+the data was available for download from [Extraction request: Example dataset: Wind-vs-Current at Davies and
+Myrmidon Reefs (2019)](https://extraction.ereefs.aims.gov.au/data/2009.c451dc3).
 
 ## Downloading the data
 
-In this notebook we will download the data using scripting. There is no need to re-run the extraction request as each extraction performed by the extraction tool has a permanent public page created for it that can be used to facilitate sharing of the data.
+In this notebook, we will download the data using scripting. There is no need to re-run the extraction request
+as each extraction performed by the extraction tool has a permanent public page created for it that can be
+used to facilitate sharing of the data.
 
-Let's first create a temporary folder to contain the downloaded data. Note: The temp folder is excluded using the .gitignore so it is not saved to the code repository, which is why we must reproduce it.
+Let's first create a temporary folder to contain the downloaded data.
 
 ```{r checkTempDir}
 if (!file.exists("temp")) dir.create("temp")
 ```
 
-Now let's download the data. The file to download is 12.9 MB and so this download might take a little while. To allow us to re-run this script without having to wait for the download each time we first check that the download has not already been done.
+Now let's download the data. The file to download is 12.9 MB and so this download might take a little while.
+To allow us to re-run this script without having to wait for the download each time we first check that the
+download has not already been done.
 
 ```{r downloadData}
 extractionfile <- file.path("temp", "2009.c451dc3-collected.csv")
@@ -129,44 +151,65 @@ library(tidyverse)
 data <- read.csv(extractionfile) |> clean_names() |> glimpse()
 ```
 
-The first thing we might notice about the data is that, somewhat confusingly, we have a bunch of aggregation statistics (mean, median, p5, p95, lowest, highest) which all take the same value. This is because we have extracted hourly "aggregated" data, but the time step for the eReefs model is also hourly. Therefore each row represents an aggregation over a single data point. Don't worry if you are confused by this, it's not important. Just think of this as a quirk of the eReefs data extraction tool. We'll clean this up now by replacing the aggregation statistics with a single column called `value` and rename `aggregated_date_time` to `date_time`, to avoid any further confusion. 
+The first thing we might notice about the data is that, somewhat confusingly, we have a bunch of aggregation
+statistics (mean, median, p5, p95, lowest, highest) which all take the same value. This is because we have
+extracted hourly "aggregated" data, but the time step for the eReefs model is also hourly. Therefore each row
+represents an aggregation over a single data point. Don't worry if you are confused by this, it's not
+important. Just think of this as a quirk of the eReefs data extraction tool. We'll clean this up now by
+replacing the aggregation statistics with a single column called `value` and rename `aggregated_date_time`
+to `date_time`, to avoid any further confusion.
 
 ```{r dropVars}
 data2 <- data |>
   # Create 'value' column
   mutate(value = mean) |>
   # Remove aggregation statistic columns
-  select(-c(mean, median, p5, p95, lowest, highest)) |> 
+  select(-c(mean, median, p5, p95, lowest, highest)) |>
   # Rename aggregated_date_time
-  rename(date_time = aggregated_date_time) |> 
+  rename(date_time = aggregated_date_time) |>
   glimpse()
 ```
 
-Much better! Now it is clear to see that the data is in long format. That is, a single row for each value and a seperate column describing the meaning of the value --- in this case the column `variable` describes what the column `value` means. Converting the data into [tidy](https://r4ds.had.co.nz/tidy-data.html) format will help with subsequent analyses (and is probably also the format you are most comfortable working with). When data is in tidy format, each variable has its own column, each observation has its own row, and each value has its own cell.
+Much better! Now it is clear to see that the data is in [long format](https://www.thedataschool.co.uk/luke-bennett/long-vs-wide-data-tables/).
+That is, a single row for each value and a separate column describing the meaning of the value --- in this
+case the column `variable` describes what the column `value` means. Converting the data into
+[tidy](https://r4ds.had.co.nz/tidy-data.html) format will help with subsequent analyses (and is probably also
+the format you are most comfortable working with). When data is in tidy format, each variable has its own
+column, each observation has its own row, and each value has its own cell.
 
-If we think of the wind and current velocities as the things being "measured", then the observations in the dataset are the values of the measurements for each time point at each site. Therefore we would like a single row for each unique combination of `date_time` and `site_name` (or `latitude` and `longitude` pair). Let's see if this is what we get we try to "widen" the data into tidy format.
+If we think of the wind and current velocities as the things being "measured", then the observations in the
+dataset are the values of the measurements for each time point at each site. Therefore we would like a single
+row for each unique combination of `date_time` and `site_name` (or `latitude` and `longitude` pair). Let's
+see if this is what we get we try to "widen" the data into tidy format.
 
 ```{r}
 # Try widening to tidy format
 data2 |> pivot_wider(
-  names_from = "variable", 
+  names_from = "variable",
   values_from = "value"
 ) |> head() |> knitr::kable() |> kableExtra::kable_styling()
 ```
 
-With all the `NA`s in the wind and current speed columns, this doesn't look tidy at all! And it's because we forgot to account for depth. However, we can notice that depth is actually a redundant variable in this dataset. That's because wind speed implies a `NA` depth value (coded as 10000m in the extracted data) and current implies a depth of -2.35m (as this is the only depth we chose to extract). Therefore we can just remove depth entirely from our dataset without losing any information, that is, as long as we remember that the current relates to a depth of -2.35m. For the forgetful among us, we could rename the current variables to `v_2.35m` and `u_2.35m`. In fact moving the depth into the variable names would be a good solution to create a tidy dataset if we had selected multiple depths.
+With all the `NA`s in the wind and current speed columns, this doesn't look tidy at all! And it's because we
+forgot to account for depth. However, we can notice that depth is actually a redundant variable in this
+dataset. That's because wind speed implies a `NA` depth value (coded as 10000m in the extracted data) and
+current implies a depth of -2.35m (as this is the only depth we chose to extract). Therefore we can just
+remove depth entirely from our dataset without losing any information, that is, as long as we remember that
+the current relates to a depth of -2.35m. For the forgetful among us, we could rename the current variables
+to `v_2.35m` and `u_2.35m`. In fact moving the depth into the variable names would be a good solution to
+create a tidy dataset if we had selected multiple depths.
 
 ```{r dropDepth}
 # Widen to tidy format
 data_tidy <- data2 |>
   # Drop the depth column
-  select(-depth) |> 
+  select(-depth) |>
   # Widen into tidy format
   pivot_wider(
-    names_from = "variable", 
+    names_from = "variable",
     values_from = "value"
-  ) 
-  
+  )
+
 data_tidy |> head() |> knitr::kable() |> kableExtra::kable_styling()
 ```
 
@@ -178,14 +221,18 @@ Now each row gives the wind and current speeds for different sites at different 
 
 Our aim is to create an index that estimates the correlation of the current and the wind vectors.
 
-The correlation of the current and wind vectors can be estimated based using the [dot product](https://www.mathsisfun.com/algebra/vectors-dot-product.html). An overview of the relationship between correlation and using the dot product is described in [Geometric Interpretation of the Correlation between Two Variables](https://medium.com/@ns2586/geometric-interpretation-of-the-correlation-between-two-variables-4011fb3ea18e). The correlation between the two vectors is given by:
+The correlation of the current and wind vectors can be estimated based using the
+[dot product](https://www.mathsisfun.com/algebra/vectors-dot-product.html). An overview of the relationship
+between correlation and using the dot product is described in [Geometric Interpretation of the Correlation between Two Variables](https://medium.com/@ns2586/geometric-interpretation-of-the-correlation-between-two-variables-4011fb3ea18e).
+The correlation between the two vectors is given by:
 
 $$
 r = \cos(\theta) = \frac{a \cdot b}{||a||\cdot||b||}
 $$
- 
 
-where $a \cdot b$ is the dot product between the two vectors and $||a||$ and $||b||$ are the magnitudes of the vectors. The dot product can be calculated as
+
+where $a \cdot b$ is the dot product between the two vectors and $||a||$ and $||b||$ are the magnitudes of
+the vectors. The dot product can be calculated as
 
 $$
 a \cdot b = a_x \times b_x + a_y \times b_y
@@ -194,47 +241,55 @@ $$
 and the magnitude of the vectors as
 
 $$
-||a|| = \sqrt{a^2_x + a^2_y} \;\;, \; \;\;\;\; 
+||a|| = \sqrt{a^2_x + a^2_y} \;\;, \; \;\;\;\;
 ||b|| = \sqrt{b^2_x + b^2_y}
 $$
 
 ```{r calcCorr}
 # Calculate current and wind magnitudes and correlation
-data_corr <- data_tidy |> 
+data_corr <- data_tidy |>
   mutate(
-    curr_mag = sqrt(u^2 + v^2), 
+    curr_mag = sqrt(u^2 + v^2),
     wind_mag = sqrt(wspeed_u^2 + wspeed_v^2),
     wind_curr_corr = (u * wspeed_u  +  v * wspeed_v) / (curr_mag * wind_mag)
   ) |> glimpse()
 ```
 
 
-Let's look at the relationship between the wind and current as a function of the wind speed. Here we are considering each hourly sample as an independent estimate of the relationship. In reality this is not the case as the longer the wind blows the more effect it will have on the current. As this is just a coding example and not an in-depth analysis we don't need to worry about this limitation of the analysis.
+Let's look at the relationship between the wind and current as a function of the wind speed. Here we are
+considering each hourly sample as an independent estimate of the relationship. In reality this is not the
+case as the longer the wind blows the more effect it will have on the current. As this is just a coding
+example and not an in-depth analysis we don't need to worry about this limitation of the analysis.
 
 Let's create a scatter plot to see if there is a relationship between the wind and currents.
 
 ```{r scatterPlot}
-data_corr |> 
+data_corr |>
   ggplot(aes(
-    x = wind_mag, 
-    y = wind_curr_corr, 
+    x = wind_mag,
+    y = wind_curr_corr,
     color = site_name
   )) +
-  geom_point(size = 1, alpha = 0.7) + 
+  geom_point(size = 1, alpha = 0.7) +
   labs(
     title = "Correlation between wind and surface current (hourly data, 2019)",
-    x = "Wind speed (m/s)", 
-    y = "Wind-current correlation", 
+    x = "Wind speed (m/s)",
+    y = "Wind-current correlation",
     color = "Site"
-  ) + 
+  ) +
   theme_bw()
 ```
 
-This scatter plot shows that the relationship between wind and current is weak. This is not surprising given that we are considering just the hourly samples, with no consideration for how long the wind has been blowing. At low wind conditions the current has an even chance of being aligned with the wind (correlation $r= 1$) as in the opposite direction (correlation $r= -1$), however in high wind we can see that there is much more chance that the currents are aligned with the wind.
+This scatter plot shows that the relationship between wind and current is weak. This is not surprising given
+that we are considering just the hourly samples, with no consideration for how long the wind has been
+blowing. At low wind conditions the current has an even chance of being aligned with the wind
+(correlation $r= 1$) as in the opposite direction (correlation $r= -1$), however in high wind we can see that
+there is much more chance that the currents are aligned with the wind.
 
-To understand this relationship better we want to understand how much the wind nudges the current in its direction. If we bin the wind speeds then collect all the correlation samples in each bin then we can see if they average to zero (indicating that there is no relationship between the wind and current) or there is average alignment.
-
-
+To understand this relationship better we want to understand how much the wind nudges the current in its
+direction. If we bin the wind speeds then collect all the correlation samples in each bin then we can see if
+they average to zero (indicating that there is no relationship between the wind and current) or there is
+average alignment.
 
 ```{r}
 #| code-overflow: wrap
@@ -249,46 +304,50 @@ myr <- data_corr |> dplyr::filter(site_name == "Myrmidon Reef")
 edges_dav <- seq(min(dav$wind_mag), max(dav$wind_mag), length.out = n_bins + 1)
 edges_myr <- seq(min(myr$wind_mag), max(myr$wind_mag), length.out = n_bins + 1)
 
-# Bin the wind magnitude, calculate the mean correlation for each bin, and get the create columns for the bin endpoints 
-binned_dav <- dav |> 
+# Bin the wind magnitude, calculate the mean correlation for each bin, and get the create columns for the bin endpoints
+binned_dav <- dav |>
   group_by(
-    site_name, 
+    site_name,
     bin = cut(wind_mag, breaks = edges_dav, include.lowest = TRUE)
-  ) |> 
+  ) |>
   summarise(mean_corr = mean(wind_curr_corr)) |>
   cbind(
-    xmin = edges_dav[1:n_bins], 
+    xmin = edges_dav[1:n_bins],
     xmax = edges_dav[2:(n_bins+1)]
   )
-binned_myr <- myr |> 
+binned_myr <- myr |>
   group_by(
-    site_name, 
+    site_name,
     bin = cut(wind_mag, breaks = edges_myr, include.lowest = TRUE)
-  ) |> 
+  ) |>
   summarise(mean_corr = mean(wind_curr_corr)) |>
   cbind(
-    xmin = edges_myr[1:n_bins], 
+    xmin = edges_myr[1:n_bins],
     xmax = edges_myr[2:(n_bins+1)]
   )
 
 # Plot the binned data
-rbind(binned_dav, binned_myr) |> 
-  ggplot(aes(color = site_name)) + 
+rbind(binned_dav, binned_myr) |>
+  ggplot(aes(color = site_name)) +
   geom_segment(
-    mapping = aes(y = mean_corr, yend = mean_corr, x = xmin, xend = xmax), 
+    mapping = aes(y = mean_corr, yend = mean_corr, x = xmin, xend = xmax),
     linewidth = 2, alpha = 0.6
-  ) + 
+  ) +
   labs(
-    x = "Wind speed (m/s)", 
-    y = "Wind-current correlation", 
-    title = "Mean correlation between wind and surface current (hourly data, 2019)", 
-    color = "Site") + 
-  theme_bw(base_size = 12) + 
+    x = "Wind speed (m/s)",
+    y = "Wind-current correlation",
+    title = "Mean correlation between wind and surface current (hourly data, 2019)",
+    color = "Site") +
+  theme_bw(base_size = 12) +
   scale_color_manual(values = c("darkgreen","red"))
 ```
 
-From this we can see that for wind speeds below about 8 m/s the surface current direction is unrelated to the wind. Above this wind speed the surface current is increasingly determined by the direction of the wind. By the time the wind is 16 m/s the direction of the surface current is dominated by the wind direction.
+From this we can see that for wind speeds below about 8 m/s the surface current direction is unrelated to the
+wind. Above this wind speed the surface current is increasingly determined by the direction of the wind. By
+the time the wind is 16 m/s the direction of the surface current is dominated by the wind direction.
 
 :::{.callout-caution appearance="simple"}
-It should be remembered that this analysis is based on the eReefs Hydrodynamic model and as such is not based on real data. The eReefs model has however been tuned to accurately capture the flow dynamics of the GBR and so we would expect the estimates from this analysis to be approximately correct.
+It should be remembered that this analysis is based on the eReefs Hydrodynamic model and as such is not based
+on real data. The eReefs model has however been tuned to accurately capture the flow dynamics of the GBR and
+so we would expect the estimates from this analysis to be approximately correct.
 :::

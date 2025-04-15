@@ -7,11 +7,11 @@ subtitle: "Basic access with OPeNDAP {{< fa brands python >}}"
 Learn the basics of extracting eReefs data from the AIMS server with OPeNDAP in {{< fa brands python >}} python.
 :::
 
-In this tutorial we will look at how to access eReefs data directly from the [AIMS THREDDS server](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html) in python. 
+In this tutorial we will look at how to access eReefs data directly from the [AIMS THREDDS server](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html) in python.
 
-This server hosts aggregated eReefs model data in netCDF file format and offers access to the data files via OPeNDAP, HTTP Server, and Web Map Service (WMS). While we could download the data files manually via the HTTPServer link, this approach is cumbersome when downloading multiple files, given their large size. Thankfully, OPeNDAP provides a way to access the data files over the internet and extract only the data we want. 
+This server hosts aggregated eReefs model data in NetCDF file format and offers access to the data files via OPeNDAP, HTTP Server, and Web Map Service (WMS). While we could download the data files manually via the HTTPServer link, this approach is cumbersome when downloading multiple files, given their large size. Thankfully, OPeNDAP provides a way to access the data files over the internet and extract only the data we want.
 
-For example, say we want the daily mean surface temperature at a single location for the last 30 days. If we were to download the 30 individual daily aggregated netCDF files, with each file ~ 350 Mb, this would require us to download over 10 Gb of data just to get 300 numbers. The vast majority of this data would be irrelevant to our needs as the netCDF files contain data for a range of variables, at a range of depths, for many, many locations. However, with OPeNDAP, we can extract the daily mean values directly from the server without downloading any unneeded data.
+For example, say we want the daily mean surface temperature at a single location for the last 30 days. If we were to download the 30 individual daily aggregated NetCDF files, with each file ~ 350 Mb, this would require us to download over 10 Gb of data just to get 300 numbers. The vast majority of this data would be irrelevant to our needs as the NetCDF files contain data for a range of variables, at a range of depths, for many, many locations. However, with OPeNDAP, we can extract the daily mean values directly from the server without downloading any unneeded data.
 
 
 ## Motivating problem
@@ -99,7 +99,7 @@ dailyAggDec22_nc.variables
 
 ## Extract data
 
-Now that we have an open connection to a file on the server we need to extract the daily mean temperature at 1.5m depth for the 10th of December. 
+Now that we have an open connection to a file on the server we need to extract the daily mean temperature at 1.5m depth for the 10th of December.
 
 From the `dailyAggDec22.variables` output above we can see that the variable corresponding to temperature is: $\texttt{ temp(time, k, latitude, longitude)}$.
 
@@ -109,7 +109,7 @@ To extract data from the file we need to access the variable of interest using t
 
 `<file>.variables[<variable name>][<dimension 1 indices>, <dim. 2 indices>, ...]`
 
-Here we access the values for the given variable at certain indexes along each dimension. 
+Here we access the values for the given variable at certain indexes along each dimension.
 
 Therefore, we need the following:
 
@@ -131,7 +131,7 @@ tbl_path <- "resources/eReefs_model_depths_by_index_k.csv" |> here::here() |> fi
 col_names <- read.csv(tbl_path, header=FALSE)[1,] |> as.vector()
 k_tbl <- read.csv(tbl_path, header = TRUE)
 colnames(k_tbl) <- col_names
-k_tbl |> knitr::kable() |> kableExtra::kable_styling() |> 
+k_tbl |> knitr::kable() |> kableExtra::kable_styling() |>
   kableExtra::column_spec(1, color = "grey")
 ```
 

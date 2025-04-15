@@ -14,7 +14,9 @@ Currently, a few basic tutorials are available for the languages `R` and `python
 
 This is a static [Quarto website](https://quarto.org/docs/websites) hosted by Github Pages. 
 
-Webpages can be edited and added via the Github repository. To do this we must clone the repository, make changes to the relevant Quarto (`.qmd`) documents, or add new Quarto documents to add new webpages, render the amended website on a local machine (using Quarto), and then push the changes to the repository.
+Webpages can be edited and added via the Github repository. To do this we must clone the repository,
+make changes to the relevant Quarto (`.qmd`) documents, or add new Quarto documents to add new webpages,
+render the amended website on a local machine (using Quarto), and then push the changes to the repository.
 
 > This process can be changed by using Github Actions to render the Quarto website, though at present local rendering is sufficient. 
 

@@ -234,8 +234,8 @@ window.Quarto = {
 <p>Learn the basics of extracting eReefs data from the AIMS server with OPeNDAP in <i class="fa-brands fa-r-project" aria-label="r-project"></i>.</p>
 </div>
 <p>In this tutorial we will look at how to access eReefs data directly from the <a href="https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html">AIMS THREDDS server</a> in R.</p>
-<p>This server hosts aggregated eReefs model data in netCDF file format and offers access to the data files via OPeNDAP, HTTP Server, and Web Map Service (WMS). While we could download the data files manually via the HTTPServer link, this approach is cumbersome when downloading multiple files, given their large size. Thankfully, OPeNDAP provides a way to access the data files over the internet and extract only the data we want.</p>
-<p>For example, say we want the daily mean surface temperature at a single location for the last 30 days. If we were to download the 30 individual daily aggregated netCDF files, with each file ~ 350 Mb, this would require us to download over 10 Gb of data just to get 300 numbers. The vast majority of this data would be irrelevant to our needs as the netCDF files contain data for a range of variables, at a range of depths, for many, many locations. However, with OPeNDAP, we can extract the daily mean values directly from the server without downloading any unneeded data.</p>
+<p>This server hosts aggregated eReefs model data in NetCDF file format and offers access to the data files via OPeNDAP, HTTP Server, and Web Map Service (WMS). While we could download the data files manually via the HTTPServer link, this approach is cumbersome when downloading multiple files, given their large size. Thankfully, OPeNDAP provides a way to access the data files over the internet and extract only the data we want.</p>
+<p>For example, say we want the daily mean surface temperature at a single location for the last 30 days. If we were to download the 30 individual daily aggregated NetCDF files, with each file ~ 350 Mb, this would require us to download over 10 Gb of data just to get 300 numbers. The vast majority of this data would be irrelevant to our needs as the NetCDF files contain data for a range of variables, at a range of depths, for many, many locations. However, with OPeNDAP, we can extract the daily mean values directly from the server without downloading any unneeded data.</p>
 <section id="motivating-problem" class="level2">
 <h2 class="anchored" data-anchor-id="motivating-problem">Motivating problem</h2>
 <p>We will extract the daily mean water temperature for the 10th of December 2022 at 1.5 m depth across the entire scope of the eReefs model. We will then save and plot this data. This example will introduce the basics of how to connect to files on the server and extract the data we want.</p>
@@ -256,7 +256,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>While the <code>ncdf4</code> package is commonly used to work with NetCDF files in R, it does not offer compatibility with OPeNDAP for Windows (only Mac and Linux). For this reason we will use the <code>RNetCDF</code> package which offers similar functionality and Windows compatibility with OPeNDAP. Note that if you are using Mac or Linux and wish to use <code>ncdf4</code>, the functions used herein have obvious analogues; for example <code>ncdf4::nc_open()</code> vs.&nbsp;<code>RNetCDF::open.nc()</code>.</p>
+<p>While the <code>ncdf4</code> package is commonly used to work with NetCDF files in R, it does not offer compatibility with OPeNDAP for Windows (only Mac and Linux). For this reason we will use the <code>RNetCDF</code> package which offers similar functionality and Windows compatibility with OPeNDAP. Note that if you are using Mac or Linux and wish to use <code>ncdf4</code>, the functions used herein have obvious analogues; for example <code>ncdf4::nc_open()</code> vs. <code>RNetCDF::open.nc()</code>.</p>
 </div>
 </div>
 </div>
@@ -602,8 +602,8 @@ Table of eReefs depths corresponding to index <code>k</code>
 </div>
 </div>
 </details>
-<p><strong>Time</strong>: Since we have the daily aggregated data for December 2022, and are interested only in a single day (the 10th), <code>time</code> is also a constant value. From the summary output we can see we have 31 time indexs, these correspond to the day of the month, therefore we want <code>time=10</code>.</p>
-<p><strong>Longitude and latitude</strong>: We want temperatures for every available longitude and latitude so we can plot the data across the entire spatial range of the eReefs model. Therefore we want to start at index 1 and count for the entire length of latitude and longitude. To get the lengths we could note the values from the summary output, where we see <span class="math inline">\(\texttt{longitude = 491}\)</span> and <span class="math inline">\(\texttt{latitude = 723}\)</span>. However we could also get the lengths programatically.</p>
+<p><strong>Time</strong>: Since we have the daily aggregated data for December 2022, and are interested only in a single day (the 10th), <code>time</code> is also a constant value. From the summary output we can see we have 31 time indexes, these correspond to the day of the month, therefore we want <code>time=10</code>.</p>
+<p><strong>Longitude and latitude</strong>: We want temperatures for every available longitude and latitude so we can plot the data across the entire spatial range of the eReefs model. Therefore we want to start at index 1 and count for the entire length of latitude and longitude. To get the lengths we could note the values from the summary output, where we see <span class="math inline">\(\texttt{longitude = 491}\)</span> and <span class="math inline">\(\texttt{latitude = 723}\)</span>. However we could also get the lengths programmatically.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(dailyAggDec22.nc, <span class="st">"longitude"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(dailyAggDec22.nc, <span class="st">"latitude"</span>)</span>
@@ -619,7 +619,7 @@ Table of eReefs depths corresponding to index <code>k</code>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Within the eReefs netCDF files, the dimensions <span class="math inline">\(\texttt{longitude, latitude, k, time}\)</span> have corresponding variables <code>longitude</code>, <code>latitude</code>, <code>zc</code>, <code>time</code> (see summary output). Note that we would extract the dimension <span class="math inline">\(\texttt{k}\)</span> variable with <code>var.get.nc(..., variable = "zc")</code>.</p>
+<p>Within the eReefs NetCDF files, the dimensions <span class="math inline">\(\texttt{longitude, latitude, k, time}\)</span> have corresponding variables <code>longitude</code>, <code>latitude</code>, <code>zc</code>, <code>time</code> (see summary output). Note that we would extract the dimension <span class="math inline">\(\texttt{k}\)</span> variable with <code>var.get.nc(..., variable = "zc")</code>.</p>
 </div>
 </div>
 </div>
@@ -639,14 +639,14 @@ Table of eReefs depths corresponding to index <code>k</code>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>time_ct <span class="ot">&lt;-</span> <span class="dv">1</span>  <span class="co"># Hold time and depth constant</span></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>depth_ct <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>start_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(lon_st, lat_st, depth_st, time_st)  </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>start_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(lon_st, lat_st, depth_st, time_st)</span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>count_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(lon_ct, lat_ct, time_ct, depth_ct)</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># EXTRACT DATA</span></span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>temps_10Dec22_1p5m <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncfile =</span> dailyAggDec22.nc, </span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncfile =</span> dailyAggDec22.nc,</span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable =</span> <span class="st">"temp"</span>,</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> start_vector, </span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> start_vector,</span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">count =</span> count_vector</span>
 <span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
@@ -668,14 +668,14 @@ Table of eReefs depths corresponding to index <code>k</code>
 </section>
 <section id="save-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="save-the-data">Save the data</h2>
-<p>Now that we have our extracted data we may wish to save it for future use. To do this we first convert the data from its current form as a matrix array into a raster, and then save the raster as a netCDF file (GeoTIFF and other formats are also possible).</p>
+<p>Now that we have our extracted data we may wish to save it for future use. To do this we first convert the data from its current form as a matrix array into a raster, and then save the raster as a NetCDF file (GeoTIFF and other formats are also possible).</p>
 <p>When converting extracted eReefs data to rasters we need to apply the transpose <code>t()</code> and <code>flip()</code> functions in order to get the correct orientation.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>temps_raster <span class="ot">&lt;-</span> temps_10Dec22_1p5m <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">|&gt;</span>   <span class="co"># transpose temps matrix</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">raster</span>(  <span class="co"># create raster</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmn =</span> <span class="fu">min</span>(lon), <span class="at">xmx =</span> <span class="fu">max</span>(lon), </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymn =</span> <span class="fu">min</span>(lat), <span class="at">ymx =</span> <span class="fu">max</span>(lat), </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmn =</span> <span class="fu">min</span>(lon), <span class="at">xmx =</span> <span class="fu">max</span>(lon),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymn =</span> <span class="fu">min</span>(lat), <span class="at">ymx =</span> <span class="fu">max</span>(lat),</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">crs =</span> <span class="fu">CRS</span>(<span class="st">"+init=epsg:4326"</span>)</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">flip</span>(<span class="at">direction =</span> <span class="st">'y'</span>) <span class="co"># flip the raster</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -708,7 +708,7 @@ values     : 22.08588, 32.48817  (min, max)</code></pre>
 <p>Now we have our raster (in the correct orientation), saving it is easy.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the raster file in the /data subdirectory</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the '.nc' file extension since we are going to save as netCDF</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the '.nc' file extension since we are going to save as NetCDF</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>save_file <span class="ot">&lt;-</span> <span class="st">"data/ereefsDailyMeanWaterTemperature_10Dec2022_Depth1p5m.nc"</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(</span>
@@ -724,13 +724,13 @@ values     : 22.08588, 32.48817  (min, max)</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>The <code>raster</code> package uses the <code>ncdf4</code> package to deal with netCDF files. You can install this package by running <code>install.packages("ncdf4")</code> from an R console.</p>
+<p>The <code>raster</code> package uses the <code>ncdf4</code> package to deal with NetCDF files. You can install this package by running <code>install.packages("ncdf4")</code> from an R console.</p>
 </div>
 </div>
 </div>
 <p>To prove to ourselves that this worked, lets read the file back in and plot it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read back in the saved netCDF file as a raster</span></span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read back in the saved NetCDF file as a raster</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>saved_temps <span class="ot">&lt;-</span> <span class="fu">raster</span>(save_file)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>

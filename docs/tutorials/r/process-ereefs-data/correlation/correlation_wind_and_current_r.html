@@ -257,31 +257,31 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot site coordinates on an interactive map with reef boundaries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>site_coords <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"resources/site_coordinates.csv"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>site_map <span class="ot">&lt;-</span> site_coords <span class="sc">|&gt;</span>  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>site_map <span class="ot">&lt;-</span> site_coords <span class="sc">|&gt;</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">leaflet</span>( <span class="co"># create a blank leaflet map</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">options =</span> <span class="fu">leafletOptions</span>(<span class="at">attributionControl=</span><span class="cn">FALSE</span>) <span class="co"># remove the 'leaflet' watermark</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span>  </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">addTiles</span>() <span class="sc">|&gt;</span> <span class="co"># add a basemap (OpenStreetMap by default)</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">addMarkers</span>() <span class="sc">|&gt;</span> <span class="co"># add a marker at the given coordinates</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">addScaleBar</span>()</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the GBR reef features (WMS layer) to the map</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>site_map <span class="ot">&lt;-</span> site_map <span class="sc">|&gt;</span>  </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>site_map <span class="ot">&lt;-</span> site_map <span class="sc">|&gt;</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">addWMSTiles</span>(</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">baseUrl =</span> <span class="st">"https://maps.eatlas.org.au/maps/wms?"</span>, <span class="co"># Link to WMS server</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">layers =</span> <span class="fu">c</span>(<span class="st">"ea:GBR_GBRMPA_GBR-features"</span>), <span class="co"># Names of layers (located in the WMS server) to display</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">options =</span> <span class="fu">WMSTileOptions</span>(<span class="at">format =</span> <span class="st">"image/png"</span>, <span class="at">transparent =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    ) </span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the map centred at our site</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>site_map <span class="sc">|&gt;</span>  </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>site_map <span class="sc">|&gt;</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">setView</span>(<span class="at">lng =</span> <span class="fu">mean</span>(site_coords<span class="sc">$</span>lon), <span class="at">lat =</span> <span class="fu">mean</span>(site_coords<span class="sc">$</span>lat), <span class="at">zoom =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-site-locations" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-site-locations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a1220e3598e9353a336d" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-a1220e3598e9353a336d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"attributionControl":false},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[[-18.265599,-18.82284],[147.389028,147.645209],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"topright"}]},{"method":"addWMSTiles","args":["https://maps.eatlas.org.au/maps/wms?",null,null,{"styles":"","format":"image/png","transparent":true,"version":"1.1.1","layers":"ea:GBR_GBRMPA_GBR-features"}]}],"limits":{"lat":[-18.82284,-18.265599],"lng":[147.389028,147.645209]},"setView":[[-18.5442195,147.5171185],8,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-e2250387e80d418e67f6" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-e2250387e80d418e67f6">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"attributionControl":false},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[[-18.265599,-18.82284],[147.389028,147.645209],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"topright"}]},{"method":"addWMSTiles","args":["https://maps.eatlas.org.au/maps/wms?",null,null,{"styles":"","format":"image/png","transparent":true,"version":"1.1.1","layers":"ea:GBR_GBRMPA_GBR-features"}]}],"limits":{"lat":[-18.82284,-18.265599],"lng":[147.389028,147.645209]},"setView":[[-18.5442195,147.5171185],8,[]]},"evals":[],"jsHooks":[]}</script>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-site-locations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Myrmidon Reef and Davies Reef locations.
@@ -317,12 +317,12 @@ Figure&nbsp;1: Myrmidon Reef and Davies Reef locations.
 <li><p><em>Time step</em>: hourly</p></li>
 <li><p><em>Depths</em>: -2.35 m</p></li>
 </ul>
-<p>Once the extraction request was submitted the dataset was created after an one hour of processing the data was available for download from <a href="https://extraction.ereefs.aims.gov.au/data/2009.c451dc3">Extraction request: Example dataset: Wind-vs-Current at Davies and Myrmidon Reefs (2019)</a>.</p>
+<p>Once the extraction request was submitted, the dataset was created after an hour of data processing. Then, the data was available for download from <a href="https://extraction.ereefs.aims.gov.au/data/2009.c451dc3">Extraction request: Example dataset: Wind-vs-Current at Davies and Myrmidon Reefs (2019)</a>.</p>
 </section>
 <section id="downloading-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="downloading-the-data">Downloading the data</h2>
-<p>In this notebook we will download the data using scripting. There is no need to re-run the extraction request as each extraction performed by the extraction tool has a permanent public page created for it that can be used to facilitate sharing of the data.</p>
-<p>Let’s first create a temporary folder to contain the downloaded data. Note: The temp folder is excluded using the .gitignore so it is not saved to the code repository, which is why we must reproduce it.</p>
+<p>In this notebook, we will download the data using scripting. There is no need to re-run the extraction request as each extraction performed by the extraction tool has a permanent public page created for it that can be used to facilitate sharing of the data.</p>
+<p>Let’s first create a temporary folder to contain the downloaded data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"temp"</span>)) <span class="fu">dir.create</span>(<span class="st">"temp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -371,9 +371,9 @@ $ highest              &lt;dbl&gt; -9.56848758, -8.88017520, 3.26042985, 2.75675
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create 'value' column</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">value =</span> mean) <span class="sc">|&gt;</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove aggregation statistic columns</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(mean, median, p5, p95, lowest, highest)) <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(mean, median, p5, p95, lowest, highest)) <span class="sc">|&gt;</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Rename aggregated_date_time</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">date_time =</span> aggregated_date_time) <span class="sc">|&gt;</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">date_time =</span> aggregated_date_time) <span class="sc">|&gt;</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 70,080
@@ -387,12 +387,12 @@ $ longitude &lt;dbl&gt; 147.3890, 147.6452, 147.3890, 147.6452, 147.3890, 147.64
 $ value     &lt;dbl&gt; -9.56848758, -8.88017520, 3.26042985, 2.75675041, 0.04731101…</code></pre>
 </div>
 </div>
-<p>Much better! Now it is clear to see that the data is in long format. That is, a single row for each value and a seperate column describing the meaning of the value — in this case the column <code>variable</code> describes what the column <code>value</code> means. Converting the data into <a href="https://r4ds.had.co.nz/tidy-data.html">tidy</a> format will help with subsequent analyses (and is probably also the format you are most comfortable working with). When data is in tidy format, each variable has its own column, each observation has its own row, and each value has its own cell.</p>
+<p>Much better! Now it is clear to see that the data is in <a href="https://www.thedataschool.co.uk/luke-bennett/long-vs-wide-data-tables/">long format</a>. That is, a single row for each value and a separate column describing the meaning of the value — in this case the column <code>variable</code> describes what the column <code>value</code> means. Converting the data into <a href="https://r4ds.had.co.nz/tidy-data.html">tidy</a> format will help with subsequent analyses (and is probably also the format you are most comfortable working with). When data is in tidy format, each variable has its own column, each observation has its own row, and each value has its own cell.</p>
 <p>If we think of the wind and current velocities as the things being “measured”, then the observations in the dataset are the values of the measurements for each time point at each site. Therefore we would like a single row for each unique combination of <code>date_time</code> and <code>site_name</code> (or <code>latitude</code> and <code>longitude</code> pair). Let’s see if this is what we get we try to “widen” the data into tidy format.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Try widening to tidy format</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>data2 <span class="sc">|&gt;</span> <span class="fu">pivot_wider</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_from =</span> <span class="st">"variable"</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_from =</span> <span class="st">"variable"</span>,</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_from =</span> <span class="st">"value"</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">head</span>() <span class="sc">|&gt;</span> knitr<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span> kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -488,13 +488,13 @@ $ value     &lt;dbl&gt; -9.56848758, -8.88017520, 3.26042985, 2.75675041, 0.0473
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Widen to tidy format</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>data_tidy <span class="ot">&lt;-</span> data2 <span class="sc">|&gt;</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Drop the depth column</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>depth) <span class="sc">|&gt;</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>depth) <span class="sc">|&gt;</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Widen into tidy format</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">"variable"</span>, </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">"variable"</span>,</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">"value"</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>data_tidy <span class="sc">|&gt;</span> <span class="fu">head</span>() <span class="sc">|&gt;</span> knitr<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span> kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
@@ -597,9 +597,9 @@ a \cdot b = a_x \times b_x + a_y \times b_y
 \]</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate current and wind magnitudes and correlation</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>data_corr <span class="ot">&lt;-</span> data_tidy <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>data_corr <span class="ot">&lt;-</span> data_tidy <span class="sc">|&gt;</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">curr_mag =</span> <span class="fu">sqrt</span>(u<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> v<span class="sc">^</span><span class="dv">2</span>), </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">curr_mag =</span> <span class="fu">sqrt</span>(u<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> v<span class="sc">^</span><span class="dv">2</span>),</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_mag =</span> <span class="fu">sqrt</span>(wspeed_u<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> wspeed_v<span class="sc">^</span><span class="dv">2</span>),</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_curr_corr =</span> (u <span class="sc">*</span> wspeed_u  <span class="sc">+</span>  v <span class="sc">*</span> wspeed_v) <span class="sc">/</span> (curr_mag <span class="sc">*</span> wind_mag)</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -622,19 +622,19 @@ $ wind_curr_corr &lt;dbl&gt; 0.070077977, 0.684380009, 0.707019119, 0.775324802,
 <p>Let’s look at the relationship between the wind and current as a function of the wind speed. Here we are considering each hourly sample as an independent estimate of the relationship. In reality this is not the case as the longer the wind blows the more effect it will have on the current. As this is just a coding example and not an in-depth analysis we don’t need to worry about this limitation of the analysis.</p>
 <p>Let’s create a scatter plot to see if there is a relationship between the wind and currents.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data_corr <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data_corr <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> wind_mag, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> wind_curr_corr, </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> wind_mag,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> wind_curr_corr,</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> site_name</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Correlation between wind and surface current (hourly data, 2019)"</span>,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Wind speed (m/s)"</span>, </span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Wind-current correlation"</span>, </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Wind speed (m/s)"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Wind-current correlation"</span>,</span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Site"</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -658,41 +658,41 @@ $ wind_curr_corr &lt;dbl&gt; 0.070077977, 0.684380009, 0.707019119, 0.775324802,
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>edges_dav <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(dav<span class="sc">$</span>wind_mag), <span class="fu">max</span>(dav<span class="sc">$</span>wind_mag), <span class="at">length.out =</span> n_bins <span class="sc">+</span> <span class="dv">1</span>)</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>edges_myr <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(myr<span class="sc">$</span>wind_mag), <span class="fu">max</span>(myr<span class="sc">$</span>wind_mag), <span class="at">length.out =</span> n_bins <span class="sc">+</span> <span class="dv">1</span>)</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Bin the wind magnitude, calculate the mean correlation for each bin, and get the create columns for the bin endpoints </span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>binned_dav <span class="ot">&lt;-</span> dav <span class="sc">|&gt;</span> </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Bin the wind magnitude, calculate the mean correlation for each bin, and get the create columns for the bin endpoints</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>binned_dav <span class="ot">&lt;-</span> dav <span class="sc">|&gt;</span></span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    site_name, </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    site_name,</span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">bin =</span> <span class="fu">cut</span>(wind_mag, <span class="at">breaks =</span> edges_dav, <span class="at">include.lowest =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_corr =</span> <span class="fu">mean</span>(wind_curr_corr)) <span class="sc">|&gt;</span></span>
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span> edges_dav[<span class="dv">1</span><span class="sc">:</span>n_bins], </span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span> edges_dav[<span class="dv">1</span><span class="sc">:</span>n_bins],</span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmax =</span> edges_dav[<span class="dv">2</span><span class="sc">:</span>(n_bins<span class="sc">+</span><span class="dv">1</span>)]</span>
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>binned_myr <span class="ot">&lt;-</span> myr <span class="sc">|&gt;</span> </span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>binned_myr <span class="ot">&lt;-</span> myr <span class="sc">|&gt;</span></span>
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    site_name, </span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    site_name,</span>
 <span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">bin =</span> <span class="fu">cut</span>(wind_mag, <span class="at">breaks =</span> edges_myr, <span class="at">include.lowest =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_corr =</span> <span class="fu">mean</span>(wind_curr_corr)) <span class="sc">|&gt;</span></span>
 <span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span> edges_myr[<span class="dv">1</span><span class="sc">:</span>n_bins], </span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span> edges_myr[<span class="dv">1</span><span class="sc">:</span>n_bins],</span>
 <span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmax =</span> edges_myr[<span class="dv">2</span><span class="sc">:</span>(n_bins<span class="sc">+</span><span class="dv">1</span>)]</span>
 <span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the binned data</span></span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(binned_dav, binned_myr) <span class="sc">|&gt;</span> </span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> site_name)) <span class="sc">+</span> </span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(binned_dav, binned_myr) <span class="sc">|&gt;</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> site_name)) <span class="sc">+</span></span>
 <span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> mean_corr, <span class="at">yend =</span> mean_corr, <span class="at">x =</span> xmin, <span class="at">xend =</span> xmax), </span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> mean_corr, <span class="at">yend =</span> mean_corr, <span class="at">x =</span> xmin, <span class="at">xend =</span> xmax),</span>
 <span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Wind speed (m/s)"</span>, </span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Wind-current correlation"</span>, </span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Mean correlation between wind and surface current (hourly data, 2019)"</span>, </span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Site"</span>) <span class="sc">+</span> </span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span> </span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Wind speed (m/s)"</span>,</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Wind-current correlation"</span>,</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Mean correlation between wind and surface current (hourly data, 2019)"</span>,</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Site"</span>) <span class="sc">+</span></span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
 <span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkgreen"</span>,<span class="st">"red"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>

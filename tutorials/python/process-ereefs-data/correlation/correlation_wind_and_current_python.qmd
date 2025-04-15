@@ -23,7 +23,7 @@ We will use the [AIMS eReefs extraction tool](https://extraction.ereefs.aims.gov
 We then process the data and investigate the relationship between the strength of the wind and the direction of the surface currents for the two locations.
 
 ```{python mapSites, include=FALSE}
-#| fig-cap: Myrmidon Reef and Davies Reef locations (see [TUTORIAL NAME](TUTORIAL LINK HERE) to learn how to create maps like this). 
+#| fig-cap: Myrmidon Reef and Davies Reef locations (see [TUTORIAL NAME](TUTORIAL LINK HERE) to learn how to create maps like this).
 #| label: fig-site-locations
 #| code-fold: true
 #| code-summary: show code to create map
@@ -48,19 +48,19 @@ The location of the two sites were copied to create the [CSV file for the data e
 
 ## Extracting the data
 
-The CSV file was uploaded to the [AIMS extraction tool](https://extraction.ereefs.aims.gov.au/) and the extraction was performed with the following settings: 
+The CSV file was uploaded to the [AIMS extraction tool](https://extraction.ereefs.aims.gov.au/) and the extraction was performed with the following settings:
 
-* *Data collection*: GBR1 Hydro (Version 2) 
+* *Data collection*: GBR1 Hydro (Version 2)
 
-* *Variables*: 
+* *Variables*:
     - Eastward wind speed (`wspeed_u`)
     - Northward wind speed (`wspeed_v`)
     - Northward current (`v`)
-    - Eastward current (`u`) 
+    - Eastward current (`u`)
 
-* *Date range*: 1 January 2019 - 31 December 2019 
+* *Date range*: 1 January 2019 - 31 December 2019
 
-* *Time step*: hourly 
+* *Time step*: hourly
 
 * *Depths*: -2.35 m
 
@@ -105,7 +105,7 @@ df = pd.read_csv(extractionfile).clean_names()
 df.head()
 ```
 
-The first thing we might notice about the data is that, somewhat confusingly, we have a bunch of aggregation statistics (mean, median, p5, p95, lowest, highest) which all take the same value. This is because we have extracted hourly "aggregated" data, but the time step for the eReefs model is also hourly. Therefore each row represents an aggregation over a single data point. Don't worry if you are confused by this, it's not important. Just think of this as a quirk of the eReefs data extraction tool. We'll clean this up now by replacing the aggregation statistics with a single column called `value` and rename `aggregated_date_time` to `date_time`, to avoid any further confusion. 
+The first thing we might notice about the data is that, somewhat confusingly, we have a bunch of aggregation statistics (mean, median, p5, p95, lowest, highest) which all take the same value. This is because we have extracted hourly "aggregated" data, but the time step for the eReefs model is also hourly. Therefore each row represents an aggregation over a single data point. Don't worry if you are confused by this, it's not important. Just think of this as a quirk of the eReefs data extraction tool. We'll clean this up now by replacing the aggregation statistics with a single column called `value` and rename `aggregated_date_time` to `date_time`, to avoid any further confusion.
 
 ```{python}
 # Create 'value' column, remove aggregation statistic columns, rename aggregated_date_time
@@ -116,15 +116,15 @@ df2 = df.\
 df2.head()
 ```
 
-Much better! Now it is clear to see that the data is in long format. That is, a single row for each value and a seperate column describing the meaning of the value --- in this case the column `variable` describes what the column `value` means. Converting the data into [tidy](https://r4ds.had.co.nz/tidy-data.html) format will help with subsequent analyses (and is probably also the format you are most comfortable working with). When data is in tidy format, each variable has its own column, each observation has its own row, and each value has its own cell.
+Much better! Now it is clear to see that the data is in long format. That is, a single row for each value and a separate column describing the meaning of the value --- in this case the column `variable` describes what the column `value` means. Converting the data into [tidy](https://r4ds.had.co.nz/tidy-data.html) format will help with subsequent analyses (and is probably also the format you are most comfortable working with). When data is in tidy format, each variable has its own column, each observation has its own row, and each value has its own cell.
 
 If we think of the wind and current velocities as the things being "measured", then the observations in the dataset are the values of the measurements for each time point at each site. Therefore we would like a single row for each unique combination of `date_time` and `site_name` (or `latitude` and `longitude` pair). Let's see if this is what we get we try to "widen" the data into tidy format.
 
 ```{python}
 # Try pivoting the data into tidy format
 df2.pivot(
-  index = ["site_name", "latitude", "longitude", "date_time", "depth"], 
-  columns="variable", 
+  index = ["site_name", "latitude", "longitude", "date_time", "depth"],
+  columns="variable",
   values="value"
 ).head()
 ```
@@ -134,8 +134,8 @@ With all the `NA`s in the wind and current speed columns, this doesn't look tidy
 ```{python}
 # Pivot into tidy format (excluding depth)
 df_tidy = df2.pivot(
-  index = ["site_name", "latitude", "longitude", "date_time"], 
-  columns="variable", 
+  index = ["site_name", "latitude", "longitude", "date_time"],
+  columns="variable",
   values="value"
 )
 df_tidy.head()
@@ -154,7 +154,7 @@ The correlation of the current and wind vectors can be estimated based using the
 $$
 r = \cos(\theta) = \frac{a \cdot b}{||a||\cdot||b||}
 $$
- 
+
 
 where $a \cdot b$ is the dot product between the two vectors and $||a||$ and $||b||$ are the magnitudes of the vectors. The dot product can be calculated as
 
@@ -165,7 +165,7 @@ $$
 and the magnitude of the vectors as
 
 $$
-||a|| = \sqrt{a^2_x + a^2_y} \;\;, \; \;\;\;\; 
+||a|| = \sqrt{a^2_x + a^2_y} \;\;, \; \;\;\;\;
 ||b|| = \sqrt{b^2_x + b^2_y}
 $$
 
