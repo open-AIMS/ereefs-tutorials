@@ -501,7 +501,7 @@
     "href": "tutorials/r/follow-along/r_and_rstudio_setup.html#linux-dependencies",
     "title": "Setup R and RStudio",
     "section": "Linux dependencies",
-    "text": "Linux dependencies\nRStudio will automatically detect and install the required R packages, but it can’t install any system-level (Linux) dependencies. These need to be installed separately.\nOn Ubuntu, you can install those dependencies using the following command:\nsudo apt-get install libnetcdf-dev libgdal-dev libproj-dev libgeos-dev libudunits2-dev libsqlite3-dev libcurl4-openssl-dev libcurl4-openssl-dev libssl-dev libxml2-dev libfreetype-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libpng-dev libtiff5-dev libjpeg-dev"
+    "text": "Linux dependencies\nRStudio will automatically detect and install the required R packages, but it can’t install any system-level (Linux) dependencies. These need to be installed separately.\nOn Ubuntu, you can install those dependencies using the following command:\n\nsudo apt-get install libnetcdf-dev libgdal-dev libproj-dev libgeos-dev libudunits2-dev libsqlite3-dev libcurl4-openssl-dev libcurl4-openssl-dev libssl-dev libxml2-dev libfreetype-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libpng-dev libtiff5-dev libjpeg-dev"
   },
   {
     "objectID": "tutorials/r/follow-along/r_and_rstudio_setup.html#download-tutorial-files",
