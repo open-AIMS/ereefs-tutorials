@@ -81,7 +81,7 @@ length of the Great Barrier Reef off the east coast of Queensland Australia from
 (shown in @fig-data-map).
 
 Download the
-[satellite tracking data file](data/Loggerhead_Sea_Turtle_satellite_tracking_detections__Strydom_2022_DOI10-15468-k4s6ap.csv)
+[satellite tracking data file](data/Strydom_2022_DOI10-15468-k4s6ap.csv)
 into your `data` folder.
 
 :::{.callout-caution appearance="simple"}
@@ -97,7 +97,7 @@ coordinates are accurate.
 #| label: fig-data-map
 
 # Read in data
-loggerhead_data <- read_csv("data/Loggerhead_Sea_Turtle_satellite_tracking_detections__Strydom_2022_DOI10-15468-k4s6ap.csv") |>
+loggerhead_data <- read_csv("data/Strydom_2022_DOI10-15468-k4s6ap.csv") |>
   clean_names() |> # clean up variable names
   rename( # rename variables for easier use
     record_id = gbif_id,

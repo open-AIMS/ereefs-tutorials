@@ -5,7 +5,6 @@ format:
 ---
 
 
-
 ## Overview of *eReefs*
 
 <!-- Introduction to eReefs -->
@@ -14,11 +13,28 @@ format:
 ![](images/tutorial-thumbnails/intro_icon.gif)
 :::
 :::{.hp-text}
-[An introduction to eReefs]{.hp-title} <br>
-An introduction to the *eReefs* information platform, the core models, their outputs, how to access these outputs, and their potential applications and limitations.
+[An introduction to eReefs]{.hp-title}<br>
+An introduction to the *eReefs* information platform, the core models, their outputs, how to access these
+outputs, and their potential applications and limitations.
 :::
 :::{.hp-links}
 [{{< fa solid book >}} Start](tutorials/general/intro_to_ereefs.qmd)
+:::
+::::
+
+## Setup your development environment
+
+<!-- Setup RStudio -->
+::::{.hp-tutorial}
+:::{.hp-thumbnail}
+![](images/tutorial-thumbnails/TN_download_icon.png)
+:::
+:::{.hp-text}
+[Setup RStudio]{.hp-title}<br>
+Setup *R* and *RStudio* on your development environment, to run the R tutorials found in this website.
+:::
+:::{.hp-links}
+[{{< fa solid book >}} Start](tutorials/r/follow-along/r_and_rstudio_setup.qmd)
 :::
 ::::
 
@@ -30,11 +46,12 @@ An introduction to the *eReefs* information platform, the core models, their out
 ![](images/tutorial-thumbnails/TN_basic_server_access.png)
 :::
 :::{.hp-text}
-[Basic access to the AIMS eReefs Server]{.hp-title} <br>
-Learn the basics of extracting aggregated eReefs data from the AIMS server using the efficient OPeNDAP data access protocol.
+[Basic access to the AIMS eReefs Server]{.hp-title}<br>
+Learn the basics of extracting aggregated eReefs data from the AIMS server using the efficient OPeNDAP data
+access protocol.
 :::
 :::{.hp-links}
-[{{< fa brands r-project >}} R](tutorials/r/access-ereefs-data-server/basic-server-access/basic_server_access_r.qmd) <br>
+[{{< fa brands r-project >}} R](tutorials/r/access-ereefs-data-server/basic-server-access/basic_server_access_r.qmd)<br>
 [{{< fa brands python >}} Python](tutorials/python/access-ereefs-data-server/basic-server-access/basic_server_access_python.qmd)
 :::
 ::::
@@ -46,11 +63,12 @@ Learn the basics of extracting aggregated eReefs data from the AIMS server using
 ![](images/tutorial-thumbnails/TN_programmatic_server_access.png)
 :::
 :::{.hp-text}
-[Programmatic access to the AIMS eReefs Server]{.hp-title} <br>
-Extends the methods introduced in the basic access tutorial to programmatically extract aggregated eReefs data from the AIMS server for multiple dates and points.
+[Programmatic access to the AIMS eReefs Server]{.hp-title}<br>
+Extends the methods introduced in the basic access tutorial to programmatically extract aggregated eReefs
+data from the AIMS server for multiple dates and points.
 :::
 :::{.hp-links}
-[{{< fa brands r-project >}} R](tutorials/r/access-ereefs-data-server/programmatic-server-access/programmatic_server_access_r.qmd) <br>
+[{{< fa brands r-project >}} R](tutorials/r/access-ereefs-data-server/programmatic-server-access/programmatic_server_access_r.qmd)<br>
 [{{< fa brands python >}} Python](tutorials/python/access-ereefs-data-server/programmatic-server-access/programmatic_server_access_python.qmd)
 :::
 ::::
@@ -66,11 +84,12 @@ Extends the methods introduced in the basic access tutorial to programmatically 
 ![](images/tutorial-thumbnails/TN_time_series_plots.png)
 :::
 :::{.hp-text}
-[Time series plots]{.hp-title} <br>
-Learn how to create time series plots of eReefs data. <br>[*Note: the python tutorial has not yet been updated to cover the more advanced topics included in the R tutorial*]
+[Time series plots]{.hp-title}<br>
+Learn how to create time series plots of eReefs data.<br>
+[*Note: the python tutorial has not yet been updated to cover the more advanced topics included in the R tutorial*]
 :::
 :::{.hp-links}
-[{{< fa brands r-project >}} R](tutorials/r/plot-ereefs-data/time-series-plot/time_series_plot_r.qmd) <br>
+[{{< fa brands r-project >}} R](tutorials/r/plot-ereefs-data/time-series-plot/time_series_plot_r.qmd)<br>
 [{{< fa brands python >}} Python](tutorials/python/plot-ereefs-data/time-series-plot/time_series_plot_python.qmd)
 :::
 ::::
@@ -85,15 +104,12 @@ Learn how to create time series plots of eReefs data. <br>[*Note: the python tut
 ![](images/tutorial-thumbnails/TN_correlation_wind_current.png)
 :::
 :::{.hp-text}
-[Correlation: wind and current]{.hp-title} <br>
-Learn how to extract and process eReefs data to answer the question: *How strong does the wind need to be to set the direction of the surface ocean currents?*
+[Correlation: wind and current]{.hp-title}<br>
+Learn how to extract and process eReefs data to answer the question: *How strong does the wind need to be to
+set the direction of the surface ocean currents?*
 :::
 :::{.hp-links}
-[{{< fa brands r-project >}} R](tutorials/r/process-ereefs-data/correlation/correlation_wind_and_current_r.qmd) <br>
+[{{< fa brands r-project >}} R](tutorials/r/process-ereefs-data/correlation/correlation_wind_and_current_r.qmd)<br>
 [{{< fa brands python >}} Python](tutorials/python/process-ereefs-data/correlation/correlation_wind_and_current_python.qmd)
 :::
 ::::
-
-
-
-  

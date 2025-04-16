@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>eReefs R tutorial in R Studio – eReefs tutorials</title>
+<title>Setup R and RStudio – eReefs tutorials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -165,9 +165,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#r-and-r-studio-setup" id="toc-r-and-r-studio-setup" class="nav-link active" data-scroll-target="#r-and-r-studio-setup">R and R Studio setup</a></li>
+  <li><a href="#r-and-rstudio-setup" id="toc-r-and-rstudio-setup" class="nav-link active" data-scroll-target="#r-and-rstudio-setup">R and RStudio setup</a></li>
+  <li><a href="#linux-dependencies" id="toc-linux-dependencies" class="nav-link" data-scroll-target="#linux-dependencies">Linux dependencies</a></li>
   <li><a href="#download-tutorial-files" id="toc-download-tutorial-files" class="nav-link" data-scroll-target="#download-tutorial-files">Download tutorial files</a></li>
-  <li><a href="#open-tutorial-in-r-studio" id="toc-open-tutorial-in-r-studio" class="nav-link" data-scroll-target="#open-tutorial-in-r-studio">Open tutorial in R Studio</a></li>
+  <li><a href="#open-tutorial-in-rstudio" id="toc-open-tutorial-in-rstudio" class="nav-link" data-scroll-target="#open-tutorial-in-rstudio">Open tutorial in RStudio</a></li>
   <li><a href="#installing-r-packages" id="toc-installing-r-packages" class="nav-link" data-scroll-target="#installing-r-packages">Installing R packages</a></li>
   </ul>
 </nav>
@@ -177,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">eReefs R tutorial in R Studio</h1>
+<h1 class="title">Setup R and RStudio</h1>
 <p class="subtitle lead">Following along with tutorials in <i class="fa-brands fa-r-project" aria-label="r-project"></i></p>
 </div>
 
@@ -196,26 +197,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="tutorial-description">
-<p>Learn how to setup R and R Studio and follow along with the eReefs tutorials.</p>
+<p>Learn how to setup R and RStudio and follow along with the eReefs tutorials.</p>
 </div>
-<section id="r-and-r-studio-setup" class="level2">
-<h2 class="anchored" data-anchor-id="r-and-r-studio-setup">R and R Studio setup</h2>
-<p>Download and install <code>R</code> (the programming language) and R Studio (the integrated development environment) following the instructions <a href="https://posit.co/download/rstudio-desktop/">here</a>.</p>
+<section id="r-and-rstudio-setup" class="level2">
+<h2 class="anchored" data-anchor-id="r-and-rstudio-setup">R and RStudio setup</h2>
+<p>Download and install <code>R</code> (the programming language) and RStudio (the integrated development environment) following the instructions <a href="https://posit.co/download/rstudio-desktop/">here</a>.</p>
+</section>
+<section id="linux-dependencies" class="level2">
+<h2 class="anchored" data-anchor-id="linux-dependencies">Linux dependencies</h2>
+<p>RStudio will automatically detect and install the required R packages, but it can’t install any system-level (Linux) dependencies. These need to be installed separately.</p>
+<p>On Ubuntu, you can install those dependencies using the following command:</p>
+<pre><code>sudo apt-get install libnetcdf-dev libgdal-dev libproj-dev libgeos-dev libudunits2-dev libsqlite3-dev libcurl4-openssl-dev libcurl4-openssl-dev libssl-dev libxml2-dev libfreetype-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libpng-dev libtiff5-dev libjpeg-dev</code></pre>
 </section>
 <section id="download-tutorial-files" class="level2">
 <h2 class="anchored" data-anchor-id="download-tutorial-files">Download tutorial files</h2>
-<p>The eReefs tutorials for R are located <a href="https://github.com/open-AIMS/ereefs-tutorials/tree/main/tutorials/r">here</a>. Each tutorial is placed in its own folder, so to follow along with any particular tutorial just download the respective folder and unzip it in a suitable place on your computer.</p>
+<p>The eReefs tutorials for R are located in the <a href="https://github.com/open-AIMS/ereefs-tutorials">ereefs-tutorials GitHub repository</a>. Download the repository’s code by clicking <em>Code &gt; Download ZIP</em>. After unzipping the repository’s Zip archive, you will find each R tutorial placed in its own folder, under <code>ereefs-tutorials-main/tutorials/r</code>.</p>
 </section>
-<section id="open-tutorial-in-r-studio" class="level2">
-<h2 class="anchored" data-anchor-id="open-tutorial-in-r-studio">Open tutorial in R Studio</h2>
-<p>Open R Studio and create a new project: File &gt; New Project &gt; Existing Directory &gt; Browse &gt; select the unzipped tutorial folder created. Then open the main tutorial (<code>*.qmd</code>).</p>
-<p>You can now run the code chunks within the tutorial by clicking the <svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:green;overflow:visible;position:relative;"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"></path></svg> button in the top right corner. Chunks can also be run be pressing ctrl+shift+enter and sections of code (e.g.&nbsp;half a line, a single line, multiple lines) can be run by selecting the section and pressing ctrl+enter (replace ctrl with cmd on Mac).</p>
+<section id="open-tutorial-in-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="open-tutorial-in-rstudio">Open tutorial in RStudio</h2>
+<p>Open RStudio and create a new project: <em>File &gt; New Project &gt; Existing Directory &gt; Browse &gt; select the tutorial folder</em>. Then open the main tutorial <code>qmd</code> file from the <em>Files</em> tab, in the bottom-right panel of RStudio.</p>
+<p>The project will open in the main panel of RStudio. To ensure everything runs smoothly, make sure you’re in <em>Source</em> editing mode, in the top-left corner of the editor. The <em>Visual</em> mode can cause issues with running R code reliably.</p>
+<p>You can now run the code chunks within the tutorial by clicking the <svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:green;overflow:visible;position:relative;"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"></path></svg> button in the top-right corner of each chunk. Chunks can also be run be pressing <em>Ctrl+Shift+Enter</em>, and sections of code (e.g.&nbsp;half a line, a single line, multiple lines) can be run by selecting the code and pressing <em>Ctrl+Enter</em> (replace <em>Ctrl</em> with <em>Cmd</em> on Mac).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rstudio-controls.png" class="img-fluid figure-img"></p>
+<figcaption>RStudio controls</figcaption>
+</figure>
+</div>
 </section>
 <section id="installing-r-packages" class="level2">
 <h2 class="anchored" data-anchor-id="installing-r-packages">Installing R packages</h2>
-<p>You may encounter the situation where an R package used in the tutorials have not yet been installed on your machine. Installing packages in R is easy, just run the following from an open R console or R code chunk within an R markdown (<code>*.rmd</code>) or Quarto markdown (<code>*.qmd</code>) file:</p>
+<p>You may encounter the situation where an R package used in the tutorials have not yet been installed on your machine. Installing packages in R is easy, just run the following command from an open R console:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"&lt;package name&gt;"</span>)  <span class="co"># replace &lt;package name&gt; with the name of the R package you wish to install</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"&lt;package name&gt;"</span>)  <span class="co"># replace &lt;package name&gt; with the name of the R package you wish to install</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
