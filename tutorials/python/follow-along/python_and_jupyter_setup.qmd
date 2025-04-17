@@ -1,0 +1,14 @@
+---
+title: "Setup Python and Jupyter Notebook"
+subtitle: "Following along with tutorials in Python {{< fa brands python >}}"
+---
+
+:::{.tutorial-description}
+Learn how to setup Python and Jupyter Notebook and follow along with the eReefs tutorials.
+:::
+
+## Install Python
+
+## Install dependencies
+
+## Install Jupyter Notebook

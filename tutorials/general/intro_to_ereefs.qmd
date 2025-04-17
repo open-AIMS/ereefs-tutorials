@@ -181,8 +181,8 @@ readxl::read_xlsx("../../resources/ereefs-model-outputs-summary.xlsx") |>
 
 :::{.callout-tip}
 #### Download the model variables list
-You can download the below lists of the model variables in `.xlsx` format
-[here](../../resources/ereefs_hydro_bgc_model_variables.xlsx).
+You can download the below lists of the model variables in `.xlsx` format:
+[ereefs_hydro_bgc_model_variables.xlsx](../../resources/ereefs_hydro_bgc_model_variables.xlsx).
 :::
 
 :::{.callout-caution}

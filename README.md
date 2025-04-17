@@ -198,9 +198,13 @@ To successfully render the website you will need the following:
     `remotes::install_github("<GitHub username>/<repo name>")` to install packages hosted in a GitHub
     repository.
 
-  * Python modules are installed from a python console with the command<br>
-    `pip/conda/mamba install <module name>`
-    (depending on the python package manager installed on your machine)
+  * Python modules can be installed from a Python console using `conda`, which we recommend and have been
+    using during the development of this tutorial:<br>
+    `conda install <module name>`<br>
+    Python also comes with a default package manager, `pip`, though it's more limited:<br>
+    `pip install <module name>`<br>
+    Other options include `mamba`, which is similar to `conda`:<br>
+    `mamba install <module name>`
 
 The following are not required but recommended:
 

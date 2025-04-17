@@ -11,7 +11,7 @@ Learn how to setup R and RStudio and follow along with the eReefs tutorials.
 ## R and RStudio setup
 
 Download and install `R` (the programming language) and RStudio (the integrated development environment)
-following the instructions [here](https://posit.co/download/rstudio-desktop/).
+following these [RStudio installation instructions](https://posit.co/download/rstudio-desktop/).
 
 ## Linux dependencies
 

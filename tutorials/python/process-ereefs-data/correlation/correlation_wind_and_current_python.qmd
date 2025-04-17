@@ -41,7 +41,7 @@ To extract the time series data using the extraction tool we need to create a CS
 
 [Screenshot of Google Earth Pro with Myromidon and Davies reef sites](images/google-earth-reef-locatons.jpg)
 
-The points can be added using the `Add placemark` tool (looks like a pin). The locations can be seen by displaying the placemark properties. The resulting KML file can be found [here](resources/extraction-tool-locations.kml).
+The points can be added using the `Add placemark` tool (looks like a pin). The locations can be seen by displaying the placemark properties. The resulting KML file can be found here: [extraction-tool-locations.kml](resources/extraction-tool-locations.kml).
 
 The location of the two sites were copied to create the [CSV file for the data extraction tool](resources/site_coordinates.csv).
 

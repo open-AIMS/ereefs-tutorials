@@ -27,10 +27,10 @@ cartopy.config['data_dir'] = os.getenv('CARTOPY_DIR', cartopy.config.get('data_d
 
 # Choose OPeNDAP end point
 
-The first part of the process is to choose the OPeNDAP end point on the AIMS eReefs THREDDS server. You can view the products [here](https://thredds.ereefs.aims.gov.au/thredds/catalog/ereefs/gbr4_v2/catalog.html). At this stage there is no grouped OPeNDAP service for the entire time series and so this script only works for looking at a single month of data. Hopefully this can be improved in the future.
+The first part of the process is to choose the OPeNDAP end point on the AIMS eReefs THREDDS server. You can view the products in the [AIMS eReefs THREDDS catalogue](https://thredds.ereefs.aims.gov.au/thredds/catalog/ereefs/gbr4_v2/catalog.html). At this stage there is no grouped OPeNDAP service for the entire time series and so this script only works for looking at a single month of data. Hopefully this can be improved in the future.
 
 ```{python}
-# Connect to the OpeNDAP endpoint for the specified month.  
+# Connect to the OpeNDAP endpoint for the specified month.
 month = 3
 year = 2020
 netCDF_datestr = str(year)+'-'+format(month, '02')
@@ -44,7 +44,7 @@ inputFile = "https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr4_v2/dai
 nc_data = Dataset(inputFile, 'r')
 print(nc_data.title)
 
-# To find a list of the variables uncomment the next line: 
+# To find a list of the variables uncomment the next line:
 nc_data.variables
 ```
 
@@ -56,7 +56,7 @@ Work out the bounds of the gridded data. We can then use this to find out which 
 ```{python}
 lons = nc_data.variables['longitude'][:]
 max_lon = max(lons)
-min_lon = min(lons) 
+min_lon = min(lons)
 lats = nc_data.variables['latitude'][:]
 max_lat = max(lats)
 min_lat = min(lats)

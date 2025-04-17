@@ -81,9 +81,8 @@ direction). Both of these variables have the units of meters per second (m/s), w
 indicates the speed of the current/wind to the north, and a negative value, to the south. We extracted all
 data between 1 September 2010 - 1 September 2022.
 
-This `2303.b87e9d6-collected.csv` data file can be downloaded
-[here](https://extraction.ereefs.aims.gov.au/data/2303.b87e9d6).
-Download it to the `data` folder and rename it to `extracted_ereefs_data__time_series_plot.csv`.
+Download the [2303.b87e9d6-collected.csv](https://extraction.ereefs.aims.gov.au/data/2303.b87e9d6) file
+to the `data` folder and rename it to `extracted_ereefs_data__time_series_plot.csv`.
 
 ```{r loadData}
 # Import data with 'clean' variable names and then take a 'glimpse'
@@ -106,10 +105,11 @@ which formats the variable names in consistent matter, making it much more conve
 Lets have a closer look at the site for which we have extracted the eReefs data by plotting it on an
 interactive `leaflet` map along with the GBR reef features. The GBR reef features layer is located in the
 [eAtlas Web Mapping Service (AIMS)](https://eatlas.org.au/data/uuid/71127e4d-9f14-4c57-9845-1dce0b541d8d).
-A list of other layers available in this server can be found
-[here](https://maps.eatlas.org.au/maps/web/wicket/bookmarkable/org.geoserver.web.demo.MapPreviewPage).
+A list of other layers available in this server can be found on the
+[eAtlas GeoServer](https://maps.eatlas.org.au/maps/web/wicket/bookmarkable/org.geoserver.web.demo.MapPreviewPage).
 
-You can find out more about creating `leaflet` maps in `R` [here](https://rstudio.github.io/leaflet/).
+You can find out more about creating `leaflet` maps in `R` in this
+[RStudio leaflet tutorial](https://rstudio.github.io/leaflet/).
 
 ```{r plotSite}
 #| fig.cap: "Interactive map showing site for which eReefs data was extracted."
@@ -438,11 +438,12 @@ meanWindCurr |>
 
 While it would be nice to draw some conclusions from our analyses about the possibility of northern coral
 larvae migrating into the southern GBR, the reality is that we can't. Coral larvae travel on complex paths
-and predicting these paths is an active and highly sophisticated area of research (find out more
-[here](https://www.aims.gov.au/research-topics/monitoring-and-discovery/connectivity); see a real approach to
-answering this question [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6802068/#:~:text=3.1.%20Biophysical%20models)).
-Unfortunately, this question is just too complicated for any real insights to be gained from data for only a
-single site. But, at the very least, we did make some nice graphs!
+and predicting these paths is an active and highly sophisticated area of research (find out more in the
+[AIMS connectivity](https://www.aims.gov.au/research-topics/monitoring-and-discovery/connectivity) webpage;
+see a real approach to answering this question in this
+[reef resilience](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6802068/#:~:text=3.1.%20Biophysical%20models)
+article). Unfortunately, this question is just too complicated for any real insights to be gained from data
+for only a single site. But, at the very least, we did make some nice graphs!
 
 We also saw that there are indeed periods of southward currents at our site, and these southward currents are
 most prevalent between the months of (roughly) October through February, and are particularly uncommon

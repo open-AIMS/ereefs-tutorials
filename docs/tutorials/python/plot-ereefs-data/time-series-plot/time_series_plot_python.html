@@ -205,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <section id="load-the-required-python-libraries" class="level1">
 <h1>Load the required Python libraries</h1>
-<div id="7282717d" class="cell" data-execution_count="1">
+<div id="620a0117" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> netCDF4 <span class="im">import</span> Dataset, num2date</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy</span>
@@ -219,9 +219,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="choose-opendap-end-point" class="level1">
 <h1>Choose OPeNDAP end point</h1>
-<p>The first part of the process is to choose the OPeNDAP end point on the AIMS eReefs THREDDS server. You can view the products <a href="https://thredds.ereefs.aims.gov.au/thredds/catalog/ereefs/gbr4_v2/catalog.html">here</a>. At this stage there is no grouped OPeNDAP service for the entire time series and so this script only works for looking at a single month of data. Hopefully this can be improved in the future.</p>
-<div id="3140d006" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the OpeNDAP endpoint for the specified month.  </span></span>
+<p>The first part of the process is to choose the OPeNDAP end point on the AIMS eReefs THREDDS server. You can view the products in the <a href="https://thredds.ereefs.aims.gov.au/thredds/catalog/ereefs/gbr4_v2/catalog.html">AIMS eReefs THREDDS catalogue</a>. At this stage there is no grouped OPeNDAP service for the entire time series and so this script only works for looking at a single month of data. Hopefully this can be improved in the future.</p>
+<div id="4e54fe5c" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the OpeNDAP endpoint for the specified month.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>month <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>year <span class="op">=</span> <span class="dv">2020</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>netCDF_datestr <span class="op">=</span> <span class="bu">str</span>(year)<span class="op">+</span><span class="st">'-'</span><span class="op">+</span><span class="bu">format</span>(month, <span class="st">'02'</span>)</span>
@@ -230,14 +230,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>'2020-03'</code></pre>
 </div>
 </div>
-<div id="bb5df472" class="cell" data-execution_count="3">
+<div id="efdf2713" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OPeNDAP URL to file "EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-YYYY-MM.nc". Hydrodynamic 4km model, daily data for the month specified</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>inputFile <span class="op">=</span> <span class="st">"https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr4_v2/daily-monthly/EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-"</span><span class="op">+</span>netCDF_datestr<span class="op">+</span><span class="st">".nc"</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>nc_data <span class="op">=</span> Dataset(inputFile, <span class="st">'r'</span>)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nc_data.title)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># To find a list of the variables uncomment the next line: </span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># To find a list of the variables uncomment the next line:</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>nc_data.variables</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>eReefs AIMS-CSIRO GBR4 Hydrodynamic v2 daily aggregation</code></pre>
@@ -444,10 +444,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p><em>Note</em>: This only works because the AIMS eReefs aggregate datasets are regridded onto a regularly spaced grid. The original raw model data is on a curvilinear grid and this approach would not work for that data.</p>
 </blockquote>
-<div id="c117519c" class="cell" data-execution_count="4">
+<div id="e83eb9c5" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lons <span class="op">=</span> nc_data.variables[<span class="st">'longitude'</span>][:]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>max_lon <span class="op">=</span> <span class="bu">max</span>(lons)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>min_lon <span class="op">=</span> <span class="bu">min</span>(lons) </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>min_lon <span class="op">=</span> <span class="bu">min</span>(lons)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>lats <span class="op">=</span> nc_data.variables[<span class="st">'latitude'</span>][:]</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>max_lat <span class="op">=</span> <span class="bu">max</span>(lats)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>min_lat <span class="op">=</span> <span class="bu">min</span>(lats)</span>
@@ -461,7 +461,7 @@ Grid size is: 491 x 723</code></pre>
 </div>
 </div>
 <p>Find the closest index to the location of interest.</p>
-<div id="99cb4f0c" class="cell" data-execution_count="5">
+<div id="855a0abc" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Davies reef</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>lat <span class="op">=</span> <span class="op">-</span><span class="fl">18.82</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>lon <span class="op">=</span> <span class="fl">147.64</span></span>
@@ -476,7 +476,7 @@ Grid size is: 491 x 723</code></pre>
 <section id="extract-values" class="level1">
 <h1>Extract values</h1>
 <p>Extract the values over time at this location. Note that because we are access the underlying data here this results in an OpeNDAP call to get the data from the remote server. As a result this call can take a while (~10 sec).</p>
-<div id="c6643e39" class="cell" data-execution_count="6">
+<div id="e5453246" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>selectedDepthIndex <span class="op">=</span> <span class="dv">15</span> <span class="co"># -1.5m</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>selectedDepthIndex2 <span class="op">=</span> <span class="dv">10</span> <span class="co"># -17.75m</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -492,16 +492,16 @@ Grid size is: 491 x 723</code></pre>
 </div>
 </div>
 <p>Let’s get the wind for the same location. The wind variable doesn’t have any depth dimension and so our indexing into the data is different. The wind is a vector measurement, with an x and y component.</p>
-<div id="bb47ed7a" class="cell" data-execution_count="7">
+<div id="67e31022" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>wspeed_v <span class="op">=</span> nc_data.variables[<span class="st">'wspeed_v'</span>][:, selectedLatIndex, selectedLonIndex]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>wspeed_u <span class="op">=</span> nc_data.variables[<span class="st">'wspeed_v'</span>][:, selectedLatIndex, selectedLonIndex]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To get the wind speed we need to calculate the magnitude of this vector.</p>
-<div id="769f604c" class="cell" data-execution_count="8">
+<div id="54119836" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>wspeed <span class="op">=</span> np.sqrt(wspeed_v<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> wspeed_u<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Get the time series. Note that the time values are stored as the number of days since 1990-01-01 00:00:00 +10.</p>
-<div id="3ef3f9a6" class="cell" data-execution_count="9">
+<div id="720bdd0c" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> nc_data.variables[<span class="st">'time'</span>][:]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(times[<span class="dv">0</span>:<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -511,7 +511,7 @@ Grid size is: 491 x 723</code></pre>
 </section>
 <section id="plot-the-time-series" class="level1">
 <h1>Plot the time series</h1>
-<div id="b36b19b5" class="cell" data-execution_count="10">
+<div id="7a2b0717" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the days since the 1990 origin into Pandas dates for plotting</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> pd.to_datetime(times,unit<span class="op">=</span><span class="st">'D'</span>,origin<span class="op">=</span>pd.Timestamp(<span class="st">'1990-01-01'</span>))</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>

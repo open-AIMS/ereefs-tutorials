@@ -38,6 +38,21 @@ Setup *R* and *RStudio* on your development environment, to run the R tutorials 
 :::
 ::::
 
+<!-- Setup Jupyter Notebook -->
+::::{.hp-tutorial}
+:::{.hp-thumbnail}
+![](images/tutorial-thumbnails/TN_download_icon.png)
+:::
+:::{.hp-text}
+[Setup Jupyter Notebook]{.hp-title}<br>
+Setup *Python* and *Jupyter Notebook* on your development environment, to run the Python tutorials found in
+this website.
+:::
+:::{.hp-links}
+[{{< fa solid book >}} Start](tutorials/python/follow-along/python_and_jupyter_setup.qmd)
+:::
+::::
+
 ## Access *eReefs* data
 
 <!-- Basic Server Access -->
