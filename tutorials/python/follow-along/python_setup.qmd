@@ -1,0 +1,36 @@
+---
+title: "Setup Python"
+subtitle: "Following along with tutorials in Python {{< fa brands python >}}"
+---
+
+:::{.tutorial-description}
+Learn how to setup Python and follow along with the eReefs tutorials.
+:::
+
+## Install Python
+
+TODO
+
+## Install dependencies
+
+Install Conda
+```shell
+wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_23.5.2-0-Linux-x86_64.sh -O miniconda.sh
+/bin/bash miniconda.sh
+```
+
+Install Python dependencies using Conda
+```shell
+~/miniconda3/bin/conda install -n base conda-libmamba-solver
+~/miniconda3/bin/conda config --set solver libmamba
+~/miniconda3/bin/conda install jupyter
+~/miniconda3/bin/conda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0
+
+# Can't install from conda, package version 3.7.5 not available, version 3.10.1 conflict with a lot of other libraries
+~/miniconda3/bin/conda install -c conda-forge matplotlib==3.10.1
+
+# Can't install with Python3 pip, it requires a venv which RStudio won't be able to find.
+python3 -m pip install --force-reinstall matplotlib==3.7.5
+```
+
+## Use RStudio to run the Python tutorials

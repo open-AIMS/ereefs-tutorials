@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Setup Python and Jupyter Notebook – eReefs tutorials</title>
+<title>Setup Python – eReefs tutorials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -133,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#install-python" id="toc-install-python" class="nav-link active" data-scroll-target="#install-python">Install Python</a></li>
   <li><a href="#install-dependencies" id="toc-install-dependencies" class="nav-link" data-scroll-target="#install-dependencies">Install dependencies</a></li>
-  <li><a href="#install-jupyter-notebook" id="toc-install-jupyter-notebook" class="nav-link" data-scroll-target="#install-jupyter-notebook">Install Jupyter Notebook</a></li>
+  <li><a href="#use-rstudio-to-run-the-python-tutorials" id="toc-use-rstudio-to-run-the-python-tutorials" class="nav-link" data-scroll-target="#use-rstudio-to-run-the-python-tutorials">Use RStudio to run the Python tutorials</a></li>
   </ul>
 </nav>
     </div>
@@ -142,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Setup Python and Jupyter Notebook</h1>
+<h1 class="title">Setup Python</h1>
 <p class="subtitle lead">Following along with tutorials in Python <i class="fa-brands fa-python" aria-label="python"></i></p>
 </div>
 
@@ -161,16 +161,31 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="tutorial-description">
-<p>Learn how to setup Python and Jupyter Notebook and follow along with the eReefs tutorials.</p>
+<p>Learn how to setup Python and follow along with the eReefs tutorials.</p>
 </div>
 <section id="install-python" class="level2">
 <h2 class="anchored" data-anchor-id="install-python">Install Python</h2>
+<p>TODO</p>
 </section>
 <section id="install-dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="install-dependencies">Install dependencies</h2>
+<p>Install Conda</p>
+<pre class="shell"><code>wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_23.5.2-0-Linux-x86_64.sh -O miniconda.sh
+/bin/bash miniconda.sh</code></pre>
+<p>Install Python dependencies using Conda</p>
+<pre class="shell"><code>~/miniconda3/bin/conda install -n base conda-libmamba-solver
+~/miniconda3/bin/conda config --set solver libmamba
+~/miniconda3/bin/conda install jupyter
+~/miniconda3/bin/conda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0
+
+# Can't install from conda, package version 3.7.5 not available, version 3.10.1 conflict with a lot of other libraries
+~/miniconda3/bin/conda install -c conda-forge matplotlib==3.10.1
+
+# Can't install with Python3 pip, it requires a venv which RStudio won't be able to find.
+python3 -m pip install --force-reinstall matplotlib==3.7.5</code></pre>
 </section>
-<section id="install-jupyter-notebook" class="level2">
-<h2 class="anchored" data-anchor-id="install-jupyter-notebook">Install Jupyter Notebook</h2>
+<section id="use-rstudio-to-run-the-python-tutorials" class="level2">
+<h2 class="anchored" data-anchor-id="use-rstudio-to-run-the-python-tutorials">Use RStudio to run the Python tutorials</h2>
 
 
 </section>
