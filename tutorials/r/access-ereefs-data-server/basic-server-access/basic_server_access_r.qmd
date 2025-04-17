@@ -1,14 +1,15 @@
 ---
-title: "Accessing eReefs data from the AIMS server"
+title: "Accessing eReefs data from the AIMS eReefs THREDDS server"
 subtitle: "Basic access with OPeNDAP {{< fa brands r-project >}}"
 ---
 
 :::{.tutorial-description}
-Learn the basics of extracting eReefs data from the AIMS server with OPeNDAP in {{< fa brands r-project >}}.
+Learn the basics of extracting eReefs data from the AIMS eReefs THREDDS server with OPeNDAP in
+{{< fa brands r-project >}}.
 :::
 
 In this tutorial we will look at how to access eReefs data directly from the
-[AIMS THREDDS server](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html) in R.
+[AIMS eReefs THREDDS server](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html) in R.
 
 This server hosts aggregated eReefs model data in NetCDF file format and offers access to the data files via
 OPeNDAP, HTTP Server, and Web Map Service (WMS). While we could download the data files manually via the
@@ -33,7 +34,7 @@ basics of how to connect to files on the server and extract the data we want.
 
 ## Navigating the eReefs server
 
-*ADD: Info about the folder and file naming on the AIMS THREDDS Server.*
+*ADD: Info about the folder and file naming on the AIMS eReefs THREDDS Server.*
 
 
 ## R packages
@@ -55,7 +56,7 @@ wish to use `ncdf4`, the functions used herein have obvious analogues; for examp
 ## Connect to a file on the server
 
 First we need to find the right NetCDF file on the server. The available eReefs data NetCDF files are listed
-in the [AIMS THREDDS Server catalogue](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html). We
+in the [AIMS eReefs THREDDS catalogue](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html). We
 will navigate to the eReefs 4 km Hydrodynamic Model daily aggregated data for the month of December 2022 and
 copy the OPeNDAP data URL.
 

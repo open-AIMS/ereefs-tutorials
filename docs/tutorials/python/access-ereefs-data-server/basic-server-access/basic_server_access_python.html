@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Accessing eReefs data from the AIMS server – eReefs tutorials</title>
+<title>Accessing eReefs data from the AIMS eReefs THREDDS server – eReefs tutorials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -212,7 +212,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Accessing eReefs data from the AIMS server</h1>
+<h1 class="title">Accessing eReefs data from the AIMS eReefs THREDDS server</h1>
 <p class="subtitle lead">Basic access with OPeNDAP <i class="fa-brands fa-python" aria-label="python"></i></p>
 </div>
 
@@ -231,9 +231,9 @@ window.Quarto = {
 
 
 <div class="tutorial-description">
-<p>Learn the basics of extracting eReefs data from the AIMS server with OPeNDAP in <i class="fa-brands fa-python" aria-label="python"></i> python.</p>
+<p>Learn the basics of extracting eReefs data from the AIMS eReefs THREDDS server with OPeNDAP in Python <i class="fa-brands fa-python" aria-label="python"></i>.</p>
 </div>
-<p>In this tutorial we will look at how to access eReefs data directly from the <a href="https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html">AIMS THREDDS server</a> in python.</p>
+<p>In this tutorial we will look at how to access eReefs data directly from the <a href="https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html">AIMS eReefs THREDDS server</a> in python.</p>
 <p>This server hosts aggregated eReefs model data in NetCDF file format and offers access to the data files via OPeNDAP, HTTP Server, and Web Map Service (WMS). While we could download the data files manually via the HTTPServer link, this approach is cumbersome when downloading multiple files, given their large size. Thankfully, OPeNDAP provides a way to access the data files over the internet and extract only the data we want.</p>
 <p>For example, say we want the daily mean surface temperature at a single location for the last 30 days. If we were to download the 30 individual daily aggregated NetCDF files, with each file ~ 350 Mb, this would require us to download over 10 Gb of data just to get 300 numbers. The vast majority of this data would be irrelevant to our needs as the NetCDF files contain data for a range of variables, at a range of depths, for many, many locations. However, with OPeNDAP, we can extract the daily mean values directly from the server without downloading any unneeded data.</p>
 <section id="motivating-problem" class="level2">
@@ -242,7 +242,7 @@ window.Quarto = {
 </section>
 <section id="navigating-the-ereefs-server" class="level2">
 <h2 class="anchored" data-anchor-id="navigating-the-ereefs-server">Navigating the eReefs server</h2>
-<p><em>ADD: Info about the folder and file naming on the AIMS THREDDS Server.</em></p>
+<p><em>ADD: Info about the folder and file naming on the AIMS eReefs THREDDS Server.</em></p>
 </section>
 <section id="python-libraries" class="level2">
 <h2 class="anchored" data-anchor-id="python-libraries">Python libraries</h2>
@@ -257,7 +257,7 @@ window.Quarto = {
 </section>
 <section id="connect-to-a-file-on-the-server" class="level2">
 <h2 class="anchored" data-anchor-id="connect-to-a-file-on-the-server">Connect to a file on the server</h2>
-<p>First we need to find the right NetCDF file on the server. The available eReefs data NetCDF files are listed in the <a href="https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html">AIMS THREDDS Server catalogue</a>. We will navigate to the eReefs 4 km Hydrodynamic Model daily aggregated data for the month of December 2022 and copy the OPeNDAP data URL.</p>
+<p>First we need to find the right NetCDF file on the server. The available eReefs data NetCDF files are listed in the <a href="https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html">AIMS eReefs THREDDS catalogue</a>. We will navigate to the eReefs 4 km Hydrodynamic Model daily aggregated data for the month of December 2022 and copy the OPeNDAP data URL.</p>
 <p><img src="images/server_navigation.gif" class="img-fluid"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>input_file <span class="op">=</span> <span class="st">"https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr4_v2/daily-monthly/EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-2022-12.nc"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -667,7 +667,7 @@ Table of eReefs depths corresponding to index <code>k</code>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the data to the plot</span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plt.contourf(lons, lats, temps_10Dec22_1p5m, <span class="dv">30</span>, transform<span class="op">=</span>ccrs.PlateCarree())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;cartopy.mpl.contour.GeoContourSet object at 0x764ec6e72880&gt;</code></pre>
+<pre><code>&lt;cartopy.mpl.contour.GeoContourSet object at 0x755746e752b0&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add landmass coastlines shapefile</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ax.coastlines()</span>

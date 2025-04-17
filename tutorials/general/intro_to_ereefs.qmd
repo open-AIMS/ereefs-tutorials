@@ -253,7 +253,7 @@ The output datasets can be accessed in a range of different ways --- these are l
 
 [![](images/access-thumbnails/aims_server_tn.png)](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html)
 
-**AIMS THREDDS Server**
+**AIMS eReefs THREDDS Server**
 
 {{< fa solid check >}} Aggregated outputs<br>
 {{< fa solid check >}} NetCDF file format<br>

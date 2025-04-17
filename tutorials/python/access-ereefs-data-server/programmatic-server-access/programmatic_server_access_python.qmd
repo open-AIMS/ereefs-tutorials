@@ -4,7 +4,7 @@ subtitle: "Programmatic server access {{< fa brands python >}}"
 ---
 
 :::{.tutorial-description}
-Learn how to extract eReefs data from the AIMS server for multiple dates and points with OPeNDAP in {{< fa brands python >}} python.
+Learn how to extract eReefs data from the AIMS eReefs THREDDS server for multiple dates and points with OPeNDAP in Python {{< fa brands python >}}.
 :::
 
 
@@ -12,7 +12,7 @@ Learn how to extract eReefs data from the AIMS server for multiple dates and poi
 This tutorial builds on the techniques introduced in [Access eReefs data: Basic server access {{< fa brands python >}}](../basic-server-access/basic_server_access_python.qmd).
 :::
 
-In this tutorial we will look at how to get eReefs data from the [AIMS server](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html) corresponding to the logged locations of tagged marine animals. Keep in mind, however, that the same methodology can be applied in any situation where we wish to extract eReefs data for a range of points with different dates of interest for each point.
+In this tutorial we will look at how to get eReefs data from the [AIMS eReefs THREDDS server](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html) corresponding to the logged locations of tagged marine animals. Keep in mind, however, that the same methodology can be applied in any situation where we wish to extract eReefs data for a range of points with different dates of interest for each point.
 
 ## Python modules
 ```{python pythonModules}
@@ -106,7 +106,7 @@ track_map
 
 ## Extract data from server
 
-We will extend the basic methods introduced in  the preceeding tutorial [Accessing eReefs data from the AIMS server](../basic-server-access/basic_server_access_python.qmd) to extract data for a set of points and dates.
+We will extend the basic methods introduced in the preceding tutorial [Accessing eReefs data from the AIMS eReefs THREDDS server](../basic-server-access/basic_server_access_python.qmd) to extract data for a set of points and dates.
 
 We will extract the eReefs 1km hydrodynamic model daily mean temperature (`temp`), salinity (`salt`), and east- and northward current velocities (`u` and `v`) corresponding to the coordinates and dates for the tracking detections shown in @tbl-detections.
 

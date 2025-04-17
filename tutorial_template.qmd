@@ -14,21 +14,21 @@ execute: # Set code cell execution options
 :::
 
 :::{.callout-note appearance="simple"}
-< **Optional link to previous tutorial in the series** > 
+< **Optional link to previous tutorial in the series** >
 This tutorial builds on the techniques introduced in [< series title >:< tutorial title >< language icon {{< fa brands r-project >}} or {{< fa brands python >}} >](< relative link to .qmd file of previous tutorial >).
 :::
 
-< **Breif description of tutorial concepts and outcomes** >
-> E.g. In this tutorial we will look at how to get eReefs data from the [AIMS server](http://thredds.ereefs.aims.gov.au/thredds/catalog.html) corresponding to the logged locations of tagged marine animals. Keep in mind, however, that the same methodology can be applied in any situation where we wish to extract eReefs data for a range of points with different dates of interest for each point. 
+< **Brief description of tutorial concepts and outcomes** >
+> E.g. In this tutorial we will look at how to get eReefs data from the [AIMS eReefs THREDDS server](http://thredds.ereefs.aims.gov.au/thredds/catalog.html) corresponding to the logged locations of tagged marine animals. Keep in mind, however, that the same methodology can be applied in any situation where we wish to extract eReefs data for a range of points with different dates of interest for each point.
 
 ## R packages / Python modules
 ```{r RPackages}
 library(<R package name>) # comment describing what specifically the package is used for in this tutorial
-# E.g. 
+# E.g.
 library(readr) # to efficiently read in data
 library(janitor) # to create consistent, 'clean' variable names
 library(tidyverse) # for data manipulation and plotting with ggplot2
-library(lubridate) # for working with date and time variables 
+library(lubridate) # for working with date and time variables
 library(leaflet) # to create an interactive map of the tracking locations
 library(knitr); library(kableExtra) # for better table printing
 ```
@@ -37,7 +37,7 @@ library(knitr); library(kableExtra) # for better table printing
 
 < **Brief introduction to the mock problem being solved within this tutorial** - including a little bit on the background/context of the problem generally, and a little bit on the specific instance of the problem in this tutorial >
 
-> E.g. The tracking of marine animals is commonly used by researchers to gain insights into the distribution, biology, behaviour and ecology of different species. However, knowing where an animal was at a certain point in time is only one piece of the puzzle. To start to understand *why* an animal was where it was, we usually require information on things like: What type of habitat is present at the location? What were the environmental conditions like at the time? What other lifeforms were present at the tracked location (e.g. for food or mating)? <br> In this tutorial we will pretend that we have tracking data for Loggerhead Sea Turtles and wish to get eReefs data corresponding to the tracked points (in time and space) to understand more about the likely environmental conditions experienced by our turtles. 
+> E.g. The tracking of marine animals is commonly used by researchers to gain insights into the distribution, biology, behaviour and ecology of different species. However, knowing where an animal was at a certain point in time is only one piece of the puzzle. To start to understand *why* an animal was where it was, we usually require information on things like: What type of habitat is present at the location? What were the environmental conditions like at the time? What other lifeforms were present at the tracked location (e.g. for food or mating)? <br> In this tutorial we will pretend that we have tracking data for Loggerhead Sea Turtles and wish to get eReefs data corresponding to the tracked points (in time and space) to understand more about the likely environmental conditions experienced by our turtles.
 
 :::{.callout-note collapse="true" icon="false"}
 
@@ -111,7 +111,7 @@ Text here is hidden until dropdown is clicked.
 
 **Collapsable code output**
 
-One particularly useful thing is to hide large code outputs (or anything else you might want to hide) in expandable sections with the <details><summary>title</summary></details> html tags. Its a bit of a hacky solution, but is often worth the trouble. For example, say we want to show some large output, instead of 
+One particularly useful thing is to hide large code outputs (or anything else you might want to hide) in expandable sections with the <details><summary>title</summary></details> html tags. Its a bit of a hacky solution, but is often worth the trouble. For example, say we want to show some large output, instead of
 
 ```{r}
 large_output <- rep("a", 10000)
@@ -134,12 +134,12 @@ print(large_output) # this code block is not shown, only the output (echo=FALSE)
 
 **Math equations**
 
-Math equations are written in latex. Inline equations are latex code in between single dollar signs, e.g. $x=1$, and block/whole-line equations are between double dollar signs, e.g. 
+Math equations are written in latex. Inline equations are latex code in between single dollar signs, e.g. $x=1$, and block/whole-line equations are between double dollar signs, e.g.
 
 $$
 \begin{align}
 \text{When } x &\in [0, \infty), \; y_d = \sqrt{x} \\
-\therefore \; y_d^2 &= 
+\therefore \; y_d^2 &=
   \begin{cases}
     & x \hspace{1cm}   & x \in [0, \infty) \\
     & \text{undefined} & x < 0

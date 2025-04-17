@@ -61,9 +61,9 @@ this website.
 ![](images/tutorial-thumbnails/TN_basic_server_access.png)
 :::
 :::{.hp-text}
-[Basic access to the AIMS eReefs Server]{.hp-title}<br>
-Learn the basics of extracting aggregated eReefs data from the AIMS server using the efficient OPeNDAP data
-access protocol.
+[Basic access to the AIMS eReefs THREDDS server]{.hp-title}<br>
+Learn the basics of extracting aggregated eReefs data from the AIMS eReefs THREDDS server using the
+efficient OPeNDAP data access protocol.
 :::
 :::{.hp-links}
 [{{< fa brands r-project >}} R](tutorials/r/access-ereefs-data-server/basic-server-access/basic_server_access_r.qmd)<br>
@@ -80,7 +80,7 @@ access protocol.
 :::{.hp-text}
 [Programmatic access to the AIMS eReefs Server]{.hp-title}<br>
 Extends the methods introduced in the basic access tutorial to programmatically extract aggregated eReefs
-data from the AIMS server for multiple dates and points.
+data from the AIMS eReefs THREDDS server for multiple dates and points.
 :::
 :::{.hp-links}
 [{{< fa brands r-project >}} R](tutorials/r/access-ereefs-data-server/programmatic-server-access/programmatic_server_access_r.qmd)<br>

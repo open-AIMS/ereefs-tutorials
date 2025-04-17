@@ -51,7 +51,7 @@ nc_data.variables
 # Select the point location
 Work out the bounds of the gridded data. We can then use this to find out which grid cell best matches our location of interest.
 
-> *Note*: This only works because the AIMS eReefs aggregate datasets are regridded onto a regularly spaced grid. The original raw model data is on a curvilinear grid and this approach would not work for that data.
+> *Note*: This only works because the AIMS eReefs aggregated datasets are regridded onto a regularly spaced grid. The original raw model data is on a curvilinear grid and this approach would not work for that data.
 
 ```{python}
 lons = nc_data.variables['longitude'][:]
