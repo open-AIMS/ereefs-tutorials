@@ -193,3 +193,9 @@ div.callout-warning.callout-style-default>.callout-header {
   overflow: auto;
   margin-bottom: 20px;
 }
+.navbar-brand img {
+  height: 100%;
+  max-height: 50px;
+  width: 50px;
+  padding-right: 0;
+}
