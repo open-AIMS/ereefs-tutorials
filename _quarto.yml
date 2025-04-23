@@ -21,6 +21,17 @@ website:
       - href: "https://github.com/open-AIMS/ereefs-tutorials"
         icon: "github"
     collapse-below: sm
+  page-footer:
+    background: "#335b84"
+    center:
+      - text: Collaborators
+        href: https://www.ereefs.org.au/about/collaborators.html
+      - text: Funders
+        href: https://www.ereefs.org.au/about/funders.html
+      - text: Privacy Policy
+        href: https://www.csiro.au/en/About/Access-to-information/Privacy
+      - text: Legal & Disclaimer
+        href: https://www.csiro.au/en/about/Policies/Legal/Legal-notice
 
 format:
   html:
