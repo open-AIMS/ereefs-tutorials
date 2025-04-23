@@ -199,3 +199,22 @@ div.callout-warning.callout-style-default>.callout-header {
   width: 50px;
   padding-right: 0;
 }
+.nav-footer-center {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.nav-footer-center a {
+color: #CFDCE8;
+font-weight: bold;
+}
+.nav-footer-left, .nav-footer-right {
+  max-width: none;
+  width: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  flex: 0 0 0;
+}
