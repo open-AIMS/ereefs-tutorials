@@ -4,26 +4,41 @@ project:
 
 website:
   favicon: images/logo.png
-  title: "eReefs tutorials"
-  navbar: 
-    title: "*eReefs* tutorials"
-    background: "#335b84"
-    logo: images/navbar_logo.png
+  title: "eReefs Tutorials"
+  navbar:
+    title: "eReefs Tutorials"
+    logo: https://www.ereefs.org.au/assets/images/logos/ereefs_logo.svg
+    background: "#0F528C"
+    pinned: true
     right:
-      - href: https://www.r-project.org/
-        text: "{{< fa brands r-project >}}"
-      - href: https://www.python.org/
-        text: "{{< fa brands python >}} python"
-      - text: "   "
-      - href: "https://github.com/open-AIMS/ereefs-tutorials"
-        icon: "github"
+      - href: https://www.ereefs.org.au/
+        text: Home
+      - href: https://www.ereefs.org.au/about/
+        text: About
+      - href: https://www.ereefs.org.au/research/
+        text: Research
+      - href: https://www.ereefs.org.au/tools/
+        text: Tools
+      - href: https://www.ereefs.org.au/contact/
+        text: Contact
+      - href: https://extraction.ereefs.aims.gov.au/faqs
+        text: Help
     collapse-below: sm
+  page-footer:
+    background: "#0F528C"
+    center:
+      - text: Collaborators
+        href: https://www.ereefs.org.au/about/collaborators.html
+      - text: Funders
+        href: https://www.ereefs.org.au/about/funders.html
+      - text: Privacy Policy
+        href: https://www.csiro.au/en/About/Access-to-information/Privacy
+      - text: Legal & Disclaimer
+        href: https://www.csiro.au/en/about/Policies/Legal/Legal-notice
 
 format:
   html:
-    theme: 
-      light: [flatly, theme_changes_light.scss]
-      dark: [darkly, theme_changes_dark.scss]
+    theme: flatly
     highlight-style: atom-one
     css: styles.css
     toc: true
