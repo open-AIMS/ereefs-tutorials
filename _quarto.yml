@@ -21,8 +21,6 @@ website:
         text: Tools
       - href: https://www.ereefs.org.au/contact/
         text: Contact
-      - href: https://extraction.ereefs.aims.gov.au/faqs
-        text: Help
     collapse-below: sm
   page-footer:
     background: "#0F528C"
