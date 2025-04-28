@@ -34,3 +34,5 @@ python3 -m pip install --force-reinstall matplotlib==3.7.5
 ```
 
 ## Use RStudio to run the Python tutorials
+
+TODO Talk about "Update reticulate package" when loading running python code in RStudio: update-reticulate-package.png
