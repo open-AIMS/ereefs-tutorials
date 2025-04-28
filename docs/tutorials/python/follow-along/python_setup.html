@@ -131,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#install-python" id="toc-install-python" class="nav-link active" data-scroll-target="#install-python">Install Python</a></li>
   <li><a href="#install-dependencies" id="toc-install-dependencies" class="nav-link" data-scroll-target="#install-dependencies">Install dependencies</a></li>
-  <li><a href="#use-rstudio-to-run-the-python-tutorials" id="toc-use-rstudio-to-run-the-python-tutorials" class="nav-link" data-scroll-target="#use-rstudio-to-run-the-python-tutorials">Use RStudio to run the Python tutorials</a></li>
+  <li><a href="#run-the-python-tutorials" id="toc-run-the-python-tutorials" class="nav-link" data-scroll-target="#run-the-python-tutorials">Run the Python tutorials</a></li>
   </ul>
 </nav>
     </div>
@@ -170,21 +170,21 @@ ul.task-list li input[type="checkbox"] {
 <p>Install Conda</p>
 <pre class="shell"><code>wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_23.5.2-0-Linux-x86_64.sh -O miniconda.sh
 /bin/bash miniconda.sh</code></pre>
+<p>Run this command if you do not want conda to automatically activate its base environment</p>
+<pre class="shell"><code>conda config --set auto_activate_base false</code></pre>
 <p>Install Python dependencies using Conda</p>
-<pre class="shell"><code>~/miniconda3/bin/conda install -n base conda-libmamba-solver
-~/miniconda3/bin/conda config --set solver libmamba
-~/miniconda3/bin/conda install jupyter
-~/miniconda3/bin/conda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0
-
-# Can't install from conda, package version 3.7.5 not available, version 3.10.1 conflict with a lot of other libraries
-~/miniconda3/bin/conda install -c conda-forge matplotlib==3.10.1
-
-# Can't install with Python3 pip, it requires a venv which RStudio won't be able to find.
-python3 -m pip install --force-reinstall matplotlib==3.7.5</code></pre>
+<pre class="shell"><code>conda activate base
+conda install -n base conda-libmamba-solver
+conda config --set solver libmamba
+conda install jupyter
+conda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0</code></pre>
+<p>Install <code>matplotlib</code> version 3.7.5 using pip. That version is not available from <code>conda</code>.</p>
+<pre class="shell"><code>conda activate base
+python3 -m pip install matplotlib==3.7.5</code></pre>
 </section>
-<section id="use-rstudio-to-run-the-python-tutorials" class="level2">
-<h2 class="anchored" data-anchor-id="use-rstudio-to-run-the-python-tutorials">Use RStudio to run the Python tutorials</h2>
-<p>TODO Talk about “Update reticulate package” when loading running python code in RStudio: update-reticulate-package.png</p>
+<section id="run-the-python-tutorials" class="level2">
+<h2 class="anchored" data-anchor-id="run-the-python-tutorials">Run the Python tutorials</h2>
+<p>TODO</p>
 
 
 </section>

@@ -4,19 +4,32 @@ subtitle: "Basic access with OPeNDAP {{< fa brands python >}}"
 ---
 
 :::{.tutorial-description}
-Learn the basics of extracting eReefs data from the AIMS eReefs THREDDS server with OPeNDAP in Python {{< fa brands python >}}.
+Learn the basics of extracting eReefs data from the AIMS eReefs THREDDS server with OPeNDAP in Python
+{{< fa brands python >}}.
 :::
 
-In this tutorial we will look at how to access eReefs data directly from the [AIMS eReefs THREDDS server](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html) in python.
+In this tutorial we will look at how to access eReefs data directly from the
+[AIMS eReefs THREDDS server](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html) in python.
 
-This server hosts aggregated eReefs model data in NetCDF file format and offers access to the data files via OPeNDAP, HTTP Server, and Web Map Service (WMS). While we could download the data files manually via the HTTPServer link, this approach is cumbersome when downloading multiple files, given their large size. Thankfully, OPeNDAP provides a way to access the data files over the internet and extract only the data we want.
+This server hosts aggregated eReefs model data in NetCDF file format and offers access to the data files via
+OPeNDAP, HTTP Server, and Web Map Service (WMS). While we could download the data files manually via the
+HTTPServer link, this approach is cumbersome when downloading multiple files, given their large size.
+Thankfully, OPeNDAP provides a way to access the data files over the internet and extract only the data we
+want.
 
-For example, say we want the daily mean surface temperature at a single location for the last 30 days. If we were to download the 30 individual daily aggregated NetCDF files, with each file ~ 350 Mb, this would require us to download over 10 Gb of data just to get 300 numbers. The vast majority of this data would be irrelevant to our needs as the NetCDF files contain data for a range of variables, at a range of depths, for many, many locations. However, with OPeNDAP, we can extract the daily mean values directly from the server without downloading any unneeded data.
+For example, say we want the daily mean surface temperature at a single location for the last 30 days. If we
+were to download the 30 individual daily aggregated NetCDF files, with each file ~ 350 Mb, this would require
+us to download over 10 Gb of data just to get 300 numbers. The vast majority of this data would be irrelevant
+to our needs as the NetCDF files contain data for a range of variables, at a range of depths, for many, many
+locations. However, with OPeNDAP, we can extract the daily mean values directly from the server without
+downloading any unneeded data.
 
 
 ## Motivating problem
 
-We will extract the daily mean water temperature for the 10th of December 2022 at 1.5 m depth  across the entire scope of the eReefs model. We will then plot this data. This example will introduce the basics of how to connect to files on the server and extract the data we want.
+We will extract the daily mean water temperature for the 10th of December 2022 at 1.5 m depth  across the
+entire scope of the eReefs model. We will then plot this data. This example will introduce the basics of how
+to connect to files on the server and extract the data we want.
 
 
 ## Navigating the eReefs server
@@ -58,13 +71,15 @@ dailyAggDec22_nc = Dataset(input_file)
 ```
 
 ::: {.callout-note appearance="simple"}
-If you wish to download NetCDF files from the server you can click the HTTPServer link instead of OPeNDAP. The file can then be loaded into python by specifying the path: `Dataset("<path to downloaded file>")`.
+If you wish to download NetCDF files from the server you can click the HTTPServer link instead of OPeNDAP.
+The file can then be loaded into python by specifying the path: `Dataset("<path to downloaded file>")`.
 :::
 
 
 ## Examine file structure
 
-If we wish to look at the structure of the file we have connected to, including what variables and dimensions are available, we access the various attributes below.
+If we wish to look at the structure of the file we have connected to, including what variables and dimensions
+are available, we access the various attributes below.
 
 
 <details><summary><code>dailyAggDec22_nc.title</code></summary>
@@ -99,11 +114,14 @@ dailyAggDec22_nc.variables
 
 ## Extract data
 
-Now that we have an open connection to a file on the server we need to extract the daily mean temperature at 1.5m depth for the 10th of December.
+Now that we have an open connection to a file on the server we need to extract the daily mean temperature at
+1.5m depth for the 10th of December.
 
-From the `dailyAggDec22.variables` output above we can see that the variable corresponding to temperature is: $\texttt{ temp(time, k, latitude, longitude)}$.
+From the `dailyAggDec22.variables` output above we can see that the variable corresponding to temperature
+is: $\texttt{ temp(time, k, latitude, longitude)}$.
 
-The dimensions for temperature are in brackets. This means that there is a temperature value for every combination of longitude, latitude, depth (k) and time. We can now see why these NetCDF files are so large.
+The dimensions for temperature are in brackets. This means that there is a temperature value for every
+combination of longitude, latitude, depth (k) and time. We can now see why these NetCDF files are so large.
 
 To extract data from the file we need to access the variable of interest using the structure
 
@@ -115,13 +133,18 @@ Therefore, we need the following:
 
   * **file**: an eReefs NetCDF file connection; in our case `dailyAggDec22.nc`.
   * **variable name**: the name of the data variable we wish to extract; in our case `"temp"`.
-  * **dimension indices**: a vector specifying for which indices of each dimension to extract the temperature values.
+  * **dimension indices**: a vector specifying for which indices of each dimension to extract the temperature
+    values.
 
 Let's look at how to construct the vector of dimension indices.
 
-**Time**: Since we have the daily aggregated data for December 2022, and are interested only in a single day (the 10th), time is a constant value; i.e. we have a single index for which to extract. From the `dailyAggDec22.dimensions` output we can see we have 31 time indexs, these correspond to the day of the month, therefore we want the `time=10`.
+**Time**: Since we have the daily aggregated data for December 2022, and are interested only in a single day
+  (the 10th), time is a constant value; i.e. we have a single index for which to extract. From the
+  `dailyAggDec22.dimensions` output we can see we have 31 time indexs, these correspond to the day of the
+  month, therefore we want the `time=10`.
 
-**Depth**: Again we have a constant value of interest (1.5 m). The index `k` corresponds to different depths as shown in the table below, where we see that for the 4km models `k=16` maps to a depth of 1.5 m.
+**Depth**: Again we have a constant value of interest (1.5 m). The index `k` corresponds to different depths
+  as shown in the table below, where we see that for the 4km models `k=16` maps to a depth of 1.5 m.
 
 <details><summary>Table of eReefs depths corresponding to index `k`</summary>
 
@@ -138,7 +161,10 @@ k_tbl |> knitr::kable() |> kableExtra::kable_styling() |>
 </details>
 
 
-**Longitude and latitude**: We want temperatures for every available longitude and latitude so we can plot the data across the entire spatial range of the eReefs model. Therefore we want every index of latitude and longitude. In python this is easily specified by using the notation `vector[:]` which can be though of as short hand for `vector[<minimum index>: <maximum index>]`.
+**Longitude and latitude**: We want temperatures for every available longitude and latitude so we can plot
+  the data across the entire spatial range of the eReefs model. Therefore we want every index of latitude and
+  longitude. In python this is easily specified by using the notation `vector[:]` which can be though of as
+  short hand for `vector[<minimum index>: <maximum index>]`.
 
 ```{python extractData}
 # EXTRACT DATA
@@ -149,14 +175,14 @@ temps_10Dec22_1p5m = dailyAggDec22_nc.variables['temp'][
   :,   # longitude indices --> all possible
 ]
 
-temps_10Dec22_1p5m
+print(repr(temps_10Dec22_1p5m))
 ```
-
 
 
 ## Plot data
 
-Let's plot the data. To do this we will need to extract the longitude and latitude variables from the open server file.
+Let's plot the data. To do this we will need to extract the longitude and latitude variables from the open
+server file.
 
 ```{python getLonLat}
 lons = dailyAggDec22_nc.variables["longitude"][:]
@@ -187,7 +213,7 @@ Hooray! We can now see in @fig-temps-plot that our data was extracted successful
 
 ## Close file connection
 
-Now that we are done with the openned server file it is best practice to close it.
+Now that we are done with the opened server file it is best practice to close it.
 
 ```{python closeServerFile}
 dailyAggDec22_nc.close()

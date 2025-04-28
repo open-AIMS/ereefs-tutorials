@@ -166,7 +166,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#python-modules" id="toc-python-modules" class="nav-link active" data-scroll-target="#python-modules">Python modules</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link active" data-scroll-target="#preparation">Preparation</a></li>
+  <li><a href="#python-modules" id="toc-python-modules" class="nav-link" data-scroll-target="#python-modules">Python modules</a></li>
   <li><a href="#motivating-problem" id="toc-motivating-problem" class="nav-link" data-scroll-target="#motivating-problem">Motivating problem</a></li>
   <li><a href="#example-tracking-data" id="toc-example-tracking-data" class="nav-link" data-scroll-target="#example-tracking-data">Example tracking data</a></li>
   <li><a href="#extract-data-from-server" id="toc-extract-data-from-server" class="nav-link" data-scroll-target="#extract-data-from-server">Extract data from server</a></li>
@@ -211,9 +212,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>In this tutorial we will look at how to get eReefs data from the <a href="https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html">AIMS eReefs THREDDS server</a> corresponding to the logged locations of tagged marine animals. Keep in mind, however, that the same methodology can be applied in any situation where we wish to extract eReefs data for a range of points with different dates of interest for each point.</p>
+<section id="preparation" class="level2">
+<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
+<p>Create a folder named <code>data</code>.</p>
+<p>Download the <a href="data/Strydom_2022_DOI10-15468-k4s6ap.csv">satellite tracking data file</a> into your <code>data</code> folder.</p>
+</section>
 <section id="python-modules" class="level2">
 <h2 class="anchored" data-anchor-id="python-modules">Python modules</h2>
-<div id="2f6ada62" class="cell" data-execution_count="1">
+<div id="d7c2acc3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  <span class="co"># for data analysis</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># for quik maths</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> janitor <span class="im">import</span> clean_names  <span class="co"># to create consitent, 'clean' variable names</span></span>
@@ -239,8 +245,8 @@ Read more: Tracking marine animals
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Marine animals are typically tracked using either acoustic or satellite tags. These tags are attached to the animals and transmit signals back to recievers, logging the animal’s location at different points in time. In some cases other data such as depth, temperature, and animal movement profiles are recorded and the data transmitted to the recievers whenever possible.</p>
-<p>Acoustic tracking requires a network of recievers to be placed in the ocean in order to pick up the tags’ transmitted signals when they come within range (typically around 500 m). Acoustic tracking has the advantage of being able transmit and recieve signals underwater, however is limited by the coverage of the reciever network. In some instances, researchers do without the reciever network and follow the animals around in a boat to receive the data. The suitability of acoustic tracking depends on the study species and research question.</p>
+<p>Marine animals are typically tracked using either acoustic or satellite tags. These tags are attached to the animals and transmit signals back to receivers, logging the animal’s location at different points in time. In some cases other data such as depth, temperature, and animal movement profiles are recorded and the data transmitted to the receivers whenever possible.</p>
+<p>Acoustic tracking requires a network of receivers to be placed in the ocean in order to pick up the tags’ transmitted signals when they come within range (typically around 500 m). Acoustic tracking has the advantage of being able transmit and receive signals underwater, however is limited by the coverage of the receiver network. In some instances, researchers do without the receiver network and follow the animals around in a boat to receive the data. The suitability of acoustic tracking depends on the study species and research question.</p>
 <p>Satellite tracking, on the other hand, is able to track animals over virtually the entire ocean as the tags transmit signals to a network of satellites orbiting the earth. However, unlike acoustic tags, the signals cannot be transmitted through water and the tagged animals must breach the ocean surface in order to have their location logged and any other recorded data be received. The accuracy of the logged location depends on the quality of the transmitted signal. For high-quality signals, the location uncertainty can be in the hundreds of metres, however for bad quality signals this can blow out to over 10 km.</p>
 </div>
 </div>
@@ -259,9 +265,9 @@ Read more: Tracking marine animals
 </div>
 </div>
 </div>
-<div id="cell-fig-data-map" class="cell" data-execution_count="2">
+<div id="f4a8b116" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/Loggerhead_Sea_Turtle_satellite_tracking_detections__Strydom_2022_DOI10-15468-k4s6ap.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/Strydom_2022_DOI10-15468-k4s6ap.csv"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert columns names from camelCase to snake_case</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.clean_names(case_type <span class="op">=</span> <span class="st">"snake"</span>)</span>
@@ -302,10 +308,14 @@ Read more: Tracking marine animals
 <span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  marker_i <span class="op">=</span> folium.Marker(</span>
 <span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    location <span class="op">=</span> coords_i,</span>
 <span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    popup <span class="op">=</span> row.date_time</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  ).add_to(track_map)</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>track_map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="fig-data-map" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  ).add_to(track_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To output the map from your Python script, you can add this line:</p>
+<div id="6db1a68c" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>track_map.save(<span class="st">'track_map.html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-fig-data-map" class="cell" data-execution_count="4">
+<div id="fig-data-map" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-data-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
@@ -335,7 +345,7 @@ Read more: Tracking marine animals
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_acbe637721e92a010a6368a1f8b2511b {
+                #map_cf0827e22a191e1a7fd88f610afd8c22 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -349,14 +359,14 @@ Read more: Tracking marine animals
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_acbe637721e92a010a6368a1f8b2511b&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_cf0827e22a191e1a7fd88f610afd8c22&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_acbe637721e92a010a6368a1f8b2511b = L.map(
-                &quot;map_acbe637721e92a010a6368a1f8b2511b&quot;,
+            var map_cf0827e22a191e1a7fd88f610afd8c22 = L.map(
+                &quot;map_cf0827e22a191e1a7fd88f610afd8c22&quot;,
                 {
                     center: [-18.74, 148.42],
                     crs: L.CRS.EPSG3857,
@@ -370,539 +380,542 @@ Read more: Tracking marine animals
 
         
     
-            var tile_layer_2a072073bdd59e24a2478fc4040194cd = L.tileLayer(
+            var tile_layer_b51e00a21cbe15698945d89039c44f06 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_2a072073bdd59e24a2478fc4040194cd.addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            tile_layer_b51e00a21cbe15698945d89039c44f06.addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-            var marker_760635c7374ca14c37b13f82c89c43c4 = L.marker(
+            var marker_3b3bad2f40432d33901e738724cc5e68 = L.marker(
                 [-20.5, 150.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_70a42e3d743cf9a8b216f8cff60fa1b5 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_03c73c3c0e59550a25ea55c83db2dcf8 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_8fffb8b27362af4accb6f3aeb9bb10e5 = $(`<div id=&quot;html_8fffb8b27362af4accb6f3aeb9bb10e5&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-17 17:06:32+00:00</div>`)[0];
-                popup_70a42e3d743cf9a8b216f8cff60fa1b5.setContent(html_8fffb8b27362af4accb6f3aeb9bb10e5);
+                var html_5f7be7d790079e57b411096262de79cf = $(`<div id=&quot;html_5f7be7d790079e57b411096262de79cf&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-17 17:06:32+00:00</div>`)[0];
+                popup_03c73c3c0e59550a25ea55c83db2dcf8.setContent(html_5f7be7d790079e57b411096262de79cf);
             
         
 
-        marker_760635c7374ca14c37b13f82c89c43c4.bindPopup(popup_70a42e3d743cf9a8b216f8cff60fa1b5)
+        marker_3b3bad2f40432d33901e738724cc5e68.bindPopup(popup_03c73c3c0e59550a25ea55c83db2dcf8)
         ;
 
         
     
     
-            var marker_037d4400e3be84f24b2d2726baef789c = L.marker(
+            var marker_07b8d55a2236bf312f5f5c46d843eedc = L.marker(
                 [-25.5, 153.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_bdbff3fe90dc990db144dba5ca9a8779 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_d0d58ba3d98784cdc44922bbe2d91627 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_f8d7b3a16d0fe0b485d96a2e07bfc8c3 = $(`<div id=&quot;html_f8d7b3a16d0fe0b485d96a2e07bfc8c3&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-02 21:49:55+00:00</div>`)[0];
-                popup_bdbff3fe90dc990db144dba5ca9a8779.setContent(html_f8d7b3a16d0fe0b485d96a2e07bfc8c3);
+                var html_eba8683dc6cd92856b33b4a15958da79 = $(`<div id=&quot;html_eba8683dc6cd92856b33b4a15958da79&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-02 21:49:55+00:00</div>`)[0];
+                popup_d0d58ba3d98784cdc44922bbe2d91627.setContent(html_eba8683dc6cd92856b33b4a15958da79);
             
         
 
-        marker_037d4400e3be84f24b2d2726baef789c.bindPopup(popup_bdbff3fe90dc990db144dba5ca9a8779)
+        marker_07b8d55a2236bf312f5f5c46d843eedc.bindPopup(popup_d0d58ba3d98784cdc44922bbe2d91627)
         ;
 
         
     
     
-            var marker_37281fa9b2347376b53f30eebf729e5d = L.marker(
+            var marker_25734e00bf14ba8b8808a95f7d4f9e2d = L.marker(
                 [-24.5, 152.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_0f8d830f98b14b8b0c40ee6db6c9c25c = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_a49632b76ef7d8b64c7da5c5ff4ba46b = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_df1879cc8b84cee3ce1d6f17276a9866 = $(`<div id=&quot;html_df1879cc8b84cee3ce1d6f17276a9866&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2021-12-21 17:57:22+00:00</div>`)[0];
-                popup_0f8d830f98b14b8b0c40ee6db6c9c25c.setContent(html_df1879cc8b84cee3ce1d6f17276a9866);
+                var html_085780e7c69dbf998ef065e2f717607c = $(`<div id=&quot;html_085780e7c69dbf998ef065e2f717607c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2021-12-21 17:57:22+00:00</div>`)[0];
+                popup_a49632b76ef7d8b64c7da5c5ff4ba46b.setContent(html_085780e7c69dbf998ef065e2f717607c);
             
         
 
-        marker_37281fa9b2347376b53f30eebf729e5d.bindPopup(popup_0f8d830f98b14b8b0c40ee6db6c9c25c)
+        marker_25734e00bf14ba8b8808a95f7d4f9e2d.bindPopup(popup_a49632b76ef7d8b64c7da5c5ff4ba46b)
         ;
 
         
     
     
-            var marker_f9d311cd5fac740eee1d2a3465411773 = L.marker(
+            var marker_0257a43c7fd431f51508a8b878a626c2 = L.marker(
                 [-18.5, 147.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_8a898e86032de439c058ecfa7372f1d5 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_8fee0cee4b7cd75ac902cdb4ad7843b7 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_c2251060924e4c151702debaf488271d = $(`<div id=&quot;html_c2251060924e4c151702debaf488271d&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-27 17:00:04+00:00</div>`)[0];
-                popup_8a898e86032de439c058ecfa7372f1d5.setContent(html_c2251060924e4c151702debaf488271d);
+                var html_6e0cbebcd69e744807f54999602724b4 = $(`<div id=&quot;html_6e0cbebcd69e744807f54999602724b4&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-27 17:00:04+00:00</div>`)[0];
+                popup_8fee0cee4b7cd75ac902cdb4ad7843b7.setContent(html_6e0cbebcd69e744807f54999602724b4);
             
         
 
-        marker_f9d311cd5fac740eee1d2a3465411773.bindPopup(popup_8a898e86032de439c058ecfa7372f1d5)
+        marker_0257a43c7fd431f51508a8b878a626c2.bindPopup(popup_8fee0cee4b7cd75ac902cdb4ad7843b7)
         ;
 
         
     
     
-            var marker_df957fbd432d52fe6be334938a2cc75e = L.marker(
+            var marker_39fbf06fc5038bc3d55c09710e240654 = L.marker(
                 [-14.5, 145.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_db8a29de6b5e64150c63c17ddfb8fc43 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_0821054021f9eb9e5f0d7a1fe2578949 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_13c969a1b35e1ff5feb6fecc301f26e1 = $(`<div id=&quot;html_13c969a1b35e1ff5feb6fecc301f26e1&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-12 10:34:12+00:00</div>`)[0];
-                popup_db8a29de6b5e64150c63c17ddfb8fc43.setContent(html_13c969a1b35e1ff5feb6fecc301f26e1);
+                var html_384d5c239a2a7498dacbd1a0d743d1cd = $(`<div id=&quot;html_384d5c239a2a7498dacbd1a0d743d1cd&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-12 10:34:12+00:00</div>`)[0];
+                popup_0821054021f9eb9e5f0d7a1fe2578949.setContent(html_384d5c239a2a7498dacbd1a0d743d1cd);
             
         
 
-        marker_df957fbd432d52fe6be334938a2cc75e.bindPopup(popup_db8a29de6b5e64150c63c17ddfb8fc43)
+        marker_39fbf06fc5038bc3d55c09710e240654.bindPopup(popup_0821054021f9eb9e5f0d7a1fe2578949)
         ;
 
         
     
     
-            var marker_7a2b32f95e7617a61306c50943b5fc60 = L.marker(
+            var marker_d0cafe4329c5e57df1019f2bcd5693e4 = L.marker(
                 [-26.5, 153.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_008ee65d5479cc662143580139c0d8bd = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_75ea36ad02606fe2cf8abd5e896c72e7 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_0befe71966f2732eef52fce6cc2abab7 = $(`<div id=&quot;html_0befe71966f2732eef52fce6cc2abab7&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-12 08:59:01+00:00</div>`)[0];
-                popup_008ee65d5479cc662143580139c0d8bd.setContent(html_0befe71966f2732eef52fce6cc2abab7);
+                var html_45bf217286943723f87b7ebe1dc86fd2 = $(`<div id=&quot;html_45bf217286943723f87b7ebe1dc86fd2&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-12 08:59:01+00:00</div>`)[0];
+                popup_75ea36ad02606fe2cf8abd5e896c72e7.setContent(html_45bf217286943723f87b7ebe1dc86fd2);
             
         
 
-        marker_7a2b32f95e7617a61306c50943b5fc60.bindPopup(popup_008ee65d5479cc662143580139c0d8bd)
+        marker_d0cafe4329c5e57df1019f2bcd5693e4.bindPopup(popup_75ea36ad02606fe2cf8abd5e896c72e7)
         ;
 
         
     
     
-            var marker_b7315e2c268eb5403f822181edfa090b = L.marker(
+            var marker_4a9d53a17d64a4f271f554692d741ddb = L.marker(
                 [-19.5, 148.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_b3496e9f91829553c94e3893a748dcd9 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_562d08747d6b98353c515fdea5308e50 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_e75563c28ab823000a83d1e97b40f145 = $(`<div id=&quot;html_e75563c28ab823000a83d1e97b40f145&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-23 07:02:18+00:00</div>`)[0];
-                popup_b3496e9f91829553c94e3893a748dcd9.setContent(html_e75563c28ab823000a83d1e97b40f145);
+                var html_483c5b33baa47dd93955e081e1806fec = $(`<div id=&quot;html_483c5b33baa47dd93955e081e1806fec&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-23 07:02:18+00:00</div>`)[0];
+                popup_562d08747d6b98353c515fdea5308e50.setContent(html_483c5b33baa47dd93955e081e1806fec);
             
         
 
-        marker_b7315e2c268eb5403f822181edfa090b.bindPopup(popup_b3496e9f91829553c94e3893a748dcd9)
+        marker_4a9d53a17d64a4f271f554692d741ddb.bindPopup(popup_562d08747d6b98353c515fdea5308e50)
         ;
 
         
     
     
-            var marker_41ad7aef8e312908fadef2a6b8d02a91 = L.marker(
+            var marker_d9f87992b1974da0b2c4947b9a563532 = L.marker(
                 [-10.5, 143.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_5852c5c552033589ebbf91032e4628ea = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_08a6cf662e3b672465b5a0f993f103b9 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_27094156da2a4c0b3db9c6e193c7826f = $(`<div id=&quot;html_27094156da2a4c0b3db9c6e193c7826f&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-14 06:31:48+00:00</div>`)[0];
-                popup_5852c5c552033589ebbf91032e4628ea.setContent(html_27094156da2a4c0b3db9c6e193c7826f);
+                var html_2350c9c69c488917164905375a36c3ae = $(`<div id=&quot;html_2350c9c69c488917164905375a36c3ae&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-14 06:31:48+00:00</div>`)[0];
+                popup_08a6cf662e3b672465b5a0f993f103b9.setContent(html_2350c9c69c488917164905375a36c3ae);
             
         
 
-        marker_41ad7aef8e312908fadef2a6b8d02a91.bindPopup(popup_5852c5c552033589ebbf91032e4628ea)
+        marker_d9f87992b1974da0b2c4947b9a563532.bindPopup(popup_08a6cf662e3b672465b5a0f993f103b9)
         ;
 
         
     
     
-            var marker_86b3fccd55ffa54a28956ce505b375c8 = L.marker(
+            var marker_5e883d6d9ea80a60318aaad2a8460182 = L.marker(
                 [-20.5, 149.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_170302535a6086372c5388652fe546e8 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_f60946e5ff5eef06205c0fa656bf9a15 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_66db35c66ddd6e2246814558fa00496f = $(`<div id=&quot;html_66db35c66ddd6e2246814558fa00496f&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-19 17:44:38+00:00</div>`)[0];
-                popup_170302535a6086372c5388652fe546e8.setContent(html_66db35c66ddd6e2246814558fa00496f);
+                var html_c39273e5eb48ae75e41b66fb0c54f161 = $(`<div id=&quot;html_c39273e5eb48ae75e41b66fb0c54f161&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-19 17:44:38+00:00</div>`)[0];
+                popup_f60946e5ff5eef06205c0fa656bf9a15.setContent(html_c39273e5eb48ae75e41b66fb0c54f161);
             
         
 
-        marker_86b3fccd55ffa54a28956ce505b375c8.bindPopup(popup_170302535a6086372c5388652fe546e8)
+        marker_5e883d6d9ea80a60318aaad2a8460182.bindPopup(popup_f60946e5ff5eef06205c0fa656bf9a15)
         ;
 
         
     
     
-            var marker_a5f9554b861b6fecf1469c358f0d6f5c = L.marker(
+            var marker_885f55437501dcbb8c53ffb178e70917 = L.marker(
                 [-22.5, 151.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_2b3c930efadf0c687313e8ec84283a42 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_1a05b75389f1144ea52df113314601e1 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_72a019a784ccc6d4c111c33781bca2c0 = $(`<div id=&quot;html_72a019a784ccc6d4c111c33781bca2c0&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-09 20:25:01+00:00</div>`)[0];
-                popup_2b3c930efadf0c687313e8ec84283a42.setContent(html_72a019a784ccc6d4c111c33781bca2c0);
+                var html_a77265e70aeee52df15fb17c00ad549e = $(`<div id=&quot;html_a77265e70aeee52df15fb17c00ad549e&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-09 20:25:01+00:00</div>`)[0];
+                popup_1a05b75389f1144ea52df113314601e1.setContent(html_a77265e70aeee52df15fb17c00ad549e);
             
         
 
-        marker_a5f9554b861b6fecf1469c358f0d6f5c.bindPopup(popup_2b3c930efadf0c687313e8ec84283a42)
+        marker_885f55437501dcbb8c53ffb178e70917.bindPopup(popup_1a05b75389f1144ea52df113314601e1)
         ;
 
         
     
     
-            var marker_b7d74ce1ca1aabfc40a5e159ce019543 = L.marker(
+            var marker_6d0f2f7034badbb46ae54802cecfb90f = L.marker(
                 [-21.5, 150.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_cb4c8aed0792158b837f6d673e8aab5c = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_8c060072f722a3c75dcf56fd5e1e4cdd = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_c738694f693923b84f4d8296ca944926 = $(`<div id=&quot;html_c738694f693923b84f4d8296ca944926&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-14 18:26:17+00:00</div>`)[0];
-                popup_cb4c8aed0792158b837f6d673e8aab5c.setContent(html_c738694f693923b84f4d8296ca944926);
+                var html_b1f1dd25eff8d1d8368a25e029d1fb30 = $(`<div id=&quot;html_b1f1dd25eff8d1d8368a25e029d1fb30&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-14 18:26:17+00:00</div>`)[0];
+                popup_8c060072f722a3c75dcf56fd5e1e4cdd.setContent(html_b1f1dd25eff8d1d8368a25e029d1fb30);
             
         
 
-        marker_b7d74ce1ca1aabfc40a5e159ce019543.bindPopup(popup_cb4c8aed0792158b837f6d673e8aab5c)
+        marker_6d0f2f7034badbb46ae54802cecfb90f.bindPopup(popup_8c060072f722a3c75dcf56fd5e1e4cdd)
         ;
 
         
     
     
-            var marker_12fd36c357c14f291203e1fc6cbcd3ee = L.marker(
+            var marker_0958b8ab2024e4b0bd9159b97d33cf86 = L.marker(
                 [-11.5, 143.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_dfa0d6d1c5de045615e965118014dfbf = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_0e96a36769679f06d614cf3afb43d4b4 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_b2444f5f05966607236538713d104cfa = $(`<div id=&quot;html_b2444f5f05966607236538713d104cfa&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-09 22:00:54+00:00</div>`)[0];
-                popup_dfa0d6d1c5de045615e965118014dfbf.setContent(html_b2444f5f05966607236538713d104cfa);
+                var html_3c952a2fddbf1dfd3a1eebea44da126c = $(`<div id=&quot;html_3c952a2fddbf1dfd3a1eebea44da126c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-09 22:00:54+00:00</div>`)[0];
+                popup_0e96a36769679f06d614cf3afb43d4b4.setContent(html_3c952a2fddbf1dfd3a1eebea44da126c);
             
         
 
-        marker_12fd36c357c14f291203e1fc6cbcd3ee.bindPopup(popup_dfa0d6d1c5de045615e965118014dfbf)
+        marker_0958b8ab2024e4b0bd9159b97d33cf86.bindPopup(popup_0e96a36769679f06d614cf3afb43d4b4)
         ;
 
         
     
     
-            var marker_9be63b8645a9cf173f72870bbd7c6d43 = L.marker(
+            var marker_9c9c4905c978b697e0ef597148b5a096 = L.marker(
                 [-19.5, 149.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_962b5de9c721eb291f66a445997051c9 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_220ac308d0eafdccc7468be68293dd07 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_03d87fdf8e1b2289f6a71e72fa76b8d7 = $(`<div id=&quot;html_03d87fdf8e1b2289f6a71e72fa76b8d7&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-21 07:22:08+00:00</div>`)[0];
-                popup_962b5de9c721eb291f66a445997051c9.setContent(html_03d87fdf8e1b2289f6a71e72fa76b8d7);
+                var html_13ab85abd2c2f9adfd9953216a86d55e = $(`<div id=&quot;html_13ab85abd2c2f9adfd9953216a86d55e&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-21 07:22:08+00:00</div>`)[0];
+                popup_220ac308d0eafdccc7468be68293dd07.setContent(html_13ab85abd2c2f9adfd9953216a86d55e);
             
         
 
-        marker_9be63b8645a9cf173f72870bbd7c6d43.bindPopup(popup_962b5de9c721eb291f66a445997051c9)
+        marker_9c9c4905c978b697e0ef597148b5a096.bindPopup(popup_220ac308d0eafdccc7468be68293dd07)
         ;
 
         
     
     
-            var marker_5eb2ee8f2a587fd1a605be8cacb12b0b = L.marker(
+            var marker_598b13fa403f6f4f5e562ab75c0dca2b = L.marker(
                 [-18.5, 146.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_f5ea1785ec1ef5ac4221bd948080a76a = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_a5f6dafcfef34fc6ffcd234473dbffdb = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_4da8f31665f8ee348a4daebae6f5be95 = $(`<div id=&quot;html_4da8f31665f8ee348a4daebae6f5be95&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-30 17:02:42+00:00</div>`)[0];
-                popup_f5ea1785ec1ef5ac4221bd948080a76a.setContent(html_4da8f31665f8ee348a4daebae6f5be95);
+                var html_7195206d52e7e5ded1a8b8d9f3248c09 = $(`<div id=&quot;html_7195206d52e7e5ded1a8b8d9f3248c09&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-30 17:02:42+00:00</div>`)[0];
+                popup_a5f6dafcfef34fc6ffcd234473dbffdb.setContent(html_7195206d52e7e5ded1a8b8d9f3248c09);
             
         
 
-        marker_5eb2ee8f2a587fd1a605be8cacb12b0b.bindPopup(popup_f5ea1785ec1ef5ac4221bd948080a76a)
+        marker_598b13fa403f6f4f5e562ab75c0dca2b.bindPopup(popup_a5f6dafcfef34fc6ffcd234473dbffdb)
         ;
 
         
     
     
-            var marker_1df238d0d8de66354e4eb15e79517f5f = L.marker(
+            var marker_3b48aeb6e6709d540e8947b3be18cc73 = L.marker(
                 [-24.5, 153.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_1adf7406dde13112e37253719c904568 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_95f156c1d4d937cff13302838443de4c = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_1c1fdf8c0f25ccfe18d06cc31069c2a9 = $(`<div id=&quot;html_1c1fdf8c0f25ccfe18d06cc31069c2a9&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-03 21:37:56+00:00</div>`)[0];
-                popup_1adf7406dde13112e37253719c904568.setContent(html_1c1fdf8c0f25ccfe18d06cc31069c2a9);
+                var html_a81d359b441463ddda5603329ea261a8 = $(`<div id=&quot;html_a81d359b441463ddda5603329ea261a8&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-03 21:37:56+00:00</div>`)[0];
+                popup_95f156c1d4d937cff13302838443de4c.setContent(html_a81d359b441463ddda5603329ea261a8);
             
         
 
-        marker_1df238d0d8de66354e4eb15e79517f5f.bindPopup(popup_1adf7406dde13112e37253719c904568)
+        marker_3b48aeb6e6709d540e8947b3be18cc73.bindPopup(popup_95f156c1d4d937cff13302838443de4c)
         ;
 
         
     
     
-            var marker_3f24488fa84bcbc200241f7f3362a35f = L.marker(
+            var marker_cddfac33c860cb22817e2fd3cc77e6b7 = L.marker(
                 [-15.5, 145.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_fadf2b84c3e467589bdd80345766c890 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_dc2bee948d524805fa59f07c99730ed7 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_a4b1b65cf18e372069cea663c7fee9ef = $(`<div id=&quot;html_a4b1b65cf18e372069cea663c7fee9ef&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-09 18:33:03+00:00</div>`)[0];
-                popup_fadf2b84c3e467589bdd80345766c890.setContent(html_a4b1b65cf18e372069cea663c7fee9ef);
+                var html_b543196c23bdd3984f034a9a73543e14 = $(`<div id=&quot;html_b543196c23bdd3984f034a9a73543e14&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-09 18:33:03+00:00</div>`)[0];
+                popup_dc2bee948d524805fa59f07c99730ed7.setContent(html_b543196c23bdd3984f034a9a73543e14);
             
         
 
-        marker_3f24488fa84bcbc200241f7f3362a35f.bindPopup(popup_fadf2b84c3e467589bdd80345766c890)
+        marker_cddfac33c860cb22817e2fd3cc77e6b7.bindPopup(popup_dc2bee948d524805fa59f07c99730ed7)
         ;
 
         
     
     
-            var marker_a0b043b3e618a368b5d600228d283775 = L.marker(
+            var marker_c52ae91a589b7c1b3ddc5c1af5921f8e = L.marker(
                 [-16.5, 145.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_f319662afa9c725be715030c8d99c0fd = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_ec97805c4a9193344c318aa240fd863c = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_423e9258509baad23745f4ac17995cab = $(`<div id=&quot;html_423e9258509baad23745f4ac17995cab&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-07 07:15:30+00:00</div>`)[0];
-                popup_f319662afa9c725be715030c8d99c0fd.setContent(html_423e9258509baad23745f4ac17995cab);
+                var html_11b6cb03f214c6b9129024f4eb14e4e2 = $(`<div id=&quot;html_11b6cb03f214c6b9129024f4eb14e4e2&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-07 07:15:30+00:00</div>`)[0];
+                popup_ec97805c4a9193344c318aa240fd863c.setContent(html_11b6cb03f214c6b9129024f4eb14e4e2);
             
         
 
-        marker_a0b043b3e618a368b5d600228d283775.bindPopup(popup_f319662afa9c725be715030c8d99c0fd)
+        marker_c52ae91a589b7c1b3ddc5c1af5921f8e.bindPopup(popup_ec97805c4a9193344c318aa240fd863c)
         ;
 
         
     
     
-            var marker_aab2143e04a7bc35dfeb9fbd6cae0b3e = L.marker(
+            var marker_60b55b88010aab93c608e88b03498b44 = L.marker(
                 [-13.5, 144.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_e726e63458588c391a1f723296008895 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_e4021f9d693ee43f509170d915870949 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_89e3e6c68c2692b5ef51fbc6c0f3973f = $(`<div id=&quot;html_89e3e6c68c2692b5ef51fbc6c0f3973f&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-03-25 07:10:49+00:00</div>`)[0];
-                popup_e726e63458588c391a1f723296008895.setContent(html_89e3e6c68c2692b5ef51fbc6c0f3973f);
+                var html_2b64148c1ad1773685f5388a967c5a61 = $(`<div id=&quot;html_2b64148c1ad1773685f5388a967c5a61&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-03-25 07:10:49+00:00</div>`)[0];
+                popup_e4021f9d693ee43f509170d915870949.setContent(html_2b64148c1ad1773685f5388a967c5a61);
             
         
 
-        marker_aab2143e04a7bc35dfeb9fbd6cae0b3e.bindPopup(popup_e726e63458588c391a1f723296008895)
+        marker_60b55b88010aab93c608e88b03498b44.bindPopup(popup_e4021f9d693ee43f509170d915870949)
         ;
 
         
     
     
-            var marker_075c548481cc96fd98cfd4024f4b1b79 = L.marker(
+            var marker_6c73a5755d6e8c1a82e2423d649000b8 = L.marker(
                 [-21.5, 151.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_a4b568637c5c8899697bf9355d7711b7 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_1457ae9598710be504c2d36b380ef0f5 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_93bad2e114162f3fdc109bf61d588d86 = $(`<div id=&quot;html_93bad2e114162f3fdc109bf61d588d86&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-13 06:28:09+00:00</div>`)[0];
-                popup_a4b568637c5c8899697bf9355d7711b7.setContent(html_93bad2e114162f3fdc109bf61d588d86);
+                var html_950e311182db6ee22bbf114484e2f801 = $(`<div id=&quot;html_950e311182db6ee22bbf114484e2f801&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-13 06:28:09+00:00</div>`)[0];
+                popup_1457ae9598710be504c2d36b380ef0f5.setContent(html_950e311182db6ee22bbf114484e2f801);
             
         
 
-        marker_075c548481cc96fd98cfd4024f4b1b79.bindPopup(popup_a4b568637c5c8899697bf9355d7711b7)
+        marker_6c73a5755d6e8c1a82e2423d649000b8.bindPopup(popup_1457ae9598710be504c2d36b380ef0f5)
         ;
 
         
     
     
-            var marker_51d19860982423306e3ec39e382aa666 = L.marker(
+            var marker_40374aaf09364b91277808eee8f7811e = L.marker(
                 [-12.5, 143.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_f9deec8605d6908aff36cb1e772a7460 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_aa9afc2fc88ad3038dd49dd3fb645a45 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_a7951386b63b335c1c1233d71b8b796c = $(`<div id=&quot;html_a7951386b63b335c1c1233d71b8b796c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-01 18:41:42+00:00</div>`)[0];
-                popup_f9deec8605d6908aff36cb1e772a7460.setContent(html_a7951386b63b335c1c1233d71b8b796c);
+                var html_247b25e27f218857ef9b62cb1d2c16ee = $(`<div id=&quot;html_247b25e27f218857ef9b62cb1d2c16ee&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-01 18:41:42+00:00</div>`)[0];
+                popup_aa9afc2fc88ad3038dd49dd3fb645a45.setContent(html_247b25e27f218857ef9b62cb1d2c16ee);
             
         
 
-        marker_51d19860982423306e3ec39e382aa666.bindPopup(popup_f9deec8605d6908aff36cb1e772a7460)
+        marker_40374aaf09364b91277808eee8f7811e.bindPopup(popup_aa9afc2fc88ad3038dd49dd3fb645a45)
         ;
 
         
     
     
-            var marker_6eddd869831b65f22d038856ece5e572 = L.marker(
+            var marker_3c8566bef16190352c95a858ee50c036 = L.marker(
                 [-9.5, 143.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_3f1e13ab710f88017d50a20b1f808f45 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_dc33337801d302b1dd2fdcad41736f5c = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_1686cf75105aaa5ad4b4c38141e1ab49 = $(`<div id=&quot;html_1686cf75105aaa5ad4b4c38141e1ab49&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-21 10:30:09+00:00</div>`)[0];
-                popup_3f1e13ab710f88017d50a20b1f808f45.setContent(html_1686cf75105aaa5ad4b4c38141e1ab49);
+                var html_bf7078f551cf24efe6747799fdf09f0a = $(`<div id=&quot;html_bf7078f551cf24efe6747799fdf09f0a&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-04-21 10:30:09+00:00</div>`)[0];
+                popup_dc33337801d302b1dd2fdcad41736f5c.setContent(html_bf7078f551cf24efe6747799fdf09f0a);
             
         
 
-        marker_6eddd869831b65f22d038856ece5e572.bindPopup(popup_3f1e13ab710f88017d50a20b1f808f45)
+        marker_3c8566bef16190352c95a858ee50c036.bindPopup(popup_dc33337801d302b1dd2fdcad41736f5c)
         ;
 
         
     
     
-            var marker_97999edafca1e2782460fbe9c9713d29 = L.marker(
+            var marker_a42754663b045bc2d826d22198257fe5 = L.marker(
                 [-23.5, 152.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_d12ade3ea3e872f4f3a2679cd76e70ec = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_5766031491231869490737f409b6e0c4 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_0f4c314bf57f7aa557a4bf422b9a470c = $(`<div id=&quot;html_0f4c314bf57f7aa557a4bf422b9a470c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-05 07:33:53+00:00</div>`)[0];
-                popup_d12ade3ea3e872f4f3a2679cd76e70ec.setContent(html_0f4c314bf57f7aa557a4bf422b9a470c);
+                var html_a6bdcf6e6d114b3994cdf5776d3e9905 = $(`<div id=&quot;html_a6bdcf6e6d114b3994cdf5776d3e9905&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-05 07:33:53+00:00</div>`)[0];
+                popup_5766031491231869490737f409b6e0c4.setContent(html_a6bdcf6e6d114b3994cdf5776d3e9905);
             
         
 
-        marker_97999edafca1e2782460fbe9c9713d29.bindPopup(popup_d12ade3ea3e872f4f3a2679cd76e70ec)
+        marker_a42754663b045bc2d826d22198257fe5.bindPopup(popup_5766031491231869490737f409b6e0c4)
         ;
 
         
     
     
-            var marker_fa1a89b454bb487912392ecaabf66eeb = L.marker(
+            var marker_8030f9c4354a29ecc6ecdbfbad204af3 = L.marker(
                 [-16.5, 146.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_c5638d3c5fa56bac3424ce5ad44282de = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_4dfe3747a2c1e0d15f5dd6c47ebd799e = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_370de2f2893aa53623f12165f7ae2554 = $(`<div id=&quot;html_370de2f2893aa53623f12165f7ae2554&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-06 18:25:38+00:00</div>`)[0];
-                popup_c5638d3c5fa56bac3424ce5ad44282de.setContent(html_370de2f2893aa53623f12165f7ae2554);
+                var html_b8624bbf1c1d25aaf23fae3fc942e149 = $(`<div id=&quot;html_b8624bbf1c1d25aaf23fae3fc942e149&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-06 18:25:38+00:00</div>`)[0];
+                popup_4dfe3747a2c1e0d15f5dd6c47ebd799e.setContent(html_b8624bbf1c1d25aaf23fae3fc942e149);
             
         
 
-        marker_fa1a89b454bb487912392ecaabf66eeb.bindPopup(popup_c5638d3c5fa56bac3424ce5ad44282de)
+        marker_8030f9c4354a29ecc6ecdbfbad204af3.bindPopup(popup_4dfe3747a2c1e0d15f5dd6c47ebd799e)
         ;
 
         
     
     
-            var marker_bf91bde99a6c0b16d291551ef53451e4 = L.marker(
+            var marker_942cbfde5aa24f9855f9a6c1f138fbfa = L.marker(
                 [-23.5, 151.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_d089cd5827dbcd955b9853d3ef3154ac = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_8732b4a483e0bc2c288a90fbff759c8f = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_34d736bc101d9a58a1c924d5ba8b1b70 = $(`<div id=&quot;html_34d736bc101d9a58a1c924d5ba8b1b70&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-06 05:03:23+00:00</div>`)[0];
-                popup_d089cd5827dbcd955b9853d3ef3154ac.setContent(html_34d736bc101d9a58a1c924d5ba8b1b70);
+                var html_df095d8af2da88af7c42bee44a2f3a97 = $(`<div id=&quot;html_df095d8af2da88af7c42bee44a2f3a97&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-01-06 05:03:23+00:00</div>`)[0];
+                popup_8732b4a483e0bc2c288a90fbff759c8f.setContent(html_df095d8af2da88af7c42bee44a2f3a97);
             
         
 
-        marker_bf91bde99a6c0b16d291551ef53451e4.bindPopup(popup_d089cd5827dbcd955b9853d3ef3154ac)
+        marker_942cbfde5aa24f9855f9a6c1f138fbfa.bindPopup(popup_8732b4a483e0bc2c288a90fbff759c8f)
         ;
 
         
     
     
-            var marker_6fcece4744cc0202df860eec43ef5f88 = L.marker(
+            var marker_ca7db22b7afbae380929e203e30611a0 = L.marker(
                 [-17.5, 146.5],
                 {}
-            ).addTo(map_acbe637721e92a010a6368a1f8b2511b);
+            ).addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
         
     
-        var popup_bcc521dd317b79547d1b6ab1f81044a3 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_23849b406323112c069f364cefa451df = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_88a498728bfb733e647dbffa14197ad5 = $(`<div id=&quot;html_88a498728bfb733e647dbffa14197ad5&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-02 09:14:56+00:00</div>`)[0];
-                popup_bcc521dd317b79547d1b6ab1f81044a3.setContent(html_88a498728bfb733e647dbffa14197ad5);
+                var html_504210a35ca7d702125319a08e951169 = $(`<div id=&quot;html_504210a35ca7d702125319a08e951169&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>2022-02-02 09:14:56+00:00</div>`)[0];
+                popup_23849b406323112c069f364cefa451df.setContent(html_504210a35ca7d702125319a08e951169);
             
         
 
-        marker_6fcece4744cc0202df860eec43ef5f88.bindPopup(popup_bcc521dd317b79547d1b6ab1f81044a3)
+        marker_ca7db22b7afbae380929e203e30611a0.bindPopup(popup_23849b406323112c069f364cefa451df)
         ;
 
         
     
+    
+            tile_layer_b51e00a21cbe15698945d89039c44f06.addTo(map_cf0827e22a191e1a7fd88f610afd8c22);
+        
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
 </div>
@@ -917,188 +930,193 @@ Figure&nbsp;1: Loggerhead Sea Turtle satellite tracking records (December 2021 -
 <h2 class="anchored" data-anchor-id="extract-data-from-server">Extract data from server</h2>
 <p>We will extend the basic methods introduced in the preceding tutorial <a href="../../../../tutorials/python/access-ereefs-data-server/basic-server-access/basic_server_access_python.html">Accessing eReefs data from the AIMS eReefs THREDDS server</a> to extract data for a set of points and dates.</p>
 <p>We will extract the eReefs 1km hydrodynamic model daily mean temperature (<code>temp</code>), salinity (<code>salt</code>), and east- and northward current velocities (<code>u</code> and <code>v</code>) corresponding to the coordinates and dates for the tracking detections shown in <a href="#tbl-detections" class="quarto-xref">Table&nbsp;1</a>.</p>
-<div id="08685555" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create table of tracking detections (sort by date-time; select relevant variables)</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tbl_detections <span class="op">=</span> data.<span class="op">\</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  sort_values(<span class="st">'date_time'</span>)<span class="op">\</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  [[<span class="st">'date'</span>, <span class="st">'time'</span>, <span class="st">'longitude'</span>, <span class="st">'latitude'</span>]]</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output table in html format (hide row indices; format coordinates to their precision of 1 decimal place)</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>tbl_detections <span class="op">=</span> tbl_detections.style.<span class="op">\</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  hide(axis <span class="op">=</span> <span class="st">'index'</span>).<span class="op">\</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="bu">format</span>(precision<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>display(tbl_detections)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="29920317" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create table of tracking detections (sort by date-time; select relevant variables)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tbl_detections <span class="op">=</span> data.<span class="op">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  sort_values(<span class="st">'date_time'</span>)<span class="op">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  [[<span class="st">'date'</span>, <span class="st">'time'</span>, <span class="st">'longitude'</span>, <span class="st">'latitude'</span>]]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output table in html format (hide row indices; format coordinates to their precision of 1 decimal place)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>tbl_detections <span class="op">=</span> tbl_detections.style.<span class="op">\</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  hide(axis <span class="op">=</span> <span class="st">'index'</span>).<span class="op">\</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="bu">format</span>(precision<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>display(tbl_detections)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell scroll_box_y" data-execution_count="4">
-<div id="tbl-detections" class="cell scroll_box_y quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<p>To output the detection table from your Python script, you can add this code:</p>
+<div id="d874a900" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'detections_table.html'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  f.write(tbl_detections.to_html())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell scroll_box_y" data-execution_count="7">
+<div id="tbl-detections" class="cell scroll_box_y quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="7">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-detections-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Loggerhead Sea Turtle detections (Strydom, 2022)
 </figcaption>
 <div aria-describedby="tbl-detections-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <style type="text/css">
 </style>
 
-<table id="T_89e24" class="do-not-create-environment cell scroll_box_y caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_f1101" class="do-not-create-environment cell scroll_box_y caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_89e24_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">date</th>
-<th id="T_89e24_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">time</th>
-<th id="T_89e24_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">longitude</th>
-<th id="T_89e24_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">latitude</th>
+<th id="T_f1101_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">date</th>
+<th id="T_f1101_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">time</th>
+<th id="T_f1101_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">longitude</th>
+<th id="T_f1101_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">latitude</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_89e24_row0_col0" class="data row0 col0">2021-12-21</td>
-<td id="T_89e24_row0_col1" class="data row0 col1">17:57</td>
-<td id="T_89e24_row0_col2" class="data row0 col2">152.5</td>
-<td id="T_89e24_row0_col3" class="data row0 col3">-24.5</td>
+<td id="T_f1101_row0_col0" class="data row0 col0">2021-12-21</td>
+<td id="T_f1101_row0_col1" class="data row0 col1">17:57</td>
+<td id="T_f1101_row0_col2" class="data row0 col2">152.5</td>
+<td id="T_f1101_row0_col3" class="data row0 col3">-24.5</td>
 </tr>
 <tr class="even">
-<td id="T_89e24_row1_col0" class="data row1 col0">2022-01-02</td>
-<td id="T_89e24_row1_col1" class="data row1 col1">21:49</td>
-<td id="T_89e24_row1_col2" class="data row1 col2">153.5</td>
-<td id="T_89e24_row1_col3" class="data row1 col3">-25.5</td>
+<td id="T_f1101_row1_col0" class="data row1 col0">2022-01-02</td>
+<td id="T_f1101_row1_col1" class="data row1 col1">21:49</td>
+<td id="T_f1101_row1_col2" class="data row1 col2">153.5</td>
+<td id="T_f1101_row1_col3" class="data row1 col3">-25.5</td>
 </tr>
 <tr class="odd">
-<td id="T_89e24_row2_col0" class="data row2 col0">2022-01-05</td>
-<td id="T_89e24_row2_col1" class="data row2 col1">07:33</td>
-<td id="T_89e24_row2_col2" class="data row2 col2">152.5</td>
-<td id="T_89e24_row2_col3" class="data row2 col3">-23.5</td>
+<td id="T_f1101_row2_col0" class="data row2 col0">2022-01-05</td>
+<td id="T_f1101_row2_col1" class="data row2 col1">07:33</td>
+<td id="T_f1101_row2_col2" class="data row2 col2">152.5</td>
+<td id="T_f1101_row2_col3" class="data row2 col3">-23.5</td>
 </tr>
 <tr class="even">
-<td id="T_89e24_row3_col0" class="data row3 col0">2022-01-06</td>
-<td id="T_89e24_row3_col1" class="data row3 col1">05:03</td>
-<td id="T_89e24_row3_col2" class="data row3 col2">151.5</td>
-<td id="T_89e24_row3_col3" class="data row3 col3">-23.5</td>
+<td id="T_f1101_row3_col0" class="data row3 col0">2022-01-06</td>
+<td id="T_f1101_row3_col1" class="data row3 col1">05:03</td>
+<td id="T_f1101_row3_col2" class="data row3 col2">151.5</td>
+<td id="T_f1101_row3_col3" class="data row3 col3">-23.5</td>
 </tr>
 <tr class="odd">
-<td id="T_89e24_row4_col0" class="data row4 col0">2022-01-09</td>
-<td id="T_89e24_row4_col1" class="data row4 col1">20:25</td>
-<td id="T_89e24_row4_col2" class="data row4 col2">151.5</td>
-<td id="T_89e24_row4_col3" class="data row4 col3">-22.5</td>
+<td id="T_f1101_row4_col0" class="data row4 col0">2022-01-09</td>
+<td id="T_f1101_row4_col1" class="data row4 col1">20:25</td>
+<td id="T_f1101_row4_col2" class="data row4 col2">151.5</td>
+<td id="T_f1101_row4_col3" class="data row4 col3">-22.5</td>
 </tr>
 <tr class="even">
-<td id="T_89e24_row5_col0" class="data row5 col0">2022-01-13</td>
-<td id="T_89e24_row5_col1" class="data row5 col1">06:28</td>
-<td id="T_89e24_row5_col2" class="data row5 col2">151.5</td>
-<td id="T_89e24_row5_col3" class="data row5 col3">-21.5</td>
+<td id="T_f1101_row5_col0" class="data row5 col0">2022-01-13</td>
+<td id="T_f1101_row5_col1" class="data row5 col1">06:28</td>
+<td id="T_f1101_row5_col2" class="data row5 col2">151.5</td>
+<td id="T_f1101_row5_col3" class="data row5 col3">-21.5</td>
 </tr>
 <tr class="odd">
-<td id="T_89e24_row6_col0" class="data row6 col0">2022-01-14</td>
-<td id="T_89e24_row6_col1" class="data row6 col1">18:26</td>
-<td id="T_89e24_row6_col2" class="data row6 col2">150.5</td>
-<td id="T_89e24_row6_col3" class="data row6 col3">-21.5</td>
+<td id="T_f1101_row6_col0" class="data row6 col0">2022-01-14</td>
+<td id="T_f1101_row6_col1" class="data row6 col1">18:26</td>
+<td id="T_f1101_row6_col2" class="data row6 col2">150.5</td>
+<td id="T_f1101_row6_col3" class="data row6 col3">-21.5</td>
 </tr>
 <tr class="even">
-<td id="T_89e24_row7_col0" class="data row7 col0">2022-01-17</td>
-<td id="T_89e24_row7_col1" class="data row7 col1">17:06</td>
-<td id="T_89e24_row7_col2" class="data row7 col2">150.5</td>
-<td id="T_89e24_row7_col3" class="data row7 col3">-20.5</td>
+<td id="T_f1101_row7_col0" class="data row7 col0">2022-01-17</td>
+<td id="T_f1101_row7_col1" class="data row7 col1">17:06</td>
+<td id="T_f1101_row7_col2" class="data row7 col2">150.5</td>
+<td id="T_f1101_row7_col3" class="data row7 col3">-20.5</td>
 </tr>
 <tr class="odd">
-<td id="T_89e24_row8_col0" class="data row8 col0">2022-01-19</td>
-<td id="T_89e24_row8_col1" class="data row8 col1">17:44</td>
-<td id="T_89e24_row8_col2" class="data row8 col2">149.5</td>
-<td id="T_89e24_row8_col3" class="data row8 col3">-20.5</td>
+<td id="T_f1101_row8_col0" class="data row8 col0">2022-01-19</td>
+<td id="T_f1101_row8_col1" class="data row8 col1">17:44</td>
+<td id="T_f1101_row8_col2" class="data row8 col2">149.5</td>
+<td id="T_f1101_row8_col3" class="data row8 col3">-20.5</td>
 </tr>
 <tr class="even">
-<td id="T_89e24_row9_col0" class="data row9 col0">2022-01-21</td>
-<td id="T_89e24_row9_col1" class="data row9 col1">07:22</td>
-<td id="T_89e24_row9_col2" class="data row9 col2">149.5</td>
-<td id="T_89e24_row9_col3" class="data row9 col3">-19.5</td>
+<td id="T_f1101_row9_col0" class="data row9 col0">2022-01-21</td>
+<td id="T_f1101_row9_col1" class="data row9 col1">07:22</td>
+<td id="T_f1101_row9_col2" class="data row9 col2">149.5</td>
+<td id="T_f1101_row9_col3" class="data row9 col3">-19.5</td>
 </tr>
 <tr class="odd">
-<td id="T_89e24_row10_col0" class="data row10 col0">2022-01-23</td>
-<td id="T_89e24_row10_col1" class="data row10 col1">07:02</td>
-<td id="T_89e24_row10_col2" class="data row10 col2">148.5</td>
-<td id="T_89e24_row10_col3" class="data row10 col3">-19.5</td>
+<td id="T_f1101_row10_col0" class="data row10 col0">2022-01-23</td>
+<td id="T_f1101_row10_col1" class="data row10 col1">07:02</td>
+<td id="T_f1101_row10_col2" class="data row10 col2">148.5</td>
+<td id="T_f1101_row10_col3" class="data row10 col3">-19.5</td>
 </tr>
 <tr class="even">
-<td id="T_89e24_row11_col0" class="data row11 col0">2022-01-27</td>
-<td id="T_89e24_row11_col1" class="data row11 col1">17:00</td>
-<td id="T_89e24_row11_col2" class="data row11 col2">147.5</td>
-<td id="T_89e24_row11_col3" class="data row11 col3">-18.5</td>
+<td id="T_f1101_row11_col0" class="data row11 col0">2022-01-27</td>
+<td id="T_f1101_row11_col1" class="data row11 col1">17:00</td>
+<td id="T_f1101_row11_col2" class="data row11 col2">147.5</td>
+<td id="T_f1101_row11_col3" class="data row11 col3">-18.5</td>
 </tr>
 <tr class="odd">
-<td id="T_89e24_row12_col0" class="data row12 col0">2022-01-30</td>
-<td id="T_89e24_row12_col1" class="data row12 col1">17:02</td>
-<td id="T_89e24_row12_col2" class="data row12 col2">146.5</td>
-<td id="T_89e24_row12_col3" class="data row12 col3">-18.5</td>
+<td id="T_f1101_row12_col0" class="data row12 col0">2022-01-30</td>
+<td id="T_f1101_row12_col1" class="data row12 col1">17:02</td>
+<td id="T_f1101_row12_col2" class="data row12 col2">146.5</td>
+<td id="T_f1101_row12_col3" class="data row12 col3">-18.5</td>
 </tr>
 <tr class="even">
-<td id="T_89e24_row13_col0" class="data row13 col0">2022-02-02</td>
-<td id="T_89e24_row13_col1" class="data row13 col1">09:14</td>
-<td id="T_89e24_row13_col2" class="data row13 col2">146.5</td>
-<td id="T_89e24_row13_col3" class="data row13 col3">-17.5</td>
+<td id="T_f1101_row13_col0" class="data row13 col0">2022-02-02</td>
+<td id="T_f1101_row13_col1" class="data row13 col1">09:14</td>
+<td id="T_f1101_row13_col2" class="data row13 col2">146.5</td>
+<td id="T_f1101_row13_col3" class="data row13 col3">-17.5</td>
 </tr>
 <tr class="odd">
-<td id="T_89e24_row14_col0" class="data row14 col0">2022-02-03</td>
-<td id="T_89e24_row14_col1" class="data row14 col1">21:37</td>
-<td id="T_89e24_row14_col2" class="data row14 col2">153.5</td>
-<td id="T_89e24_row14_col3" class="data row14 col3">-24.5</td>
+<td id="T_f1101_row14_col0" class="data row14 col0">2022-02-03</td>
+<td id="T_f1101_row14_col1" class="data row14 col1">21:37</td>
+<td id="T_f1101_row14_col2" class="data row14 col2">153.5</td>
+<td id="T_f1101_row14_col3" class="data row14 col3">-24.5</td>
 </tr>
 <tr class="even">
-<td id="T_89e24_row15_col0" class="data row15 col0">2022-02-06</td>
-<td id="T_89e24_row15_col1" class="data row15 col1">18:25</td>
-<td id="T_89e24_row15_col2" class="data row15 col2">146.5</td>
-<td id="T_89e24_row15_col3" class="data row15 col3">-16.5</td>
+<td id="T_f1101_row15_col0" class="data row15 col0">2022-02-06</td>
+<td id="T_f1101_row15_col1" class="data row15 col1">18:25</td>
+<td id="T_f1101_row15_col2" class="data row15 col2">146.5</td>
+<td id="T_f1101_row15_col3" class="data row15 col3">-16.5</td>
 </tr>
 <tr class="odd">
-<td id="T_89e24_row16_col0" class="data row16 col0">2022-02-07</td>
-<td id="T_89e24_row16_col1" class="data row16 col1">07:15</td>
-<td id="T_89e24_row16_col2" class="data row16 col2">145.5</td>
-<td id="T_89e24_row16_col3" class="data row16 col3">-16.5</td>
+<td id="T_f1101_row16_col0" class="data row16 col0">2022-02-07</td>
+<td id="T_f1101_row16_col1" class="data row16 col1">07:15</td>
+<td id="T_f1101_row16_col2" class="data row16 col2">145.5</td>
+<td id="T_f1101_row16_col3" class="data row16 col3">-16.5</td>
 </tr>
 <tr class="even">
-<td id="T_89e24_row17_col0" class="data row17 col0">2022-02-09</td>
-<td id="T_89e24_row17_col1" class="data row17 col1">18:33</td>
-<td id="T_89e24_row17_col2" class="data row17 col2">145.5</td>
-<td id="T_89e24_row17_col3" class="data row17 col3">-15.5</td>
+<td id="T_f1101_row17_col0" class="data row17 col0">2022-02-09</td>
+<td id="T_f1101_row17_col1" class="data row17 col1">18:33</td>
+<td id="T_f1101_row17_col2" class="data row17 col2">145.5</td>
+<td id="T_f1101_row17_col3" class="data row17 col3">-15.5</td>
 </tr>
 <tr class="odd">
-<td id="T_89e24_row18_col0" class="data row18 col0">2022-02-12</td>
-<td id="T_89e24_row18_col1" class="data row18 col1">08:59</td>
-<td id="T_89e24_row18_col2" class="data row18 col2">153.5</td>
-<td id="T_89e24_row18_col3" class="data row18 col3">-26.5</td>
+<td id="T_f1101_row18_col0" class="data row18 col0">2022-02-12</td>
+<td id="T_f1101_row18_col1" class="data row18 col1">08:59</td>
+<td id="T_f1101_row18_col2" class="data row18 col2">153.5</td>
+<td id="T_f1101_row18_col3" class="data row18 col3">-26.5</td>
 </tr>
 <tr class="even">
-<td id="T_89e24_row19_col0" class="data row19 col0">2022-02-12</td>
-<td id="T_89e24_row19_col1" class="data row19 col1">10:34</td>
-<td id="T_89e24_row19_col2" class="data row19 col2">145.5</td>
-<td id="T_89e24_row19_col3" class="data row19 col3">-14.5</td>
+<td id="T_f1101_row19_col0" class="data row19 col0">2022-02-12</td>
+<td id="T_f1101_row19_col1" class="data row19 col1">10:34</td>
+<td id="T_f1101_row19_col2" class="data row19 col2">145.5</td>
+<td id="T_f1101_row19_col3" class="data row19 col3">-14.5</td>
 </tr>
 <tr class="odd">
-<td id="T_89e24_row20_col0" class="data row20 col0">2022-03-25</td>
-<td id="T_89e24_row20_col1" class="data row20 col1">07:10</td>
-<td id="T_89e24_row20_col2" class="data row20 col2">144.5</td>
-<td id="T_89e24_row20_col3" class="data row20 col3">-13.5</td>
+<td id="T_f1101_row20_col0" class="data row20 col0">2022-03-25</td>
+<td id="T_f1101_row20_col1" class="data row20 col1">07:10</td>
+<td id="T_f1101_row20_col2" class="data row20 col2">144.5</td>
+<td id="T_f1101_row20_col3" class="data row20 col3">-13.5</td>
 </tr>
 <tr class="even">
-<td id="T_89e24_row21_col0" class="data row21 col0">2022-04-01</td>
-<td id="T_89e24_row21_col1" class="data row21 col1">18:41</td>
-<td id="T_89e24_row21_col2" class="data row21 col2">143.5</td>
-<td id="T_89e24_row21_col3" class="data row21 col3">-12.5</td>
+<td id="T_f1101_row21_col0" class="data row21 col0">2022-04-01</td>
+<td id="T_f1101_row21_col1" class="data row21 col1">18:41</td>
+<td id="T_f1101_row21_col2" class="data row21 col2">143.5</td>
+<td id="T_f1101_row21_col3" class="data row21 col3">-12.5</td>
 </tr>
 <tr class="odd">
-<td id="T_89e24_row22_col0" class="data row22 col0">2022-04-09</td>
-<td id="T_89e24_row22_col1" class="data row22 col1">22:00</td>
-<td id="T_89e24_row22_col2" class="data row22 col2">143.5</td>
-<td id="T_89e24_row22_col3" class="data row22 col3">-11.5</td>
+<td id="T_f1101_row22_col0" class="data row22 col0">2022-04-09</td>
+<td id="T_f1101_row22_col1" class="data row22 col1">22:00</td>
+<td id="T_f1101_row22_col2" class="data row22 col2">143.5</td>
+<td id="T_f1101_row22_col3" class="data row22 col3">-11.5</td>
 </tr>
 <tr class="even">
-<td id="T_89e24_row23_col0" class="data row23 col0">2022-04-14</td>
-<td id="T_89e24_row23_col1" class="data row23 col1">06:31</td>
-<td id="T_89e24_row23_col2" class="data row23 col2">143.5</td>
-<td id="T_89e24_row23_col3" class="data row23 col3">-10.5</td>
+<td id="T_f1101_row23_col0" class="data row23 col0">2022-04-14</td>
+<td id="T_f1101_row23_col1" class="data row23 col1">06:31</td>
+<td id="T_f1101_row23_col2" class="data row23 col2">143.5</td>
+<td id="T_f1101_row23_col3" class="data row23 col3">-10.5</td>
 </tr>
 <tr class="odd">
-<td id="T_89e24_row24_col0" class="data row24 col0">2022-04-21</td>
-<td id="T_89e24_row24_col1" class="data row24 col1">10:30</td>
-<td id="T_89e24_row24_col2" class="data row24 col2">143.5</td>
-<td id="T_89e24_row24_col3" class="data row24 col3">-9.5</td>
+<td id="T_f1101_row24_col0" class="data row24 col0">2022-04-21</td>
+<td id="T_f1101_row24_col1" class="data row24 col1">10:30</td>
+<td id="T_f1101_row24_col2" class="data row24 col2">143.5</td>
+<td id="T_f1101_row24_col3" class="data row24 col3">-9.5</td>
 </tr>
 </tbody>
 </table>
@@ -1108,94 +1126,94 @@ Table&nbsp;1: Loggerhead Sea Turtle detections (Strydom, 2022)
 </div>
 </div>
 <p><br></p>
-<p>We will take advantage of the consistent file naming on the server to extract the data of interest programatically. We will first need to copy the OPeNDAP data link for one of the files within the correct model and aggregation folders and then replace the date.</p>
+<p>We will take advantage of the consistent file naming on the server to extract the data of interest programmatically. We will first need to copy the OPeNDAP data link for one of the files within the correct model and aggregation folders and then replace the date.</p>
 <p>Selecting a random date within the daily aggregated data (<code>daily-daily</code>; one data file per day) for the 1km hydro model (<code>gbr1_2.0</code>), we see the files have the naming format:</p>
 <p><code>https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-</code><span style="color: red">YYYY-MM-DD</span><code>.nc</code></p>
 <p>We will now write a script which extracts the data for the dates and coordinates in <a href="#tbl-detections" class="quarto-xref">Table&nbsp;1</a>. For each unique date we will open the corresponding file on the server and extract the daily mean temperature, salinity, northward and southward current velocities for each set of coordinates corresponding to the date.</p>
-<div id="2b88ad0b" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GET DATA FOR EACH DATE AND COORDINATE (LAT LON) PAIR</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>t_start <span class="op">=</span> dt.datetime.now() <span class="co"># to track run time of extraction</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">## 1. Setup variables for data extraction</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Server file name = &lt;file_prefix&gt;&lt;date (yyyy-mm-dd)&gt;&lt;file_suffix&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>file_prefix <span class="op">=</span> <span class="st">"https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-"</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>file_suffix <span class="op">=</span> <span class="st">".nc"</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Table of dates and coordinates for which to extract data (dates as character string)</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>detections <span class="op">=</span> data[[<span class="st">'date'</span>, <span class="st">'longitude'</span>, <span class="st">'latitude'</span>]].drop_duplicates()</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>extracted_data <span class="op">=</span> pd.DataFrame() <span class="co"># to save the extracted data</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> detections[<span class="st">'date'</span>].unique() <span class="co"># unique dates for which to open server files</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">## 2. For each date of interest, open a connection to the corresponding data file on the server</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dates)):</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  date_i <span class="op">=</span> dates[i]</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Open file</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  file_name_i <span class="op">=</span> file_prefix <span class="op">+</span> dates[i] <span class="op">+</span> file_suffix</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  server_file_i <span class="op">=</span> Dataset(file_name_i)</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Coordinates for which to extract data for the current date</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  coordinates_i <span class="op">=</span> detections.query(<span class="st">"date == @date_i"</span>)</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get all coordinates in the open file (each representing the center-point of the corresponding grid cell)</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  server_lons_i <span class="op">=</span> server_file_i.variables[<span class="st">'longitude'</span>][:]</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  server_lats_i <span class="op">=</span> server_file_i.variables[<span class="st">'latitude'</span>][:]</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">## 3. For each coordinate (lon, lat) for the current date, get the data for the closest grid cell (1km^2) from the open server file</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> row_j <span class="kw">in</span> coordinates_i.itertuples():</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Current coordinate of interest</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    lon_j <span class="op">=</span> row_j.longitude</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    lat_j <span class="op">=</span> row_j.latitude</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find the index of the grid cell containing our coordinate of interest (i.e. the center-point closest to our point of interest)</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    lon_index_j <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(server_lons_i <span class="op">-</span> lon_j))</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    lat_index_j <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(server_lats_i <span class="op">-</span> lat_j))</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Note: This will return the closest grid cell, even for coordinates outside of the eReefs model boundary</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Setup the dimension indices for which to extract data (needs to be a tuple; recall that python starts counting at 0)</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    dim_ind <span class="op">=</span> <span class="bu">tuple</span>([<span class="dv">0</span>, <span class="dv">15</span>, lat_index_j, lon_index_j])</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">########################################</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recall the order of the dimensions (time, k, latitude, longitude) from the previous tutorial. Therefore we want [time = 1 (as we're using the daily files this is the only option), k = 15 corresponding to a depth of 0.5m, lat_index_j, lon_index_j]. If you are still confused, go back to the previous tutorial or have a look at the structure of one of the server files by uncommenting the following 5 lines of code:</span></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># not_yet_run = True  # used so the following lines are only run once</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if not_yet_run:</span></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   print(server_file_i.dimensions)</span></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   print(server_file_i.variables)</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   not_yet_run = False</span></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="co">########################################</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the data for the grid cell containing our point of interest</span></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    temp_j <span class="op">=</span> server_file_i.variables[<span class="st">'temp'</span>][dim_ind]</span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    salt_j <span class="op">=</span> server_file_i.variables[<span class="st">'salt'</span>][dim_ind]</span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    u_j <span class="op">=</span> server_file_i.variables[<span class="st">'u'</span>][dim_ind]</span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    v_j <span class="op">=</span> server_file_i.variables[<span class="st">'v'</span>][dim_ind]</span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>    extracted_data_j <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>      <span class="st">'date'</span>: [date_i],</span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>      <span class="st">'lon'</span>: [lon_j],</span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>      <span class="st">'lat'</span>: [lat_j],</span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>      <span class="st">'temp'</span>: [temp_j],</span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>      <span class="st">'salt'</span>: [salt_j],</span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>      <span class="st">'u'</span>: [u_j],</span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>      <span class="st">'v'</span>: [v_j]</span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4. Save data in memory and repeat for next date-coordinate pair</span></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    extracted_data <span class="op">=</span> pd.concat([extracted_data, extracted_data_j], ignore_index <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Close connection to open server file and move to the next date</span></span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>  server_file_i.close()</span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the run time of the extraction</span></span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>t_stop <span class="op">=</span> dt.datetime.now()</span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>extract_time <span class="op">=</span> t_stop <span class="op">-</span> t_start</span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>extract_mins <span class="op">=</span> <span class="bu">int</span>(extract_time.total_seconds()<span class="op">/</span><span class="dv">60</span>)</span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>extract_secs <span class="op">=</span> <span class="bu">int</span>(extract_time.total_seconds() <span class="op">%</span> <span class="dv">60</span>)</span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Data extracted for"</span>, <span class="bu">len</span>(detections), <span class="st">"points from"</span>, <span class="bu">len</span>(dates), <span class="st">"files. </span><span class="ch">\n</span><span class="st">Extraction time:"</span>, extract_mins, <span class="st">"min"</span>, extract_secs, <span class="st">"sec."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c0fd8edc" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GET DATA FOR EACH DATE AND COORDINATE (LAT LON) PAIR</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>t_start <span class="op">=</span> dt.datetime.now() <span class="co"># to track run time of extraction</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">## 1. Setup variables for data extraction</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Server file name = &lt;file_prefix&gt;&lt;date (yyyy-mm-dd)&gt;&lt;file_suffix&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>file_prefix <span class="op">=</span> <span class="st">"https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr1_2.0/daily-daily/EREEFS_AIMS-CSIRO_gbr1_2.0_hydro_daily-daily-"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>file_suffix <span class="op">=</span> <span class="st">".nc"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Table of dates and coordinates for which to extract data (dates as character string)</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>detections <span class="op">=</span> data[[<span class="st">'date'</span>, <span class="st">'longitude'</span>, <span class="st">'latitude'</span>]].drop_duplicates()</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>extracted_data <span class="op">=</span> pd.DataFrame() <span class="co"># to save the extracted data</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> detections[<span class="st">'date'</span>].unique() <span class="co"># unique dates for which to open server files</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">## 2. For each date of interest, open a connection to the corresponding data file on the server</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dates)):</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  date_i <span class="op">=</span> dates[i]</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Open file</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  file_name_i <span class="op">=</span> file_prefix <span class="op">+</span> dates[i] <span class="op">+</span> file_suffix</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  server_file_i <span class="op">=</span> Dataset(file_name_i)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Coordinates for which to extract data for the current date</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  coordinates_i <span class="op">=</span> detections.query(<span class="st">"date == @date_i"</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get all coordinates in the open file (each representing the center-point of the corresponding grid cell)</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  server_lons_i <span class="op">=</span> server_file_i.variables[<span class="st">'longitude'</span>][:]</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  server_lats_i <span class="op">=</span> server_file_i.variables[<span class="st">'latitude'</span>][:]</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">## 3. For each coordinate (lon, lat) for the current date, get the data for the closest grid cell (1km^2) from the open server file</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> row_j <span class="kw">in</span> coordinates_i.itertuples():</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Current coordinate of interest</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    lon_j <span class="op">=</span> row_j.longitude</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    lat_j <span class="op">=</span> row_j.latitude</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find the index of the grid cell containing our coordinate of interest (i.e. the center-point closest to our point of interest)</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    lon_index_j <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(server_lons_i <span class="op">-</span> lon_j))</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    lat_index_j <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(server_lats_i <span class="op">-</span> lat_j))</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Note: This will return the closest grid cell, even for coordinates outside of the eReefs model boundary</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Setup the dimension indices for which to extract data (needs to be a tuple; recall that python starts counting at 0)</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    dim_ind <span class="op">=</span> <span class="bu">tuple</span>([<span class="dv">0</span>, <span class="dv">15</span>, lat_index_j, lon_index_j])</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">########################################</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recall the order of the dimensions (time, k, latitude, longitude) from the previous tutorial. Therefore we want [time = 1 (as we're using the daily files this is the only option), k = 15 corresponding to a depth of 0.5m, lat_index_j, lon_index_j]. If you are still confused, go back to the previous tutorial or have a look at the structure of one of the server files by uncommenting the following 5 lines of code:</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># not_yet_run = True  # used so the following lines are only run once</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if not_yet_run:</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   print(server_file_i.dimensions)</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   print(server_file_i.variables)</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   not_yet_run = False</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    <span class="co">########################################</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the data for the grid cell containing our point of interest</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    temp_j <span class="op">=</span> server_file_i.variables[<span class="st">'temp'</span>][dim_ind]</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>    salt_j <span class="op">=</span> server_file_i.variables[<span class="st">'salt'</span>][dim_ind]</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>    u_j <span class="op">=</span> server_file_i.variables[<span class="st">'u'</span>][dim_ind]</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>    v_j <span class="op">=</span> server_file_i.variables[<span class="st">'v'</span>][dim_ind]</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>    extracted_data_j <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>      <span class="st">'date'</span>: [date_i],</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>      <span class="st">'lon'</span>: [lon_j],</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>      <span class="st">'lat'</span>: [lat_j],</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>      <span class="st">'temp'</span>: [temp_j],</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>      <span class="st">'salt'</span>: [salt_j],</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>      <span class="st">'u'</span>: [u_j],</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>      <span class="st">'v'</span>: [v_j]</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4. Save data in memory and repeat for next date-coordinate pair</span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>    extracted_data <span class="op">=</span> pd.concat([extracted_data, extracted_data_j], ignore_index <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Close connection to open server file and move to the next date</span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>  server_file_i.close()</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the run time of the extraction</span></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>t_stop <span class="op">=</span> dt.datetime.now()</span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>extract_time <span class="op">=</span> t_stop <span class="op">-</span> t_start</span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>extract_mins <span class="op">=</span> <span class="bu">int</span>(extract_time.total_seconds()<span class="op">/</span><span class="dv">60</span>)</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>extract_secs <span class="op">=</span> <span class="bu">int</span>(extract_time.total_seconds() <span class="op">%</span> <span class="dv">60</span>)</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Data extracted for"</span>, <span class="bu">len</span>(detections), <span class="st">"points from"</span>, <span class="bu">len</span>(dates), <span class="st">"files. </span><span class="ch">\n</span><span class="st">Extraction time:"</span>, extract_mins, <span class="st">"min"</span>, extract_secs, <span class="st">"sec."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Data extracted for 25 points from 24 files. 
-Extraction time: 1 min 13 sec.</code></pre>
+Extraction time: 0 min 51 sec.</code></pre>
 </div>
 </div>
 <p>Our extracted data is shown below in <a href="#tbl-extracted-data" class="quarto-xref">Table&nbsp;2</a>.</p>
@@ -1210,265 +1228,270 @@ Extraction time: 1 min 13 sec.</code></pre>
 </div>
 </div>
 </div>
-<div id="681f5c10" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Output table in html format (sort by date; hide row indices; format coordinates to their precision of 1 decimal place, temp &amp; salt to 2 dp, u &amp; v to 3 dp)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tbl_extracted <span class="op">=</span> extracted_data.sort_values(<span class="st">'date'</span>).style.<span class="op">\</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  hide(axis <span class="op">=</span> <span class="st">'index'</span>).<span class="op">\</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">format</span>({</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'lon'</span>, <span class="st">'lat'</span>], <span class="st">'</span><span class="sc">{:.1f}</span><span class="st">'</span>),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'temp'</span>, <span class="st">'salt'</span>], <span class="st">'</span><span class="sc">{:.2f}</span><span class="st">'</span>),</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'u'</span>, <span class="st">'v'</span>], <span class="st">'</span><span class="sc">{:.3f}</span><span class="st">'</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>display(tbl_extracted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="675364ec" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Output table in html format (sort by date; hide row indices; format coordinates to their precision of 1 decimal place, temp &amp; salt to 2 dp, u &amp; v to 3 dp)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tbl_extracted <span class="op">=</span> extracted_data.sort_values(<span class="st">'date'</span>).style.<span class="op">\</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  hide(axis <span class="op">=</span> <span class="st">'index'</span>).<span class="op">\</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">format</span>({</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'lon'</span>, <span class="st">'lat'</span>], <span class="st">'</span><span class="sc">{:.1f}</span><span class="st">'</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'temp'</span>, <span class="st">'salt'</span>], <span class="st">'</span><span class="sc">{:.2f}</span><span class="st">'</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'u'</span>, <span class="st">'v'</span>], <span class="st">'</span><span class="sc">{:.3f}</span><span class="st">'</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>display(tbl_extracted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell scroll_box_xy" data-execution_count="7">
-<div id="tbl-extracted-data" class="cell scroll_box_xy quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="7">
+<p>To output the extracted data table from your Python script, you can add this code:</p>
+<div id="82b3ff4e" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'extracted_data_table.html'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  f.write(tbl_extracted.to_html())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell scroll_box_xy" data-execution_count="11">
+<div id="tbl-extracted-data" class="cell scroll_box_xy quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="11">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-extracted-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Extracted daily mean temperature, salinity, and east- and northward current velocities (u, v respectively) for Loggerhead Sea Turtle detections (Strydom, 2022)
 </figcaption>
 <div aria-describedby="tbl-extracted-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <style type="text/css">
 </style>
 
-<table id="T_95374" class="do-not-create-environment cell scroll_box_xy caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_5ef7e" class="do-not-create-environment cell scroll_box_xy caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_95374_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">date</th>
-<th id="T_95374_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">lon</th>
-<th id="T_95374_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">lat</th>
-<th id="T_95374_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">temp</th>
-<th id="T_95374_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">salt</th>
-<th id="T_95374_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">u</th>
-<th id="T_95374_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">v</th>
+<th id="T_5ef7e_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">date</th>
+<th id="T_5ef7e_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">lon</th>
+<th id="T_5ef7e_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">lat</th>
+<th id="T_5ef7e_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">temp</th>
+<th id="T_5ef7e_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">salt</th>
+<th id="T_5ef7e_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">u</th>
+<th id="T_5ef7e_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">v</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_95374_row0_col0" class="data row0 col0">2021-12-21</td>
-<td id="T_95374_row0_col1" class="data row0 col1">152.5</td>
-<td id="T_95374_row0_col2" class="data row0 col2">-24.5</td>
-<td id="T_95374_row0_col3" class="data row0 col3">28.09</td>
-<td id="T_95374_row0_col4" class="data row0 col4">35.26</td>
-<td id="T_95374_row0_col5" class="data row0 col5">0.071</td>
-<td id="T_95374_row0_col6" class="data row0 col6">-0.020</td>
+<td id="T_5ef7e_row0_col0" class="data row0 col0">2021-12-21</td>
+<td id="T_5ef7e_row0_col1" class="data row0 col1">152.5</td>
+<td id="T_5ef7e_row0_col2" class="data row0 col2">-24.5</td>
+<td id="T_5ef7e_row0_col3" class="data row0 col3">28.09</td>
+<td id="T_5ef7e_row0_col4" class="data row0 col4">35.26</td>
+<td id="T_5ef7e_row0_col5" class="data row0 col5">0.071</td>
+<td id="T_5ef7e_row0_col6" class="data row0 col6">-0.020</td>
 </tr>
 <tr class="even">
-<td id="T_95374_row1_col0" class="data row1 col0">2022-01-02</td>
-<td id="T_95374_row1_col1" class="data row1 col1">153.5</td>
-<td id="T_95374_row1_col2" class="data row1 col2">-25.5</td>
-<td id="T_95374_row1_col3" class="data row1 col3">26.00</td>
-<td id="T_95374_row1_col4" class="data row1 col4">35.30</td>
-<td id="T_95374_row1_col5" class="data row1 col5">-0.035</td>
-<td id="T_95374_row1_col6" class="data row1 col6">0.038</td>
+<td id="T_5ef7e_row1_col0" class="data row1 col0">2022-01-02</td>
+<td id="T_5ef7e_row1_col1" class="data row1 col1">153.5</td>
+<td id="T_5ef7e_row1_col2" class="data row1 col2">-25.5</td>
+<td id="T_5ef7e_row1_col3" class="data row1 col3">26.00</td>
+<td id="T_5ef7e_row1_col4" class="data row1 col4">35.30</td>
+<td id="T_5ef7e_row1_col5" class="data row1 col5">-0.035</td>
+<td id="T_5ef7e_row1_col6" class="data row1 col6">0.038</td>
 </tr>
 <tr class="odd">
-<td id="T_95374_row2_col0" class="data row2 col0">2022-01-05</td>
-<td id="T_95374_row2_col1" class="data row2 col1">152.5</td>
-<td id="T_95374_row2_col2" class="data row2 col2">-23.5</td>
-<td id="T_95374_row2_col3" class="data row2 col3">25.64</td>
-<td id="T_95374_row2_col4" class="data row2 col4">35.23</td>
-<td id="T_95374_row2_col5" class="data row2 col5">0.030</td>
-<td id="T_95374_row2_col6" class="data row2 col6">0.015</td>
+<td id="T_5ef7e_row2_col0" class="data row2 col0">2022-01-05</td>
+<td id="T_5ef7e_row2_col1" class="data row2 col1">152.5</td>
+<td id="T_5ef7e_row2_col2" class="data row2 col2">-23.5</td>
+<td id="T_5ef7e_row2_col3" class="data row2 col3">25.64</td>
+<td id="T_5ef7e_row2_col4" class="data row2 col4">35.23</td>
+<td id="T_5ef7e_row2_col5" class="data row2 col5">0.030</td>
+<td id="T_5ef7e_row2_col6" class="data row2 col6">0.015</td>
 </tr>
 <tr class="even">
-<td id="T_95374_row3_col0" class="data row3 col0">2022-01-06</td>
-<td id="T_95374_row3_col1" class="data row3 col1">151.5</td>
-<td id="T_95374_row3_col2" class="data row3 col2">-23.5</td>
-<td id="T_95374_row3_col3" class="data row3 col3">28.13</td>
-<td id="T_95374_row3_col4" class="data row3 col4">35.41</td>
-<td id="T_95374_row3_col5" class="data row3 col5">-0.033</td>
-<td id="T_95374_row3_col6" class="data row3 col6">0.015</td>
+<td id="T_5ef7e_row3_col0" class="data row3 col0">2022-01-06</td>
+<td id="T_5ef7e_row3_col1" class="data row3 col1">151.5</td>
+<td id="T_5ef7e_row3_col2" class="data row3 col2">-23.5</td>
+<td id="T_5ef7e_row3_col3" class="data row3 col3">28.13</td>
+<td id="T_5ef7e_row3_col4" class="data row3 col4">35.41</td>
+<td id="T_5ef7e_row3_col5" class="data row3 col5">-0.033</td>
+<td id="T_5ef7e_row3_col6" class="data row3 col6">0.015</td>
 </tr>
 <tr class="odd">
-<td id="T_95374_row4_col0" class="data row4 col0">2022-01-09</td>
-<td id="T_95374_row4_col1" class="data row4 col1">151.5</td>
-<td id="T_95374_row4_col2" class="data row4 col2">-22.5</td>
-<td id="T_95374_row4_col3" class="data row4 col3">29.24</td>
-<td id="T_95374_row4_col4" class="data row4 col4">35.34</td>
-<td id="T_95374_row4_col5" class="data row4 col5">0.001</td>
-<td id="T_95374_row4_col6" class="data row4 col6">-0.103</td>
+<td id="T_5ef7e_row4_col0" class="data row4 col0">2022-01-09</td>
+<td id="T_5ef7e_row4_col1" class="data row4 col1">151.5</td>
+<td id="T_5ef7e_row4_col2" class="data row4 col2">-22.5</td>
+<td id="T_5ef7e_row4_col3" class="data row4 col3">29.24</td>
+<td id="T_5ef7e_row4_col4" class="data row4 col4">35.34</td>
+<td id="T_5ef7e_row4_col5" class="data row4 col5">0.001</td>
+<td id="T_5ef7e_row4_col6" class="data row4 col6">-0.103</td>
 </tr>
 <tr class="even">
-<td id="T_95374_row5_col0" class="data row5 col0">2022-01-13</td>
-<td id="T_95374_row5_col1" class="data row5 col1">151.5</td>
-<td id="T_95374_row5_col2" class="data row5 col2">-21.5</td>
-<td id="T_95374_row5_col3" class="data row5 col3">28.42</td>
-<td id="T_95374_row5_col4" class="data row5 col4">35.25</td>
-<td id="T_95374_row5_col5" class="data row5 col5">-0.095</td>
-<td id="T_95374_row5_col6" class="data row5 col6">0.016</td>
+<td id="T_5ef7e_row5_col0" class="data row5 col0">2022-01-13</td>
+<td id="T_5ef7e_row5_col1" class="data row5 col1">151.5</td>
+<td id="T_5ef7e_row5_col2" class="data row5 col2">-21.5</td>
+<td id="T_5ef7e_row5_col3" class="data row5 col3">28.42</td>
+<td id="T_5ef7e_row5_col4" class="data row5 col4">35.25</td>
+<td id="T_5ef7e_row5_col5" class="data row5 col5">-0.095</td>
+<td id="T_5ef7e_row5_col6" class="data row5 col6">0.016</td>
 </tr>
 <tr class="odd">
-<td id="T_95374_row6_col0" class="data row6 col0">2022-01-14</td>
-<td id="T_95374_row6_col1" class="data row6 col1">150.5</td>
-<td id="T_95374_row6_col2" class="data row6 col2">-21.5</td>
-<td id="T_95374_row6_col3" class="data row6 col3">28.99</td>
-<td id="T_95374_row6_col4" class="data row6 col4">35.40</td>
-<td id="T_95374_row6_col5" class="data row6 col5">-0.064</td>
-<td id="T_95374_row6_col6" class="data row6 col6">-0.047</td>
+<td id="T_5ef7e_row6_col0" class="data row6 col0">2022-01-14</td>
+<td id="T_5ef7e_row6_col1" class="data row6 col1">150.5</td>
+<td id="T_5ef7e_row6_col2" class="data row6 col2">-21.5</td>
+<td id="T_5ef7e_row6_col3" class="data row6 col3">28.99</td>
+<td id="T_5ef7e_row6_col4" class="data row6 col4">35.40</td>
+<td id="T_5ef7e_row6_col5" class="data row6 col5">-0.064</td>
+<td id="T_5ef7e_row6_col6" class="data row6 col6">-0.047</td>
 </tr>
 <tr class="even">
-<td id="T_95374_row7_col0" class="data row7 col0">2022-01-17</td>
-<td id="T_95374_row7_col1" class="data row7 col1">150.5</td>
-<td id="T_95374_row7_col2" class="data row7 col2">-20.5</td>
-<td id="T_95374_row7_col3" class="data row7 col3">29.39</td>
-<td id="T_95374_row7_col4" class="data row7 col4">35.34</td>
-<td id="T_95374_row7_col5" class="data row7 col5">-0.066</td>
-<td id="T_95374_row7_col6" class="data row7 col6">-0.178</td>
+<td id="T_5ef7e_row7_col0" class="data row7 col0">2022-01-17</td>
+<td id="T_5ef7e_row7_col1" class="data row7 col1">150.5</td>
+<td id="T_5ef7e_row7_col2" class="data row7 col2">-20.5</td>
+<td id="T_5ef7e_row7_col3" class="data row7 col3">29.39</td>
+<td id="T_5ef7e_row7_col4" class="data row7 col4">35.34</td>
+<td id="T_5ef7e_row7_col5" class="data row7 col5">-0.066</td>
+<td id="T_5ef7e_row7_col6" class="data row7 col6">-0.178</td>
 </tr>
 <tr class="odd">
-<td id="T_95374_row8_col0" class="data row8 col0">2022-01-19</td>
-<td id="T_95374_row8_col1" class="data row8 col1">149.5</td>
-<td id="T_95374_row8_col2" class="data row8 col2">-20.5</td>
-<td id="T_95374_row8_col3" class="data row8 col3">29.92</td>
-<td id="T_95374_row8_col4" class="data row8 col4">35.48</td>
-<td id="T_95374_row8_col5" class="data row8 col5">0.018</td>
-<td id="T_95374_row8_col6" class="data row8 col6">-0.104</td>
+<td id="T_5ef7e_row8_col0" class="data row8 col0">2022-01-19</td>
+<td id="T_5ef7e_row8_col1" class="data row8 col1">149.5</td>
+<td id="T_5ef7e_row8_col2" class="data row8 col2">-20.5</td>
+<td id="T_5ef7e_row8_col3" class="data row8 col3">29.92</td>
+<td id="T_5ef7e_row8_col4" class="data row8 col4">35.48</td>
+<td id="T_5ef7e_row8_col5" class="data row8 col5">0.018</td>
+<td id="T_5ef7e_row8_col6" class="data row8 col6">-0.104</td>
 </tr>
 <tr class="even">
-<td id="T_95374_row9_col0" class="data row9 col0">2022-01-21</td>
-<td id="T_95374_row9_col1" class="data row9 col1">149.5</td>
-<td id="T_95374_row9_col2" class="data row9 col2">-19.5</td>
-<td id="T_95374_row9_col3" class="data row9 col3">29.58</td>
-<td id="T_95374_row9_col4" class="data row9 col4">35.12</td>
-<td id="T_95374_row9_col5" class="data row9 col5">-0.161</td>
-<td id="T_95374_row9_col6" class="data row9 col6">-0.035</td>
+<td id="T_5ef7e_row9_col0" class="data row9 col0">2022-01-21</td>
+<td id="T_5ef7e_row9_col1" class="data row9 col1">149.5</td>
+<td id="T_5ef7e_row9_col2" class="data row9 col2">-19.5</td>
+<td id="T_5ef7e_row9_col3" class="data row9 col3">29.58</td>
+<td id="T_5ef7e_row9_col4" class="data row9 col4">35.12</td>
+<td id="T_5ef7e_row9_col5" class="data row9 col5">-0.161</td>
+<td id="T_5ef7e_row9_col6" class="data row9 col6">-0.035</td>
 </tr>
 <tr class="odd">
-<td id="T_95374_row10_col0" class="data row10 col0">2022-01-23</td>
-<td id="T_95374_row10_col1" class="data row10 col1">148.5</td>
-<td id="T_95374_row10_col2" class="data row10 col2">-19.5</td>
-<td id="T_95374_row10_col3" class="data row10 col3">28.99</td>
-<td id="T_95374_row10_col4" class="data row10 col4">35.26</td>
-<td id="T_95374_row10_col5" class="data row10 col5">-0.137</td>
-<td id="T_95374_row10_col6" class="data row10 col6">-0.022</td>
+<td id="T_5ef7e_row10_col0" class="data row10 col0">2022-01-23</td>
+<td id="T_5ef7e_row10_col1" class="data row10 col1">148.5</td>
+<td id="T_5ef7e_row10_col2" class="data row10 col2">-19.5</td>
+<td id="T_5ef7e_row10_col3" class="data row10 col3">28.99</td>
+<td id="T_5ef7e_row10_col4" class="data row10 col4">35.26</td>
+<td id="T_5ef7e_row10_col5" class="data row10 col5">-0.137</td>
+<td id="T_5ef7e_row10_col6" class="data row10 col6">-0.022</td>
 </tr>
 <tr class="even">
-<td id="T_95374_row11_col0" class="data row11 col0">2022-01-27</td>
-<td id="T_95374_row11_col1" class="data row11 col1">147.5</td>
-<td id="T_95374_row11_col2" class="data row11 col2">-18.5</td>
-<td id="T_95374_row11_col3" class="data row11 col3">29.46</td>
-<td id="T_95374_row11_col4" class="data row11 col4">33.98</td>
-<td id="T_95374_row11_col5" class="data row11 col5">0.265</td>
-<td id="T_95374_row11_col6" class="data row11 col6">0.004</td>
+<td id="T_5ef7e_row11_col0" class="data row11 col0">2022-01-27</td>
+<td id="T_5ef7e_row11_col1" class="data row11 col1">147.5</td>
+<td id="T_5ef7e_row11_col2" class="data row11 col2">-18.5</td>
+<td id="T_5ef7e_row11_col3" class="data row11 col3">29.46</td>
+<td id="T_5ef7e_row11_col4" class="data row11 col4">33.98</td>
+<td id="T_5ef7e_row11_col5" class="data row11 col5">0.265</td>
+<td id="T_5ef7e_row11_col6" class="data row11 col6">0.004</td>
 </tr>
 <tr class="odd">
-<td id="T_95374_row12_col0" class="data row12 col0">2022-01-30</td>
-<td id="T_95374_row12_col1" class="data row12 col1">146.5</td>
-<td id="T_95374_row12_col2" class="data row12 col2">-18.5</td>
-<td id="T_95374_row12_col3" class="data row12 col3">30.15</td>
-<td id="T_95374_row12_col4" class="data row12 col4">34.60</td>
-<td id="T_95374_row12_col5" class="data row12 col5">-0.184</td>
-<td id="T_95374_row12_col6" class="data row12 col6">0.143</td>
+<td id="T_5ef7e_row12_col0" class="data row12 col0">2022-01-30</td>
+<td id="T_5ef7e_row12_col1" class="data row12 col1">146.5</td>
+<td id="T_5ef7e_row12_col2" class="data row12 col2">-18.5</td>
+<td id="T_5ef7e_row12_col3" class="data row12 col3">30.15</td>
+<td id="T_5ef7e_row12_col4" class="data row12 col4">34.60</td>
+<td id="T_5ef7e_row12_col5" class="data row12 col5">-0.184</td>
+<td id="T_5ef7e_row12_col6" class="data row12 col6">0.143</td>
 </tr>
 <tr class="even">
-<td id="T_95374_row13_col0" class="data row13 col0">2022-02-02</td>
-<td id="T_95374_row13_col1" class="data row13 col1">146.5</td>
-<td id="T_95374_row13_col2" class="data row13 col2">-17.5</td>
-<td id="T_95374_row13_col3" class="data row13 col3">30.59</td>
-<td id="T_95374_row13_col4" class="data row13 col4">34.72</td>
-<td id="T_95374_row13_col5" class="data row13 col5">0.128</td>
-<td id="T_95374_row13_col6" class="data row13 col6">-0.054</td>
+<td id="T_5ef7e_row13_col0" class="data row13 col0">2022-02-02</td>
+<td id="T_5ef7e_row13_col1" class="data row13 col1">146.5</td>
+<td id="T_5ef7e_row13_col2" class="data row13 col2">-17.5</td>
+<td id="T_5ef7e_row13_col3" class="data row13 col3">30.59</td>
+<td id="T_5ef7e_row13_col4" class="data row13 col4">34.72</td>
+<td id="T_5ef7e_row13_col5" class="data row13 col5">0.128</td>
+<td id="T_5ef7e_row13_col6" class="data row13 col6">-0.054</td>
 </tr>
 <tr class="odd">
-<td id="T_95374_row14_col0" class="data row14 col0">2022-02-03</td>
-<td id="T_95374_row14_col1" class="data row14 col1">153.5</td>
-<td id="T_95374_row14_col2" class="data row14 col2">-24.5</td>
-<td id="T_95374_row14_col3" class="data row14 col3">27.06</td>
-<td id="T_95374_row14_col4" class="data row14 col4">35.32</td>
-<td id="T_95374_row14_col5" class="data row14 col5">0.550</td>
-<td id="T_95374_row14_col6" class="data row14 col6">-0.797</td>
+<td id="T_5ef7e_row14_col0" class="data row14 col0">2022-02-03</td>
+<td id="T_5ef7e_row14_col1" class="data row14 col1">153.5</td>
+<td id="T_5ef7e_row14_col2" class="data row14 col2">-24.5</td>
+<td id="T_5ef7e_row14_col3" class="data row14 col3">27.06</td>
+<td id="T_5ef7e_row14_col4" class="data row14 col4">35.32</td>
+<td id="T_5ef7e_row14_col5" class="data row14 col5">0.550</td>
+<td id="T_5ef7e_row14_col6" class="data row14 col6">-0.797</td>
 </tr>
 <tr class="even">
-<td id="T_95374_row15_col0" class="data row15 col0">2022-02-06</td>
-<td id="T_95374_row15_col1" class="data row15 col1">146.5</td>
-<td id="T_95374_row15_col2" class="data row15 col2">-16.5</td>
-<td id="T_95374_row15_col3" class="data row15 col3">29.14</td>
-<td id="T_95374_row15_col4" class="data row15 col4">34.70</td>
-<td id="T_95374_row15_col5" class="data row15 col5">-0.122</td>
-<td id="T_95374_row15_col6" class="data row15 col6">-0.100</td>
+<td id="T_5ef7e_row15_col0" class="data row15 col0">2022-02-06</td>
+<td id="T_5ef7e_row15_col1" class="data row15 col1">146.5</td>
+<td id="T_5ef7e_row15_col2" class="data row15 col2">-16.5</td>
+<td id="T_5ef7e_row15_col3" class="data row15 col3">29.14</td>
+<td id="T_5ef7e_row15_col4" class="data row15 col4">34.70</td>
+<td id="T_5ef7e_row15_col5" class="data row15 col5">-0.122</td>
+<td id="T_5ef7e_row15_col6" class="data row15 col6">-0.100</td>
 </tr>
 <tr class="odd">
-<td id="T_95374_row16_col0" class="data row16 col0">2022-02-07</td>
-<td id="T_95374_row16_col1" class="data row16 col1">145.5</td>
-<td id="T_95374_row16_col2" class="data row16 col2">-16.5</td>
-<td id="T_95374_row16_col3" class="data row16 col3">30.37</td>
-<td id="T_95374_row16_col4" class="data row16 col4">34.06</td>
-<td id="T_95374_row16_col5" class="data row16 col5">-0.104</td>
-<td id="T_95374_row16_col6" class="data row16 col6">0.200</td>
+<td id="T_5ef7e_row16_col0" class="data row16 col0">2022-02-07</td>
+<td id="T_5ef7e_row16_col1" class="data row16 col1">145.5</td>
+<td id="T_5ef7e_row16_col2" class="data row16 col2">-16.5</td>
+<td id="T_5ef7e_row16_col3" class="data row16 col3">30.37</td>
+<td id="T_5ef7e_row16_col4" class="data row16 col4">34.06</td>
+<td id="T_5ef7e_row16_col5" class="data row16 col5">-0.104</td>
+<td id="T_5ef7e_row16_col6" class="data row16 col6">0.200</td>
 </tr>
 <tr class="even">
-<td id="T_95374_row17_col0" class="data row17 col0">2022-02-09</td>
-<td id="T_95374_row17_col1" class="data row17 col1">145.5</td>
-<td id="T_95374_row17_col2" class="data row17 col2">-15.5</td>
-<td id="T_95374_row17_col3" class="data row17 col3">29.54</td>
-<td id="T_95374_row17_col4" class="data row17 col4">34.74</td>
-<td id="T_95374_row17_col5" class="data row17 col5">-0.120</td>
-<td id="T_95374_row17_col6" class="data row17 col6">0.064</td>
+<td id="T_5ef7e_row17_col0" class="data row17 col0">2022-02-09</td>
+<td id="T_5ef7e_row17_col1" class="data row17 col1">145.5</td>
+<td id="T_5ef7e_row17_col2" class="data row17 col2">-15.5</td>
+<td id="T_5ef7e_row17_col3" class="data row17 col3">29.54</td>
+<td id="T_5ef7e_row17_col4" class="data row17 col4">34.74</td>
+<td id="T_5ef7e_row17_col5" class="data row17 col5">-0.120</td>
+<td id="T_5ef7e_row17_col6" class="data row17 col6">0.064</td>
 </tr>
 <tr class="odd">
-<td id="T_95374_row18_col0" class="data row18 col0">2022-02-12</td>
-<td id="T_95374_row18_col1" class="data row18 col1">153.5</td>
-<td id="T_95374_row18_col2" class="data row18 col2">-26.5</td>
-<td id="T_95374_row18_col3" class="data row18 col3">26.80</td>
-<td id="T_95374_row18_col4" class="data row18 col4">35.38</td>
-<td id="T_95374_row18_col5" class="data row18 col5">-0.124</td>
-<td id="T_95374_row18_col6" class="data row18 col6">0.006</td>
+<td id="T_5ef7e_row18_col0" class="data row18 col0">2022-02-12</td>
+<td id="T_5ef7e_row18_col1" class="data row18 col1">153.5</td>
+<td id="T_5ef7e_row18_col2" class="data row18 col2">-26.5</td>
+<td id="T_5ef7e_row18_col3" class="data row18 col3">26.80</td>
+<td id="T_5ef7e_row18_col4" class="data row18 col4">35.38</td>
+<td id="T_5ef7e_row18_col5" class="data row18 col5">-0.124</td>
+<td id="T_5ef7e_row18_col6" class="data row18 col6">0.006</td>
 </tr>
 <tr class="even">
-<td id="T_95374_row19_col0" class="data row19 col0">2022-02-12</td>
-<td id="T_95374_row19_col1" class="data row19 col1">145.5</td>
-<td id="T_95374_row19_col2" class="data row19 col2">-14.5</td>
-<td id="T_95374_row19_col3" class="data row19 col3">29.90</td>
-<td id="T_95374_row19_col4" class="data row19 col4">34.72</td>
-<td id="T_95374_row19_col5" class="data row19 col5">-0.081</td>
-<td id="T_95374_row19_col6" class="data row19 col6">0.034</td>
+<td id="T_5ef7e_row19_col0" class="data row19 col0">2022-02-12</td>
+<td id="T_5ef7e_row19_col1" class="data row19 col1">145.5</td>
+<td id="T_5ef7e_row19_col2" class="data row19 col2">-14.5</td>
+<td id="T_5ef7e_row19_col3" class="data row19 col3">29.90</td>
+<td id="T_5ef7e_row19_col4" class="data row19 col4">34.72</td>
+<td id="T_5ef7e_row19_col5" class="data row19 col5">-0.081</td>
+<td id="T_5ef7e_row19_col6" class="data row19 col6">0.034</td>
 </tr>
 <tr class="odd">
-<td id="T_95374_row20_col0" class="data row20 col0">2022-03-25</td>
-<td id="T_95374_row20_col1" class="data row20 col1">144.5</td>
-<td id="T_95374_row20_col2" class="data row20 col2">-13.5</td>
-<td id="T_95374_row20_col3" class="data row20 col3">29.04</td>
-<td id="T_95374_row20_col4" class="data row20 col4">34.75</td>
-<td id="T_95374_row20_col5" class="data row20 col5">-0.457</td>
-<td id="T_95374_row20_col6" class="data row20 col6">0.360</td>
+<td id="T_5ef7e_row20_col0" class="data row20 col0">2022-03-25</td>
+<td id="T_5ef7e_row20_col1" class="data row20 col1">144.5</td>
+<td id="T_5ef7e_row20_col2" class="data row20 col2">-13.5</td>
+<td id="T_5ef7e_row20_col3" class="data row20 col3">29.04</td>
+<td id="T_5ef7e_row20_col4" class="data row20 col4">34.75</td>
+<td id="T_5ef7e_row20_col5" class="data row20 col5">-0.457</td>
+<td id="T_5ef7e_row20_col6" class="data row20 col6">0.360</td>
 </tr>
 <tr class="even">
-<td id="T_95374_row21_col0" class="data row21 col0">2022-04-01</td>
-<td id="T_95374_row21_col1" class="data row21 col1">143.5</td>
-<td id="T_95374_row21_col2" class="data row21 col2">-12.5</td>
-<td id="T_95374_row21_col3" class="data row21 col3">30.14</td>
-<td id="T_95374_row21_col4" class="data row21 col4">34.44</td>
-<td id="T_95374_row21_col5" class="data row21 col5">0.025</td>
-<td id="T_95374_row21_col6" class="data row21 col6">-0.018</td>
+<td id="T_5ef7e_row21_col0" class="data row21 col0">2022-04-01</td>
+<td id="T_5ef7e_row21_col1" class="data row21 col1">143.5</td>
+<td id="T_5ef7e_row21_col2" class="data row21 col2">-12.5</td>
+<td id="T_5ef7e_row21_col3" class="data row21 col3">30.14</td>
+<td id="T_5ef7e_row21_col4" class="data row21 col4">34.44</td>
+<td id="T_5ef7e_row21_col5" class="data row21 col5">0.025</td>
+<td id="T_5ef7e_row21_col6" class="data row21 col6">-0.018</td>
 </tr>
 <tr class="odd">
-<td id="T_95374_row22_col0" class="data row22 col0">2022-04-09</td>
-<td id="T_95374_row22_col1" class="data row22 col1">143.5</td>
-<td id="T_95374_row22_col2" class="data row22 col2">-11.5</td>
-<td id="T_95374_row22_col3" class="data row22 col3">29.93</td>
-<td id="T_95374_row22_col4" class="data row22 col4">34.56</td>
-<td id="T_95374_row22_col5" class="data row22 col5">-0.097</td>
-<td id="T_95374_row22_col6" class="data row22 col6">0.144</td>
+<td id="T_5ef7e_row22_col0" class="data row22 col0">2022-04-09</td>
+<td id="T_5ef7e_row22_col1" class="data row22 col1">143.5</td>
+<td id="T_5ef7e_row22_col2" class="data row22 col2">-11.5</td>
+<td id="T_5ef7e_row22_col3" class="data row22 col3">29.93</td>
+<td id="T_5ef7e_row22_col4" class="data row22 col4">34.56</td>
+<td id="T_5ef7e_row22_col5" class="data row22 col5">-0.097</td>
+<td id="T_5ef7e_row22_col6" class="data row22 col6">0.144</td>
 </tr>
 <tr class="even">
-<td id="T_95374_row23_col0" class="data row23 col0">2022-04-14</td>
-<td id="T_95374_row23_col1" class="data row23 col1">143.5</td>
-<td id="T_95374_row23_col2" class="data row23 col2">-10.5</td>
-<td id="T_95374_row23_col3" class="data row23 col3">29.48</td>
-<td id="T_95374_row23_col4" class="data row23 col4">34.42</td>
-<td id="T_95374_row23_col5" class="data row23 col5">-0.041</td>
-<td id="T_95374_row23_col6" class="data row23 col6">0.078</td>
+<td id="T_5ef7e_row23_col0" class="data row23 col0">2022-04-14</td>
+<td id="T_5ef7e_row23_col1" class="data row23 col1">143.5</td>
+<td id="T_5ef7e_row23_col2" class="data row23 col2">-10.5</td>
+<td id="T_5ef7e_row23_col3" class="data row23 col3">29.48</td>
+<td id="T_5ef7e_row23_col4" class="data row23 col4">34.42</td>
+<td id="T_5ef7e_row23_col5" class="data row23 col5">-0.041</td>
+<td id="T_5ef7e_row23_col6" class="data row23 col6">0.078</td>
 </tr>
 <tr class="odd">
-<td id="T_95374_row24_col0" class="data row24 col0">2022-04-21</td>
-<td id="T_95374_row24_col1" class="data row24 col1">143.5</td>
-<td id="T_95374_row24_col2" class="data row24 col2">-9.5</td>
-<td id="T_95374_row24_col3" class="data row24 col3">29.56</td>
-<td id="T_95374_row24_col4" class="data row24 col4">34.19</td>
-<td id="T_95374_row24_col5" class="data row24 col5">0.059</td>
-<td id="T_95374_row24_col6" class="data row24 col6">0.034</td>
+<td id="T_5ef7e_row24_col0" class="data row24 col0">2022-04-21</td>
+<td id="T_5ef7e_row24_col1" class="data row24 col1">143.5</td>
+<td id="T_5ef7e_row24_col2" class="data row24 col2">-9.5</td>
+<td id="T_5ef7e_row24_col3" class="data row24 col3">29.56</td>
+<td id="T_5ef7e_row24_col4" class="data row24 col4">34.19</td>
+<td id="T_5ef7e_row24_col5" class="data row24 col5">0.059</td>
+<td id="T_5ef7e_row24_col6" class="data row24 col6">0.034</td>
 </tr>
 </tbody>
 </table>
@@ -1481,332 +1504,337 @@ Table&nbsp;2: Extracted daily mean temperature, salinity, and east- and northwar
 <section id="match-extracted-data-to-tracking-data" class="level2">
 <h2 class="anchored" data-anchor-id="match-extracted-data-to-tracking-data">Match extracted data to tracking data</h2>
 <p>We will match up the eReefs data with our tracking detections by combining the two datasets based on common date, longitude and latitude values.</p>
-<div id="ab26d25a" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename lon and lat columns of extracted_data to longitude, latitude (to match those of data)</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>extracted_data <span class="op">=</span> extracted_data.rename(columns <span class="op">=</span> {</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'lon'</span>: <span class="st">'longitude'</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'lat'</span>: <span class="st">'latitude'</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the two datasets based on common date, lon and lat values</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>combined_data <span class="op">=</span> pd.merge(</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  data, extracted_data,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  on <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'longitude'</span>, <span class="st">'latitude'</span>]</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the combined data (reorder columns; sort by date and time; format numeric columns' decimal places)</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>tbl_combined <span class="op">=</span> combined_data.<span class="op">\</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  reindex(columns <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'time'</span>, <span class="st">'longitude'</span>, <span class="st">'latitude'</span>, <span class="st">'record_id'</span>, <span class="st">'temp'</span>, <span class="st">'salt'</span>, <span class="st">'u'</span>, <span class="st">'v'</span>]).<span class="op">\</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  sort_values(by <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'time'</span>]).<span class="op">\</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  style.<span class="op">\</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  hide(axis <span class="op">=</span> <span class="st">'index'</span>).<span class="op">\</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="bu">format</span>({</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'longitude'</span>, <span class="st">'latitude'</span>], <span class="st">'</span><span class="sc">{:.1f}</span><span class="st">'</span>),</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'temp'</span>, <span class="st">'salt'</span>], <span class="st">'</span><span class="sc">{:.2f}</span><span class="st">'</span>),</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'u'</span>, <span class="st">'v'</span>], <span class="st">'</span><span class="sc">{:.3f}</span><span class="st">'</span>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>display(tbl_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1cd04147" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename lon and lat columns of extracted_data to longitude, latitude (to match those of data)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>extracted_data <span class="op">=</span> extracted_data.rename(columns <span class="op">=</span> {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'lon'</span>: <span class="st">'longitude'</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'lat'</span>: <span class="st">'latitude'</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the two datasets based on common date, lon and lat values</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>combined_data <span class="op">=</span> pd.merge(</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  data, extracted_data,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  on <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'longitude'</span>, <span class="st">'latitude'</span>]</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the combined data (reorder columns; sort by date and time; format numeric columns' decimal places)</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>tbl_combined <span class="op">=</span> combined_data.<span class="op">\</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  reindex(columns <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'time'</span>, <span class="st">'longitude'</span>, <span class="st">'latitude'</span>, <span class="st">'record_id'</span>, <span class="st">'temp'</span>, <span class="st">'salt'</span>, <span class="st">'u'</span>, <span class="st">'v'</span>]).<span class="op">\</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  sort_values(by <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'time'</span>]).<span class="op">\</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  style.<span class="op">\</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  hide(axis <span class="op">=</span> <span class="st">'index'</span>).<span class="op">\</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="bu">format</span>({</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'longitude'</span>, <span class="st">'latitude'</span>], <span class="st">'</span><span class="sc">{:.1f}</span><span class="st">'</span>),</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'temp'</span>, <span class="st">'salt'</span>], <span class="st">'</span><span class="sc">{:.2f}</span><span class="st">'</span>),</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span><span class="bu">dict</span>.fromkeys([<span class="st">'u'</span>, <span class="st">'v'</span>], <span class="st">'</span><span class="sc">{:.3f}</span><span class="st">'</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>display(tbl_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell scroll_box_xy" data-execution_count="9">
-<div id="tbl-combined-data" class="cell scroll_box_xy quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="9">
+<p>To output the combined data table from your Python script, you can add this code:</p>
+<div id="35bd6804" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'combined_data_table.html'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  f.write(tbl_combined.to_html())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell scroll_box_xy" data-execution_count="14">
+<div id="tbl-combined-data" class="cell scroll_box_xy quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="14">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-combined-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3: Loggerhead Sea Turtle (<em>Caretta caretta</em>) tracking detections (Strydom, 2022) and corresponding eReefs daily mean temperature, salinity, east- and northward current velocities (u, v respectively).
 </figcaption>
 <div aria-describedby="tbl-combined-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <style type="text/css">
 </style>
 
-<table id="T_1a212" class="do-not-create-environment cell scroll_box_xy caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_14ac7" class="do-not-create-environment cell scroll_box_xy caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_1a212_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">date</th>
-<th id="T_1a212_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">time</th>
-<th id="T_1a212_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">longitude</th>
-<th id="T_1a212_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">latitude</th>
-<th id="T_1a212_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">record_id</th>
-<th id="T_1a212_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">temp</th>
-<th id="T_1a212_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">salt</th>
-<th id="T_1a212_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th">u</th>
-<th id="T_1a212_level0_col8" class="col_heading level0 col8" data-quarto-table-cell-role="th">v</th>
+<th id="T_14ac7_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">date</th>
+<th id="T_14ac7_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">time</th>
+<th id="T_14ac7_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">longitude</th>
+<th id="T_14ac7_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">latitude</th>
+<th id="T_14ac7_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">record_id</th>
+<th id="T_14ac7_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">temp</th>
+<th id="T_14ac7_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">salt</th>
+<th id="T_14ac7_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th">u</th>
+<th id="T_14ac7_level0_col8" class="col_heading level0 col8" data-quarto-table-cell-role="th">v</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_1a212_row0_col0" class="data row0 col0">2021-12-21</td>
-<td id="T_1a212_row0_col1" class="data row0 col1">17:57</td>
-<td id="T_1a212_row0_col2" class="data row0 col2">152.5</td>
-<td id="T_1a212_row0_col3" class="data row0 col3">-24.5</td>
-<td id="T_1a212_row0_col4" class="data row0 col4">4022992328</td>
-<td id="T_1a212_row0_col5" class="data row0 col5">28.09</td>
-<td id="T_1a212_row0_col6" class="data row0 col6">35.26</td>
-<td id="T_1a212_row0_col7" class="data row0 col7">0.071</td>
-<td id="T_1a212_row0_col8" class="data row0 col8">-0.020</td>
+<td id="T_14ac7_row0_col0" class="data row0 col0">2021-12-21</td>
+<td id="T_14ac7_row0_col1" class="data row0 col1">17:57</td>
+<td id="T_14ac7_row0_col2" class="data row0 col2">152.5</td>
+<td id="T_14ac7_row0_col3" class="data row0 col3">-24.5</td>
+<td id="T_14ac7_row0_col4" class="data row0 col4">4022992328</td>
+<td id="T_14ac7_row0_col5" class="data row0 col5">28.09</td>
+<td id="T_14ac7_row0_col6" class="data row0 col6">35.26</td>
+<td id="T_14ac7_row0_col7" class="data row0 col7">0.071</td>
+<td id="T_14ac7_row0_col8" class="data row0 col8">-0.020</td>
 </tr>
 <tr class="even">
-<td id="T_1a212_row1_col0" class="data row1 col0">2022-01-02</td>
-<td id="T_1a212_row1_col1" class="data row1 col1">21:49</td>
-<td id="T_1a212_row1_col2" class="data row1 col2">153.5</td>
-<td id="T_1a212_row1_col3" class="data row1 col3">-25.5</td>
-<td id="T_1a212_row1_col4" class="data row1 col4">4022992329</td>
-<td id="T_1a212_row1_col5" class="data row1 col5">26.00</td>
-<td id="T_1a212_row1_col6" class="data row1 col6">35.30</td>
-<td id="T_1a212_row1_col7" class="data row1 col7">-0.035</td>
-<td id="T_1a212_row1_col8" class="data row1 col8">0.038</td>
+<td id="T_14ac7_row1_col0" class="data row1 col0">2022-01-02</td>
+<td id="T_14ac7_row1_col1" class="data row1 col1">21:49</td>
+<td id="T_14ac7_row1_col2" class="data row1 col2">153.5</td>
+<td id="T_14ac7_row1_col3" class="data row1 col3">-25.5</td>
+<td id="T_14ac7_row1_col4" class="data row1 col4">4022992329</td>
+<td id="T_14ac7_row1_col5" class="data row1 col5">26.00</td>
+<td id="T_14ac7_row1_col6" class="data row1 col6">35.30</td>
+<td id="T_14ac7_row1_col7" class="data row1 col7">-0.035</td>
+<td id="T_14ac7_row1_col8" class="data row1 col8">0.038</td>
 </tr>
 <tr class="odd">
-<td id="T_1a212_row2_col0" class="data row2 col0">2022-01-05</td>
-<td id="T_1a212_row2_col1" class="data row2 col1">07:33</td>
-<td id="T_1a212_row2_col2" class="data row2 col2">152.5</td>
-<td id="T_1a212_row2_col3" class="data row2 col3">-23.5</td>
-<td id="T_1a212_row2_col4" class="data row2 col4">4022992304</td>
-<td id="T_1a212_row2_col5" class="data row2 col5">25.64</td>
-<td id="T_1a212_row2_col6" class="data row2 col6">35.23</td>
-<td id="T_1a212_row2_col7" class="data row2 col7">0.030</td>
-<td id="T_1a212_row2_col8" class="data row2 col8">0.015</td>
+<td id="T_14ac7_row2_col0" class="data row2 col0">2022-01-05</td>
+<td id="T_14ac7_row2_col1" class="data row2 col1">07:33</td>
+<td id="T_14ac7_row2_col2" class="data row2 col2">152.5</td>
+<td id="T_14ac7_row2_col3" class="data row2 col3">-23.5</td>
+<td id="T_14ac7_row2_col4" class="data row2 col4">4022992304</td>
+<td id="T_14ac7_row2_col5" class="data row2 col5">25.64</td>
+<td id="T_14ac7_row2_col6" class="data row2 col6">35.23</td>
+<td id="T_14ac7_row2_col7" class="data row2 col7">0.030</td>
+<td id="T_14ac7_row2_col8" class="data row2 col8">0.015</td>
 </tr>
 <tr class="even">
-<td id="T_1a212_row3_col0" class="data row3 col0">2022-01-06</td>
-<td id="T_1a212_row3_col1" class="data row3 col1">05:03</td>
-<td id="T_1a212_row3_col2" class="data row3 col2">151.5</td>
-<td id="T_1a212_row3_col3" class="data row3 col3">-23.5</td>
-<td id="T_1a212_row3_col4" class="data row3 col4">4022992302</td>
-<td id="T_1a212_row3_col5" class="data row3 col5">28.13</td>
-<td id="T_1a212_row3_col6" class="data row3 col6">35.41</td>
-<td id="T_1a212_row3_col7" class="data row3 col7">-0.033</td>
-<td id="T_1a212_row3_col8" class="data row3 col8">0.015</td>
+<td id="T_14ac7_row3_col0" class="data row3 col0">2022-01-06</td>
+<td id="T_14ac7_row3_col1" class="data row3 col1">05:03</td>
+<td id="T_14ac7_row3_col2" class="data row3 col2">151.5</td>
+<td id="T_14ac7_row3_col3" class="data row3 col3">-23.5</td>
+<td id="T_14ac7_row3_col4" class="data row3 col4">4022992302</td>
+<td id="T_14ac7_row3_col5" class="data row3 col5">28.13</td>
+<td id="T_14ac7_row3_col6" class="data row3 col6">35.41</td>
+<td id="T_14ac7_row3_col7" class="data row3 col7">-0.033</td>
+<td id="T_14ac7_row3_col8" class="data row3 col8">0.015</td>
 </tr>
 <tr class="odd">
-<td id="T_1a212_row4_col0" class="data row4 col0">2022-01-09</td>
-<td id="T_1a212_row4_col1" class="data row4 col1">20:25</td>
-<td id="T_1a212_row4_col2" class="data row4 col2">151.5</td>
-<td id="T_1a212_row4_col3" class="data row4 col3">-22.5</td>
-<td id="T_1a212_row4_col4" class="data row4 col4">4022992319</td>
-<td id="T_1a212_row4_col5" class="data row4 col5">29.24</td>
-<td id="T_1a212_row4_col6" class="data row4 col6">35.34</td>
-<td id="T_1a212_row4_col7" class="data row4 col7">0.001</td>
-<td id="T_1a212_row4_col8" class="data row4 col8">-0.103</td>
+<td id="T_14ac7_row4_col0" class="data row4 col0">2022-01-09</td>
+<td id="T_14ac7_row4_col1" class="data row4 col1">20:25</td>
+<td id="T_14ac7_row4_col2" class="data row4 col2">151.5</td>
+<td id="T_14ac7_row4_col3" class="data row4 col3">-22.5</td>
+<td id="T_14ac7_row4_col4" class="data row4 col4">4022992319</td>
+<td id="T_14ac7_row4_col5" class="data row4 col5">29.24</td>
+<td id="T_14ac7_row4_col6" class="data row4 col6">35.34</td>
+<td id="T_14ac7_row4_col7" class="data row4 col7">0.001</td>
+<td id="T_14ac7_row4_col8" class="data row4 col8">-0.103</td>
 </tr>
 <tr class="even">
-<td id="T_1a212_row5_col0" class="data row5 col0">2022-01-13</td>
-<td id="T_1a212_row5_col1" class="data row5 col1">06:28</td>
-<td id="T_1a212_row5_col2" class="data row5 col2">151.5</td>
-<td id="T_1a212_row5_col3" class="data row5 col3">-21.5</td>
-<td id="T_1a212_row5_col4" class="data row5 col4">4022992308</td>
-<td id="T_1a212_row5_col5" class="data row5 col5">28.42</td>
-<td id="T_1a212_row5_col6" class="data row5 col6">35.25</td>
-<td id="T_1a212_row5_col7" class="data row5 col7">-0.095</td>
-<td id="T_1a212_row5_col8" class="data row5 col8">0.016</td>
+<td id="T_14ac7_row5_col0" class="data row5 col0">2022-01-13</td>
+<td id="T_14ac7_row5_col1" class="data row5 col1">06:28</td>
+<td id="T_14ac7_row5_col2" class="data row5 col2">151.5</td>
+<td id="T_14ac7_row5_col3" class="data row5 col3">-21.5</td>
+<td id="T_14ac7_row5_col4" class="data row5 col4">4022992308</td>
+<td id="T_14ac7_row5_col5" class="data row5 col5">28.42</td>
+<td id="T_14ac7_row5_col6" class="data row5 col6">35.25</td>
+<td id="T_14ac7_row5_col7" class="data row5 col7">-0.095</td>
+<td id="T_14ac7_row5_col8" class="data row5 col8">0.016</td>
 </tr>
 <tr class="odd">
-<td id="T_1a212_row6_col0" class="data row6 col0">2022-01-14</td>
-<td id="T_1a212_row6_col1" class="data row6 col1">18:26</td>
-<td id="T_1a212_row6_col2" class="data row6 col2">150.5</td>
-<td id="T_1a212_row6_col3" class="data row6 col3">-21.5</td>
-<td id="T_1a212_row6_col4" class="data row6 col4">4022992318</td>
-<td id="T_1a212_row6_col5" class="data row6 col5">28.99</td>
-<td id="T_1a212_row6_col6" class="data row6 col6">35.40</td>
-<td id="T_1a212_row6_col7" class="data row6 col7">-0.064</td>
-<td id="T_1a212_row6_col8" class="data row6 col8">-0.047</td>
+<td id="T_14ac7_row6_col0" class="data row6 col0">2022-01-14</td>
+<td id="T_14ac7_row6_col1" class="data row6 col1">18:26</td>
+<td id="T_14ac7_row6_col2" class="data row6 col2">150.5</td>
+<td id="T_14ac7_row6_col3" class="data row6 col3">-21.5</td>
+<td id="T_14ac7_row6_col4" class="data row6 col4">4022992318</td>
+<td id="T_14ac7_row6_col5" class="data row6 col5">28.99</td>
+<td id="T_14ac7_row6_col6" class="data row6 col6">35.40</td>
+<td id="T_14ac7_row6_col7" class="data row6 col7">-0.064</td>
+<td id="T_14ac7_row6_col8" class="data row6 col8">-0.047</td>
 </tr>
 <tr class="even">
-<td id="T_1a212_row7_col0" class="data row7 col0">2022-01-17</td>
-<td id="T_1a212_row7_col1" class="data row7 col1">17:06</td>
-<td id="T_1a212_row7_col2" class="data row7 col2">150.5</td>
-<td id="T_1a212_row7_col3" class="data row7 col3">-20.5</td>
-<td id="T_1a212_row7_col4" class="data row7 col4">4022992330</td>
-<td id="T_1a212_row7_col5" class="data row7 col5">29.39</td>
-<td id="T_1a212_row7_col6" class="data row7 col6">35.34</td>
-<td id="T_1a212_row7_col7" class="data row7 col7">-0.066</td>
-<td id="T_1a212_row7_col8" class="data row7 col8">-0.178</td>
+<td id="T_14ac7_row7_col0" class="data row7 col0">2022-01-17</td>
+<td id="T_14ac7_row7_col1" class="data row7 col1">17:06</td>
+<td id="T_14ac7_row7_col2" class="data row7 col2">150.5</td>
+<td id="T_14ac7_row7_col3" class="data row7 col3">-20.5</td>
+<td id="T_14ac7_row7_col4" class="data row7 col4">4022992330</td>
+<td id="T_14ac7_row7_col5" class="data row7 col5">29.39</td>
+<td id="T_14ac7_row7_col6" class="data row7 col6">35.34</td>
+<td id="T_14ac7_row7_col7" class="data row7 col7">-0.066</td>
+<td id="T_14ac7_row7_col8" class="data row7 col8">-0.178</td>
 </tr>
 <tr class="odd">
-<td id="T_1a212_row8_col0" class="data row8 col0">2022-01-19</td>
-<td id="T_1a212_row8_col1" class="data row8 col1">17:44</td>
-<td id="T_1a212_row8_col2" class="data row8 col2">149.5</td>
-<td id="T_1a212_row8_col3" class="data row8 col3">-20.5</td>
-<td id="T_1a212_row8_col4" class="data row8 col4">4022992320</td>
-<td id="T_1a212_row8_col5" class="data row8 col5">29.92</td>
-<td id="T_1a212_row8_col6" class="data row8 col6">35.48</td>
-<td id="T_1a212_row8_col7" class="data row8 col7">0.018</td>
-<td id="T_1a212_row8_col8" class="data row8 col8">-0.104</td>
+<td id="T_14ac7_row8_col0" class="data row8 col0">2022-01-19</td>
+<td id="T_14ac7_row8_col1" class="data row8 col1">17:44</td>
+<td id="T_14ac7_row8_col2" class="data row8 col2">149.5</td>
+<td id="T_14ac7_row8_col3" class="data row8 col3">-20.5</td>
+<td id="T_14ac7_row8_col4" class="data row8 col4">4022992320</td>
+<td id="T_14ac7_row8_col5" class="data row8 col5">29.92</td>
+<td id="T_14ac7_row8_col6" class="data row8 col6">35.48</td>
+<td id="T_14ac7_row8_col7" class="data row8 col7">0.018</td>
+<td id="T_14ac7_row8_col8" class="data row8 col8">-0.104</td>
 </tr>
 <tr class="even">
-<td id="T_1a212_row9_col0" class="data row9 col0">2022-01-21</td>
-<td id="T_1a212_row9_col1" class="data row9 col1">07:22</td>
-<td id="T_1a212_row9_col2" class="data row9 col2">149.5</td>
-<td id="T_1a212_row9_col3" class="data row9 col3">-19.5</td>
-<td id="T_1a212_row9_col4" class="data row9 col4">4022992316</td>
-<td id="T_1a212_row9_col5" class="data row9 col5">29.58</td>
-<td id="T_1a212_row9_col6" class="data row9 col6">35.12</td>
-<td id="T_1a212_row9_col7" class="data row9 col7">-0.161</td>
-<td id="T_1a212_row9_col8" class="data row9 col8">-0.035</td>
+<td id="T_14ac7_row9_col0" class="data row9 col0">2022-01-21</td>
+<td id="T_14ac7_row9_col1" class="data row9 col1">07:22</td>
+<td id="T_14ac7_row9_col2" class="data row9 col2">149.5</td>
+<td id="T_14ac7_row9_col3" class="data row9 col3">-19.5</td>
+<td id="T_14ac7_row9_col4" class="data row9 col4">4022992316</td>
+<td id="T_14ac7_row9_col5" class="data row9 col5">29.58</td>
+<td id="T_14ac7_row9_col6" class="data row9 col6">35.12</td>
+<td id="T_14ac7_row9_col7" class="data row9 col7">-0.161</td>
+<td id="T_14ac7_row9_col8" class="data row9 col8">-0.035</td>
 </tr>
 <tr class="odd">
-<td id="T_1a212_row10_col0" class="data row10 col0">2022-01-23</td>
-<td id="T_1a212_row10_col1" class="data row10 col1">07:02</td>
-<td id="T_1a212_row10_col2" class="data row10 col2">148.5</td>
-<td id="T_1a212_row10_col3" class="data row10 col3">-19.5</td>
-<td id="T_1a212_row10_col4" class="data row10 col4">4022992323</td>
-<td id="T_1a212_row10_col5" class="data row10 col5">28.99</td>
-<td id="T_1a212_row10_col6" class="data row10 col6">35.26</td>
-<td id="T_1a212_row10_col7" class="data row10 col7">-0.137</td>
-<td id="T_1a212_row10_col8" class="data row10 col8">-0.022</td>
+<td id="T_14ac7_row10_col0" class="data row10 col0">2022-01-23</td>
+<td id="T_14ac7_row10_col1" class="data row10 col1">07:02</td>
+<td id="T_14ac7_row10_col2" class="data row10 col2">148.5</td>
+<td id="T_14ac7_row10_col3" class="data row10 col3">-19.5</td>
+<td id="T_14ac7_row10_col4" class="data row10 col4">4022992323</td>
+<td id="T_14ac7_row10_col5" class="data row10 col5">28.99</td>
+<td id="T_14ac7_row10_col6" class="data row10 col6">35.26</td>
+<td id="T_14ac7_row10_col7" class="data row10 col7">-0.137</td>
+<td id="T_14ac7_row10_col8" class="data row10 col8">-0.022</td>
 </tr>
 <tr class="even">
-<td id="T_1a212_row11_col0" class="data row11 col0">2022-01-27</td>
-<td id="T_1a212_row11_col1" class="data row11 col1">17:00</td>
-<td id="T_1a212_row11_col2" class="data row11 col2">147.5</td>
-<td id="T_1a212_row11_col3" class="data row11 col3">-18.5</td>
-<td id="T_1a212_row11_col4" class="data row11 col4">4022992327</td>
-<td id="T_1a212_row11_col5" class="data row11 col5">29.46</td>
-<td id="T_1a212_row11_col6" class="data row11 col6">33.98</td>
-<td id="T_1a212_row11_col7" class="data row11 col7">0.265</td>
-<td id="T_1a212_row11_col8" class="data row11 col8">0.004</td>
+<td id="T_14ac7_row11_col0" class="data row11 col0">2022-01-27</td>
+<td id="T_14ac7_row11_col1" class="data row11 col1">17:00</td>
+<td id="T_14ac7_row11_col2" class="data row11 col2">147.5</td>
+<td id="T_14ac7_row11_col3" class="data row11 col3">-18.5</td>
+<td id="T_14ac7_row11_col4" class="data row11 col4">4022992327</td>
+<td id="T_14ac7_row11_col5" class="data row11 col5">29.46</td>
+<td id="T_14ac7_row11_col6" class="data row11 col6">33.98</td>
+<td id="T_14ac7_row11_col7" class="data row11 col7">0.265</td>
+<td id="T_14ac7_row11_col8" class="data row11 col8">0.004</td>
 </tr>
 <tr class="odd">
-<td id="T_1a212_row12_col0" class="data row12 col0">2022-01-30</td>
-<td id="T_1a212_row12_col1" class="data row12 col1">17:02</td>
-<td id="T_1a212_row12_col2" class="data row12 col2">146.5</td>
-<td id="T_1a212_row12_col3" class="data row12 col3">-18.5</td>
-<td id="T_1a212_row12_col4" class="data row12 col4">4022992314</td>
-<td id="T_1a212_row12_col5" class="data row12 col5">30.15</td>
-<td id="T_1a212_row12_col6" class="data row12 col6">34.60</td>
-<td id="T_1a212_row12_col7" class="data row12 col7">-0.184</td>
-<td id="T_1a212_row12_col8" class="data row12 col8">0.143</td>
+<td id="T_14ac7_row12_col0" class="data row12 col0">2022-01-30</td>
+<td id="T_14ac7_row12_col1" class="data row12 col1">17:02</td>
+<td id="T_14ac7_row12_col2" class="data row12 col2">146.5</td>
+<td id="T_14ac7_row12_col3" class="data row12 col3">-18.5</td>
+<td id="T_14ac7_row12_col4" class="data row12 col4">4022992314</td>
+<td id="T_14ac7_row12_col5" class="data row12 col5">30.15</td>
+<td id="T_14ac7_row12_col6" class="data row12 col6">34.60</td>
+<td id="T_14ac7_row12_col7" class="data row12 col7">-0.184</td>
+<td id="T_14ac7_row12_col8" class="data row12 col8">0.143</td>
 </tr>
 <tr class="even">
-<td id="T_1a212_row13_col0" class="data row13 col0">2022-02-02</td>
-<td id="T_1a212_row13_col1" class="data row13 col1">09:14</td>
-<td id="T_1a212_row13_col2" class="data row13 col2">146.5</td>
-<td id="T_1a212_row13_col3" class="data row13 col3">-17.5</td>
-<td id="T_1a212_row13_col4" class="data row13 col4">4022992301</td>
-<td id="T_1a212_row13_col5" class="data row13 col5">30.59</td>
-<td id="T_1a212_row13_col6" class="data row13 col6">34.72</td>
-<td id="T_1a212_row13_col7" class="data row13 col7">0.128</td>
-<td id="T_1a212_row13_col8" class="data row13 col8">-0.054</td>
+<td id="T_14ac7_row13_col0" class="data row13 col0">2022-02-02</td>
+<td id="T_14ac7_row13_col1" class="data row13 col1">09:14</td>
+<td id="T_14ac7_row13_col2" class="data row13 col2">146.5</td>
+<td id="T_14ac7_row13_col3" class="data row13 col3">-17.5</td>
+<td id="T_14ac7_row13_col4" class="data row13 col4">4022992301</td>
+<td id="T_14ac7_row13_col5" class="data row13 col5">30.59</td>
+<td id="T_14ac7_row13_col6" class="data row13 col6">34.72</td>
+<td id="T_14ac7_row13_col7" class="data row13 col7">0.128</td>
+<td id="T_14ac7_row13_col8" class="data row13 col8">-0.054</td>
 </tr>
 <tr class="odd">
-<td id="T_1a212_row14_col0" class="data row14 col0">2022-02-03</td>
-<td id="T_1a212_row14_col1" class="data row14 col1">21:37</td>
-<td id="T_1a212_row14_col2" class="data row14 col2">153.5</td>
-<td id="T_1a212_row14_col3" class="data row14 col3">-24.5</td>
-<td id="T_1a212_row14_col4" class="data row14 col4">4022992313</td>
-<td id="T_1a212_row14_col5" class="data row14 col5">27.06</td>
-<td id="T_1a212_row14_col6" class="data row14 col6">35.32</td>
-<td id="T_1a212_row14_col7" class="data row14 col7">0.550</td>
-<td id="T_1a212_row14_col8" class="data row14 col8">-0.797</td>
+<td id="T_14ac7_row14_col0" class="data row14 col0">2022-02-03</td>
+<td id="T_14ac7_row14_col1" class="data row14 col1">21:37</td>
+<td id="T_14ac7_row14_col2" class="data row14 col2">153.5</td>
+<td id="T_14ac7_row14_col3" class="data row14 col3">-24.5</td>
+<td id="T_14ac7_row14_col4" class="data row14 col4">4022992313</td>
+<td id="T_14ac7_row14_col5" class="data row14 col5">27.06</td>
+<td id="T_14ac7_row14_col6" class="data row14 col6">35.32</td>
+<td id="T_14ac7_row14_col7" class="data row14 col7">0.550</td>
+<td id="T_14ac7_row14_col8" class="data row14 col8">-0.797</td>
 </tr>
 <tr class="even">
-<td id="T_1a212_row15_col0" class="data row15 col0">2022-02-06</td>
-<td id="T_1a212_row15_col1" class="data row15 col1">18:25</td>
-<td id="T_1a212_row15_col2" class="data row15 col2">146.5</td>
-<td id="T_1a212_row15_col3" class="data row15 col3">-16.5</td>
-<td id="T_1a212_row15_col4" class="data row15 col4">4022992303</td>
-<td id="T_1a212_row15_col5" class="data row15 col5">29.14</td>
-<td id="T_1a212_row15_col6" class="data row15 col6">34.70</td>
-<td id="T_1a212_row15_col7" class="data row15 col7">-0.122</td>
-<td id="T_1a212_row15_col8" class="data row15 col8">-0.100</td>
+<td id="T_14ac7_row15_col0" class="data row15 col0">2022-02-06</td>
+<td id="T_14ac7_row15_col1" class="data row15 col1">18:25</td>
+<td id="T_14ac7_row15_col2" class="data row15 col2">146.5</td>
+<td id="T_14ac7_row15_col3" class="data row15 col3">-16.5</td>
+<td id="T_14ac7_row15_col4" class="data row15 col4">4022992303</td>
+<td id="T_14ac7_row15_col5" class="data row15 col5">29.14</td>
+<td id="T_14ac7_row15_col6" class="data row15 col6">34.70</td>
+<td id="T_14ac7_row15_col7" class="data row15 col7">-0.122</td>
+<td id="T_14ac7_row15_col8" class="data row15 col8">-0.100</td>
 </tr>
 <tr class="odd">
-<td id="T_1a212_row16_col0" class="data row16 col0">2022-02-07</td>
-<td id="T_1a212_row16_col1" class="data row16 col1">07:15</td>
-<td id="T_1a212_row16_col2" class="data row16 col2">145.5</td>
-<td id="T_1a212_row16_col3" class="data row16 col3">-16.5</td>
-<td id="T_1a212_row16_col4" class="data row16 col4">4022992310</td>
-<td id="T_1a212_row16_col5" class="data row16 col5">30.37</td>
-<td id="T_1a212_row16_col6" class="data row16 col6">34.06</td>
-<td id="T_1a212_row16_col7" class="data row16 col7">-0.104</td>
-<td id="T_1a212_row16_col8" class="data row16 col8">0.200</td>
+<td id="T_14ac7_row16_col0" class="data row16 col0">2022-02-07</td>
+<td id="T_14ac7_row16_col1" class="data row16 col1">07:15</td>
+<td id="T_14ac7_row16_col2" class="data row16 col2">145.5</td>
+<td id="T_14ac7_row16_col3" class="data row16 col3">-16.5</td>
+<td id="T_14ac7_row16_col4" class="data row16 col4">4022992310</td>
+<td id="T_14ac7_row16_col5" class="data row16 col5">30.37</td>
+<td id="T_14ac7_row16_col6" class="data row16 col6">34.06</td>
+<td id="T_14ac7_row16_col7" class="data row16 col7">-0.104</td>
+<td id="T_14ac7_row16_col8" class="data row16 col8">0.200</td>
 </tr>
 <tr class="even">
-<td id="T_1a212_row17_col0" class="data row17 col0">2022-02-09</td>
-<td id="T_1a212_row17_col1" class="data row17 col1">18:33</td>
-<td id="T_1a212_row17_col2" class="data row17 col2">145.5</td>
-<td id="T_1a212_row17_col3" class="data row17 col3">-15.5</td>
-<td id="T_1a212_row17_col4" class="data row17 col4">4022992311</td>
-<td id="T_1a212_row17_col5" class="data row17 col5">29.54</td>
-<td id="T_1a212_row17_col6" class="data row17 col6">34.74</td>
-<td id="T_1a212_row17_col7" class="data row17 col7">-0.120</td>
-<td id="T_1a212_row17_col8" class="data row17 col8">0.064</td>
+<td id="T_14ac7_row17_col0" class="data row17 col0">2022-02-09</td>
+<td id="T_14ac7_row17_col1" class="data row17 col1">18:33</td>
+<td id="T_14ac7_row17_col2" class="data row17 col2">145.5</td>
+<td id="T_14ac7_row17_col3" class="data row17 col3">-15.5</td>
+<td id="T_14ac7_row17_col4" class="data row17 col4">4022992311</td>
+<td id="T_14ac7_row17_col5" class="data row17 col5">29.54</td>
+<td id="T_14ac7_row17_col6" class="data row17 col6">34.74</td>
+<td id="T_14ac7_row17_col7" class="data row17 col7">-0.120</td>
+<td id="T_14ac7_row17_col8" class="data row17 col8">0.064</td>
 </tr>
 <tr class="odd">
-<td id="T_1a212_row18_col0" class="data row18 col0">2022-02-12</td>
-<td id="T_1a212_row18_col1" class="data row18 col1">08:59</td>
-<td id="T_1a212_row18_col2" class="data row18 col2">153.5</td>
-<td id="T_1a212_row18_col3" class="data row18 col3">-26.5</td>
-<td id="T_1a212_row18_col4" class="data row18 col4">4022992324</td>
-<td id="T_1a212_row18_col5" class="data row18 col5">26.80</td>
-<td id="T_1a212_row18_col6" class="data row18 col6">35.38</td>
-<td id="T_1a212_row18_col7" class="data row18 col7">-0.124</td>
-<td id="T_1a212_row18_col8" class="data row18 col8">0.006</td>
+<td id="T_14ac7_row18_col0" class="data row18 col0">2022-02-12</td>
+<td id="T_14ac7_row18_col1" class="data row18 col1">08:59</td>
+<td id="T_14ac7_row18_col2" class="data row18 col2">153.5</td>
+<td id="T_14ac7_row18_col3" class="data row18 col3">-26.5</td>
+<td id="T_14ac7_row18_col4" class="data row18 col4">4022992324</td>
+<td id="T_14ac7_row18_col5" class="data row18 col5">26.80</td>
+<td id="T_14ac7_row18_col6" class="data row18 col6">35.38</td>
+<td id="T_14ac7_row18_col7" class="data row18 col7">-0.124</td>
+<td id="T_14ac7_row18_col8" class="data row18 col8">0.006</td>
 </tr>
 <tr class="even">
-<td id="T_1a212_row19_col0" class="data row19 col0">2022-02-12</td>
-<td id="T_1a212_row19_col1" class="data row19 col1">10:34</td>
-<td id="T_1a212_row19_col2" class="data row19 col2">145.5</td>
-<td id="T_1a212_row19_col3" class="data row19 col3">-14.5</td>
-<td id="T_1a212_row19_col4" class="data row19 col4">4022992325</td>
-<td id="T_1a212_row19_col5" class="data row19 col5">29.90</td>
-<td id="T_1a212_row19_col6" class="data row19 col6">34.72</td>
-<td id="T_1a212_row19_col7" class="data row19 col7">-0.081</td>
-<td id="T_1a212_row19_col8" class="data row19 col8">0.034</td>
+<td id="T_14ac7_row19_col0" class="data row19 col0">2022-02-12</td>
+<td id="T_14ac7_row19_col1" class="data row19 col1">10:34</td>
+<td id="T_14ac7_row19_col2" class="data row19 col2">145.5</td>
+<td id="T_14ac7_row19_col3" class="data row19 col3">-14.5</td>
+<td id="T_14ac7_row19_col4" class="data row19 col4">4022992325</td>
+<td id="T_14ac7_row19_col5" class="data row19 col5">29.90</td>
+<td id="T_14ac7_row19_col6" class="data row19 col6">34.72</td>
+<td id="T_14ac7_row19_col7" class="data row19 col7">-0.081</td>
+<td id="T_14ac7_row19_col8" class="data row19 col8">0.034</td>
 </tr>
 <tr class="odd">
-<td id="T_1a212_row20_col0" class="data row20 col0">2022-03-25</td>
-<td id="T_1a212_row20_col1" class="data row20 col1">07:10</td>
-<td id="T_1a212_row20_col2" class="data row20 col2">144.5</td>
-<td id="T_1a212_row20_col3" class="data row20 col3">-13.5</td>
-<td id="T_1a212_row20_col4" class="data row20 col4">4022992309</td>
-<td id="T_1a212_row20_col5" class="data row20 col5">29.04</td>
-<td id="T_1a212_row20_col6" class="data row20 col6">34.75</td>
-<td id="T_1a212_row20_col7" class="data row20 col7">-0.457</td>
-<td id="T_1a212_row20_col8" class="data row20 col8">0.360</td>
+<td id="T_14ac7_row20_col0" class="data row20 col0">2022-03-25</td>
+<td id="T_14ac7_row20_col1" class="data row20 col1">07:10</td>
+<td id="T_14ac7_row20_col2" class="data row20 col2">144.5</td>
+<td id="T_14ac7_row20_col3" class="data row20 col3">-13.5</td>
+<td id="T_14ac7_row20_col4" class="data row20 col4">4022992309</td>
+<td id="T_14ac7_row20_col5" class="data row20 col5">29.04</td>
+<td id="T_14ac7_row20_col6" class="data row20 col6">34.75</td>
+<td id="T_14ac7_row20_col7" class="data row20 col7">-0.457</td>
+<td id="T_14ac7_row20_col8" class="data row20 col8">0.360</td>
 </tr>
 <tr class="even">
-<td id="T_1a212_row21_col0" class="data row21 col0">2022-04-01</td>
-<td id="T_1a212_row21_col1" class="data row21 col1">18:41</td>
-<td id="T_1a212_row21_col2" class="data row21 col2">143.5</td>
-<td id="T_1a212_row21_col3" class="data row21 col3">-12.5</td>
-<td id="T_1a212_row21_col4" class="data row21 col4">4022992307</td>
-<td id="T_1a212_row21_col5" class="data row21 col5">30.14</td>
-<td id="T_1a212_row21_col6" class="data row21 col6">34.44</td>
-<td id="T_1a212_row21_col7" class="data row21 col7">0.025</td>
-<td id="T_1a212_row21_col8" class="data row21 col8">-0.018</td>
+<td id="T_14ac7_row21_col0" class="data row21 col0">2022-04-01</td>
+<td id="T_14ac7_row21_col1" class="data row21 col1">18:41</td>
+<td id="T_14ac7_row21_col2" class="data row21 col2">143.5</td>
+<td id="T_14ac7_row21_col3" class="data row21 col3">-12.5</td>
+<td id="T_14ac7_row21_col4" class="data row21 col4">4022992307</td>
+<td id="T_14ac7_row21_col5" class="data row21 col5">30.14</td>
+<td id="T_14ac7_row21_col6" class="data row21 col6">34.44</td>
+<td id="T_14ac7_row21_col7" class="data row21 col7">0.025</td>
+<td id="T_14ac7_row21_col8" class="data row21 col8">-0.018</td>
 </tr>
 <tr class="odd">
-<td id="T_1a212_row22_col0" class="data row22 col0">2022-04-09</td>
-<td id="T_1a212_row22_col1" class="data row22 col1">22:00</td>
-<td id="T_1a212_row22_col2" class="data row22 col2">143.5</td>
-<td id="T_1a212_row22_col3" class="data row22 col3">-11.5</td>
-<td id="T_1a212_row22_col4" class="data row22 col4">4022992317</td>
-<td id="T_1a212_row22_col5" class="data row22 col5">29.93</td>
-<td id="T_1a212_row22_col6" class="data row22 col6">34.56</td>
-<td id="T_1a212_row22_col7" class="data row22 col7">-0.097</td>
-<td id="T_1a212_row22_col8" class="data row22 col8">0.144</td>
+<td id="T_14ac7_row22_col0" class="data row22 col0">2022-04-09</td>
+<td id="T_14ac7_row22_col1" class="data row22 col1">22:00</td>
+<td id="T_14ac7_row22_col2" class="data row22 col2">143.5</td>
+<td id="T_14ac7_row22_col3" class="data row22 col3">-11.5</td>
+<td id="T_14ac7_row22_col4" class="data row22 col4">4022992317</td>
+<td id="T_14ac7_row22_col5" class="data row22 col5">29.93</td>
+<td id="T_14ac7_row22_col6" class="data row22 col6">34.56</td>
+<td id="T_14ac7_row22_col7" class="data row22 col7">-0.097</td>
+<td id="T_14ac7_row22_col8" class="data row22 col8">0.144</td>
 </tr>
 <tr class="even">
-<td id="T_1a212_row23_col0" class="data row23 col0">2022-04-14</td>
-<td id="T_1a212_row23_col1" class="data row23 col1">06:31</td>
-<td id="T_1a212_row23_col2" class="data row23 col2">143.5</td>
-<td id="T_1a212_row23_col3" class="data row23 col3">-10.5</td>
-<td id="T_1a212_row23_col4" class="data row23 col4">4022992321</td>
-<td id="T_1a212_row23_col5" class="data row23 col5">29.48</td>
-<td id="T_1a212_row23_col6" class="data row23 col6">34.42</td>
-<td id="T_1a212_row23_col7" class="data row23 col7">-0.041</td>
-<td id="T_1a212_row23_col8" class="data row23 col8">0.078</td>
+<td id="T_14ac7_row23_col0" class="data row23 col0">2022-04-14</td>
+<td id="T_14ac7_row23_col1" class="data row23 col1">06:31</td>
+<td id="T_14ac7_row23_col2" class="data row23 col2">143.5</td>
+<td id="T_14ac7_row23_col3" class="data row23 col3">-10.5</td>
+<td id="T_14ac7_row23_col4" class="data row23 col4">4022992321</td>
+<td id="T_14ac7_row23_col5" class="data row23 col5">29.48</td>
+<td id="T_14ac7_row23_col6" class="data row23 col6">34.42</td>
+<td id="T_14ac7_row23_col7" class="data row23 col7">-0.041</td>
+<td id="T_14ac7_row23_col8" class="data row23 col8">0.078</td>
 </tr>
 <tr class="odd">
-<td id="T_1a212_row24_col0" class="data row24 col0">2022-04-21</td>
-<td id="T_1a212_row24_col1" class="data row24 col1">10:30</td>
-<td id="T_1a212_row24_col2" class="data row24 col2">143.5</td>
-<td id="T_1a212_row24_col3" class="data row24 col3">-9.5</td>
-<td id="T_1a212_row24_col4" class="data row24 col4">4022992305</td>
-<td id="T_1a212_row24_col5" class="data row24 col5">29.56</td>
-<td id="T_1a212_row24_col6" class="data row24 col6">34.19</td>
-<td id="T_1a212_row24_col7" class="data row24 col7">0.059</td>
-<td id="T_1a212_row24_col8" class="data row24 col8">0.034</td>
+<td id="T_14ac7_row24_col0" class="data row24 col0">2022-04-21</td>
+<td id="T_14ac7_row24_col1" class="data row24 col1">10:30</td>
+<td id="T_14ac7_row24_col2" class="data row24 col2">143.5</td>
+<td id="T_14ac7_row24_col3" class="data row24 col3">-9.5</td>
+<td id="T_14ac7_row24_col4" class="data row24 col4">4022992305</td>
+<td id="T_14ac7_row24_col5" class="data row24 col5">29.56</td>
+<td id="T_14ac7_row24_col6" class="data row24 col6">34.19</td>
+<td id="T_14ac7_row24_col7" class="data row24 col7">0.059</td>
+<td id="T_14ac7_row24_col8" class="data row24 col8">0.034</td>
 </tr>
 </tbody>
 </table>

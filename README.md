@@ -174,14 +174,20 @@ Change:
 - `<AWS PROFILE>` to your profile name.
 - `<TAG>` to the same version number as in the previous step.
 
-## Rendering the website without Docker
+## Rendering the website without Docker (NOT RECOMMENDED)
 
-Rendering the website using Docker image from AWS ECR is the recommended approach, as it ensures consistent
+Rendering the website using the Docker image is the recommended approach, as it ensures consistent
 output across different environments. However, if you can not use docker, you can render the website locally.
 Be aware that using different versions of the required libraries may lead to variations in the rendered output.
 
+**IMPORTANT**: ONLY USE **QUARTO VERSION 1.5.24 OR LATER**! Earlier version of Quarto generates pages with
+*Polyfill.io*, which is spreading malicious code.
+
 If it is not possible to use Docker, install the necessary dependencies on your system and use Quarto to render
 the website manually.
+
+**NOTE**: This solution is **strongly discouraged** because of the rendering inconsistencies and
+security vulnerabilities.
 
 ### Local machine requirements
 

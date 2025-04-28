@@ -19,20 +19,26 @@ wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_23.5.2-0-Linux-
 /bin/bash miniconda.sh
 ```
 
-Install Python dependencies using Conda
+Run this command if you do not want conda to automatically activate its base environment
 ```shell
-~/miniconda3/bin/conda install -n base conda-libmamba-solver
-~/miniconda3/bin/conda config --set solver libmamba
-~/miniconda3/bin/conda install jupyter
-~/miniconda3/bin/conda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0
-
-# Can't install from conda, package version 3.7.5 not available, version 3.10.1 conflict with a lot of other libraries
-~/miniconda3/bin/conda install -c conda-forge matplotlib==3.10.1
-
-# Can't install with Python3 pip, it requires a venv which RStudio won't be able to find.
-python3 -m pip install --force-reinstall matplotlib==3.7.5
+conda config --set auto_activate_base false
 ```
 
-## Use RStudio to run the Python tutorials
+Install Python dependencies using Conda
+```shell
+conda activate base
+conda install -n base conda-libmamba-solver
+conda config --set solver libmamba
+conda install jupyter
+conda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0
+```
 
-TODO Talk about "Update reticulate package" when loading running python code in RStudio: update-reticulate-package.png
+Install `matplotlib` version 3.7.5 using pip. That version is not available from `conda`.
+```shell
+conda activate base
+python3 -m pip install matplotlib==3.7.5
+```
+
+## Run the Python tutorials
+
+TODO

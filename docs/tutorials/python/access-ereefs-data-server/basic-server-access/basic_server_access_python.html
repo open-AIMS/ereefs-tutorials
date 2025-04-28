@@ -627,7 +627,7 @@ Table of eReefs depths corresponding to index <code>k</code>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  :,   <span class="co"># longitude indices --&gt; all possible</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>]</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>temps_10Dec22_1p5m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(temps_10Dec22_1p5m))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>masked_array(
   data=[[      nan,       nan,       nan, ...,       nan,       nan,
@@ -665,7 +665,7 @@ Table of eReefs depths corresponding to index <code>k</code>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the data to the plot</span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plt.contourf(lons, lats, temps_10Dec22_1p5m, <span class="dv">30</span>, transform<span class="op">=</span>ccrs.PlateCarree())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;cartopy.mpl.contour.GeoContourSet object at 0x755746e752b0&gt;</code></pre>
+<pre><code>&lt;cartopy.mpl.contour.GeoContourSet object at 0x736484152160&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add landmass coastlines shapefile</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ax.coastlines()</span>
@@ -693,7 +693,7 @@ Figure&nbsp;1: Extracted eReefs daily aggregated mean temperature at 1.5m depth 
 </section>
 <section id="close-file-connection" class="level2">
 <h2 class="anchored" data-anchor-id="close-file-connection">Close file connection</h2>
-<p>Now that we are done with the openned server file it is best practice to close it.</p>
+<p>Now that we are done with the opened server file it is best practice to close it.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dailyAggDec22_nc.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
