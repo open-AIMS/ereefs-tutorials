@@ -368,7 +368,7 @@
     "href": "tutorials/python/follow-along/python_setup.html#install-python",
     "title": "Setup Python",
     "section": "Install Python",
-    "text": "Install Python\nTODO"
+    "text": "Install Python\nIn Ubuntu Linux, you can install Python using the following command:\nsudo apt-get install python3"
   },
   {
     "objectID": "tutorials/python/follow-along/python_setup.html#install-dependencies",
@@ -382,7 +382,7 @@
     "href": "tutorials/python/follow-along/python_setup.html#run-the-python-tutorials",
     "title": "Setup Python",
     "section": "Run the Python tutorials",
-    "text": "Run the Python tutorials\nTODO"
+    "text": "Run the Python tutorials\nYou can copy and paste the code from the Python tutorial into a text file, and execute it using Python. The tutorials are made to be easy to follow with minimal requirements."
   },
   {
     "objectID": "tutorials/python/access-ereefs-data-server/basic-server-access/basic_server_access_python.html",

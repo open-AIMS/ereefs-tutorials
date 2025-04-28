@@ -72,7 +72,7 @@ Run the following AWS CLI command on your system to configure a new AWS profile.
 
 Change `<AWS PROFILE>` to an appropriate profile name. For example: `ereefs-prod`
 
-```shell
+```bash
 aws configure --profile <AWS PROFILE>
 ```
 
@@ -88,7 +88,7 @@ Note: AWS will save your profile information in the `.aws` folder in your home d
 Run the following command to pull (download) the Docker image from AWS ECR.
 The command is using the AWS API key that is defined in your AWS profile.
 
-```shell
+```bash
 aws ecr get-login-password --region ap-southeast-2 --profile <AWS PROFILE> | docker login --username AWS --password-stdin <AWS ACCOUNT ID>.dkr.ecr.ap-southeast-2.amazonaws.com
 docker pull <AWS ACCOUNT ID>.dkr.ecr.ap-southeast-2.amazonaws.com/ereefs-tutorials-quarto:<TAG>
 ```
@@ -102,7 +102,7 @@ Change:
 
 From the command line: 
 
-```shell
+```bash
 git clone https://github.com/open-AIMS/ereefs-tutorials.git
 ```
 
@@ -110,7 +110,7 @@ git clone https://github.com/open-AIMS/ereefs-tutorials.git
 
 Generate a local copy of the website by running this Docker command:
 
-```shell
+```bash
 docker run --rm --user $(id -u):$(id -g) -v $PWD:/usr/local/src/ereefs-tutorials ereefs-tutorials-quarto:<TAG>
 ```
 
@@ -136,7 +136,7 @@ Name it with the tutorial name and create a `<tutorial_name>.qmd` file within th
 
 Refresh the local copy of the website using the Docker command:
 
-```shell
+```bash
 docker run --rm --user $(id -u):$(id -g) -v $PWD:/usr/local/src/ereefs-tutorials ereefs-tutorials-quarto:<TAG>
 ```
 
@@ -151,7 +151,7 @@ dependencies, you will need to create a fresh Docker image.
 The Docker image is created using the `Dockerfile`. To generate a new Docker image with the latest
 version of the dependencies, run the following code:
 
-```shell
+```bash
 docker build -t ereefs-tutorials-quarto:<TAG> .
 ```
 
@@ -163,7 +163,7 @@ Change:
 If you can, upload the new Docker image to AWS ECR so other developers can use the same version of the
 dependencies. This is important to ensure consistent output.
 
-```shell
+```bash
 docker tag ereefs-tutorials-quarto:1.0 <AWS ACCOUNT ID>.dkr.ecr.ap-southeast-2.amazonaws.com/ereefs-tutorials-quarto:<TAG>
 aws ecr get-login-password --region ap-southeast-2 --profile <AWS PROFILE> | docker login --username AWS --password-stdin <AWS ACCOUNT ID>.dkr.ecr.ap-southeast-2.amazonaws.com
 docker push <AWS ACCOUNT ID>.dkr.ecr.ap-southeast-2.amazonaws.com/ereefs-tutorials-quarto:<TAG>
@@ -231,7 +231,7 @@ This section details the manual rendering process.
 
 From the command line: 
 
-```shell
+```bash
 git clone https://github.com/open-AIMS/ereefs-tutorials.git
 ```
 
@@ -244,7 +244,7 @@ Render a local copy of the website.
 Edits to the YAML or CSS files require you to render the entire website to implement the changes. You can do
 this with from the command line with
 
-```shell
+```bash
 quarto preview <path to "ereefs-tutorials" folder> --render all --no-browser --no-watch-inputs
 ```
 
@@ -254,7 +254,7 @@ or by using the respective IDE controls (`Ctrl+Shift+P > Quarto: Render Project`
 
 Edits to a single `.qmd` file can be rendered from the command line with 
 
-```shell
+```bash
 quarto preview <path to file> --no-browser --no-watch-inputs
 ``` 
 

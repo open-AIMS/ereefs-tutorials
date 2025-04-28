@@ -9,23 +9,26 @@ Learn how to setup Python and follow along with the eReefs tutorials.
 
 ## Install Python
 
-TODO
+In Ubuntu Linux, you can install Python using the following command:
+```bash
+sudo apt-get install python3
+```
 
 ## Install dependencies
 
 Install Conda
-```shell
+```bash
 wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_23.5.2-0-Linux-x86_64.sh -O miniconda.sh
 /bin/bash miniconda.sh
 ```
 
 Run this command if you do not want conda to automatically activate its base environment
-```shell
+```bash
 conda config --set auto_activate_base false
 ```
 
 Install Python dependencies using Conda
-```shell
+```bash
 conda activate base
 conda install -n base conda-libmamba-solver
 conda config --set solver libmamba
@@ -34,11 +37,12 @@ conda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=
 ```
 
 Install `matplotlib` version 3.7.5 using pip. That version is not available from `conda`.
-```shell
+```bash
 conda activate base
 python3 -m pip install matplotlib==3.7.5
 ```
 
 ## Run the Python tutorials
 
-TODO
+You can copy and paste the code from the Python tutorial into a text file, and execute it using Python.
+The tutorials are made to be easy to follow with minimal requirements.
