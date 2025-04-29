@@ -275,23 +275,23 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="downloading-the-data">Downloading the data</h2>
 <p>In this notebook we will download the data using scripting. There is no need to re-run the extraction request as each extraction performed by the extraction tool has a permanent public page created for it that can be used to facilitate sharing of the data.</p>
 <p>Let’s first create a temporary folder to contain the downloaded data. Note: The temp folder is excluded using the .gitignore so it is not saved to the code repository, which is why we must reproduce it.</p>
-<div id="f31bcb2b" class="cell" data-execution_count="2">
+<div id="92c97fbb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="st">'temp'</span>):</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    os.makedirs(<span class="st">'temp'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  os.makedirs(<span class="st">'temp'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now let’s download the data. The file to download is 12.9 MB and so this download might take a little while. To allow us to re-run this script without having to wait for the download each time we first check that the download has not already been done.</p>
-<div id="1d5a3c7e" class="cell" data-execution_count="3">
+<div id="2a9fdb6c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>extractionfile <span class="op">=</span> os.path.join(<span class="st">'temp'</span>,<span class="st">'2009.c451dc3-collected.csv'</span>)  <span class="co"># Use os.path.join so the script will work cross-platform</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.exists(extractionfile):</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Downloading extraction data ..."</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="st">'https://api.ereefs.aims.gov.au/data-extraction/request/2009.c451dc3/files/2009.c451dc3-collected.csv'</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    req <span class="op">=</span> urllib.request.urlretrieve(url, extractionfile)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(req)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Downloading extraction data ..."</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  url <span class="op">=</span> <span class="st">'https://api.ereefs.aims.gov.au/data-extraction/request/2009.c451dc3/files/2009.c451dc3-collected.csv'</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  req <span class="op">=</span> urllib.request.urlretrieve(url, extractionfile)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(req)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Skipping redownloading extraction data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Skipping redownloading extraction data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Skipping redownloading extraction data</code></pre>
 </div>
@@ -300,12 +300,16 @@ window.Quarto = {
 <section id="reading-and-cleaning-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="reading-and-cleaning-the-data">Reading and cleaning the data</h2>
 <p>Read the resulting CSV file into a <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html">Pandas data frame</a>.</p>
-<div id="bce2d009" class="cell" data-execution_count="4">
+<div id="694430ea" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> janitor <span class="im">import</span> clean_names</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(extractionfile).clean_names()</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(extractionfile).clean_names()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="d47b58d5" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(df.head()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5e80d556" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -410,14 +414,18 @@ window.Quarto = {
 </div>
 </div>
 <p>The first thing we might notice about the data is that, somewhat confusingly, we have a bunch of aggregation statistics (mean, median, p5, p95, lowest, highest) which all take the same value. This is because we have extracted hourly “aggregated” data, but the time step for the eReefs model is also hourly. Therefore each row represents an aggregation over a single data point. Don’t worry if you are confused by this, it’s not important. Just think of this as a quirk of the eReefs data extraction tool. We’ll clean this up now by replacing the aggregation statistics with a single column called <code>value</code> and rename <code>aggregated_date_time</code> to <code>date_time</code>, to avoid any further confusion.</p>
-<div id="ca85527a" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 'value' column, remove aggregation statistic columns, rename aggregated_date_time</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df.<span class="op">\</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  assign(value <span class="op">=</span> df[<span class="st">'mean'</span>]).<span class="op">\</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  drop(columns<span class="op">=</span>[<span class="st">'mean'</span>, <span class="st">'median'</span>, <span class="st">'p5'</span>, <span class="st">'p95'</span>, <span class="st">'lowest'</span>,<span class="st">'highest'</span>]).<span class="op">\</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  rename(columns<span class="op">=</span>{<span class="st">"aggregated_date_time"</span>: <span class="st">"date_time"</span>})</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>df2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div id="81965427" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 'value' column, remove aggregation statistic columns, rename aggregated_date_time</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df.<span class="op">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  assign(value <span class="op">=</span> df[<span class="st">'mean'</span>]).<span class="op">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  drop(columns<span class="op">=</span>[<span class="st">'mean'</span>, <span class="st">'median'</span>, <span class="st">'p5'</span>, <span class="st">'p95'</span>, <span class="st">'lowest'</span>,<span class="st">'highest'</span>]).<span class="op">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  rename(columns<span class="op">=</span>{<span class="st">"aggregated_date_time"</span>: <span class="st">"date_time"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f34bd5ac" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(df2.head()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="75d6ac8b" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
 
@@ -493,14 +501,19 @@ window.Quarto = {
 </div>
 <p>Much better! Now it is clear to see that the data is in long format. That is, a single row for each value and a separate column describing the meaning of the value — in this case the column <code>variable</code> describes what the column <code>value</code> means. Converting the data into <a href="https://r4ds.had.co.nz/tidy-data.html">tidy</a> format will help with subsequent analyses (and is probably also the format you are most comfortable working with). When data is in tidy format, each variable has its own column, each observation has its own row, and each value has its own cell.</p>
 <p>If we think of the wind and current velocities as the things being “measured”, then the observations in the dataset are the values of the measurements for each time point at each site. Therefore we would like a single row for each unique combination of <code>date_time</code> and <code>site_name</code> (or <code>latitude</code> and <code>longitude</code> pair). Let’s see if this is what we get we try to “widen” the data into tidy format.</p>
-<div id="c4a80975" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Try pivoting the data into tidy format</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df2.pivot(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  index <span class="op">=</span> [<span class="st">"site_name"</span>, <span class="st">"latitude"</span>, <span class="st">"longitude"</span>, <span class="st">"date_time"</span>, <span class="st">"depth"</span>],</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  columns<span class="op">=</span><span class="st">"variable"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  values<span class="op">=</span><span class="st">"value"</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div id="f8b1e160" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Try pivoting the data into tidy format</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df2_pivot <span class="op">=</span> df2.pivot(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  index <span class="op">=</span> [<span class="st">"site_name"</span>, <span class="st">"latitude"</span>, <span class="st">"longitude"</span>, <span class="st">"date_time"</span>, <span class="st">"depth"</span>],</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  columns<span class="op">=</span><span class="st">"variable"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  values<span class="op">=</span><span class="st">"value"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="177d7ae7" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(df2_pivot.head()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="449a5e5e" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
 
@@ -578,15 +591,19 @@ window.Quarto = {
 </div>
 </div>
 <p>With all the <code>NA</code>s in the wind and current speed columns, this doesn’t look tidy at all! And it’s because we forgot to account for depth. However, we can notice that depth is actually a redundant variable in this dataset. That’s because wind speed implies a <code>NA</code> depth value (coded as 10000m in the extracted data) and current implies a depth of -2.35m (as this is the only depth we chose to extract). Therefore we can just remove depth entirely from our dataset without losing any information, that is, as long as we remember that the current relates to a depth of -2.35m. For the forgetful among us, we could rename the current variables to <code>v_2.35m</code> and <code>u_2.35m</code>. In fact moving the depth into the variable names would be a good solution to create a tidy dataset if we had selected multiple depths.</p>
-<div id="1868dbbe" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot into tidy format (excluding depth)</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_tidy <span class="op">=</span> df2.pivot(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  index <span class="op">=</span> [<span class="st">"site_name"</span>, <span class="st">"latitude"</span>, <span class="st">"longitude"</span>, <span class="st">"date_time"</span>],</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  columns<span class="op">=</span><span class="st">"variable"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  values<span class="op">=</span><span class="st">"value"</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>df_tidy.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div id="dd99c6db" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot into tidy format (excluding depth)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_tidy <span class="op">=</span> df2.pivot(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  index <span class="op">=</span> [<span class="st">"site_name"</span>, <span class="st">"latitude"</span>, <span class="st">"longitude"</span>, <span class="st">"date_time"</span>],</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  columns<span class="op">=</span><span class="st">"variable"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  values<span class="op">=</span><span class="st">"value"</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="a90ffb03" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(df_tidy.head()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="967b5199" class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
 
@@ -676,14 +693,18 @@ a \cdot b = a_x \times b_x + a_y \times b_y
 ||a|| = \sqrt{a^2_x + a^2_y} \;\;, \; \;\;\;\;
 ||b|| = \sqrt{b^2_x + b^2_y}
 \]</span></p>
-<div id="7800b2ed" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_corr <span class="op">=</span> df_tidy</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df_corr[<span class="st">'currentmag'</span>] <span class="op">=</span> np.sqrt(df_corr[<span class="st">'u'</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> df_corr[<span class="st">'v'</span>]<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>df_corr[<span class="st">'windmag'</span>] <span class="op">=</span> np.sqrt(df_corr[<span class="st">'wspeed_u'</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> df_corr[<span class="st">'wspeed_v'</span>]<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>df_corr[<span class="st">'windcurrentcorr'</span>] <span class="op">=</span> (df_corr[<span class="st">'u'</span>] <span class="op">*</span> df_corr[<span class="st">'wspeed_u'</span>]  <span class="op">+</span>  df_corr[<span class="st">'v'</span>] <span class="op">*</span> df_corr[<span class="st">'wspeed_v'</span>]) <span class="op">/</span> (df_corr[<span class="st">'currentmag'</span>] <span class="op">*</span> df_corr[<span class="st">'windmag'</span>])</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>df_corr.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div id="fb132c97" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_corr <span class="op">=</span> df_tidy</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df_corr[<span class="st">'currentmag'</span>] <span class="op">=</span> np.sqrt(df_corr[<span class="st">'u'</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> df_corr[<span class="st">'v'</span>]<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>df_corr[<span class="st">'windmag'</span>] <span class="op">=</span> np.sqrt(df_corr[<span class="st">'wspeed_u'</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> df_corr[<span class="st">'wspeed_v'</span>]<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>df_corr[<span class="st">'windcurrentcorr'</span>] <span class="op">=</span> (df_corr[<span class="st">'u'</span>] <span class="op">*</span> df_corr[<span class="st">'wspeed_u'</span>]  <span class="op">+</span>  df_corr[<span class="st">'v'</span>] <span class="op">*</span> df_corr[<span class="st">'wspeed_v'</span>]) <span class="op">/</span> (df_corr[<span class="st">'currentmag'</span>] <span class="op">*</span> df_corr[<span class="st">'windmag'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f2c3b8a5" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(df_corr.head()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c0622b44" class="cell" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 
 
@@ -778,11 +799,15 @@ a \cdot b = a_x \times b_x + a_y \times b_y
 </div>
 <p>Let’s look at the relationship between the wind and current as a function of the wind speed. Here we are considering each hourly sample as an independent estimate of the relationship. In reality this is not the case as the longer the wind blows the more effect it will have on the current. As this is just a coding example and not an in-depth analysis we don’t need to worry about this limitation of the analysis.</p>
 <p>Let’s pull out the data for Davies and Myrmidon Reefs separately so they are easy to plot.</p>
-<div id="cf58852f" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>davies <span class="op">=</span> df_corr.query(<span class="st">'site_name == "Davies Reef"'</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>myrmidon <span class="op">=</span> df_corr.query(<span class="st">'site_name == "Myrmidon Reef"'</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>myrmidon.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div id="2cb48397" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>davies <span class="op">=</span> df_corr.query(<span class="st">'site_name == "Davies Reef"'</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>myrmidon <span class="op">=</span> df_corr.query(<span class="st">'site_name == "Myrmidon Reef"'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="d20693c4" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(myrmidon.head()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="2e487891" class="cell" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
 
@@ -876,50 +901,52 @@ a \cdot b = a_x \times b_x + a_y \times b_y
 </div>
 </div>
 <p>Let’s create a scatter plot to see if there is a relationship between the wind and currents.</p>
-<div id="cd6fe9b4" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>fig.add_axes([<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>])</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ax.scatter(myrmidon[<span class="st">"windmag"</span>],myrmidon[<span class="st">"windcurrentcorr"</span>], color<span class="op">=</span><span class="st">'r'</span>, s<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(davies[<span class="st">"windmag"</span>],davies[<span class="st">"windcurrentcorr"</span>], color<span class="op">=</span><span class="st">'b'</span>, s<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Wind speed (m/s)'</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Wind-current correlation'</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Correlation between wind and surface current (hourly data, 2019)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>Text(0.5, 1.0, 'Correlation between wind and surface current (hourly data, 2019)')</code></pre>
-</div>
+<div id="3ebd6109" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(myrmidon[<span class="st">"windmag"</span>], myrmidon[<span class="st">"windcurrentcorr"</span>], color<span class="op">=</span><span class="st">'r'</span>, s<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>ax.scatter(davies[<span class="st">"windmag"</span>], davies[<span class="st">"windcurrentcorr"</span>], color<span class="op">=</span><span class="st">'b'</span>, s<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Wind speed (m/s)'</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Wind-current correlation'</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Correlation between wind and surface current (hourly data, 2019)'</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correlation_wind_and_current_python_files/figure-html/cell-11-output-2.png" width="760" height="560" class="figure-img"></p>
+<p><img src="correlation_wind_and_current_python_files/figure-html/cell-23-output-1.png" width="662" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>This scatter plot shows that the relationship between wind and current is weak. This is not surprising given that we are considering just the hourly samples, with no consideration for how long the wind has been blowing. At low wind conditions the current has an even chance of being aligned with the wind (correlation <span class="math inline">\(r= 1\)</span>) as in the opposite direction (correlation <span class="math inline">\(r= -1\)</span>), however in high wind we can see that there is much more chance that the currents are aligned with the wind.</p>
 <p>To understand this relationship better we want to understand how much the wind nudges the current in its direction. If we bin the wind speeds then collect all the correlation samples in each bin then we can see if they average to zero (indicating that there is no relationship between the wind and current) or there is average alignment.</p>
-<div id="4d120d94" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>wind <span class="op">=</span> davies[<span class="st">"windmag"</span>]</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>current <span class="op">=</span> davies[<span class="st">"windcurrentcorr"</span>]</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>bin_means, bin_edges, binnumber <span class="op">=</span> stats.binned_statistic(wind, current, <span class="st">'mean'</span>, bins<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.hlines(bin_means, bin_edges[:<span class="op">-</span><span class="dv">1</span>], bin_edges[<span class="dv">1</span>:], colors<span class="op">=</span><span class="st">'g'</span>, lw<span class="op">=</span><span class="dv">5</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="st">'Davies Reef'</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>wind <span class="op">=</span> myrmidon[<span class="st">"windmag"</span>]</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>current <span class="op">=</span> myrmidon[<span class="st">"windcurrentcorr"</span>]</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>bin_means, bin_edges, binnumber <span class="op">=</span> stats.binned_statistic(wind, current, <span class="st">'mean'</span>, bins<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>plt.hlines(bin_means, bin_edges[:<span class="op">-</span><span class="dv">1</span>], bin_edges[<span class="dv">1</span>:], colors<span class="op">=</span><span class="st">'r'</span>, lw<span class="op">=</span><span class="dv">5</span>,</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="st">'Myrmidon Reef'</span>)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Wind speed (m/s)'</span>)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Wind-current correlation'</span>)</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Mean correlation between wind and surface current (hourly data, 2019)'</span>)</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="07303803" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>wind <span class="op">=</span> davies[<span class="st">"windmag"</span>]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>current <span class="op">=</span> davies[<span class="st">"windcurrentcorr"</span>]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>bin_means, bin_edges, binnumber <span class="op">=</span> stats.binned_statistic(wind, current, <span class="st">'mean'</span>, bins<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>plt.hlines(bin_means, bin_edges[:<span class="op">-</span><span class="dv">1</span>], bin_edges[<span class="dv">1</span>:], colors<span class="op">=</span><span class="st">'g'</span>, lw<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="st">'Davies Reef'</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>wind <span class="op">=</span> myrmidon[<span class="st">"windmag"</span>]</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>current <span class="op">=</span> myrmidon[<span class="st">"windcurrentcorr"</span>]</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>bin_means, bin_edges, binnumber <span class="op">=</span> stats.binned_statistic(wind, current, <span class="st">'mean'</span>, bins<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>plt.hlines(bin_means, bin_edges[:<span class="op">-</span><span class="dv">1</span>], bin_edges[<span class="dv">1</span>:], colors<span class="op">=</span><span class="st">'r'</span>, lw<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="st">'Myrmidon Reef'</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Wind speed (m/s)'</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Wind-current correlation'</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Mean correlation between wind and surface current (hourly data, 2019)'</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="correlation_wind_and_current_python_files/figure-html/cell-12-output-1.png" width="615" height="449" class="figure-img"></p>
+<p><img src="correlation_wind_and_current_python_files/figure-html/cell-24-output-1.png" width="615" height="449" class="figure-img"></p>
 </figure>
 </div>
 </div>
