@@ -543,28 +543,21 @@
     "href": "tutorials/r/follow-along/r_and_rstudio_setup.html#linux-dependencies",
     "title": "Setup R and RStudio",
     "section": "Linux dependencies",
-    "text": "Linux dependencies\nRStudio will automatically detect and install the required R packages, but it can’t install any system-level (Linux) dependencies. These need to be installed separately.\nOn Ubuntu, you can install those dependencies using the following command:\n\nsudo apt-get install libnetcdf-dev libgdal-dev libproj-dev libgeos-dev libudunits2-dev libsqlite3-dev libcurl4-openssl-dev libcurl4-openssl-dev libssl-dev libxml2-dev libfreetype-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libpng-dev libtiff5-dev libjpeg-dev"
+    "text": "Linux dependencies\nRStudio makes it easy to install the required R packages, but it can’t install any system-level (Linux) dependencies. These need to be installed separately.\nOn Ubuntu, you can install those dependencies using the following command:\n\nsudo apt-get install libnetcdf-dev libgdal-dev libproj-dev libgeos-dev libudunits2-dev libsqlite3-dev libcurl4-openssl-dev libcurl4-openssl-dev libssl-dev libxml2-dev libfreetype-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libpng-dev libtiff5-dev libjpeg-dev"
   },
   {
-    "objectID": "tutorials/r/follow-along/r_and_rstudio_setup.html#download-tutorial-files",
-    "href": "tutorials/r/follow-along/r_and_rstudio_setup.html#download-tutorial-files",
+    "objectID": "tutorials/r/follow-along/r_and_rstudio_setup.html#running-r-code-in-rstudio",
+    "href": "tutorials/r/follow-along/r_and_rstudio_setup.html#running-r-code-in-rstudio",
     "title": "Setup R and RStudio",
-    "section": "Download tutorial files",
-    "text": "Download tutorial files\nThe eReefs tutorials for R are located in the ereefs-tutorials GitHub repository. Download the repository’s code by clicking Code &gt; Download ZIP. After unzipping the repository’s Zip archive, you will find each R tutorial placed in its own folder, under ereefs-tutorials-main/tutorials/r."
-  },
-  {
-    "objectID": "tutorials/r/follow-along/r_and_rstudio_setup.html#open-tutorial-in-rstudio",
-    "href": "tutorials/r/follow-along/r_and_rstudio_setup.html#open-tutorial-in-rstudio",
-    "title": "Setup R and RStudio",
-    "section": "Open tutorial in RStudio",
-    "text": "Open tutorial in RStudio\nOpen RStudio and create a new project: File &gt; New Project &gt; Existing Directory &gt; Browse &gt; select the tutorial folder. Then open the main tutorial qmd file from the Files tab, in the bottom-right panel of RStudio.\nThe project will open in the main panel of RStudio. To ensure everything runs smoothly, make sure you’re in Source editing mode, in the top-left corner of the editor. The Visual mode can cause issues with running R code reliably.\nYou can now run the code chunks within the tutorial by clicking the  button in the top-right corner of each chunk, in order.\n\n\n\nRStudio controls\n\n\n\nKeyboard shortcuts\nChunks can also be run be pressing Ctrl+Shift+Enter, and sections of code (e.g. half a line, a single line, multiple lines) can be run by selecting the code and pressing Ctrl+Enter (replace Ctrl with Cmd on Mac)."
+    "section": "Running R code in RStudio",
+    "text": "Running R code in RStudio\nOpen RStudio and create a new project: File &gt; New Project &gt; New Directory &gt; New Project. Click New File in the bottom-right panel, and choose R Script. The new R file will open in the main panel of RStudio.\nYou can now copy / paste code chunks from the tutorial page, by clicking the  button in the right corner of each chunk. Make sure you run them in order."
   },
   {
     "objectID": "tutorials/r/follow-along/r_and_rstudio_setup.html#installing-r-packages",
     "href": "tutorials/r/follow-along/r_and_rstudio_setup.html#installing-r-packages",
     "title": "Setup R and RStudio",
     "section": "Installing R packages",
-    "text": "Installing R packages\nYou may encounter the situation where an R package used in the tutorials have not yet been installed on your machine. Installing packages in R is easy, just run the following command from an open R console:\n\ninstall.packages(\"&lt;package name&gt;\")  # replace &lt;package name&gt; with the name of the R package you wish to install"
+    "text": "Installing R packages\nYou may encounter the situation where an R package used in the tutorials have not yet been installed on your machine. You can install the package manually by running the following command:\n\ninstall.packages(\"&lt;package name&gt;\")  # replace &lt;package name&gt; with the name of the R package you wish to install"
   },
   {
     "objectID": "tutorials/r/access-ereefs-data-server/basic-server-access/basic_server_access_r.html",

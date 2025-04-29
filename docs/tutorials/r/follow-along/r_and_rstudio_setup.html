@@ -165,11 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#r-and-rstudio-setup" id="toc-r-and-rstudio-setup" class="nav-link active" data-scroll-target="#r-and-rstudio-setup">R and RStudio setup</a></li>
   <li><a href="#linux-dependencies" id="toc-linux-dependencies" class="nav-link" data-scroll-target="#linux-dependencies">Linux dependencies</a></li>
-  <li><a href="#download-tutorial-files" id="toc-download-tutorial-files" class="nav-link" data-scroll-target="#download-tutorial-files">Download tutorial files</a></li>
-  <li><a href="#open-tutorial-in-rstudio" id="toc-open-tutorial-in-rstudio" class="nav-link" data-scroll-target="#open-tutorial-in-rstudio">Open tutorial in RStudio</a>
-  <ul class="collapse">
-  <li><a href="#keyboard-shortcuts" id="toc-keyboard-shortcuts" class="nav-link" data-scroll-target="#keyboard-shortcuts">Keyboard shortcuts</a></li>
-  </ul></li>
+  <li><a href="#running-r-code-in-rstudio" id="toc-running-r-code-in-rstudio" class="nav-link" data-scroll-target="#running-r-code-in-rstudio">Running R code in RStudio</a></li>
   <li><a href="#installing-r-packages" id="toc-installing-r-packages" class="nav-link" data-scroll-target="#installing-r-packages">Installing R packages</a></li>
   </ul>
 </nav>
@@ -206,35 +202,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="linux-dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="linux-dependencies">Linux dependencies</h2>
-<p>RStudio will automatically detect and install the required R packages, but it can’t install any system-level (Linux) dependencies. These need to be installed separately.</p>
+<p>RStudio makes it easy to install the required R packages, but it can’t install any system-level (Linux) dependencies. These need to be installed separately.</p>
 <p>On Ubuntu, you can install those dependencies using the following command:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install libnetcdf-dev libgdal-dev libproj-dev libgeos-dev libudunits2-dev libsqlite3-dev libcurl4-openssl-dev libcurl4-openssl-dev libssl-dev libxml2-dev libfreetype-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libpng-dev libtiff5-dev libjpeg-dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="download-tutorial-files" class="level2">
-<h2 class="anchored" data-anchor-id="download-tutorial-files">Download tutorial files</h2>
-<p>The eReefs tutorials for R are located in the <a href="https://github.com/open-AIMS/ereefs-tutorials">ereefs-tutorials GitHub repository</a>. Download the repository’s code by clicking <em>Code &gt; Download ZIP</em>. After unzipping the repository’s Zip archive, you will find each R tutorial placed in its own folder, under <code>ereefs-tutorials-main/tutorials/r</code>.</p>
-</section>
-<section id="open-tutorial-in-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="open-tutorial-in-rstudio">Open tutorial in RStudio</h2>
-<p>Open RStudio and create a new project: <em>File &gt; New Project &gt; Existing Directory &gt; Browse &gt; select the tutorial folder</em>. Then open the main tutorial <code>qmd</code> file from the <em>Files</em> tab, in the bottom-right panel of RStudio.</p>
-<p>The project will open in the main panel of RStudio. To ensure everything runs smoothly, make sure you’re in <em>Source</em> editing mode, in the top-left corner of the editor. The <em>Visual</em> mode can cause issues with running R code reliably.</p>
-<p>You can now run the code chunks within the tutorial by clicking the <svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:green;overflow:visible;position:relative;"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"></path></svg> button in the top-right corner of each chunk, in order.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/rstudio-controls.png" class="img-fluid figure-img"></p>
-<figcaption>RStudio controls</figcaption>
-</figure>
-</div>
-<section id="keyboard-shortcuts" class="level3">
-<h3 class="anchored" data-anchor-id="keyboard-shortcuts">Keyboard shortcuts</h3>
-<p>Chunks can also be run be pressing <em>Ctrl+Shift+Enter</em>, and sections of code (e.g.&nbsp;half a line, a single line, multiple lines) can be run by selecting the code and pressing <em>Ctrl+Enter</em> (replace <em>Ctrl</em> with <em>Cmd</em> on Mac).</p>
-</section>
+<section id="running-r-code-in-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="running-r-code-in-rstudio">Running R code in RStudio</h2>
+<p>Open RStudio and create a new project: <em>File &gt; New Project &gt; New Directory &gt; New Project</em>. Click <code>New File</code> in the bottom-right panel, and choose <code>R Script</code>. The new R file will open in the main panel of RStudio.</p>
+<p>You can now copy / paste code chunks from the tutorial page, by clicking the <svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"></path></svg> button in the right corner of each chunk. Make sure you run them in order.</p>
 </section>
 <section id="installing-r-packages" class="level2">
 <h2 class="anchored" data-anchor-id="installing-r-packages">Installing R packages</h2>
-<p>You may encounter the situation where an R package used in the tutorials have not yet been installed on your machine. Installing packages in R is easy, just run the following command from an open R console:</p>
+<p>You may encounter the situation where an R package used in the tutorials have not yet been installed on your machine. You can install the package manually by running the following command:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"&lt;package name&gt;"</span>)  <span class="co"># replace &lt;package name&gt; with the name of the R package you wish to install</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
