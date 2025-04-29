@@ -24,6 +24,14 @@ to the logged locations of tagged marine animals. Keep in mind, however, that th
 applied in any situation where we wish to extract eReefs data for a range of points with different dates of
 interest for each point.
 
+## Preparation
+
+Create a folder named `data`.
+
+Download the
+[satellite tracking data file](data/Strydom_2022_DOI10-15468-k4s6ap.csv)
+into your `data` folder.
+
 ## R packages
 ```{r RPackages}
 library(RNetCDF) # to access server data files via OPeNDAP

@@ -22,6 +22,8 @@ interest for each point.
 
 ## Preparation
 
+TEST 2
+
 Create a folder named `data`.
 
 Download the
@@ -141,7 +143,8 @@ for row in data.itertuples():
 ```
 
 To output the map from your Python script, you can add this line:
-```{python saveTrackMap, eval=false}
+```{python saveTrackMap}
+#| eval: false
 track_map.save('track_map.html')
 ```
 
@@ -180,7 +183,8 @@ display(tbl_detections)
 ```
 
 To output the detection table from your Python script, you can add this code:
-```{python saveDetectionTable, eval=false}
+```{python saveDetectionTable}
+#| eval: false
 with open('detections_table.html', 'w') as f:
   f.write(tbl_detections.to_html())
 ```
@@ -325,7 +329,8 @@ display(tbl_extracted)
 ```
 
 To output the extracted data table from your Python script, you can add this code:
-```{python saveExtractedDataTable, eval=false}
+```{python saveExtractedDataTable}
+#| eval: false
 with open('extracted_data_table.html', 'w') as f:
   f.write(tbl_extracted.to_html())
 ```
@@ -375,7 +380,8 @@ display(tbl_combined)
 ```
 
 To output the combined data table from your Python script, you can add this code:
-```{python saveCombinedDataTable, eval=false}
+```{python saveCombinedDataTable}
+#| eval: false
 with open('combined_data_table.html', 'w') as f:
   f.write(tbl_combined.to_html())
 ```

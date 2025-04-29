@@ -19,7 +19,8 @@ RStudio will automatically detect and install the required R packages, but it ca
 (Linux) dependencies. These need to be installed separately.
 
 On Ubuntu, you can install those dependencies using the following command:
-```{bash installSystemPackages, eval=FALSE}
+```{bash installSystemPackages}
+#| eval: false
 sudo apt-get install libnetcdf-dev libgdal-dev libproj-dev libgeos-dev libudunits2-dev libsqlite3-dev libcurl4-openssl-dev libcurl4-openssl-dev libssl-dev libxml2-dev libfreetype-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libpng-dev libtiff5-dev libjpeg-dev
 ```
 
@@ -57,6 +58,7 @@ by selecting the code and pressing *Ctrl+Enter* (replace *Ctrl* with *Cmd* on Ma
 You may encounter the situation where an R package used in the tutorials have not yet been installed on your
 machine. Installing packages in R is easy, just run the following command from an open R console:
 
-```{r installingPackages, eval=FALSE}
+```{r installingPackages}
+#| eval: false
 install.packages("<package name>")  # replace <package name> with the name of the R package you wish to install
 ```

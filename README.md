@@ -178,7 +178,8 @@ Change:
 
 Rendering the website using the Docker image is the recommended approach, as it ensures consistent
 output across different environments. However, if you can not use docker, you can render the website locally.
-Be aware that using different versions of the required libraries may lead to variations in the rendered output.
+Be aware that using different versions of the required libraries, such as Quarto, leads to variations in the
+rendered output, which makes it very hard to follow changes in Git history.
 
 **IMPORTANT**: ONLY USE **QUARTO VERSION 1.5.24 OR LATER**! Earlier version of Quarto generates pages with
 *Polyfill.io*, which is spreading malicious code.
