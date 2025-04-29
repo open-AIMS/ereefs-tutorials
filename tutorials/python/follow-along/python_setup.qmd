@@ -29,8 +29,9 @@ conda config --set auto_activate_base false
 
 Install Python dependencies using Conda
 ```bash
-conda activate base
-conda install -n base conda-libmamba-solver
+conda create --name tutorial python=3.8.17
+conda activate tutorial
+conda install conda-libmamba-solver
 conda config --set solver libmamba
 conda install jupyter
 conda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0
@@ -38,7 +39,7 @@ conda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=
 
 Install `matplotlib` version 3.7.5 using pip. That version is not available from `conda`.
 ```bash
-conda activate base
+conda activate tutorial
 python3 -m pip install matplotlib==3.7.5
 ```
 
