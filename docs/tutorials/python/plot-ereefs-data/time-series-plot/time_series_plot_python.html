@@ -197,13 +197,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="tutorial-description">
 <p>Learn how to create time series plots of eReefs data in <i class="fa-brands fa-python" aria-label="python"></i> python.</p>
 </div>
-<p>In this notebook we use OpeNDAP to extract time series data at a single location of interest, then plot this data. This extraction process can also be done with the <a href="https://extraction.ereefs.aims.gov.au/">AIMS eReefs data extraction tool</a>. If you which to perform bigger extractions then we recommend using this tool instead of this process outlined in this example.</p>
+<p>In this notebook we use OPeNDAP to extract time series data at a single location of interest, then plot this data. This extraction process can also be done with the <a href="https://extraction.ereefs.aims.gov.au/">AIMS eReefs data extraction tool</a>. If you which to perform bigger extractions then we recommend using this tool instead of this process outlined in this example.</p>
 <blockquote class="blockquote">
 <p><em>Note</em>: This script has no error checking and so changing the date ranges or locations might result in out of bounds errors.</p>
 </blockquote>
 <section id="load-the-required-python-libraries" class="level1">
 <h1>Load the required Python libraries</h1>
-<div id="fc4795d4" class="cell" data-execution_count="1">
+<div id="b6698592" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> netCDF4 <span class="im">import</span> Dataset, num2date</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy</span>
@@ -218,17 +218,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="choose-opendap-end-point" class="level1">
 <h1>Choose OPeNDAP end point</h1>
 <p>The first part of the process is to choose the OPeNDAP end point on the AIMS eReefs THREDDS server. You can view the products in the <a href="https://thredds.ereefs.aims.gov.au/thredds/catalog/ereefs/gbr4_v2/catalog.html">AIMS eReefs THREDDS catalogue</a>. At this stage there is no grouped OPeNDAP service for the entire time series and so this script only works for looking at a single month of data. Hopefully this can be improved in the future.</p>
-<div id="2bcb50e1" class="cell" data-execution_count="2">
+<div id="f65125e8" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the OpeNDAP endpoint for the specified month.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>month <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>year <span class="op">=</span> <span class="dv">2020</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>netCDF_datestr <span class="op">=</span> <span class="bu">str</span>(year)<span class="op">+</span><span class="st">'-'</span><span class="op">+</span><span class="bu">format</span>(month, <span class="st">'02'</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>netCDF_datestr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>'2020-03'</code></pre>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(netCDF_datestr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2020-03</code></pre>
 </div>
 </div>
-<div id="18f712f7" class="cell" data-execution_count="3">
+<div id="efb64f87" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OPeNDAP URL to file "EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-YYYY-MM.nc". Hydrodynamic 4km model, daily data for the month specified</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>inputFile <span class="op">=</span> <span class="st">"https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr4_v2/daily-monthly/EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-"</span><span class="op">+</span>netCDF_datestr<span class="op">+</span><span class="st">".nc"</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -236,203 +236,189 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nc_data.title)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># To find a list of the variables uncomment the next line:</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>nc_data.variables</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(nc_data.variables))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>eReefs AIMS-CSIRO GBR4 Hydrodynamic v2 daily aggregation</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>{'mean_cur': &lt;class 'netCDF4._netCDF4.Variable'&gt;
- float32 mean_cur(time, k, latitude, longitude)
-     coordinates: time zc latitude longitude
-     substanceOrTaxon_id: http://environment.data.gov.au/def/feature/ocean_current
-     units: ms-1
-     puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/LCEWMP01/
-     medium_id: http://environment.data.gov.au/def/feature/ocean
-     unit_id: http://qudt.org/vocab/unit#MeterPerSecond
-     short_name: mean_cur
-     aggregation: mean_speed
-     standard_name: mean_current_speed
-     long_name: mean_current_speed
-     _ChunkSizes: [  1   1 133 491]
- unlimited dimensions: time
- current shape = (31, 17, 723, 491)
- filling off,
- 'salt': &lt;class 'netCDF4._netCDF4.Variable'&gt;
- float32 salt(time, k, latitude, longitude)
-     qudt__unit: http://qudt.org/vocab/unit/PSU
-     puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/PSLTMP01/
-     coordinates: time zc latitude longitude
-     substanceOrTaxon_id: http://sweet.jpl.nasa.gov/2.2/matrWater.owl#SaltWater
-     scaledQuantityKind_id: http://environment.data.gov.au/def/property/practical_salinity
-     short_name: salt
-     aggregation: Daily
-     units: PSU
-     medium_id: http://environment.data.gov.au/def/feature/ocean
-     unit_id: http://environment.data.gov.au/water/quality/def/unit/PSU
-     long_name: Salinity
-     _ChunkSizes: [  1   1 133 491]
- unlimited dimensions: time
- current shape = (31, 17, 723, 491)
- filling off,
- 'temp': &lt;class 'netCDF4._netCDF4.Variable'&gt;
- float32 temp(time, k, latitude, longitude)
-     puv__parameter: https://vocab.nerc.ac.uk/collection/P01/current/TEMPMP01/
-     coordinates: time zc latitude longitude
-     substanceOrTaxon_id: http://sweet.jpl.nasa.gov/2.2/matrWater.owl#SaltWater
-     scaledQuantityKind_id: http://environment.data.gov.au/def/property/sea_water_temperature
-     short_name: temp
-     aggregation: Daily
-     units: degrees C
-     medium_id: http://environment.data.gov.au/def/feature/ocean
-     unit_id: http://qudt.org/vocab/unit#DegreeCelsius
-     long_name: Temperature
-     _ChunkSizes: [  1   1 133 491]
- unlimited dimensions: time
- current shape = (31, 17, 723, 491)
- filling off,
- 'u': &lt;class 'netCDF4._netCDF4.Variable'&gt;
- float32 u(time, k, latitude, longitude)
-     vector_components: u v
-     coordinates: time zc latitude longitude
-     substanceOrTaxon_id: http://environment.data.gov.au/def/feature/ocean_current
-     vector_name: Currents
-     aggregation: Daily
-     units: ms-1
-     long_name: Eastward current
-     puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/LCEWMP01/
-     scaledQuantityKind_id: http://environment.data.gov.au/def/property/sea_water_velocity_eastward
-     short_name: u
-     standard_name: eastward_sea_water_velocity
-     medium_id: http://environment.data.gov.au/def/feature/ocean
-     unit_id: http://qudt.org/vocab/unit#MeterPerSecond
-     _ChunkSizes: [  1   1 133 491]
- unlimited dimensions: time
- current shape = (31, 17, 723, 491)
- filling off,
- 'v': &lt;class 'netCDF4._netCDF4.Variable'&gt;
- float32 v(time, k, latitude, longitude)
-     vector_components: u v
-     coordinates: time zc latitude longitude
-     substanceOrTaxon_id: http://environment.data.gov.au/def/feature/ocean_current
-     vector_name: Currents
-     aggregation: Daily
-     units: ms-1
-     long_name: Northward current
-     puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/LCNSMP01/
-     scaledQuantityKind_id: http://environment.data.gov.au/def/property/sea_water_velocity_northward
-     short_name: v
-     standard_name: northward_sea_water_velocity
-     medium_id: http://environment.data.gov.au/def/feature/ocean
-     unit_id: http://qudt.org/vocab/unit#MeterPerSecond
-     _ChunkSizes: [  1   1 133 491]
- unlimited dimensions: time
- current shape = (31, 17, 723, 491)
- filling off,
- 'zc': &lt;class 'netCDF4._netCDF4.Variable'&gt;
- float64 zc(k)
-     positive: up
-     coordinate_type: Z
-     units: m
-     long_name: Z coordinate
-     axis: Z
-     _CoordinateAxisType: Height
-     _CoordinateZisPositive: up
- unlimited dimensions: 
- current shape = (17,)
- filling off,
- 'time': &lt;class 'netCDF4._netCDF4.Variable'&gt;
- float64 time(time)
-     units: days since 1990-01-01 00:00:00 +10
-     long_name: Time
-     standard_name: time
-     coordinate_type: time
-     puv__uom: http://vocab.nerc.ac.uk/collection/P06/current/UTAA/
-     calendar: gregorian
-     _CoordinateAxisType: Time
-     _ChunkSizes: 1024
- unlimited dimensions: time
- current shape = (31,)
- filling off,
- 'latitude': &lt;class 'netCDF4._netCDF4.Variable'&gt;
- float64 latitude(latitude)
-     long_name: Latitude
-     standard_name: latitude
-     units: degrees_north
-     coordinate_type: latitude
-     projection: geographic
-     puv__ofProperty: http://vocab.nerc.ac.uk/collection/S06/current/S0600045/
-     puv__uom: http://vocab.nerc.ac.uk/collection/P06/current/DEGN/
-     _CoordinateAxisType: Lat
- unlimited dimensions: 
- current shape = (723,)
- filling off,
- 'longitude': &lt;class 'netCDF4._netCDF4.Variable'&gt;
- float64 longitude(longitude)
-     standard_name: longitude
-     long_name: Longitude
-     units: degrees_east
-     puv__uom: http://vocab.nerc.ac.uk/collection/P06/current/DEGE/
-     coordinate_type: longitude
-     projection: geographic
-     _CoordinateAxisType: Lon
- unlimited dimensions: 
- current shape = (491,)
- filling off,
- 'mean_wspeed': &lt;class 'netCDF4._netCDF4.Variable'&gt;
- float32 mean_wspeed(time, latitude, longitude)
-     puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/ESEWMPXX/
-     coordinates: time latitude longitude
-     units: ms-1
-     short_name: mean_wspeed
-     aggregation: mean_speed
-     standard_name: mean_wind_speed
-     long_name: mean_wind_speed
-     _ChunkSizes: [  1 133 491]
- unlimited dimensions: time
- current shape = (31, 723, 491)
- filling off,
- 'eta': &lt;class 'netCDF4._netCDF4.Variable'&gt;
- float32 eta(time, latitude, longitude)
-     puv__parameter: https://vocab.nerc.ac.uk/collection/P01/current/ASLVMP01/
-     coordinates: time latitude longitude
-     substanceOrTaxon_id: http://environment.data.gov.au/def/feature/ocean_near_surface
-     scaledQuantityKind_id: http://environment.data.gov.au/def/property/sea_surface_elevation
-     short_name: eta
-     standard_name: sea_surface_height_above_sea_level
-     aggregation: Daily
-     units: metre
-     positive: up
-     medium_id: http://environment.data.gov.au/def/feature/ocean
-     unit_id: http://qudt.org/vocab/unit#Meter
-     long_name: Surface elevation
-     _ChunkSizes: [  1 133 491]
- unlimited dimensions: time
- current shape = (31, 723, 491)
- filling off,
- 'wspeed_u': &lt;class 'netCDF4._netCDF4.Variable'&gt;
- float32 wspeed_u(time, latitude, longitude)
-     puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/ESEWMPXX/
-     coordinates: time latitude longitude
-     short_name: wspeed_u
-     aggregation: Daily
-     units: ms-1
-     long_name: eastward_wind
-     _ChunkSizes: [  1 133 491]
- unlimited dimensions: time
- current shape = (31, 723, 491)
- filling off,
- 'wspeed_v': &lt;class 'netCDF4._netCDF4.Variable'&gt;
- float32 wspeed_v(time, latitude, longitude)
-     puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/ESNSMPXX/
-     coordinates: time latitude longitude
-     short_name: wspeed_v
-     aggregation: Daily
-     units: ms-1
-     long_name: northward_wind
-     _ChunkSizes: [  1 133 491]
- unlimited dimensions: time
- current shape = (31, 723, 491)
- filling off}</code></pre>
+<pre><code>eReefs AIMS-CSIRO GBR4 Hydrodynamic v2 daily aggregation
+{'mean_cur': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float32 mean_cur(time, k, latitude, longitude)
+    coordinates: time zc latitude longitude
+    substanceOrTaxon_id: http://environment.data.gov.au/def/feature/ocean_current
+    units: ms-1
+    puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/LCEWMP01/
+    medium_id: http://environment.data.gov.au/def/feature/ocean
+    unit_id: http://qudt.org/vocab/unit#MeterPerSecond
+    short_name: mean_cur
+    aggregation: mean_speed
+    standard_name: mean_current_speed
+    long_name: mean_current_speed
+    _ChunkSizes: [  1   1 133 491]
+unlimited dimensions: time
+current shape = (31, 17, 723, 491)
+filling off, 'salt': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float32 salt(time, k, latitude, longitude)
+    qudt__unit: http://qudt.org/vocab/unit/PSU
+    puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/PSLTMP01/
+    coordinates: time zc latitude longitude
+    substanceOrTaxon_id: http://sweet.jpl.nasa.gov/2.2/matrWater.owl#SaltWater
+    scaledQuantityKind_id: http://environment.data.gov.au/def/property/practical_salinity
+    short_name: salt
+    aggregation: Daily
+    units: PSU
+    medium_id: http://environment.data.gov.au/def/feature/ocean
+    unit_id: http://environment.data.gov.au/water/quality/def/unit/PSU
+    long_name: Salinity
+    _ChunkSizes: [  1   1 133 491]
+unlimited dimensions: time
+current shape = (31, 17, 723, 491)
+filling off, 'temp': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float32 temp(time, k, latitude, longitude)
+    puv__parameter: https://vocab.nerc.ac.uk/collection/P01/current/TEMPMP01/
+    coordinates: time zc latitude longitude
+    substanceOrTaxon_id: http://sweet.jpl.nasa.gov/2.2/matrWater.owl#SaltWater
+    scaledQuantityKind_id: http://environment.data.gov.au/def/property/sea_water_temperature
+    short_name: temp
+    aggregation: Daily
+    units: degrees C
+    medium_id: http://environment.data.gov.au/def/feature/ocean
+    unit_id: http://qudt.org/vocab/unit#DegreeCelsius
+    long_name: Temperature
+    _ChunkSizes: [  1   1 133 491]
+unlimited dimensions: time
+current shape = (31, 17, 723, 491)
+filling off, 'u': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float32 u(time, k, latitude, longitude)
+    vector_components: u v
+    coordinates: time zc latitude longitude
+    substanceOrTaxon_id: http://environment.data.gov.au/def/feature/ocean_current
+    vector_name: Currents
+    aggregation: Daily
+    units: ms-1
+    long_name: Eastward current
+    puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/LCEWMP01/
+    scaledQuantityKind_id: http://environment.data.gov.au/def/property/sea_water_velocity_eastward
+    short_name: u
+    standard_name: eastward_sea_water_velocity
+    medium_id: http://environment.data.gov.au/def/feature/ocean
+    unit_id: http://qudt.org/vocab/unit#MeterPerSecond
+    _ChunkSizes: [  1   1 133 491]
+unlimited dimensions: time
+current shape = (31, 17, 723, 491)
+filling off, 'v': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float32 v(time, k, latitude, longitude)
+    vector_components: u v
+    coordinates: time zc latitude longitude
+    substanceOrTaxon_id: http://environment.data.gov.au/def/feature/ocean_current
+    vector_name: Currents
+    aggregation: Daily
+    units: ms-1
+    long_name: Northward current
+    puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/LCNSMP01/
+    scaledQuantityKind_id: http://environment.data.gov.au/def/property/sea_water_velocity_northward
+    short_name: v
+    standard_name: northward_sea_water_velocity
+    medium_id: http://environment.data.gov.au/def/feature/ocean
+    unit_id: http://qudt.org/vocab/unit#MeterPerSecond
+    _ChunkSizes: [  1   1 133 491]
+unlimited dimensions: time
+current shape = (31, 17, 723, 491)
+filling off, 'zc': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float64 zc(k)
+    positive: up
+    coordinate_type: Z
+    units: m
+    long_name: Z coordinate
+    axis: Z
+    _CoordinateAxisType: Height
+    _CoordinateZisPositive: up
+unlimited dimensions: 
+current shape = (17,)
+filling off, 'time': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float64 time(time)
+    units: days since 1990-01-01 00:00:00 +10
+    long_name: Time
+    standard_name: time
+    coordinate_type: time
+    puv__uom: http://vocab.nerc.ac.uk/collection/P06/current/UTAA/
+    calendar: gregorian
+    _CoordinateAxisType: Time
+    _ChunkSizes: 1024
+unlimited dimensions: time
+current shape = (31,)
+filling off, 'latitude': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float64 latitude(latitude)
+    long_name: Latitude
+    standard_name: latitude
+    units: degrees_north
+    coordinate_type: latitude
+    projection: geographic
+    puv__ofProperty: http://vocab.nerc.ac.uk/collection/S06/current/S0600045/
+    puv__uom: http://vocab.nerc.ac.uk/collection/P06/current/DEGN/
+    _CoordinateAxisType: Lat
+unlimited dimensions: 
+current shape = (723,)
+filling off, 'longitude': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float64 longitude(longitude)
+    standard_name: longitude
+    long_name: Longitude
+    units: degrees_east
+    puv__uom: http://vocab.nerc.ac.uk/collection/P06/current/DEGE/
+    coordinate_type: longitude
+    projection: geographic
+    _CoordinateAxisType: Lon
+unlimited dimensions: 
+current shape = (491,)
+filling off, 'mean_wspeed': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float32 mean_wspeed(time, latitude, longitude)
+    puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/ESEWMPXX/
+    coordinates: time latitude longitude
+    units: ms-1
+    short_name: mean_wspeed
+    aggregation: mean_speed
+    standard_name: mean_wind_speed
+    long_name: mean_wind_speed
+    _ChunkSizes: [  1 133 491]
+unlimited dimensions: time
+current shape = (31, 723, 491)
+filling off, 'eta': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float32 eta(time, latitude, longitude)
+    puv__parameter: https://vocab.nerc.ac.uk/collection/P01/current/ASLVMP01/
+    coordinates: time latitude longitude
+    substanceOrTaxon_id: http://environment.data.gov.au/def/feature/ocean_near_surface
+    scaledQuantityKind_id: http://environment.data.gov.au/def/property/sea_surface_elevation
+    short_name: eta
+    standard_name: sea_surface_height_above_sea_level
+    aggregation: Daily
+    units: metre
+    positive: up
+    medium_id: http://environment.data.gov.au/def/feature/ocean
+    unit_id: http://qudt.org/vocab/unit#Meter
+    long_name: Surface elevation
+    _ChunkSizes: [  1 133 491]
+unlimited dimensions: time
+current shape = (31, 723, 491)
+filling off, 'wspeed_u': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float32 wspeed_u(time, latitude, longitude)
+    puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/ESEWMPXX/
+    coordinates: time latitude longitude
+    short_name: wspeed_u
+    aggregation: Daily
+    units: ms-1
+    long_name: eastward_wind
+    _ChunkSizes: [  1 133 491]
+unlimited dimensions: time
+current shape = (31, 723, 491)
+filling off, 'wspeed_v': &lt;class 'netCDF4._netCDF4.Variable'&gt;
+float32 wspeed_v(time, latitude, longitude)
+    puv__parameter: http://vocab.nerc.ac.uk/collection/P01/current/ESNSMPXX/
+    coordinates: time latitude longitude
+    short_name: wspeed_v
+    aggregation: Daily
+    units: ms-1
+    long_name: northward_wind
+    _ChunkSizes: [  1 133 491]
+unlimited dimensions: time
+current shape = (31, 723, 491)
+filling off}</code></pre>
 </div>
 </div>
 </section>
@@ -442,30 +428,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p><em>Note</em>: This only works because the AIMS eReefs aggregated datasets are regridded onto a regularly spaced grid. The original raw model data is on a curvilinear grid and this approach would not work for that data.</p>
 </blockquote>
-<div id="2f6b3157" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lons <span class="op">=</span> nc_data.variables[<span class="st">'longitude'</span>][:]</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>max_lon <span class="op">=</span> <span class="bu">max</span>(lons)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>min_lon <span class="op">=</span> <span class="bu">min</span>(lons)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>lats <span class="op">=</span> nc_data.variables[<span class="st">'latitude'</span>][:]</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>max_lat <span class="op">=</span> <span class="bu">max</span>(lats)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>min_lat <span class="op">=</span> <span class="bu">min</span>(lats)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>grid_lon <span class="op">=</span> lons.size</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>grid_lat <span class="op">=</span> lats.size</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Grid bounds, Lon: "</span><span class="op">+</span><span class="bu">str</span>(min_lon)<span class="op">+</span><span class="st">" - "</span><span class="op">+</span><span class="bu">str</span>(max_lon)<span class="op">+</span><span class="st">" Lat:"</span><span class="op">+</span><span class="bu">str</span>(min_lat)<span class="op">+</span><span class="st">" - "</span><span class="op">+</span><span class="bu">str</span>(max_lat))</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Grid size is: "</span><span class="op">+</span><span class="bu">str</span>(grid_lon)<span class="op">+</span><span class="st">" x "</span><span class="op">+</span><span class="bu">str</span>(grid_lat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d8e2e101" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lons <span class="op">=</span> nc_data.variables[<span class="st">'longitude'</span>][:]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>max_lon <span class="op">=</span> <span class="bu">max</span>(lons)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>min_lon <span class="op">=</span> <span class="bu">min</span>(lons)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>lats <span class="op">=</span> nc_data.variables[<span class="st">'latitude'</span>][:]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>max_lat <span class="op">=</span> <span class="bu">max</span>(lats)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>min_lat <span class="op">=</span> <span class="bu">min</span>(lats)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>grid_lon <span class="op">=</span> lons.size</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>grid_lat <span class="op">=</span> lats.size</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Grid bounds, Lon: "</span><span class="op">+</span><span class="bu">str</span>(min_lon)<span class="op">+</span><span class="st">" - "</span><span class="op">+</span><span class="bu">str</span>(max_lon)<span class="op">+</span><span class="st">" Lat:"</span><span class="op">+</span><span class="bu">str</span>(min_lat)<span class="op">+</span><span class="st">" - "</span><span class="op">+</span><span class="bu">str</span>(max_lat))</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Grid size is: "</span><span class="op">+</span><span class="bu">str</span>(grid_lon)<span class="op">+</span><span class="st">" x "</span><span class="op">+</span><span class="bu">str</span>(grid_lat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Grid bounds, Lon: 142.168788 - 156.868788 Lat:-28.696022 - -7.036022
 Grid size is: 491 x 723</code></pre>
 </div>
 </div>
 <p>Find the closest index to the location of interest.</p>
-<div id="3b31a027" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Davies reef</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>lat <span class="op">=</span> <span class="op">-</span><span class="fl">18.82</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>lon <span class="op">=</span> <span class="fl">147.64</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>selectedLatIndex <span class="op">=</span> <span class="bu">round</span>((lat<span class="op">-</span>min_lat)<span class="op">/</span>(max_lat<span class="op">-</span>min_lat)<span class="op">*</span>grid_lat)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>selectedLonIndex <span class="op">=</span> <span class="bu">round</span>((lon<span class="op">-</span>min_lon)<span class="op">/</span>(max_lon<span class="op">-</span>min_lon)<span class="op">*</span>grid_lon)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Grid position of location: "</span><span class="op">+</span><span class="bu">str</span>(selectedLatIndex)<span class="op">+</span><span class="st">", "</span><span class="op">+</span><span class="bu">str</span>(selectedLonIndex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6f804cc3" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Davies reef</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>lat <span class="op">=</span> <span class="op">-</span><span class="fl">18.82</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>lon <span class="op">=</span> <span class="fl">147.64</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>selectedLatIndex <span class="op">=</span> <span class="bu">round</span>((lat<span class="op">-</span>min_lat)<span class="op">/</span>(max_lat<span class="op">-</span>min_lat)<span class="op">*</span>grid_lat)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>selectedLonIndex <span class="op">=</span> <span class="bu">round</span>((lon<span class="op">-</span>min_lon)<span class="op">/</span>(max_lon<span class="op">-</span>min_lon)<span class="op">*</span>grid_lon)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Grid position of location: "</span><span class="op">+</span><span class="bu">str</span>(selectedLatIndex)<span class="op">+</span><span class="st">", "</span><span class="op">+</span><span class="bu">str</span>(selectedLonIndex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Grid position of location: 330, 183</code></pre>
 </div>
@@ -473,14 +459,14 @@ Grid size is: 491 x 723</code></pre>
 </section>
 <section id="extract-values" class="level1">
 <h1>Extract values</h1>
-<p>Extract the values over time at this location. Note that because we are access the underlying data here this results in an OpeNDAP call to get the data from the remote server. As a result this call can take a while (~10 sec).</p>
-<div id="8cec2f54" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>selectedDepthIndex <span class="op">=</span> <span class="dv">15</span> <span class="co"># -1.5m</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>selectedDepthIndex2 <span class="op">=</span> <span class="dv">10</span> <span class="co"># -17.75m</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Time, Depth, Lat, Lon</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>dailyTemp1 <span class="op">=</span> nc_data.variables[<span class="st">'temp'</span>][:,[selectedDepthIndex,selectedDepthIndex2], selectedLatIndex, selectedLonIndex]</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dailyTemp1[<span class="dv">0</span>:<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Extract the values over time at this location. Note that because we are access the underlying data here this results in an OPeNDAP call to get the data from the remote server. As a result this call can take a while (~10 sec).</p>
+<div id="026a600a" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>selectedDepthIndex <span class="op">=</span> <span class="dv">15</span> <span class="co"># -1.5m</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>selectedDepthIndex2 <span class="op">=</span> <span class="dv">10</span> <span class="co"># -17.75m</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Time, Depth, Lat, Lon</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>dailyTemp1 <span class="op">=</span> nc_data.variables[<span class="st">'temp'</span>][:,[selectedDepthIndex,selectedDepthIndex2], selectedLatIndex, selectedLonIndex]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dailyTemp1[<span class="dv">0</span>:<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[29.586527 27.764503]
  [29.513176 27.867159]
@@ -490,18 +476,18 @@ Grid size is: 491 x 723</code></pre>
 </div>
 </div>
 <p>Let’s get the wind for the same location. The wind variable doesn’t have any depth dimension and so our indexing into the data is different. The wind is a vector measurement, with an x and y component.</p>
-<div id="71938357" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>wspeed_v <span class="op">=</span> nc_data.variables[<span class="st">'wspeed_v'</span>][:, selectedLatIndex, selectedLonIndex]</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>wspeed_u <span class="op">=</span> nc_data.variables[<span class="st">'wspeed_v'</span>][:, selectedLatIndex, selectedLonIndex]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1f8eee11" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wspeed_v <span class="op">=</span> nc_data.variables[<span class="st">'wspeed_v'</span>][:, selectedLatIndex, selectedLonIndex]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>wspeed_u <span class="op">=</span> nc_data.variables[<span class="st">'wspeed_v'</span>][:, selectedLatIndex, selectedLonIndex]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To get the wind speed we need to calculate the magnitude of this vector.</p>
-<div id="d4caace2" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>wspeed <span class="op">=</span> np.sqrt(wspeed_v<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> wspeed_u<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b91f00b2" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>wspeed <span class="op">=</span> np.sqrt(wspeed_v<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> wspeed_u<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Get the time series. Note that the time values are stored as the number of days since 1990-01-01 00:00:00 +10.</p>
-<div id="a7975b87" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> nc_data.variables[<span class="st">'time'</span>][:]</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(times[<span class="dv">0</span>:<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="18f0494c" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> nc_data.variables[<span class="st">'time'</span>][:]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(times[<span class="dv">0</span>:<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[11017. 11018. 11019. 11020. 11021.]</code></pre>
 </div>
@@ -509,32 +495,31 @@ Grid size is: 491 x 723</code></pre>
 </section>
 <section id="plot-the-time-series" class="level1">
 <h1>Plot the time series</h1>
-<div id="b1af203e" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the days since the 1990 origin into Pandas dates for plotting</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> pd.to_datetime(times,unit<span class="op">=</span><span class="st">'D'</span>,origin<span class="op">=</span>pd.Timestamp(<span class="st">'1990-01-01'</span>))</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots()</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">8</span>, <span class="dv">7</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Date'</span>)</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Temperature (deg C)'</span>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>ax1.plot(t, dailyTemp1[:,<span class="dv">0</span>], color<span class="op">=</span><span class="st">'tab:red'</span>, label<span class="op">=</span><span class="st">'Temp (-1.5 m)'</span>)</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>ax1.plot(t, dailyTemp1[:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">'tab:orange'</span>, label<span class="op">=</span><span class="st">'Temp (-17.75 m)'</span>)</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#ax1.tick_params(axis='y', labelcolor=color)</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()  <span class="co"># instantiate a second axes that shares the same x-axis</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>color <span class="op">=</span> <span class="st">'tab:blue'</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'Wind speed (m/s)'</span>, color<span class="op">=</span>color)  <span class="co"># we already handled the x-label with ax1</span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>ax2.plot(t, wspeed, color<span class="op">=</span>color, label<span class="op">=</span><span class="st">'Wind'</span>)</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span>color)</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>fig.legend()</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the axes formating to show the dates on an angle on the current figure (gcf)</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>plt.gcf().autofmt_xdate()</span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">#fig.tight_layout()  # otherwise the right y-label is slightly clipped</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9a2f8992" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the days since the 1990 origin into Pandas dates for plotting</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> pd.to_datetime(times,unit<span class="op">=</span><span class="st">'D'</span>,origin<span class="op">=</span>pd.Timestamp(<span class="st">'1990-01-01'</span>))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots()</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">8</span>, <span class="dv">7</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Temperature (deg C)'</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>ax1.plot(t, dailyTemp1[:,<span class="dv">0</span>], color<span class="op">=</span><span class="st">'tab:red'</span>, label<span class="op">=</span><span class="st">'Temp (-1.5 m)'</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>ax1.plot(t, dailyTemp1[:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">'tab:orange'</span>, label<span class="op">=</span><span class="st">'Temp (-17.75 m)'</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#ax1.tick_params(axis='y', labelcolor=color)</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()  <span class="co"># instantiate a second axes that shares the same x-axis</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>color <span class="op">=</span> <span class="st">'tab:blue'</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'Wind speed (m/s)'</span>, color<span class="op">=</span>color)  <span class="co"># we already handled the x-label with ax1</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>ax2.plot(t, wspeed, color<span class="op">=</span>color, label<span class="op">=</span><span class="st">'Wind'</span>)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span>color)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>fig.legend()</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the axes formating to show the dates on an angle on the current figure (gcf)</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>plt.gcf().autofmt_xdate()</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">

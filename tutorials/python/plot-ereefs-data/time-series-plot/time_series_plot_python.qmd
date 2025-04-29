@@ -7,9 +7,13 @@ subtitle: "Times series plots {{< fa brands python >}}"
 Learn how to create time series plots of eReefs data in {{< fa brands python >}} python.
 :::
 
-In this notebook we use OpeNDAP to extract time series data at a single location of interest, then plot this data. This extraction process can also be done with the [AIMS eReefs data extraction tool](https://extraction.ereefs.aims.gov.au/). If you which to perform bigger extractions then we recommend using this tool instead of this process outlined in this example.
+In this notebook we use OPeNDAP to extract time series data at a single location of interest, then plot this
+data. This extraction process can also be done with the
+[AIMS eReefs data extraction tool](https://extraction.ereefs.aims.gov.au/). If you which to perform bigger
+extractions then we recommend using this tool instead of this process outlined in this example.
 
-> *Note*: This script has no error checking and so changing the date ranges or locations might result in out of bounds errors.
+> *Note*: This script has no error checking and so changing the date ranges or locations might result in out
+  of bounds errors.
 
 # Load the required Python libraries
 
@@ -27,14 +31,18 @@ cartopy.config['data_dir'] = os.getenv('CARTOPY_DIR', cartopy.config.get('data_d
 
 # Choose OPeNDAP end point
 
-The first part of the process is to choose the OPeNDAP end point on the AIMS eReefs THREDDS server. You can view the products in the [AIMS eReefs THREDDS catalogue](https://thredds.ereefs.aims.gov.au/thredds/catalog/ereefs/gbr4_v2/catalog.html). At this stage there is no grouped OPeNDAP service for the entire time series and so this script only works for looking at a single month of data. Hopefully this can be improved in the future.
+The first part of the process is to choose the OPeNDAP end point on the AIMS eReefs THREDDS server. You can
+view the products in the
+[AIMS eReefs THREDDS catalogue](https://thredds.ereefs.aims.gov.au/thredds/catalog/ereefs/gbr4_v2/catalog.html).
+At this stage there is no grouped OPeNDAP service for the entire time series and so this script only works
+for looking at a single month of data. Hopefully this can be improved in the future.
 
 ```{python}
 # Connect to the OpeNDAP endpoint for the specified month.
 month = 3
 year = 2020
 netCDF_datestr = str(year)+'-'+format(month, '02')
-netCDF_datestr
+print(netCDF_datestr)
 ```
 
 ```{python}
@@ -45,13 +53,15 @@ nc_data = Dataset(inputFile, 'r')
 print(nc_data.title)
 
 # To find a list of the variables uncomment the next line:
-nc_data.variables
+print(repr(nc_data.variables))
 ```
 
 # Select the point location
-Work out the bounds of the gridded data. We can then use this to find out which grid cell best matches our location of interest.
+Work out the bounds of the gridded data. We can then use this to find out which grid cell best matches our
+location of interest.
 
-> *Note*: This only works because the AIMS eReefs aggregated datasets are regridded onto a regularly spaced grid. The original raw model data is on a curvilinear grid and this approach would not work for that data.
+> *Note*: This only works because the AIMS eReefs aggregated datasets are regridded onto a regularly spaced
+  grid. The original raw model data is on a curvilinear grid and this approach would not work for that data.
 
 ```{python}
 lons = nc_data.variables['longitude'][:]
@@ -79,7 +89,9 @@ print("Grid position of location: "+str(selectedLatIndex)+", "+str(selectedLonIn
 
 # Extract values
 
-Extract the values over time at this location. Note that because we are access the underlying data here this results in an OpeNDAP call to get the data from the remote server. As a result this call can take a while (~10 sec).
+Extract the values over time at this location. Note that because we are access the underlying data here this
+results in an OPeNDAP call to get the data from the remote server. As a result this call can take a while
+(~10 sec).
 
 ```{python}
 selectedDepthIndex = 15 # -1.5m
@@ -90,7 +102,8 @@ dailyTemp1 = nc_data.variables['temp'][:,[selectedDepthIndex,selectedDepthIndex2
 print(dailyTemp1[0:5])
 ```
 
-Let's get the wind for the same location. The wind variable doesn't have any depth dimension and so our indexing into the data is different. The wind is a vector measurement, with an x and y component.
+Let's get the wind for the same location. The wind variable doesn't have any depth dimension and so our
+indexing into the data is different. The wind is a vector measurement, with an x and y component.
 
 ```{python}
 wspeed_v = nc_data.variables['wspeed_v'][:, selectedLatIndex, selectedLonIndex]
@@ -119,7 +132,6 @@ t = pd.to_datetime(times,unit='D',origin=pd.Timestamp('1990-01-01'))
 fig, ax1 = plt.subplots()
 fig.set_size_inches(8, 7)
 
-
 ax1.set_xlabel('Date')
 ax1.set_ylabel('Temperature (deg C)')
 ax1.plot(t, dailyTemp1[:,0], color='tab:red', label='Temp (-1.5 m)')
@@ -137,7 +149,9 @@ fig.legend()
 # Set the axes formating to show the dates on an angle on the current figure (gcf)
 plt.gcf().autofmt_xdate()
 
-#fig.tight_layout()  # otherwise the right y-label is slightly clipped
+plt.show()
 ```
 
-From this graph we can see that the surface water at Davies Reef was very warm during March 2020. There was a strong stratification of the temperature profile with cool water at -18 m. Around the 10th March the wind picked up for a few days, mixing the water, cooling the surface down rapidly.
+From this graph we can see that the surface water at Davies Reef was very warm during March 2020. There was
+a strong stratification of the temperature profile with cool water at -18 m. Around the 10th March the wind
+picked up for a few days, mixing the water, cooling the surface down rapidly.
