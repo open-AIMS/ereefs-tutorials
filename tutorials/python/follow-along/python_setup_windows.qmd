@@ -1,0 +1,67 @@
+---
+title: "Setup Python on Windows"
+subtitle: "Preparing the Python {{< fa brands python >}} environment on Windows"
+---
+
+:::{.tutorial-description}
+Learn how to setup Python on Windows and follow along with the eReefs tutorials.
+:::
+
+## Install Python
+
+Download the installer for the latest stable release from the official
+[Python website](https://www.python.org/downloads/windows/).
+
+Make sure you check the box `Add python.exe to PATH` when you install it.
+
+You can verify that Python is properly installed by running this command in a command prompt:
+```bash
+python --version
+```
+
+## Install Miniconda
+
+Miniconda is a Package manager. It's used to install packages and resolve transitive dependencies.
+
+Download and install Miniconda from the official
+[Miniconda website](https://www.anaconda.com/docs/getting-started/miniconda/install).
+
+The current installation instructions are as follow. Visit the website to make sure they haven't changed.
+```bash
+curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe -o .\miniconda.exe
+start /wait "" .\miniconda.exe /S
+del .\miniconda.exe
+```
+
+Once installed, click in the search box in windows bottom left corner of the menu bar, and search and
+execute the `Anaconda Prompt`.
+It will open a new `Anaconda Prompt`, in the default `base` venv (Python virtual environment).
+We will create a venv for the tutorials in the next step.
+
+## Install dependencies
+
+Create and activate a new Python virtual environment that will be used for the tutorials
+```bash
+conda create --name tutorial python=3.8.17
+conda activate tutorial
+```
+
+The prompt should start with `(tutorial)`, to indicate that you are now in the `tutorial` venv.
+
+From now on, make sure you are always in the `tutorial` venv. If you restart your terminal, you might need
+to re-activate the `tutorial` venv before running any command.
+
+Install Python dependencies in the `tutorial` venv, using Conda
+```bash
+conda install conda-libmamba-solver
+conda config --set solver libmamba
+conda install jupyter
+conda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0
+```
+
+The version of `matplotlib` we need to install is not available on the `conda` repository. We need to install
+it using `pip`.
+
+```bash
+python -m pip install matplotlib==3.7.5
+```

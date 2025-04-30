@@ -1,0 +1,58 @@
+---
+title: "Setup Python on Linux"
+subtitle: "Preparing the Python {{< fa brands python >}} environment on Linux"
+---
+
+:::{.tutorial-description}
+Learn how to setup Python on Linux and follow along with the eReefs tutorials.
+:::
+
+## Install Python
+
+In Ubuntu Linux, you can install Python using the following command:
+```bash
+sudo apt-get install python3
+```
+
+## Install Miniconda
+
+Miniconda is a Package manager. It's used to install packages and resolve transitive dependencies.
+
+Download and install Miniconda
+```bash
+wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_23.5.2-0-Linux-x86_64.sh -O miniconda.sh
+/bin/bash miniconda.sh
+```
+
+Run this command if you do not want conda to automatically activate its base environment
+```bash
+conda config --set auto_activate_base false
+```
+
+## Install dependencies
+
+Create and activate a new Python virtual environment that will be used for the tutorials
+```bash
+conda create --name tutorial python=3.8.17
+conda activate tutorial
+```
+
+The prompt should start with `(tutorial)`, to indicate that you are now in the `tutorial` venv.
+
+From now on, make sure you are always in the `tutorial` venv. If you restart your terminal, you might need
+to re-activate the `tutorial` venv before running any command.
+
+Install Python dependencies in the `tutorial` venv, using Conda
+```bash
+conda install conda-libmamba-solver
+conda config --set solver libmamba
+conda install jupyter
+conda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0
+```
+
+The version of `matplotlib` we need to install is not available on the `conda` repository. We need to install
+it using `pip`.
+
+```bash
+python3 -m pip install matplotlib==3.7.5
+```

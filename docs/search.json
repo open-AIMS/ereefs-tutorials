@@ -238,6 +238,34 @@
     "text": "Match extracted data to tracking data\nWe will match up the eReefs data with our tracking detections by combining the two datasets based on common date, longitude and latitude values.\n\n# Rename lon and lat columns of extracted_data to longitude, latitude (to match those of data)\nextracted_data = extracted_data.rename(columns = {\n  'lon': 'longitude',\n  'lat': 'latitude'\n})\n\n# Merge the two datasets based on common date, lon and lat values\ncombined_data = pd.merge(\n  data, extracted_data,\n  on = ['date', 'longitude', 'latitude']\n)\n\n# Print the combined data (reorder columns; sort by date and time; format numeric columns' decimal places)\ntbl_combined = combined_data.\\\n  reindex(columns = ['date', 'time', 'longitude', 'latitude', 'record_id', 'temp', 'salt', 'u', 'v']).\\\n  sort_values(by = ['date', 'time']).\\\n  style.\\\n  hide(axis = 'index').\\\n  format({\n    **dict.fromkeys(['longitude', 'latitude'], '{:.1f}'),\n    **dict.fromkeys(['temp', 'salt'], '{:.2f}'),\n    **dict.fromkeys(['u', 'v'], '{:.3f}')\n  })\ndisplay(tbl_combined)\n\nTo output the combined data table from your Python script, you can add this code:\n\nwith open('combined_data_table.html', 'w') as f:\n  f.write(tbl_combined.to_html())\n\n\n\n\n\nTable 3: Loggerhead Sea Turtle (Caretta caretta) tracking detections (Strydom, 2022) and corresponding eReefs daily mean temperature, salinity, east- and northward current velocities (u, v respectively).\n\n\n\n\n\n\n\n\ndate\ntime\nlongitude\nlatitude\nrecord_id\ntemp\nsalt\nu\nv\n\n\n\n\n2021-12-21\n17:57\n152.5\n-24.5\n4022992328\n28.09\n35.26\n0.071\n-0.020\n\n\n2022-01-02\n21:49\n153.5\n-25.5\n4022992329\n26.00\n35.30\n-0.035\n0.038\n\n\n2022-01-05\n07:33\n152.5\n-23.5\n4022992304\n25.64\n35.23\n0.030\n0.015\n\n\n2022-01-06\n05:03\n151.5\n-23.5\n4022992302\n28.13\n35.41\n-0.033\n0.015\n\n\n2022-01-09\n20:25\n151.5\n-22.5\n4022992319\n29.24\n35.34\n0.001\n-0.103\n\n\n2022-01-13\n06:28\n151.5\n-21.5\n4022992308\n28.42\n35.25\n-0.095\n0.016\n\n\n2022-01-14\n18:26\n150.5\n-21.5\n4022992318\n28.99\n35.40\n-0.064\n-0.047\n\n\n2022-01-17\n17:06\n150.5\n-20.5\n4022992330\n29.39\n35.34\n-0.066\n-0.178\n\n\n2022-01-19\n17:44\n149.5\n-20.5\n4022992320\n29.92\n35.48\n0.018\n-0.104\n\n\n2022-01-21\n07:22\n149.5\n-19.5\n4022992316\n29.58\n35.12\n-0.161\n-0.035\n\n\n2022-01-23\n07:02\n148.5\n-19.5\n4022992323\n28.99\n35.26\n-0.137\n-0.022\n\n\n2022-01-27\n17:00\n147.5\n-18.5\n4022992327\n29.46\n33.98\n0.265\n0.004\n\n\n2022-01-30\n17:02\n146.5\n-18.5\n4022992314\n30.15\n34.60\n-0.184\n0.143\n\n\n2022-02-02\n09:14\n146.5\n-17.5\n4022992301\n30.59\n34.72\n0.128\n-0.054\n\n\n2022-02-03\n21:37\n153.5\n-24.5\n4022992313\n27.06\n35.32\n0.550\n-0.797\n\n\n2022-02-06\n18:25\n146.5\n-16.5\n4022992303\n29.14\n34.70\n-0.122\n-0.100\n\n\n2022-02-07\n07:15\n145.5\n-16.5\n4022992310\n30.37\n34.06\n-0.104\n0.200\n\n\n2022-02-09\n18:33\n145.5\n-15.5\n4022992311\n29.54\n34.74\n-0.120\n0.064\n\n\n2022-02-12\n08:59\n153.5\n-26.5\n4022992324\n26.80\n35.38\n-0.124\n0.006\n\n\n2022-02-12\n10:34\n145.5\n-14.5\n4022992325\n29.90\n34.72\n-0.081\n0.034\n\n\n2022-03-25\n07:10\n144.5\n-13.5\n4022992309\n29.04\n34.75\n-0.457\n0.360\n\n\n2022-04-01\n18:41\n143.5\n-12.5\n4022992307\n30.14\n34.44\n0.025\n-0.018\n\n\n2022-04-09\n22:00\n143.5\n-11.5\n4022992317\n29.93\n34.56\n-0.097\n0.144\n\n\n2022-04-14\n06:31\n143.5\n-10.5\n4022992321\n29.48\n34.42\n-0.041\n0.078\n\n\n2022-04-21\n10:30\n143.5\n-9.5\n4022992305\n29.56\n34.19\n0.059\n0.034\n\n\n\n\n\n\n\n\nHooray! We now have our combined dataset of the Loggerhead Sea Turtle tracking detections and the corresponding eReefs daily aggregated data (Table 3).\nStrydom A. 2022. Wreck Rock Turtle Care - satellite tracking. Data downloaded from OBIS-SEAMAP; originated from Satellite Tracking and Analysis Tool (STAT). DOI: 10.15468/k4s6ap accessed via GBIF.org on 2023-02-17."
   },
   {
+    "objectID": "tutorials/python/follow-along/python_setup_linux.html",
+    "href": "tutorials/python/follow-along/python_setup_linux.html",
+    "title": "Setup Python on Linux",
+    "section": "",
+    "text": "Learn how to setup Python on Linux and follow along with the eReefs tutorials."
+  },
+  {
+    "objectID": "tutorials/python/follow-along/python_setup_linux.html#install-python",
+    "href": "tutorials/python/follow-along/python_setup_linux.html#install-python",
+    "title": "Setup Python on Linux",
+    "section": "Install Python",
+    "text": "Install Python\nIn Ubuntu Linux, you can install Python using the following command:\nsudo apt-get install python3"
+  },
+  {
+    "objectID": "tutorials/python/follow-along/python_setup_linux.html#install-miniconda",
+    "href": "tutorials/python/follow-along/python_setup_linux.html#install-miniconda",
+    "title": "Setup Python on Linux",
+    "section": "Install Miniconda",
+    "text": "Install Miniconda\nMiniconda is a Package manager. It’s used to install packages and resolve transitive dependencies.\nDownload and install Miniconda\nwget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_23.5.2-0-Linux-x86_64.sh -O miniconda.sh\n/bin/bash miniconda.sh\nRun this command if you do not want conda to automatically activate its base environment\nconda config --set auto_activate_base false"
+  },
+  {
+    "objectID": "tutorials/python/follow-along/python_setup_linux.html#install-dependencies",
+    "href": "tutorials/python/follow-along/python_setup_linux.html#install-dependencies",
+    "title": "Setup Python on Linux",
+    "section": "Install dependencies",
+    "text": "Install dependencies\nCreate and activate a new Python virtual environment that will be used for the tutorials\nconda create --name tutorial python=3.8.17\nconda activate tutorial\nThe prompt should start with (tutorial), to indicate that you are now in the tutorial venv.\nFrom now on, make sure you are always in the tutorial venv. If you restart your terminal, you might need to re-activate the tutorial venv before running any command.\nInstall Python dependencies in the tutorial venv, using Conda\nconda install conda-libmamba-solver\nconda config --set solver libmamba\nconda install jupyter\nconda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0\nThe version of matplotlib we need to install is not available on the conda repository. We need to install it using pip.\npython3 -m pip install matplotlib==3.7.5"
+  },
+  {
     "objectID": "tutorials/python/process-ereefs-data/correlation/correlation_wind_and_current_python.html",
     "href": "tutorials/python/process-ereefs-data/correlation/correlation_wind_and_current_python.html",
     "title": "Processing eReefs data ",
@@ -371,32 +399,11 @@
     "text": "Learn how to setup Python and follow along with the eReefs tutorials."
   },
   {
-    "objectID": "tutorials/python/follow-along/python_setup.html#install-python",
-    "href": "tutorials/python/follow-along/python_setup.html#install-python",
+    "objectID": "tutorials/python/follow-along/python_setup.html#installation",
+    "href": "tutorials/python/follow-along/python_setup.html#installation",
     "title": "Setup Python",
-    "section": "Install Python",
-    "text": "Install Python\n\nWindows\nDownload the installer for the latest stable release from the official Python website.\nMake sure you check the box Add python.exe to PATH when you install it.\nYou can verify that Python is properly installed by running this command in a command prompt:\npython --version\n\n\nLinux\nIn Ubuntu Linux, you can install Python using the following command:\nsudo apt-get install python3"
-  },
-  {
-    "objectID": "tutorials/python/follow-along/python_setup.html#install-miniconda",
-    "href": "tutorials/python/follow-along/python_setup.html#install-miniconda",
-    "title": "Setup Python",
-    "section": "Install Miniconda",
-    "text": "Install Miniconda\nMiniconda is a Package manager. It’s used to install packages and resolve transitive dependencies.\n\nWindows\nDownload and install Miniconda from the official Miniconda website.\nThe current installation instructions are as follow. Visit the website to make sure they haven’t changed.\ncurl https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe -o .\\miniconda.exe\nstart /wait \"\" .\\miniconda.exe /S\ndel .\\miniconda.exe\nOnce installed, click in the search box in windows bottom left corner of the menu bar, and search and execute the Anaconda Prompt. It will open a new Anaconda Prompt, in the default base venv (Python virtual environment). We will create a venv for the tutorials in the next step.\n\n\nLinux\nDownload and install Miniconda\nwget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_23.5.2-0-Linux-x86_64.sh -O miniconda.sh\n/bin/bash miniconda.sh\nRun this command if you do not want conda to automatically activate its base environment\nconda config --set auto_activate_base false"
-  },
-  {
-    "objectID": "tutorials/python/follow-along/python_setup.html#install-dependencies",
-    "href": "tutorials/python/follow-along/python_setup.html#install-dependencies",
-    "title": "Setup Python",
-    "section": "Install dependencies",
-    "text": "Install dependencies\nCreate and activate a new Python virtual environment that will be used for the tutorials\nconda create --name tutorial python=3.8.17\nconda activate tutorial\nThe prompt should start with (tutorial), to indicate that you are now in the tutorial venv.\nFrom now on, make sure you are always in the tutorial venv. If you restart your terminal, you might need to re-activate the tutorial venv before running any command.\nInstall Python dependencies in the tutorial venv, using Conda\nconda install conda-libmamba-solver\nconda config --set solver libmamba\nconda install jupyter\nconda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0"
-  },
-  {
-    "objectID": "tutorials/python/follow-along/python_setup.html#install-matplotlib",
-    "href": "tutorials/python/follow-along/python_setup.html#install-matplotlib",
-    "title": "Setup Python",
-    "section": "Install matplotlib",
-    "text": "Install matplotlib\nThe version of matplotlib we need to install is not available on the conda repository. We need to install it using pip.\n\nWindows\npython -m pip install matplotlib==3.7.5\n\n\nLinux\npython3 -m pip install matplotlib==3.7.5"
+    "section": "Installation",
+    "text": "Installation\nThe installation is different depending on you operating system.\n\nWindows installation instructions\nLinux installation instructions"
   },
   {
     "objectID": "tutorials/python/follow-along/python_setup.html#run-the-python-tutorials",
@@ -404,6 +411,34 @@
     "title": "Setup Python",
     "section": "Run the Python tutorials",
     "text": "Run the Python tutorials\nYou can copy and paste the code from the Python tutorial into a text file, and execute it using Python. The tutorials are made to be easy to follow with minimal requirements."
+  },
+  {
+    "objectID": "tutorials/python/follow-along/python_setup_windows.html",
+    "href": "tutorials/python/follow-along/python_setup_windows.html",
+    "title": "Setup Python on Windows",
+    "section": "",
+    "text": "Learn how to setup Python on Windows and follow along with the eReefs tutorials."
+  },
+  {
+    "objectID": "tutorials/python/follow-along/python_setup_windows.html#install-python",
+    "href": "tutorials/python/follow-along/python_setup_windows.html#install-python",
+    "title": "Setup Python on Windows",
+    "section": "Install Python",
+    "text": "Install Python\nDownload the installer for the latest stable release from the official Python website.\nMake sure you check the box Add python.exe to PATH when you install it.\nYou can verify that Python is properly installed by running this command in a command prompt:\npython --version"
+  },
+  {
+    "objectID": "tutorials/python/follow-along/python_setup_windows.html#install-miniconda",
+    "href": "tutorials/python/follow-along/python_setup_windows.html#install-miniconda",
+    "title": "Setup Python on Windows",
+    "section": "Install Miniconda",
+    "text": "Install Miniconda\nMiniconda is a Package manager. It’s used to install packages and resolve transitive dependencies.\nDownload and install Miniconda from the official Miniconda website.\nThe current installation instructions are as follow. Visit the website to make sure they haven’t changed.\ncurl https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe -o .\\miniconda.exe\nstart /wait \"\" .\\miniconda.exe /S\ndel .\\miniconda.exe\nOnce installed, click in the search box in windows bottom left corner of the menu bar, and search and execute the Anaconda Prompt. It will open a new Anaconda Prompt, in the default base venv (Python virtual environment). We will create a venv for the tutorials in the next step."
+  },
+  {
+    "objectID": "tutorials/python/follow-along/python_setup_windows.html#install-dependencies",
+    "href": "tutorials/python/follow-along/python_setup_windows.html#install-dependencies",
+    "title": "Setup Python on Windows",
+    "section": "Install dependencies",
+    "text": "Install dependencies\nCreate and activate a new Python virtual environment that will be used for the tutorials\nconda create --name tutorial python=3.8.17\nconda activate tutorial\nThe prompt should start with (tutorial), to indicate that you are now in the tutorial venv.\nFrom now on, make sure you are always in the tutorial venv. If you restart your terminal, you might need to re-activate the tutorial venv before running any command.\nInstall Python dependencies in the tutorial venv, using Conda\nconda install conda-libmamba-solver\nconda config --set solver libmamba\nconda install jupyter\nconda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0\nThe version of matplotlib we need to install is not available on the conda repository. We need to install it using pip.\npython -m pip install matplotlib==3.7.5"
   },
   {
     "objectID": "tutorials/python/access-ereefs-data-server/basic-server-access/basic_server_access_python.html",
