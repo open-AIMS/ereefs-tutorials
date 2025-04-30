@@ -163,8 +163,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#install-python" id="toc-install-python" class="nav-link active" data-scroll-target="#install-python">Install Python</a></li>
+  <li><a href="#install-python" id="toc-install-python" class="nav-link active" data-scroll-target="#install-python">Install Python</a>
+  <ul class="collapse">
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows">Windows</a></li>
+  <li><a href="#linux" id="toc-linux" class="nav-link" data-scroll-target="#linux">Linux</a></li>
+  </ul></li>
+  <li><a href="#install-miniconda" id="toc-install-miniconda" class="nav-link" data-scroll-target="#install-miniconda">Install Miniconda</a>
+  <ul class="collapse">
+  <li><a href="#windows-1" id="toc-windows-1" class="nav-link" data-scroll-target="#windows-1">Windows</a></li>
+  <li><a href="#linux-1" id="toc-linux-1" class="nav-link" data-scroll-target="#linux-1">Linux</a></li>
+  </ul></li>
   <li><a href="#install-dependencies" id="toc-install-dependencies" class="nav-link" data-scroll-target="#install-dependencies">Install dependencies</a></li>
+  <li><a href="#install-matplotlib" id="toc-install-matplotlib" class="nav-link" data-scroll-target="#install-matplotlib">Install matplotlib</a>
+  <ul class="collapse">
+  <li><a href="#windows-2" id="toc-windows-2" class="nav-link" data-scroll-target="#windows-2">Windows</a></li>
+  <li><a href="#linux-2" id="toc-linux-2" class="nav-link" data-scroll-target="#linux-2">Linux</a></li>
+  </ul></li>
   <li><a href="#run-the-python-tutorials" id="toc-run-the-python-tutorials" class="nav-link" data-scroll-target="#run-the-python-tutorials">Run the Python tutorials</a></li>
   </ul>
 </nav>
@@ -197,26 +211,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="install-python" class="level2">
 <h2 class="anchored" data-anchor-id="install-python">Install Python</h2>
+<section id="windows" class="level3">
+<h3 class="anchored" data-anchor-id="windows">Windows</h3>
+<p>Download the installer for the latest stable release from the official <a href="https://www.python.org/downloads/windows/">Python website</a>.</p>
+<p>Make sure you check the box <code>Add python.exe to PATH</code> when you install it.</p>
+<p>You can verify that Python is properly installed by running this command in a command prompt:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="linux" class="level3">
+<h3 class="anchored" data-anchor-id="linux">Linux</h3>
 <p>In Ubuntu Linux, you can install Python using the following command:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install python3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install python3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="install-miniconda" class="level2">
+<h2 class="anchored" data-anchor-id="install-miniconda">Install Miniconda</h2>
+<p>Miniconda is a Package manager. It’s used to install packages and resolve transitive dependencies.</p>
+<section id="windows-1" class="level3">
+<h3 class="anchored" data-anchor-id="windows-1">Windows</h3>
+<p>Download and install Miniconda from the official <a href="https://www.anaconda.com/docs/getting-started/miniconda/install">Miniconda website</a>.</p>
+<p>The current installation instructions are as follow. Visit the website to make sure they haven’t changed.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe <span class="at">-o</span> .<span class="dt">\m</span>iniconda.exe</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">start</span> /wait <span class="st">""</span> .<span class="dt">\m</span>iniconda.exe /S</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">del</span> .<span class="dt">\m</span>iniconda.exe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once installed, click in the search box in windows bottom left corner of the menu bar, and search and execute the <code>Anaconda Prompt</code>. It will open a new <code>Anaconda Prompt</code>, in the default <code>base</code> venv (Python virtual environment). We will create a venv for the tutorials in the next step.</p>
+</section>
+<section id="linux-1" class="level3">
+<h3 class="anchored" data-anchor-id="linux-1">Linux</h3>
+<p>Download and install Miniconda</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">--quiet</span> https://repo.anaconda.com/miniconda/Miniconda3-py38_23.5.2-0-Linux-x86_64.sh <span class="at">-O</span> miniconda.sh</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> miniconda.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Run this command if you do not want conda to automatically activate its base environment</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> auto_activate_base false</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 </section>
 <section id="install-dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="install-dependencies">Install dependencies</h2>
-<p>Install Conda</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">--quiet</span> https://repo.anaconda.com/miniconda/Miniconda3-py38_23.5.2-0-Linux-x86_64.sh <span class="at">-O</span> miniconda.sh</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> miniconda.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Run this command if you do not want conda to automatically activate its base environment</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> auto_activate_base false</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Install Python dependencies using Conda</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> tutorial python=3.8.17</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate tutorial</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install conda-libmamba-solver</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> solver libmamba</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install jupyter</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Install <code>matplotlib</code> version 3.7.5 using pip. That version is not available from <code>conda</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate tutorial</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> pip install matplotlib==3.7.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Create and activate a new Python virtual environment that will be used for the tutorials</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> tutorial python=3.8.17</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate tutorial</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The prompt should start with <code>(tutorial)</code>, to indicate that you are now in the <code>tutorial</code> venv.</p>
+<p>From now on, make sure you are always in the <code>tutorial</code> venv. If you restart your terminal, you might need to re-activate the <code>tutorial</code> venv before running any command.</p>
+<p>Install Python dependencies in the <code>tutorial</code> venv, using Conda</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install conda-libmamba-solver</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> solver libmamba</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install jupyter</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="install-matplotlib" class="level2">
+<h2 class="anchored" data-anchor-id="install-matplotlib">Install matplotlib</h2>
+<p>The version of <code>matplotlib</code> we need to install is not available on the <code>conda</code> repository. We need to install it using <code>pip</code>.</p>
+<section id="windows-2" class="level3">
+<h3 class="anchored" data-anchor-id="windows-2">Windows</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install matplotlib==3.7.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="linux-2" class="level3">
+<h3 class="anchored" data-anchor-id="linux-2">Linux</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> pip install matplotlib==3.7.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 </section>
 <section id="run-the-python-tutorials" class="level2">
 <h2 class="anchored" data-anchor-id="run-the-python-tutorials">Run the Python tutorials</h2>

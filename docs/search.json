@@ -375,14 +375,28 @@
     "href": "tutorials/python/follow-along/python_setup.html#install-python",
     "title": "Setup Python",
     "section": "Install Python",
-    "text": "Install Python\nIn Ubuntu Linux, you can install Python using the following command:\nsudo apt-get install python3"
+    "text": "Install Python\n\nWindows\nDownload the installer for the latest stable release from the official Python website.\nMake sure you check the box Add python.exe to PATH when you install it.\nYou can verify that Python is properly installed by running this command in a command prompt:\npython --version\n\n\nLinux\nIn Ubuntu Linux, you can install Python using the following command:\nsudo apt-get install python3"
+  },
+  {
+    "objectID": "tutorials/python/follow-along/python_setup.html#install-miniconda",
+    "href": "tutorials/python/follow-along/python_setup.html#install-miniconda",
+    "title": "Setup Python",
+    "section": "Install Miniconda",
+    "text": "Install Miniconda\nMiniconda is a Package manager. It’s used to install packages and resolve transitive dependencies.\n\nWindows\nDownload and install Miniconda from the official Miniconda website.\nThe current installation instructions are as follow. Visit the website to make sure they haven’t changed.\ncurl https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe -o .\\miniconda.exe\nstart /wait \"\" .\\miniconda.exe /S\ndel .\\miniconda.exe\nOnce installed, click in the search box in windows bottom left corner of the menu bar, and search and execute the Anaconda Prompt. It will open a new Anaconda Prompt, in the default base venv (Python virtual environment). We will create a venv for the tutorials in the next step.\n\n\nLinux\nDownload and install Miniconda\nwget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_23.5.2-0-Linux-x86_64.sh -O miniconda.sh\n/bin/bash miniconda.sh\nRun this command if you do not want conda to automatically activate its base environment\nconda config --set auto_activate_base false"
   },
   {
     "objectID": "tutorials/python/follow-along/python_setup.html#install-dependencies",
     "href": "tutorials/python/follow-along/python_setup.html#install-dependencies",
     "title": "Setup Python",
     "section": "Install dependencies",
-    "text": "Install dependencies\nInstall Conda\nwget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_23.5.2-0-Linux-x86_64.sh -O miniconda.sh\n/bin/bash miniconda.sh\nRun this command if you do not want conda to automatically activate its base environment\nconda config --set auto_activate_base false\nInstall Python dependencies using Conda\nconda create --name tutorial python=3.8.17\nconda activate tutorial\nconda install conda-libmamba-solver\nconda config --set solver libmamba\nconda install jupyter\nconda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0\nInstall matplotlib version 3.7.5 using pip. That version is not available from conda.\nconda activate tutorial\npython3 -m pip install matplotlib==3.7.5"
+    "text": "Install dependencies\nCreate and activate a new Python virtual environment that will be used for the tutorials\nconda create --name tutorial python=3.8.17\nconda activate tutorial\nThe prompt should start with (tutorial), to indicate that you are now in the tutorial venv.\nFrom now on, make sure you are always in the tutorial venv. If you restart your terminal, you might need to re-activate the tutorial venv before running any command.\nInstall Python dependencies in the tutorial venv, using Conda\nconda install conda-libmamba-solver\nconda config --set solver libmamba\nconda install jupyter\nconda install -c conda-forge netcdf4=1.5.8 pandas=1.4.2 pyjanitor=0.27.0 folium=0.16.0 cartopy=0.21.1 pip=24.0"
+  },
+  {
+    "objectID": "tutorials/python/follow-along/python_setup.html#install-matplotlib",
+    "href": "tutorials/python/follow-along/python_setup.html#install-matplotlib",
+    "title": "Setup Python",
+    "section": "Install matplotlib",
+    "text": "Install matplotlib\nThe version of matplotlib we need to install is not available on the conda repository. We need to install it using pip.\n\nWindows\npython -m pip install matplotlib==3.7.5\n\n\nLinux\npython3 -m pip install matplotlib==3.7.5"
   },
   {
     "objectID": "tutorials/python/follow-along/python_setup.html#run-the-python-tutorials",
