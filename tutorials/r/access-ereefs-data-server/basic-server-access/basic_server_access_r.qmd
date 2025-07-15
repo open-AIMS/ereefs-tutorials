@@ -27,7 +27,7 @@ downloading any unneeded data.
 
 ## Motivating problem
 
-We will extract the daily mean water temperature for the 10th of December 2022 at 1.5 m depth  across the
+We will extract the daily mean water temperature for the 10th of October 2022 at 1.5 m depth  across the
 entire scope of the eReefs model. We will then save and plot this data. This example will introduce the
 basics of how to connect to files on the server and extract the data we want.
 
@@ -57,20 +57,20 @@ wish to use `ncdf4`, the functions used herein have obvious analogues; for examp
 
 First we need to find the right NetCDF file on the server. The available eReefs data NetCDF files are listed
 in the [AIMS eReefs THREDDS catalogue](https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html). We
-will navigate to the eReefs 4 km Hydrodynamic Model daily aggregated data for the month of December 2022 and
+will navigate to the eReefs 4 km Hydrodynamic Model daily aggregated data for the month of October 2022 and
 copy the OPeNDAP data URL.
 
 ![](images/server_navigation.gif)
 
 ```{r serverFileLink}
 #| code-overflow: wrap
-input_file <- "https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr4_v2/daily-monthly/EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-2022-12.nc"
+input_file <- "https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr4_v4/daily-monthly/EREEFS_AIMS-CSIRO_gbr4_v4_hydro_daily-monthly-2022-10.nc"
 ```
 
 We can then open a connection to this file using the `RNetCDF::open.nc` function.
 
 ```{r openServerFile}
-dailyAggDec22.nc <- open.nc(input_file)
+dailyAggOct22.nc <- open.nc(input_file)
 ```
 
 ::: {.callout-note appearance="simple"}
@@ -84,13 +84,13 @@ If we wish to investigate the structure of the file we have connected to, includ
 dimensions are available, we can print a summary.
 
 ```{r printFileCode, eval=FALSE}
-summary <- print.nc(dailyAggDec22.nc)
+summary <- print.nc(dailyAggOct22.nc)
 ```
 
 <details><summary><code>summary</code></summary>
 
 ```{r printFileRun, echo=FALSE}
-print.nc(dailyAggDec22.nc)
+print.nc(dailyAggOct22.nc)
 ```
 </details>
 
@@ -98,7 +98,7 @@ print.nc(dailyAggDec22.nc)
 ## Extract data
 
 Now that we have an open connection to a file on the server we need to extract the daily mean temperature at
-1.5m depth for the 10th of December.
+1.5m depth for the 10th of October.
 
 From the `summary` output above we can see that the variable corresponding to temperature is:
 $\texttt{ temp(longitude, latitude, k, time)}$.
@@ -112,7 +112,7 @@ To extract data from the file we will use the function
 
 We need to give the function:
 
-  * `ncfile`: a NetCDF file connection; in our case `dailyAggDec22.nc`.
+  * `ncfile`: a NetCDF file connection; in our case `dailyAggOct22.nc`.
   * `variable`: the name or id of the data variable we wish to extract; in our case `"temp"`.
   * `start`: a vector of indices of where to start getting data, one for each dimension of the variable. Since we have $\texttt{temp(longitude, latitude, k, time)}$  we need to tell the function where to start getting data along each of the four dimensions.
   * `count`: similar to start, but specifying the number of temperature values to extract along each dimension.
@@ -148,7 +148,7 @@ if (knitr::is_html_output()) {
 
 
 
-**Time**: Since we have the daily aggregated data for December 2022, and are interested only in a single day
+**Time**: Since we have the daily aggregated data for October 2022, and are interested only in a single day
 (the 10th), `time` is also a constant value. From the summary output we can see we have 31 time indexes,
 these correspond to the day of the month, therefore we want `time=10`.
 
@@ -159,8 +159,8 @@ output, where we see $\texttt{longitude = 491}$ and $\texttt{latitude = 723}$. H
 lengths programmatically.
 
 ```{r getFileLonLat}
-lon <- var.get.nc(dailyAggDec22.nc, "longitude")
-lat <- var.get.nc(dailyAggDec22.nc, "latitude")
+lon <- var.get.nc(dailyAggOct22.nc, "longitude")
+lat <- var.get.nc(dailyAggOct22.nc, "latitude")
 data.frame(length(lon), length(lat))
 ```
 
@@ -192,15 +192,15 @@ start_vector <- c(lon_st, lat_st, depth_st, time_st)
 count_vector <- c(lon_ct, lat_ct, time_ct, depth_ct)
 
 # EXTRACT DATA
-temps_10Dec22_1p5m <- var.get.nc(
-  ncfile = dailyAggDec22.nc,
+temps_10Oct22_1p5m <- var.get.nc(
+  ncfile = dailyAggOct22.nc,
   variable = "temp",
   start = start_vector,
   count = count_vector
 )
 
 # Get the size of our extracted data
-dims <- dim(temps_10Dec22_1p5m)
+dims <- dim(temps_10Oct22_1p5m)
 data.frame(nrows = dims[1], ncols = dims[2])
 ```
 
@@ -211,7 +211,7 @@ Now that our extracted data is stored in memory, we should close the connection 
 server.
 
 ```{r closeServerFile}
-close.nc(dailyAggDec22.nc)
+close.nc(dailyAggOct22.nc)
 ```
 
 
@@ -225,7 +225,7 @@ When converting extracted eReefs data to rasters we need to apply the transpose 
 in order to get the correct orientation.
 
 ```{r createRaster}
-temps_raster <- temps_10Dec22_1p5m |>
+temps_raster <- temps_10Oct22_1p5m |>
   t() |>   # transpose temps matrix
   raster(  # create raster
     xmn = min(lon), xmx = max(lon),
@@ -250,7 +250,7 @@ Now we have our raster (in the correct orientation), saving it is easy.
 ```{r saveRaster, message=FALSE, results=FALSE}
 # Save the raster file in the /data subdirectory
 # Note the '.nc' file extension since we are going to save as NetCDF
-save_file <- "data/ereefsDailyMeanWaterTemperature_10Dec2022_Depth1p5m.nc"
+save_file <- "data/ereefsDailyMeanWaterTemperature_10Oct2022_Depth1p5m.nc"
 
 writeRaster(
   x = temps_raster, # what to save
@@ -268,7 +268,7 @@ running `install.packages("ncdf4")` from an R console.
 To prove to ourselves that this worked, lets read the file back in and plot it.
 
 ```{r readAndPlotRaster}
-#| fig-cap: Extracted eReefs daily aggregated mean temperature at 1.5m depth for 10 December 2022.
+#| fig-cap: Extracted eReefs daily aggregated mean temperature at 1.5m depth for 10 October 2022.
 #| label: fig-temps-plot
 
 # Read back in the saved NetCDF file as a raster

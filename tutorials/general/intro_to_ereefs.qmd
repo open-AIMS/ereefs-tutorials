@@ -233,7 +233,7 @@ A near-real-time and hindcast version of the models were produced in
 version 2.0 of the hydrodynamic model. This operated up until Jan 2024
 when the near-real-time model was stopped. A set of river gauge stations
 that provided river flow data to the near-real-time model were destroyed
-by Cyclone Japser.
+by Cyclone Jasper.
 
 ### Hindcast modelling
 
@@ -299,7 +299,7 @@ readxl::read_xlsx("../../resources/ereefs_hydro_bgc_model_variables.xlsx", sheet
 The eReefs models are three dimensional, modelling the water column as a
 series of depth layers. Each layer represents a segment of the water
 column between two depths, with the spacing of the layers increasing
-with depth. With v2.0 of the hydrodynamic model and the matching v3.2
+with depth. With v4.0 of the hydrodynamic model and the matching v3.2
 of the BGC model the depths of layers vary between the GBR1 and GBR4
 grids.
 
@@ -308,9 +308,9 @@ extract. The index (k) of the depth variable (zc) varies between the raw
 model data, that has the full range of depths, and the regridded data that
 only has a subset of the depths.
 
-#### Raw FX3 models (GBR1 v2.0 & GBR4 v2.0)
+#### Raw FX3 models (GBR1 v2.0 & GBR4 v4.0)
 
-| k (GBR1 v2.0) | Depth (m) | k (GBR4 v2.0) | Depth (m) |
+| k (GBR1 v2.0) | Depth (m) | k (GBR4 v4.0) | Depth (m) |
 |-------------:|-----------:|-------------:|-----------:|
 | 0            |  -3885.0   | 0            |  -3890.0  |
 | 1            |  -3660.0   | 1            |  -3680.0  |
@@ -327,7 +327,7 @@ only has a subset of the depths.
 | 43           |    1.50    | 46           |     1.50  |
 
 
-#### Regridded aggregate models (GBR1 v2.0 & GBR4 v2.0)
+#### Regridded aggregate models (GBR1 v2.0 & GBR4 v4.0)
 
 | k (GBR1 agg) | Depth (m) | k (GBR4 agg) | Depth (m) |
 |-------------:|-----------:|-------------:|-----------:|
@@ -521,4 +521,4 @@ the peak winds of cyclones.
 * [A video presentation on the *eReefs* platform](https://www.youtube.com/watch?v=NYtlU-iMC0M)
 * [The 'eReefs Research' website](https://research.csiro.au/ereefs/)
 * [The research paper "eReefs: An operational information system for managing the Great Barrier Reef"](https://doi.org/10.1080/1755876X.2019.1650589)
-* [The CSIRO Enironmental Modelling Suite (EMS) documentation](https://research.csiro.au/cem/software/ems/ems-documentation/)
+* [The CSIRO Environmental Modelling Suite (EMS) documentation](https://research.csiro.au/cem/software/ems/ems-documentation/)

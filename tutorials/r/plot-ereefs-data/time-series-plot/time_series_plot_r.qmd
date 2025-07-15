@@ -72,7 +72,7 @@ section below.
 
 ## The data
 
-Data was extracted from the [eReefs GBR Hydrological Model (4km) v2.0](https://ereefs.aims.gov.au/ereefs-aims/gbr4/temp-wind-salt-current)
+Data was extracted from the [eReefs GBR Hydrological Model (4km) v4.0](https://ereefs.aims.gov.au/ereefs-aims/gbr4_v4/temp-wind-salt-current)
 using the online [data extraction tool](https://extraction.ereefs.aims.gov.au/extract-data) for a single
 point approximately 60 km south of Lizard Island (shown in @fig-site). For this point we extracted the daily
 aggregated data for the northward current at a depth of 0.5 m (as coral larvae generally travel in the top of

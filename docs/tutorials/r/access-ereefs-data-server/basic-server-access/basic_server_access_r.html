@@ -236,7 +236,7 @@ window.Quarto = {
 <p>For example, say we want the daily mean surface temperature at a single location for the last 30 days. If we were to download the 30 individual daily aggregated NetCDF files, with each file ~ 350 Mb, this would require us to download over 10 Gb of data just to get 300 numbers. The vast majority of this data would be irrelevant to our needs as the NetCDF files contain data for a range of variables, at a range of depths, for many, many locations. However, with OPeNDAP, we can extract the daily mean values directly from the server without downloading any unneeded data.</p>
 <section id="motivating-problem" class="level2">
 <h2 class="anchored" data-anchor-id="motivating-problem">Motivating problem</h2>
-<p>We will extract the daily mean water temperature for the 10th of December 2022 at 1.5 m depth across the entire scope of the eReefs model. We will then save and plot this data. This example will introduce the basics of how to connect to files on the server and extract the data we want.</p>
+<p>We will extract the daily mean water temperature for the 10th of October 2022 at 1.5 m depth across the entire scope of the eReefs model. We will then save and plot this data. This example will introduce the basics of how to connect to files on the server and extract the data we want.</p>
 </section>
 <section id="navigating-the-ereefs-server" class="level2">
 <h2 class="anchored" data-anchor-id="navigating-the-ereefs-server">Navigating the eReefs server</h2>
@@ -261,14 +261,14 @@ window.Quarto = {
 </section>
 <section id="connect-to-a-file-on-the-server" class="level2">
 <h2 class="anchored" data-anchor-id="connect-to-a-file-on-the-server">Connect to a file on the server</h2>
-<p>First we need to find the right NetCDF file on the server. The available eReefs data NetCDF files are listed in the <a href="https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html">AIMS eReefs THREDDS catalogue</a>. We will navigate to the eReefs 4 km Hydrodynamic Model daily aggregated data for the month of December 2022 and copy the OPeNDAP data URL.</p>
+<p>First we need to find the right NetCDF file on the server. The available eReefs data NetCDF files are listed in the <a href="https://thredds.ereefs.aims.gov.au/thredds/catalog/catalog.html">AIMS eReefs THREDDS catalogue</a>. We will navigate to the eReefs 4 km Hydrodynamic Model daily aggregated data for the month of October 2022 and copy the OPeNDAP data URL.</p>
 <p><img src="images/server_navigation.gif" class="img-fluid"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>input_file <span class="ot">&lt;-</span> <span class="st">"https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr4_v2/daily-monthly/EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-2022-12.nc"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>input_file <span class="ot">&lt;-</span> <span class="st">"https://thredds.ereefs.aims.gov.au/thredds/dodsC/ereefs/gbr4_v4/daily-monthly/EREEFS_AIMS-CSIRO_gbr4_v4_hydro_daily-monthly-2022-10.nc"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can then open a connection to this file using the <code>RNetCDF::open.nc</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dailyAggDec22.nc <span class="ot">&lt;-</span> <span class="fu">open.nc</span>(input_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dailyAggOct22.nc <span class="ot">&lt;-</span> <span class="fu">open.nc</span>(input_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -285,7 +285,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="print-a-file-summary">Print a file summary</h2>
 <p>If we wish to investigate the structure of the file we have connected to, including what variables and dimensions are available, we can print a summary.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>summary <span class="ot">&lt;-</span> <span class="fu">print.nc</span>(dailyAggDec22.nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>summary <span class="ot">&lt;-</span> <span class="fu">print.nc</span>(dailyAggOct22.nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details>
 <summary>
@@ -310,8 +310,8 @@ variables:
         NC_CHAR mean_cur:long_name = "mean_current_speed" ;
         NC_INT mean_cur:_ChunkSizes = 1, 1, 133, 491 ;
     NC_FLOAT salt(longitude, latitude, k, time) ;
-        NC_CHAR salt:qudt__unit = "http://qudt.org/vocab/unit/PSU" ;
         NC_CHAR salt:puv__parameter = "http://vocab.nerc.ac.uk/collection/P01/current/PSLTMP01/" ;
+        NC_CHAR salt:puv__uom = "http://qudt.org/vocab/unit/PSU" ;
         NC_CHAR salt:coordinates = "time zc latitude longitude" ;
         NC_CHAR salt:short_name = "salt" ;
         NC_CHAR salt:aggregation = "Daily" ;
@@ -319,7 +319,7 @@ variables:
         NC_CHAR salt:long_name = "Salinity" ;
         NC_INT salt:_ChunkSizes = 1, 1, 133, 491 ;
     NC_FLOAT temp(longitude, latitude, k, time) ;
-        NC_CHAR temp:puv__parameter = "https://vocab.nerc.ac.uk/collection/P01/current/TEMPMP01/" ;
+        NC_CHAR temp:puv__parameter = "http://vocab.nerc.ac.uk/collection/P01/current/TEMPMP01/" ;
         NC_CHAR temp:coordinates = "time zc latitude longitude" ;
         NC_CHAR temp:short_name = "temp" ;
         NC_CHAR temp:aggregation = "Daily" ;
@@ -349,6 +349,7 @@ variables:
         NC_CHAR v:long_name = "Northward current" ;
         NC_INT v:_ChunkSizes = 1, 1, 133, 491 ;
     NC_DOUBLE zc(k) ;
+        NC_CHAR zc:puv__uom = "http://vocab.nerc.ac.uk/collection/P06/current/ULAA/" ;
         NC_CHAR zc:units = "m" ;
         NC_CHAR zc:positive = "up" ;
         NC_CHAR zc:long_name = "Z coordinate" ;
@@ -366,13 +367,12 @@ variables:
         NC_CHAR time:_CoordinateAxisType = "Time" ;
         NC_INT time:_ChunkSizes = 1024 ;
     NC_DOUBLE latitude(latitude) ;
+        NC_CHAR latitude:puv__uom = "http://vocab.nerc.ac.uk/collection/P06/current/DEGN/" ;
         NC_CHAR latitude:units = "degrees_north" ;
         NC_CHAR latitude:long_name = "Latitude" ;
         NC_CHAR latitude:standard_name = "latitude" ;
         NC_CHAR latitude:coordinate_type = "latitude" ;
         NC_CHAR latitude:projection = "geographic" ;
-        NC_CHAR latitude:puv__ofProperty = "http://vocab.nerc.ac.uk/collection/S06/current/S0600045/" ;
-        NC_CHAR latitude:puv__uom = "http://vocab.nerc.ac.uk/collection/P06/current/DEGN/" ;
         NC_CHAR latitude:_CoordinateAxisType = "Lat" ;
     NC_DOUBLE longitude(longitude) ;
         NC_CHAR longitude:puv__uom = "http://vocab.nerc.ac.uk/collection/P06/current/DEGE/" ;
@@ -392,7 +392,7 @@ variables:
         NC_CHAR mean_wspeed:long_name = "mean_wind_speed" ;
         NC_INT mean_wspeed:_ChunkSizes = 1, 133, 491 ;
     NC_FLOAT eta(longitude, latitude, time) ;
-        NC_CHAR eta:puv__parameter = "https://vocab.nerc.ac.uk/collection/P01/current/ASLVMP01/" ;
+        NC_CHAR eta:puv__parameter = "http://vocab.nerc.ac.uk/collection/P01/current/ASLVMP01/" ;
         NC_CHAR eta:coordinates = "time latitude longitude" ;
         NC_CHAR eta:short_name = "eta" ;
         NC_CHAR eta:standard_name = "sea_surface_height_above_geoid" ;
@@ -403,46 +403,51 @@ variables:
         NC_INT eta:_ChunkSizes = 1, 133, 491 ;
     NC_FLOAT wspeed_u(longitude, latitude, time) ;
         NC_CHAR wspeed_u:puv__parameter = "http://vocab.nerc.ac.uk/collection/P01/current/ESEWMPXX/" ;
+        NC_CHAR wspeed_u:vector_components = "wspeed_u wspeed_v" ;
         NC_CHAR wspeed_u:coordinates = "time latitude longitude" ;
         NC_CHAR wspeed_u:short_name = "wspeed_u" ;
+        NC_CHAR wspeed_u:standard_name = "eastward_wind" ;
+        NC_CHAR wspeed_u:vector_name = "Wind" ;
         NC_CHAR wspeed_u:aggregation = "Daily" ;
         NC_CHAR wspeed_u:units = "ms-1" ;
-        NC_CHAR wspeed_u:long_name = "eastward_wind" ;
+        NC_CHAR wspeed_u:long_name = "Eastward wind" ;
         NC_INT wspeed_u:_ChunkSizes = 1, 133, 491 ;
     NC_FLOAT wspeed_v(longitude, latitude, time) ;
         NC_CHAR wspeed_v:puv__parameter = "http://vocab.nerc.ac.uk/collection/P01/current/ESNSMPXX/" ;
+        NC_CHAR wspeed_v:vector_components = "wspeed_u wspeed_v" ;
         NC_CHAR wspeed_v:coordinates = "time latitude longitude" ;
         NC_CHAR wspeed_v:short_name = "wspeed_v" ;
+        NC_CHAR wspeed_v:standard_name = "northward_wind" ;
+        NC_CHAR wspeed_v:vector_name = "Wind" ;
         NC_CHAR wspeed_v:aggregation = "Daily" ;
         NC_CHAR wspeed_v:units = "ms-1" ;
-        NC_CHAR wspeed_v:long_name = "northward_wind" ;
+        NC_CHAR wspeed_v:long_name = "Northward wind" ;
         NC_INT wspeed_v:_ChunkSizes = 1, 133, 491 ;
 
 // global attributes:
         NC_CHAR :Conventions = "CF-1.0" ;
-        NC_CHAR :Parameter_File_Revision = "$Revision: 1753 $" ;
-        NC_CHAR :Run_ID = "2.1" ;
-        NC_CHAR :Run_code = "GBR4 Hydro|G0.00|H2.10|S0.00|B0.00" ;
+        NC_CHAR :Parameter_File_Revision = "$Revision$" ;
+        NC_CHAR :Run_ID = "4.0" ;
+        NC_CHAR :Run_code = "SHOC grid|G3.00|H4.0|S-3.00|B0.00" ;
         NC_CHAR :_CoordSysBuilder = "ucar.nc2.dataset.conv.CF1Convention" ;
-        NC_CHAR :aims_ncaggregate_buildDate = "2023-01-25T03:48:20+10:00" ;
-        NC_CHAR :aims_ncaggregate_datasetId = "products__ncaggregate__ereefs__gbr4_v2__daily-monthly/EREEFS_AIMS-CSIRO_gbr4_v2_hydro_daily-monthly-2022-12" ;
-        NC_CHAR :aims_ncaggregate_firstDate = "2022-12-01T00:00:00+10:00" ;
-        NC_CHAR :aims_ncaggregate_inputs = "[products__ncaggregate__ereefs__gbr4_v2__raw/EREEFS_AIMS-CSIRO_gbr4_v2_hydro_raw_2022-12::MD5:bd27b033d40e598c20348044720deb73]" ;
-        NC_CHAR :aims_ncaggregate_lastDate = "2022-12-31T00:00:00+10:00" ;
+        NC_CHAR :aims_ncaggregate_buildDate = "2025-06-13T15:26:28+10:00" ;
+        NC_CHAR :aims_ncaggregate_datasetId = "products__ncaggregate__ereefs__gbr4_v4__daily-monthly/EREEFS_AIMS-CSIRO_gbr4_v4_hydro_daily-monthly-2022-10" ;
+        NC_CHAR :aims_ncaggregate_firstDate = "2022-10-01T00:00:00+10:00" ;
+        NC_CHAR :aims_ncaggregate_inputs = "[products__ncaggregate__ereefs__gbr4_v4__raw/EREEFS_AIMS-CSIRO_gbr4_v4_hydro_raw_2022-10::MD5:be53ddf69130a8e39363f68ec599936b]" ;
+        NC_CHAR :aims_ncaggregate_lastDate = "2022-10-31T00:00:00+10:00" ;
         NC_CHAR :bald__isPrefixedBy = "prefix_list" ;
-        NC_CHAR :date_created = "Sun Dec 11 21:24:39 2022" ;
-        NC_CHAR :description = "Aggregation of raw hourly input data (from eReefs AIMS-CSIRO GBR4 Hydrodynamic v2 subset) to daily means. Also calculates mean magnitude of wind and ocean current speeds. Data is regridded from curvilinear (per input data) to rectilinear via inverse weighted distance from up to 4 closest cells." ;
-        NC_CHAR :ems_version = "v1.4.0 rev(6949)" ;
-        NC_CHAR :history = "2023-01-24T10:49:00+10:00: vendor: AIMS; processing: None summaries
-2023-01-25T03:48:20+10:00: vendor: AIMS; processing: Daily summaries" ;
+        NC_CHAR :date_created = "Mon Oct 21 15:22:31 2024" ;
+        NC_CHAR :description = "Aggregation of raw hourly input data (from eReefs AIMS-CSIRO GBR4 Hydrodynamic v4 subset) to daily means. Also calculates mean magnitude of wind and ocean current speeds. Data is regridded from curvilinear (per input data) to rectilinear via inverse weighted distance from up to 4 closest cells." ;
+        NC_CHAR :ems_version = "v1.4.0 rev(7365)" ;
+        NC_CHAR :history = "2025-06-13T14:12:13+10:00: vendor: AIMS; processing: None summaries
+2025-06-13T15:26:28+10:00: vendor: AIMS; processing: Daily summaries" ;
         NC_CHAR :metadata_link = "https://eatlas.org.au/data/uuid/350aed53-ae0f-436e-9866-d34db7f04d2e" ;
-        NC_CHAR :paramfile = "./prm/gbr4_hydro_nrt.prm" ;
-        NC_CHAR :paramhead = "GBR 4km resolution grid" ;
+        NC_CHAR :paramfile = "/g/data/et4/projects/eReefs/gbr4_H4p0_ABARRAr2_OBRAN2020_FG2Gv3_Dhnd/tran/gbr4_H4p0_ABARRAr2_OBRAN2020_FG2Gv3.tran" ;
+        NC_CHAR :paramhead = "eReefs GBR 4k grid, with Atmospheric forcing using BARRAr2, open Ocean forcing using BRAN2020, river Flows forcing using G2G and QDES SOURCE; Deployed as a hindcast. Hydro GBR4 parameter file 4.0." ;
         NC_CHAR :prefix_list_puv__ = "https://w3id.org/env/puv#" ;
-        NC_CHAR :prefix_list_qudt__ = "http://qudt.org/vocab/unit/" ;
-        NC_CHAR :technical_guide_link = "https://eatlas.org.au/pydio/public/aims-ereefs-platform-technical-guide-to-derived-products-from-csiro-ereefs-models-pdf" ;
+        NC_CHAR :technical_guide_link = "https://nextcloud.eatlas.org.au/apps/sharealias/a/aims-ereefs-platform-technical-guide-to-derived-products-from-csiro-ereefs-models-pdf" ;
         NC_CHAR :technical_guide_publish_date = "2020-08-18" ;
-        NC_CHAR :title = "eReefs AIMS-CSIRO GBR4 Hydrodynamic v2 daily aggregation" ;
+        NC_CHAR :title = "eReefs AIMS-CSIRO GBR4 Hydrodynamic v4 daily aggregation" ;
         NC_CHAR :DODS_EXTRA.Unlimited_Dimension = "time" ;
 }</code></pre>
 </div>
@@ -451,14 +456,14 @@ variables:
 </section>
 <section id="extract-data" class="level2">
 <h2 class="anchored" data-anchor-id="extract-data">Extract data</h2>
-<p>Now that we have an open connection to a file on the server we need to extract the daily mean temperature at 1.5m depth for the 10th of December.</p>
+<p>Now that we have an open connection to a file on the server we need to extract the daily mean temperature at 1.5m depth for the 10th of October.</p>
 <p>From the <code>summary</code> output above we can see that the variable corresponding to temperature is: <span class="math inline">\(\texttt{ temp(longitude, latitude, k, time)}\)</span>.</p>
 <p>The dimensions for temperature are in brackets. This means that there is a temperature value for every combination of longitude, latitude, depth (k) and time. We can now see why these NetCDF files are so large.</p>
 <p>To extract data from the file we will use the function</p>
 <p><code>RNetCDF::var.get.nc(ncfile, variable, start=NA, count=NA, ...)</code></p>
 <p>We need to give the function:</p>
 <ul>
-<li><code>ncfile</code>: a NetCDF file connection; in our case <code>dailyAggDec22.nc</code>.</li>
+<li><code>ncfile</code>: a NetCDF file connection; in our case <code>dailyAggOct22.nc</code>.</li>
 <li><code>variable</code>: the name or id of the data variable we wish to extract; in our case <code>"temp"</code>.</li>
 <li><code>start</code>: a vector of indices of where to start getting data, one for each dimension of the variable. Since we have <span class="math inline">\(\texttt{temp(longitude, latitude, k, time)}\)</span> we need to tell the function where to start getting data along each of the four dimensions.</li>
 <li><code>count</code>: similar to start, but specifying the number of temperature values to extract along each dimension.</li>
@@ -600,11 +605,11 @@ Table of eReefs depths corresponding to index <code>k</code>
 </div>
 </div>
 </details>
-<p><strong>Time</strong>: Since we have the daily aggregated data for December 2022, and are interested only in a single day (the 10th), <code>time</code> is also a constant value. From the summary output we can see we have 31 time indexes, these correspond to the day of the month, therefore we want <code>time=10</code>.</p>
+<p><strong>Time</strong>: Since we have the daily aggregated data for October 2022, and are interested only in a single day (the 10th), <code>time</code> is also a constant value. From the summary output we can see we have 31 time indexes, these correspond to the day of the month, therefore we want <code>time=10</code>.</p>
 <p><strong>Longitude and latitude</strong>: We want temperatures for every available longitude and latitude so we can plot the data across the entire spatial range of the eReefs model. Therefore we want to start at index 1 and count for the entire length of latitude and longitude. To get the lengths we could note the values from the summary output, where we see <span class="math inline">\(\texttt{longitude = 491}\)</span> and <span class="math inline">\(\texttt{latitude = 723}\)</span>. However we could also get the lengths programmatically.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(dailyAggDec22.nc, <span class="st">"longitude"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(dailyAggDec22.nc, <span class="st">"latitude"</span>)</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(dailyAggOct22.nc, <span class="st">"longitude"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(dailyAggOct22.nc, <span class="st">"latitude"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="fu">length</span>(lon), <span class="fu">length</span>(lat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  length.lon. length.lat.
@@ -641,15 +646,15 @@ Table of eReefs depths corresponding to index <code>k</code>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>count_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(lon_ct, lat_ct, time_ct, depth_ct)</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># EXTRACT DATA</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>temps_10Dec22_1p5m <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncfile =</span> dailyAggDec22.nc,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>temps_10Oct22_1p5m <span class="ot">&lt;-</span> <span class="fu">var.get.nc</span>(</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncfile =</span> dailyAggOct22.nc,</span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable =</span> <span class="st">"temp"</span>,</span>
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> start_vector,</span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">count =</span> count_vector</span>
 <span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the size of our extracted data</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="fu">dim</span>(temps_10Dec22_1p5m)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="fu">dim</span>(temps_10Oct22_1p5m)</span>
 <span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">nrows =</span> dims[<span class="dv">1</span>], <span class="at">ncols =</span> dims[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  nrows ncols
@@ -661,7 +666,7 @@ Table of eReefs depths corresponding to index <code>k</code>
 <h2 class="anchored" data-anchor-id="close-file-connection">Close file connection</h2>
 <p>Now that our extracted data is stored in memory, we should close the connection to the NetCDF file on the server.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">close.nc</span>(dailyAggDec22.nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">close.nc</span>(dailyAggOct22.nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="save-the-data" class="level2">
@@ -669,7 +674,7 @@ Table of eReefs depths corresponding to index <code>k</code>
 <p>Now that we have our extracted data we may wish to save it for future use. To do this we first convert the data from its current form as a matrix array into a raster, and then save the raster as a NetCDF file (GeoTIFF and other formats are also possible).</p>
 <p>When converting extracted eReefs data to rasters we need to apply the transpose <code>t()</code> and <code>flip()</code> functions in order to get the correct orientation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>temps_raster <span class="ot">&lt;-</span> temps_10Dec22_1p5m <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>temps_raster <span class="ot">&lt;-</span> temps_10Oct22_1p5m <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">|&gt;</span>   <span class="co"># transpose temps matrix</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">raster</span>(  <span class="co"># create raster</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmn =</span> <span class="fu">min</span>(lon), <span class="at">xmx =</span> <span class="fu">max</span>(lon),</span>
@@ -690,7 +695,7 @@ extent     : 142.1688, 156.8688, -28.69602, -7.036022  (xmin, xmax, ymin, ymax)
 crs        : +proj=longlat +datum=WGS84 +no_defs 
 source     : memory
 names      : layer 
-values     : 22.08588, 32.48817  (min, max)</code></pre>
+values     : 20.24341, 29.92736  (min, max)</code></pre>
 </div>
 </div>
 <div class="callout callout-style-simple callout-note">
@@ -707,7 +712,7 @@ values     : 22.08588, 32.48817  (min, max)</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the raster file in the /data subdirectory</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the '.nc' file extension since we are going to save as NetCDF</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>save_file <span class="ot">&lt;-</span> <span class="st">"data/ereefsDailyMeanWaterTemperature_10Dec2022_Depth1p5m.nc"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>save_file <span class="ot">&lt;-</span> <span class="st">"data/ereefsDailyMeanWaterTemperature_10Oct2022_Depth1p5m.nc"</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> temps_raster, <span class="co"># what to save</span></span>
@@ -740,7 +745,7 @@ values     : 22.08588, 32.48817  (min, max)</code></pre>
 <img src="basic_server_access_r_files/figure-html/fig-temps-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-temps-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Extracted eReefs daily aggregated mean temperature at 1.5m depth for 10 December 2022.
+Figure&nbsp;1: Extracted eReefs daily aggregated mean temperature at 1.5m depth for 10 October 2022.
 </figcaption>
 </figure>
 </div>
