@@ -57,7 +57,7 @@ data NetCDF files are listed in the
 will navigate to the eReefs 4 km Hydrodynamic Model daily aggregated data for
 the month of October 2022 and copy the OPeNDAP data URL.
 
-![](images/server_navigation.gif)
+![](images/thredds_navigation.gif)
 
 ```{python serverFileLink}
 #| code-overflow: wrap
