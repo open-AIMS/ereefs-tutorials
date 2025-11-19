@@ -17,8 +17,8 @@ website:
         text: About
       - href: https://www.ereefs.org.au/research/
         text: Research
-      - href: https://www.ereefs.org.au/tools/
-        text: Tools
+      - href: https://www.ereefs.org.au/outputs/
+        text: Outputs
       - href: https://www.ereefs.org.au/contact/
         text: Contact
     collapse-below: sm
@@ -27,8 +27,8 @@ website:
     center:
       - text: Collaborators
         href: https://www.ereefs.org.au/about/collaborators.html
-      - text: Funders
-        href: https://www.ereefs.org.au/about/funders.html
+      - text: Funding
+        href: https://www.ereefs.org.au/about/funding.html
       - text: Privacy Policy
         href: https://www.csiro.au/en/About/Access-to-information/Privacy
       - text: Legal & Disclaimer

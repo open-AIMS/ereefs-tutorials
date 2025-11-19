@@ -111,7 +111,7 @@ git clone https://github.com/open-AIMS/ereefs-tutorials.git
 Generate a local copy of the website by running this Docker command:
 
 ```bash
-docker run --rm --user $(id -u):$(id -g) -v $PWD:/usr/local/src/ereefs-tutorials ereefs-tutorials-quarto:<TAG>
+docker run --rm --user $(id -u):$(id -g) -v $PWD:/usr/local/src/ereefs-tutorials <AWS ACCOUNT ID>.dkr.ecr.ap-southeast-2.amazonaws.com/ereefs-tutorials-quarto:<TAG>
 ```
 
 Change:  
