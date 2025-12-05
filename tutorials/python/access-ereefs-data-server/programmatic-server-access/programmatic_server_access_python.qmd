@@ -22,8 +22,6 @@ interest for each point.
 
 ## Preparation
 
-TEST 2
-
 Create a folder named `data`.
 
 Download the
